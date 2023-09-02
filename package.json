@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/parser": "^7.22.14",
     "@vue/compiler-sfc": "^3.3.4",
+    "fflate": "^0.8.0",
     "json5": "^2.2.3",
     "monaco-editor": "^0.41.0",
     "shikiji": "^0.6.6"
