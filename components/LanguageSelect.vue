@@ -13,7 +13,7 @@ const changeLang = (language: Language) => {
       {{ currentLanguage.label }}
     </button>
     <template #popper>
-      <CommonDropdownItem
+      <DropdownItem
         v-for="(lang, id) in LANGUAGES"
         :key="id"
         :icon="lang.icon"

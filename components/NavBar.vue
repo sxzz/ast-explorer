@@ -6,8 +6,11 @@
       <LanguageOptions v-if="currentLanguage.options.configurable" />
     </div>
 
-    <button @click="toggleDark()">
-      <div i-ri:sun-line dark:i-ri:moon-line />
-    </button>
+    <div flex="~ gap2">
+      <span font-mono text-gray>{{ currentLanguage.version }}</span>
+      <button @click="toggleDark()">
+        <div i-ri:sun-line dark:i-ri:moon-line />
+      </button>
+    </div>
   </div>
 </template>

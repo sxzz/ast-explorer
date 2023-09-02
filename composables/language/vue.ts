@@ -1,5 +1,5 @@
 import { LanguageOption } from '../language'
-import { parse } from '@vue/compiler-sfc'
+import { parse, version } from '@vue/compiler-sfc'
 
 // @unocss-include
 export const vue: LanguageOption = {
@@ -11,6 +11,7 @@ export const vue: LanguageOption = {
     defaultValue: {},
     language: 'json',
   },
+  version: `@vue/compiler-sfc@${version}`,
   parse(code, options) {
     return parse(code, { ...options })
   },

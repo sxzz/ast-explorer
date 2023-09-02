@@ -1,5 +1,6 @@
 import { ParserOptions } from '@babel/parser'
 import { parse } from '@babel/parser'
+import { version } from '@babel/parser/package.json'
 import { LanguageOption } from '../language'
 
 // @unocss-include
@@ -18,6 +19,7 @@ export const javascript: LanguageOption = {
     defaultValue: {},
     language: 'json',
   },
+  version: `@babel/parser@${version}`,
   parse(code, options: ParserOptions | null | undefined) {
     return parse(code, {
       sourceType: 'module',
