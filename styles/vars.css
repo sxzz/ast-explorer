@@ -1,0 +1,11 @@
+:root {
+  --c-border: #eee;
+  --c-bg-base: #fff;
+  --c-text-base: #232323;
+}
+
+.dark {
+  --c-border: #222;
+  --c-bg-base: #1e1e1e;
+  --c-text-base: #fff;
+}

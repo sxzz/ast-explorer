@@ -1,0 +1,16 @@
+html,
+body,
+#__nuxt {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  color-scheme: dark;
+  background-color: var(--c-bg-base);
+}
+
+.shiki {
+  background: transparent !important;
+}
