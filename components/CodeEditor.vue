@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as monaco from 'monaco-editor'
+import type * as monaco from 'monaco-editor'
 import { type MonacoEditor } from '#build/components'
 import { type MonacoLanguage } from '~/composables/language'
 
@@ -27,14 +27,14 @@ const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
 
 <template>
   <MonacoEditor
-    v-model="code"
     ref="editorRef"
+    v-model="code"
     h-full
     :lang="language"
     :options="options"
   >
-    <div flex="~ col gap-2" w-full h-full items-center justify-center>
-      <div i-ri:loader-2-line animate-spin text-4xl></div>
+    <div flex="~ col gap-2" h-full w-full items-center justify-center>
+      <div i-ri:loader-2-line animate-spin text-4xl />
       <span text-lg>Loading...</span>
     </div>
   </MonacoEditor>

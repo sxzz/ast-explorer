@@ -44,13 +44,14 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
   allowJs: true,
 })
 
-watchEffect(async () => {
+watchEffect(() => {
   try {
     ast.value = currentLanguage.value.parse(
       code.value,
       json5.parse(rawOptions.value)
     )
     error.value = null
+    // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
     error.value = err
   }

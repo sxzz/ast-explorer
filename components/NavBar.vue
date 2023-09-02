@@ -1,7 +1,7 @@
 <template>
-  <div p2 flex justify-between items-center>
+  <div flex items-center justify-between p2>
     <div flex="~ gap4">
-      <h1 font-bold text-lg>AST Viewer</h1>
+      <h1 text-lg font-bold>AST Explorer</h1>
       <LanguageSelect />
       <LanguageOptions v-if="currentLanguage.options.configurable" />
     </div>

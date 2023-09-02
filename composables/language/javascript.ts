@@ -1,7 +1,6 @@
-import { ParserOptions } from '@babel/parser'
-import { parse } from '@babel/parser'
+import { type ParserOptions, parse } from '@babel/parser'
 import { version } from '@babel/parser/package.json'
-import { LanguageOption } from '../language'
+import { type LanguageOption } from '../language'
 
 // @unocss-include
 export const javascript: LanguageOption = {

@@ -23,13 +23,13 @@ const handleClick = (evt: MouseEvent) => {
   <div
     v-bind="$attrs"
     ref="el"
+    hover-bg-active
     flex
-    gap-2
-    items-center
     cursor-pointer
+    items-center
+    gap-2
     px3
     py2
-    hover-bg-active
     :aria-label="text"
     @click="handleClick"
   >

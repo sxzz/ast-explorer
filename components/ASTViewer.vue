@@ -4,7 +4,7 @@ import { hideEmptyKeys, hideLocationData } from '#imports'
 
 const Error = globalThis.Error
 
-let shiki = await getHighlighter({
+const shiki = await getHighlighter({
   themes: ['vitesse-dark', 'vitesse-light'],
   langs: ['json'],
 })
@@ -46,25 +46,25 @@ const hideKeysValue = computed({
   <div flex="~ col gap-2" min-w-0>
     <div flex="~ gap-2">
       <label>
-        <input type="checkbox" v-model="hideEmptyKeys" /> Hide empty keys
+        <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
       </label>
       <label>
-        <input type="checkbox" v-model="hideLocationData" /> Hide location data
+        <input v-model="hideLocationData" type="checkbox" /> Hide location data
       </label>
       <label>
         Hide keys:
         <input
-          type="input"
           v-model="hideKeysValue"
+          type="input"
           border="~ $c-border"
-          px1
           rounded
+          px1
         />
       </label>
     </div>
-    <div v-if="error" text-red overflow-scroll>
+    <div v-if="error" overflow-scroll text-red>
       <pre v-text="error instanceof Error ? error.stack : error" />
     </div>
-    <div overflow-scroll v-else v-html="html" />
+    <div v-else overflow-scroll v-html="html" />
   </div>
 </template>

@@ -19,21 +19,21 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div flex justify-center items-center>
+  <div flex items-center justify-center>
     <button class="i-ri:settings-line" @click="openDialog" />
-    <dialog ref="dialog" rounded h-50vh p0 @click="handleDialogClick">
-      <div text-center text-lg py2 font-bold>
+    <dialog ref="dialog" h-50vh rounded p0 @click="handleDialogClick">
+      <div py2 text-center text-lg font-bold>
         Parser Options
         <button
           class="i-ri:close-line"
-          p4
           float-right
+          p4
           @click="dialog?.close()"
         />
       </div>
       <CodeEditor
-        w-50vw
         v-model="value"
+        w-50vw
         :language="currentLanguage.options.language"
       />
     </dialog>
