@@ -40,6 +40,21 @@ const hideKeysValue = computed({
     hideKeys.value = JSON.parse(val)
   },
 })
+
+function stringifyError(error: any) {
+  if (error instanceof Error) {
+    if (navigator.userAgent.includes('Safari'))
+      return `${error}\n${error.stack
+        ?.split('\n')
+        .map((line) => {
+          const [fn, file] = line.split('@', 2)
+          return `${' '.repeat(4)}at ${fn} (${file})`
+        })
+        .join('\n')}`
+    return error.stack
+  }
+  return String(error)
+}
 </script>
 
 <template>
@@ -63,7 +78,7 @@ const hideKeysValue = computed({
       </label>
     </div>
     <div v-if="error" overflow-scroll text-red>
-      <pre v-text="error instanceof Error ? error.stack : error" />
+      <pre v-text="stringifyError(error)" />
     </div>
     <div v-else overflow-scroll v-html="html" />
   </div>
