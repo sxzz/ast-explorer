@@ -10,27 +10,32 @@ const shiki = await getHighlighter({
 })
 
 const html = computed(() => {
-  return shiki.codeToHtml(
-    JSON.stringify(
-      ast.value,
-      (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return undefined
-        if (
-          hideLocationData.value &&
-          ['loc', 'start', 'end', 'span', ...hideKeys.value].includes(key)
-        )
-          return undefined
-        if (typeof value === 'function') return `function ${value.name}(...)`
-        if (typeof value === 'bigint') return `(BigInt) ${value}n`
-        return value
-      },
-      2
-    ),
-    {
-      lang: 'json',
-      theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
-    }
-  )
+  try {
+    return shiki.codeToHtml(
+      JSON.stringify(
+        ast.value,
+        (key: string, value: unknown) => {
+          if (hideEmptyKeys.value && value == null) return undefined
+          if (
+            hideLocationData.value &&
+            ['loc', 'start', 'end', 'span', ...hideKeys.value].includes(key)
+          )
+            return undefined
+          if (typeof value === 'function') return `function ${value.name}(...)`
+          if (typeof value === 'bigint') return `(BigInt) ${value}n`
+          return value
+        },
+        2
+      ),
+      {
+        lang: 'json',
+        theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
+      }
+    )
+    // eslint-disable-next-line unicorn/catch-error-name
+  } catch (err) {
+    error.value = err
+  }
 })
 
 const hideKeysValue = computed({
