@@ -1,41 +1,27 @@
 <script setup lang="ts">
-import { getHighlighter } from 'shikiji'
 import json5 from 'json5'
 import { hideEmptyKeys, hideLocationData, loading } from '#imports'
 
 const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
-const shiki = await getHighlighter({
-  themes: ['vitesse-dark', 'vitesse-light'],
-  langs: ['json'],
-})
-
-const html = computed(() => {
+const serialized = computed(() => {
   try {
-    return shiki.codeToHtml(
-      JSON.stringify(
-        ast.value,
-        (key: string, value: unknown) => {
-          if (hideEmptyKeys.value && value == null) return undefined
-          if (
-            [
-              ...(hideLocationData.value
-                ? ['loc', 'start', 'end', 'span']
-                : []),
-              ...hideKeys.value.filter((v) => !!v),
-            ].includes(key)
-          )
-            return undefined
-          if (typeof value === 'function') return `function ${value.name}(...)`
-          if (typeof value === 'bigint') return `(BigInt) ${value}n`
-          return value
-        },
-        2
-      ),
-      {
-        lang: 'json',
-        theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
-      }
+    return JSON.stringify(
+      ast.value,
+      (key: string, value: unknown) => {
+        if (hideEmptyKeys.value && value == null) return undefined
+        if (
+          [
+            ...(hideLocationData.value ? ['loc', 'start', 'end', 'span'] : []),
+            ...hideKeys.value.filter((v) => !!v),
+          ].includes(key)
+        )
+          return undefined
+        if (typeof value === 'function') return `function ${value.name}(...)`
+        if (typeof value === 'bigint') return `(BigInt) ${value}n`
+        return value
+      },
+      2
     )
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
@@ -102,6 +88,20 @@ function print() {
     <div v-else-if="error" overflow-scroll text-red>
       <pre v-text="stringifyError(error)" />
     </div>
-    <div v-else overflow-scroll v-html="html" />
+    <MonacoEditor
+      flex-1
+      lang="json"
+      :model-value="serialized"
+      :options="{
+        automaticLayout: true,
+        theme: isDark ? 'vs-dark' : 'vs',
+        readOnly: true,
+        fontSize: 14,
+        tabSize: 2,
+        minimap: {
+          enabled: false,
+        },
+      }"
+    />
   </div>
 </template>

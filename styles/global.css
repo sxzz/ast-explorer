@@ -11,10 +11,6 @@ html.dark {
   background-color: var(--c-bg-base);
 }
 
-.shiki {
-  background: transparent !important;
-}
-
 /* Color Mode transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {
