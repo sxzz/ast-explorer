@@ -73,7 +73,7 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   },
   init() {
     // @ts-expect-error
-    return import('https://cdn.jsdelivr.net/npm/acorn@8.10.0/+esm')
+    return import('https://cdn.jsdelivr.net/npm/acorn/dist/acorn.mjs')
   },
   parse(code, options) {
     return this.parse(code, { ...options })
