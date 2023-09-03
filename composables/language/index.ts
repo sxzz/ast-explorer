@@ -3,19 +3,19 @@ import { javascript } from './javascript'
 import { vue } from './vue'
 
 export type MonacoLanguage = 'javascript' | 'typescript' | 'json' | 'vue'
-export interface Parser {
+export interface Parser<C = any, O = any> {
   id: string
   label: string
   icon: string
   version: string
-  init?(): void | Promise<void>
-  parse(code: string, options: any): any
+  init?(): C | Promise<C>
+  parse(this: C, code: string, options: O): any
   options: {
     configurable: boolean
-    defaultValue: any
+    defaultValue: O
     editorLanguage: MonacoLanguage
   }
-  editorLanguage: MonacoLanguage | ((options: any) => MonacoLanguage)
+  editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
 }
 export interface LanguageOption {
   label: string

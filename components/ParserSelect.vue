@@ -8,7 +8,7 @@ function changeParser(parser: string) {
   <VMenu :class="{ dark: isDark }" flex>
     <button flex="~ gap-1" items-center>
       <div :class="currentParser.icon" />
-      {{ currentParser.label }}
+      <span font-mono>{{ currentParser.label }}</span>
     </button>
     <template #popper>
       <DropdownItem
@@ -17,6 +17,7 @@ function changeParser(parser: string) {
         :icon="parser.icon"
         :text="parser.label"
         :checked="currentParserId === id"
+        font-mono
         @click="changeParser(id)"
       />
     </template>

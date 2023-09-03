@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getHighlighter } from 'shikiji'
-import { hideEmptyKeys, hideLocationData } from '#imports'
+import { hideEmptyKeys, hideLocationData, loading } from '#imports'
 
 const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
@@ -77,7 +77,8 @@ function stringifyError(error: any) {
         />
       </label>
     </div>
-    <div v-if="error" overflow-scroll text-red>
+    <div v-if="loading">Loading parser...</div>
+    <div v-else-if="error" overflow-scroll text-red>
       <pre v-text="stringifyError(error)" />
     </div>
     <div v-else overflow-scroll v-html="html" />

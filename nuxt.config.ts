@@ -18,9 +18,6 @@ export default defineNuxtConfig({
     define: {
       'process.env': JSON.stringify({}),
     },
-    optimizeDeps: {
-      exclude: ['@swc/wasm-web'],
-    },
   },
   imports: {
     dirs: ['./composables', './composables/language', './utils'],

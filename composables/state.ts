@@ -3,6 +3,7 @@ import { type Language } from './language'
 
 const PREFIX = 'ast-explorer:'
 
+export const loading = ref(false)
 export const code = ref('')
 export const ast = shallowRef<any>({})
 export const error = shallowRef<any>()
@@ -72,20 +73,21 @@ watch(
   { immediate: !rawUrlState }
 )
 
-export const initted: Record<string, boolean> = Object.create(null)
+export const initted: Record<string, any> = Object.create(null)
 async function initParser() {
   const { id, init } = currentParser.value
-  if (initted[id]) return
-  initted[id] = true
-  await init?.()
+  if (initted[id]) return initted[id]
+  return (initted[id] = await init?.())
 }
 
 watch(
   [currentParserId, code, rawOptions],
   async () => {
+    loading.value = true
     try {
-      await initParser()
-      ast.value = await currentParser.value.parse(
+      const ctx = await initParser()
+      ast.value = await currentParser.value.parse.call(
+        ctx,
         code.value,
         json5.parse(rawOptions.value)
       )
@@ -93,6 +95,8 @@ watch(
       // eslint-disable-next-line unicorn/catch-error-name
     } catch (err) {
       error.value = err
+    } finally {
+      loading.value = false
     }
   },
   { immediate: true }
