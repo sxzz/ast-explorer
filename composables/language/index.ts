@@ -1,4 +1,3 @@
-import json5 from 'json5'
 import * as monaco from 'monaco-editor'
 import { javascript } from './javascript'
 import { vue } from './vue'
@@ -58,29 +57,3 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
   jsx: monaco.languages.typescript.JsxEmit.Preserve,
   allowJs: true,
 })
-
-export const initted: Record<string, boolean> = Object.create(null)
-async function initParser() {
-  const { id, init } = currentParser.value
-  if (initted[id]) return
-  initted[id] = true
-  await init?.()
-}
-
-watch(
-  [currentParser, code, rawOptions],
-  async () => {
-    try {
-      await initParser()
-      ast.value = await currentParser.value.parse(
-        code.value,
-        json5.parse(rawOptions.value)
-      )
-      error.value = null
-      // eslint-disable-next-line unicorn/catch-error-name
-    } catch (err) {
-      error.value = err
-    }
-  },
-  { immediate: true }
-)

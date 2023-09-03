@@ -1,9 +1,7 @@
 <script setup lang="ts">
+import { rawOptions } from '#imports'
+
 const dialog = ref<HTMLDialogElement>()
-const value = ref(
-  rawOptions.value ||
-    JSON.stringify(currentParser.value.options.defaultValue, null, 2)
-)
 
 function openDialog() {
   dialog.value?.showModal()
@@ -12,10 +10,6 @@ function openDialog() {
 function handleDialogClick(evt: MouseEvent) {
   if (evt.target === evt.currentTarget) dialog.value?.close()
 }
-
-watchEffect(() => {
-  rawOptions.value = value.value
-})
 </script>
 
 <template>
@@ -32,7 +26,7 @@ watchEffect(() => {
         />
       </div>
       <CodeEditor
-        v-model="value"
+        v-model="rawOptions"
         w-50vw
         :language="currentParser.options.editorLanguage"
       />

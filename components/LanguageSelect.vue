@@ -4,12 +4,6 @@ import { type Language } from '~/composables/language'
 function changeLanguage(language: Language) {
   currentLanguageId.value = language
 }
-
-function setParser() {
-  currentParserId.value = Object.keys(currentLanguage.value.parsers)[0]
-}
-
-if (!currentParserId.value) setParser()
 </script>
 
 <template>

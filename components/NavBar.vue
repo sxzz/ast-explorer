@@ -4,7 +4,7 @@
       <h1 text-lg font-bold>AST Explorer</h1>
       <LanguageSelect />
       <ParserSelect />
-      <LanguageOptions v-if="currentParser.options.configurable" />
+      <ParserOptions v-if="currentParser.options.configurable" />
     </div>
 
     <div flex="~ gap2">
