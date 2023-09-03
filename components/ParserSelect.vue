@@ -12,13 +12,13 @@ function changeParser(parser: string) {
     </button>
     <template #popper>
       <DropdownItem
-        v-for="(parser, id) in currentLanguage.parsers"
-        :key="id"
+        v-for="parser of currentLanguage.parsers"
+        :key="parser.id"
         :icon="parser.icon"
         :text="parser.label"
-        :checked="currentParserId === id"
+        :checked="currentParserId === parser.id"
         font-mono
-        @click="changeParser(id)"
+        @click="changeParser(parser.id)"
       />
     </template>
   </VMenu>

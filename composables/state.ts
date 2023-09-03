@@ -52,11 +52,9 @@ watch(
   () => {
     if (
       !currentParserId.value ||
-      !Object.keys(currentLanguage.value.parsers).includes(
-        currentParserId.value
-      )
+      !currentLanguage.value.parsers.some((p) => p.id === currentParserId.value)
     )
-      currentParserId.value = Object.keys(currentLanguage.value.parsers)[0]
+      currentParserId.value = currentLanguage.value.parsers[0].id
   },
   { immediate: true }
 )

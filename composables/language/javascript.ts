@@ -85,7 +85,7 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
 }
 
 const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
-  id: 'tsEslint',
+  id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
   icon: 'i-vscode-icons:file-type-eslint',
   version: `@typescript-eslint/parser@latest`,
@@ -107,10 +107,5 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
 export const javascript: LanguageOption = {
   label: 'JavaScript',
   icon: 'i-vscode-icons:file-type-js-official',
-  parsers: {
-    babel,
-    swc,
-    acorn,
-    tsEslint,
-  },
+  parsers: [babel, swc, acorn, tsEslint],
 }

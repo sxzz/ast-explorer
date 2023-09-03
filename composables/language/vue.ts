@@ -28,7 +28,5 @@ const vue3: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  parsers: {
-    vue3,
-  },
+  parsers: [vue3],
 }

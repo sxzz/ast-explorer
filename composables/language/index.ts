@@ -20,7 +20,7 @@ export interface Parser<C = any, O = any> {
 export interface LanguageOption {
   label: string
   icon: string
-  parsers: Record<string, Parser>
+  parsers: Parser[]
 }
 
 export const LANGUAGES = {
@@ -37,7 +37,9 @@ export const currentParser = computed(
   () =>
     (currentLanguage.value &&
       currentParserId.value &&
-      currentLanguage.value.parsers[currentParserId.value]) ||
+      currentLanguage.value.parsers.find(
+        (p) => p.id === currentParserId.value
+      )) ||
     Object.values(currentLanguage.value.parsers)[0]
 )
 
