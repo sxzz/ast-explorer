@@ -70,6 +70,9 @@ devDependencies:
   serve:
     specifier: ^14.2.1
     version: 14.2.1
+  typescript:
+    specifier: ^5.2.2
+    version: 5.2.2
   vue-tsc:
     specifier: ^1.8.8
     version: 1.8.8(typescript@5.2.2)

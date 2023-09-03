@@ -9,14 +9,15 @@ const serialized = computed(() => {
     return JSON.stringify(
       ast.value,
       (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return undefined
+        if (key === 'parseDiagnostics') return
+        if (hideEmptyKeys.value && value == null) return
         if (
           [
             ...(hideLocationData.value ? ['loc', 'start', 'end', 'span'] : []),
             ...hideKeys.value.filter((v) => !!v),
           ].includes(key)
         )
-          return undefined
+          return
         if (typeof value === 'function') return `function ${value.name}(...)`
         if (typeof value === 'bigint') return `(BigInt) ${value}n`
         return value
@@ -25,6 +26,7 @@ const serialized = computed(() => {
     )
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
+    console.error(err)
     error.value = err
   }
 })
@@ -90,6 +92,7 @@ function print() {
         <pre v-text="stringifyError(error)" />
       </div>
       <MonacoEditor
+        v-else
         flex-1
         lang="json"
         :model-value="serialized"

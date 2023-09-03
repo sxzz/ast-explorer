@@ -3,6 +3,7 @@ import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
 import type * as Acorn from 'acorn'
+import type * as Ts from 'typescript'
 
 // @unocss-include
 
@@ -104,8 +105,31 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   editorLanguage: 'typescript',
 }
 
+const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
+  id: 'typescript',
+  label: 'typescript',
+  icon: 'i-vscode-icons:file-type-typescript-official',
+  version: `typescript@latest`,
+  options: {
+    configurable: true,
+    defaultValue: {
+      languageVersion: 99,
+    },
+    editorLanguage: 'json',
+  },
+  init: () =>
+    // @ts-expect-error
+    import('https://cdn.jsdelivr.net/npm/typescript/+esm').then(
+      (mod) => mod.default
+    ),
+  parse(code, options) {
+    return this.createSourceFile('foo.ts', code, { ...options })
+  },
+  editorLanguage: 'typescript',
+}
+
 export const javascript: LanguageOption = {
   label: 'JavaScript',
   icon: 'i-vscode-icons:file-type-js-official',
-  parsers: [babel, swc, acorn, tsEslint],
+  parsers: [babel, swc, acorn, tsEslint, ts],
 }
