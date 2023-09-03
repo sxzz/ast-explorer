@@ -64,7 +64,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
 const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
   label: 'Acorn',
-  icon: 'i-vscode-icons:acorn',
+  icon: 'i-vscode-icons:file-type-js-official',
   version: `acorn@latest`,
   options: {
     configurable: true,
