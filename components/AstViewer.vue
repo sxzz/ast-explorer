@@ -2,7 +2,7 @@
 import { getHighlighter } from 'shikiji'
 import { hideEmptyKeys, hideLocationData } from '#imports'
 
-const Error = globalThis.Error
+const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
 const shiki = await getHighlighter({
   themes: ['vitesse-dark', 'vitesse-light'],
@@ -43,7 +43,7 @@ const hideKeysValue = computed({
 
 function stringifyError(error: any) {
   if (error instanceof Error) {
-    if (navigator.userAgent.includes('Safari'))
+    if (IS_SAFARI)
       return `${error}\n${error.stack
         ?.split('\n')
         .map((line) => {
