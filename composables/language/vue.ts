@@ -5,14 +5,21 @@ import { type LanguageOption } from '../language'
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  language: 'vue',
-  options: {
-    configurable: true,
-    defaultValue: {},
-    language: 'json',
-  },
-  version: `@vue/compiler-sfc@${version}`,
-  parse(code, options) {
-    return parse(code, { ...options })
+  parsers: {
+    vue3: {
+      id: 'vue3',
+      label: '@vue/compiler-sfc (Vue 3)',
+      icon: 'i-vscode-icons:file-type-vue',
+      version: `@vue/compiler-sfc@${version}`,
+      options: {
+        configurable: true,
+        defaultValue: {},
+        editorLanguage: 'json',
+      },
+      parse(code, options) {
+        return parse(code, { ...options })
+      },
+      editorLanguage: 'vue',
+    },
   },
 }

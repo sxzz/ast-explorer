@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { type Language } from '~/composables/language'
 
-const changeLang = (language: Language) => {
+function changeLanguage(language: Language) {
   currentLanguageId.value = language
 }
+
+function setParser() {
+  currentParserId.value = Object.keys(currentLanguage.value.parsers)[0]
+}
+
+if (!currentParserId.value) setParser()
 </script>
 
 <template>
@@ -19,7 +25,7 @@ const changeLang = (language: Language) => {
         :icon="lang.icon"
         :text="lang.label"
         :checked="currentLanguageId === id"
-        @click="changeLang(id)"
+        @click="changeLanguage(id)"
       />
     </template>
   </VMenu>

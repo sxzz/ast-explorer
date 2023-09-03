@@ -2,7 +2,7 @@
 const dialog = ref<HTMLDialogElement>()
 const value = ref(
   rawOptions.value ||
-    JSON.stringify(currentLanguage.value.options.defaultValue, null, 2)
+    JSON.stringify(currentParser.value.options.defaultValue, null, 2)
 )
 
 function openDialog() {
@@ -34,7 +34,7 @@ watchEffect(() => {
       <CodeEditor
         v-model="value"
         w-50vw
-        :language="currentLanguage.options.language"
+        :language="currentParser.options.editorLanguage"
       />
     </dialog>
   </div>

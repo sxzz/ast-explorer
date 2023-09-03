@@ -2,10 +2,10 @@
 import { code } from '#imports'
 
 const language = computed(() => {
-  if (typeof currentLanguage.value.language === 'string') {
-    return currentLanguage.value.language
+  if (typeof currentParser.value.editorLanguage === 'string') {
+    return currentParser.value.editorLanguage
   }
-  return currentLanguage.value.language(options.value)
+  return currentParser.value.editorLanguage(options.value)
 })
 </script>
 

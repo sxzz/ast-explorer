@@ -4,17 +4,24 @@ import { javascript } from './javascript'
 import { vue } from './vue'
 
 export type MonacoLanguage = 'javascript' | 'typescript' | 'json' | 'vue'
-export interface LanguageOption {
+export interface Parser {
+  id: string
   label: string
   icon: string
-  language: MonacoLanguage | ((options: any) => MonacoLanguage)
+  version: string
+  init?(): void | Promise<void>
+  parse(code: string, options: any): any
   options: {
     configurable: boolean
     defaultValue: any
-    language: MonacoLanguage
+    editorLanguage: MonacoLanguage
   }
-  version: string
-  parse(code: string, options: any): any
+  editorLanguage: MonacoLanguage | ((options: any) => MonacoLanguage)
+}
+export interface LanguageOption {
+  label: string
+  icon: string
+  parsers: Record<string, Parser>
 }
 
 export const LANGUAGES = {
@@ -25,6 +32,14 @@ export type Language = keyof typeof LANGUAGES
 
 export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript
+)
+
+export const currentParser = computed(
+  () =>
+    (currentLanguage.value &&
+      currentParserId.value &&
+      currentLanguage.value.parsers[currentParserId.value]) ||
+    Object.values(currentLanguage.value.parsers)[0]
 )
 
 monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
@@ -44,15 +59,28 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
   allowJs: true,
 })
 
-watchEffect(() => {
-  try {
-    ast.value = currentLanguage.value.parse(
-      code.value,
-      json5.parse(rawOptions.value)
-    )
-    error.value = null
-    // eslint-disable-next-line unicorn/catch-error-name
-  } catch (err) {
-    error.value = err
-  }
-})
+export const initted: Record<string, boolean> = Object.create(null)
+async function initParser() {
+  const { id, init } = currentParser.value
+  if (initted[id]) return
+  initted[id] = true
+  await init?.()
+}
+
+watch(
+  [currentParser, code, rawOptions],
+  async () => {
+    try {
+      await initParser()
+      ast.value = await currentParser.value.parse(
+        code.value,
+        json5.parse(rawOptions.value)
+      )
+      error.value = null
+      // eslint-disable-next-line unicorn/catch-error-name
+    } catch (err) {
+      error.value = err
+    }
+  },
+  { immediate: true }
+)

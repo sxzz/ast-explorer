@@ -20,6 +20,11 @@ export const currentLanguageId = useLocalStorage<Language>(
   'javascript'
 )
 
+export const currentParserId = useLocalStorage<string | undefined>(
+  `${PREFIX}parser`,
+  undefined
+)
+
 export const options = computed(() => {
   try {
     return json5.parse(rawOptions.value)

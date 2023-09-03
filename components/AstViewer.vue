@@ -17,7 +17,7 @@ const html = computed(() => {
         if (hideEmptyKeys.value && value == null) return undefined
         if (
           hideLocationData.value &&
-          ['loc', 'start', 'end', ...hideKeys.value].includes(key)
+          ['loc', 'start', 'end', 'span', ...hideKeys.value].includes(key)
         )
           return undefined
         if (typeof value === 'function') return `function ${value.name}(...)`
