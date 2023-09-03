@@ -30,7 +30,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
         Array.isArray(item) ? item[0] : item
       )
       if (normalizedPlugins.includes('typescript')) return 'typescript'
-    } catch { }
+    } catch {}
     return 'javascript'
   },
 }
@@ -63,7 +63,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
 
 const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
-  label: 'acorn',
+  label: 'Acorn',
   icon: 'i-vscode-icons:acorn',
   version: `acorn@latest`,
   options: {
