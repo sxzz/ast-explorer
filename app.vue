@@ -12,7 +12,7 @@ const language = computed(() => {
 <template>
   <main h-screen flex="~ col">
     <NavBar mb-1 />
-    <div min-h-0 flex="~ gap3">
+    <div min-h-0 flex="~ gap3 1">
       <CodeEditor
         v-model="code"
         :language="language"
