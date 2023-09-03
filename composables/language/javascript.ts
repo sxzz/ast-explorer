@@ -1,6 +1,5 @@
-// import { parse } from '@typescript-eslint/parser'
-// import { type ParserOptions } from '@typescript-eslint/parser/dist/index'
 import { type LanguageOption, type Parser } from '../language'
+import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
 import type * as Acorn from 'acorn'
@@ -43,7 +42,9 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   version: `@swc/parser@latest`,
   options: {
     configurable: true,
-    defaultValue: { syntax: 'ecmascript' },
+    defaultValue: {
+      syntax: 'ecmascript',
+    },
     editorLanguage: 'json',
   },
   init: () =>
@@ -69,7 +70,10 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   version: `acorn@latest`,
   options: {
     configurable: true,
-    defaultValue: { ecmaVersion: 'latest', sourceType: 'module' },
+    defaultValue: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
     editorLanguage: 'json',
   },
   // @ts-expect-error
@@ -80,21 +84,25 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   editorLanguage: 'javascript',
 }
 
-// const tsEslint: Parser<undefined, ParserOptions> = {
-//   id: 'tsEslint',
-//   label: '@typescript-eslint/parser',
-//   icon: 'i-vscode-icons:file-type-eslint',
-//   version: `@typescript-eslint/parser@latest`,
-//   options: {
-//     configurable: true,
-//     defaultValue: {},
-//     editorLanguage: 'json',
-//   },
-//   parse(code, options) {
-//     return parse(code, { ...(options as any) })
-//   },
-//   editorLanguage: 'typescript',
-// }
+const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
+  id: 'tsEslint',
+  label: '@typescript-eslint/parser',
+  icon: 'i-vscode-icons:file-type-eslint',
+  version: `@typescript-eslint/parser@latest`,
+  options: {
+    configurable: true,
+    defaultValue: {
+      sourceType: 'module',
+    },
+    editorLanguage: 'json',
+  },
+  // @ts-expect-error
+  init: () => import('https://esm.sh/@typescript-eslint/typescript-estree'),
+  parse(code, options) {
+    return this.parse(code, { ...options })
+  },
+  editorLanguage: 'typescript',
+}
 
 export const javascript: LanguageOption = {
   label: 'JavaScript',
@@ -103,6 +111,6 @@ export const javascript: LanguageOption = {
     babel,
     swc,
     acorn,
-    // tsEslint,
+    tsEslint,
   },
 }

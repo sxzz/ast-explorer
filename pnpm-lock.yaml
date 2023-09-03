@@ -40,6 +40,9 @@ devDependencies:
   '@sxzz/prettier-config':
     specifier: ^1.0.4
     version: 1.0.4
+  '@typescript-eslint/parser':
+    specifier: ^6.5.0
+    version: 6.5.0(eslint@8.48.0)(typescript@5.2.2)
   '@unocss/nuxt':
     specifier: ^0.55.4
     version: 0.55.4(postcss@8.4.29)(vite@4.4.9)(webpack@5.88.2)

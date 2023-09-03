@@ -19,6 +19,13 @@ export default defineNuxtConfig({
       'process.env': JSON.stringify({}),
     },
   },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        moduleResolution: 'bundler',
+      },
+    },
+  },
   imports: {
     dirs: ['./composables', './composables/language', './utils'],
   },
