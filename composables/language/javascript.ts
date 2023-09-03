@@ -11,7 +11,6 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   id: 'babel',
   label: '@babel/parser',
   icon: 'i-vscode-icons:file-type-babel2',
-  version: `@babel/parser@latest`,
   options: {
     configurable: true,
     defaultValue: {
@@ -21,6 +20,10 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   },
   // @ts-expect-error
   init: () => import('https://cdn.jsdelivr.net/npm/@babel/parser/+esm'),
+  version: () =>
+    fetch('https://cdn.jsdelivr.net/npm/@babel/parser/package.json')
+      .then((r) => r.json())
+      .then((raw) => `@babel/parser@${raw.version}`),
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -40,7 +43,6 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   id: 'swc',
   label: 'SWC',
   icon: 'i-vscode-icons:file-type-swc',
-  version: `@swc/parser@latest`,
   options: {
     configurable: true,
     defaultValue: {
@@ -56,6 +58,10 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
       await mod.default()
       return mod
     }),
+  version: () =>
+    fetch('https://cdn.jsdelivr.net/npm/@swc/wasm-web/package.json')
+      .then((r) => r.json())
+      .then((raw) => `@swc/wasm-web@${raw.version}`),
   parse(code, options) {
     return this.parse(code, { ...(options as any) })
   },
@@ -68,7 +74,6 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
   label: 'Acorn',
   icon: 'i-vscode-icons:file-type-js-official',
-  version: `acorn@latest`,
   options: {
     configurable: true,
     defaultValue: {
@@ -79,6 +84,9 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   },
   // @ts-expect-error
   init: () => import('https://cdn.jsdelivr.net/npm/acorn/dist/acorn.mjs'),
+  version() {
+    return `acorn@${this.version}`
+  },
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -89,7 +97,6 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
   icon: 'i-vscode-icons:file-type-eslint',
-  version: `@typescript-eslint/parser@latest`,
   options: {
     configurable: true,
     defaultValue: {
@@ -99,6 +106,9 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   },
   // @ts-expect-error
   init: () => import('https://esm.sh/@typescript-eslint/typescript-estree'),
+  version() {
+    return `@typescript-eslint/parser@${this.version}`
+  },
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -109,7 +119,6 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   id: 'typescript',
   label: 'typescript',
   icon: 'i-vscode-icons:file-type-typescript-official',
-  version: `typescript@latest`,
   options: {
     configurable: true,
     defaultValue: {
@@ -122,6 +131,9 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
     import('https://cdn.jsdelivr.net/npm/typescript/+esm').then(
       (mod) => mod.default
     ),
+  version() {
+    return `typescript@${this.version}`
+  },
   parse(code, options) {
     return this.createSourceFile('foo.ts', code, { ...options })
   },

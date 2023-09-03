@@ -8,7 +8,7 @@
     </div>
 
     <div flex="~ gap-3">
-      <span font-mono text-gray>{{ currentParser.version }}</span>
+      <span font-mono text-gray>{{ parserVersion }}</span>
       <button @click="toggleDark">
         <div i-ri:sun-line dark:i-ri:moon-line />
       </button>

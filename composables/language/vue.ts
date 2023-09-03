@@ -7,7 +7,6 @@ const vue3: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
   id: 'vue3',
   label: '@vue/compiler-sfc',
   icon: 'i-vscode-icons:file-type-vue',
-  version: `@vue/compiler-sfc@3`,
   editorLanguage: 'vue',
   options: {
     configurable: true,
@@ -19,6 +18,9 @@ const vue3: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
       // @ts-expect-error
       'https://cdn.jsdelivr.net/npm/@vue/compiler-sfc@3/dist/compiler-sfc.esm-browser.js'
     )
+  },
+  version() {
+    return `@vue/compiler-sfc@${this.version}`
   },
   parse(code, options) {
     return this.parse(code, { ...options })

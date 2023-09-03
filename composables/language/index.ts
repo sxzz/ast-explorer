@@ -7,8 +7,8 @@ export interface Parser<C = any, O = any> {
   id: string
   label: string
   icon: string
-  version: string
   init?(): C | Promise<C>
+  version: string | ((this: C) => string | Promise<string>)
   parse(this: C, code: string, options: O): any
   options: {
     configurable: boolean
@@ -42,6 +42,8 @@ export const currentParser = computed(
       )) ||
     Object.values(currentLanguage.value.parsers)[0]
 )
+
+export const parserVersion = ref('')
 
 monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
   allowComments: true,

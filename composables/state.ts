@@ -71,19 +71,31 @@ watch(
   { immediate: !rawUrlState }
 )
 
-export const initted: Record<string, any> = Object.create(null)
+export const parserContextMap: Record<string, any> = reactive(
+  Object.create(null)
+)
 async function initParser() {
   const { id, init } = currentParser.value
-  if (initted[id]) return initted[id]
-  return (initted[id] = await init?.())
+  if (parserContextMap[id]) return parserContextMap[id]
+  return (parserContextMap[id] = await init?.())
 }
 
 watch(
   [currentParserId, code, rawOptions],
   async () => {
+    parserVersion.value = ''
     loading.value = true
     try {
       const ctx = await initParser()
+
+      if (typeof currentParser.value.version === 'string') {
+        parserVersion.value = currentParser.value.version
+      } else {
+        Promise.resolve(currentParser.value.version.call(ctx)).then(
+          (version) => (parserVersion.value = version)
+        )
+      }
+
       ast.value = await currentParser.value.parse.call(
         ctx,
         code.value,
