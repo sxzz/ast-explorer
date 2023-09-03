@@ -53,7 +53,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   init: () =>
     import(
       // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@swc/wasm-web@1.3.82/wasm-web.js'
+      'https://cdn.jsdelivr.net/npm/@swc/wasm-web/wasm-web.js'
     ).then(async (mod: typeof Swc) => {
       await mod.default()
       return mod
