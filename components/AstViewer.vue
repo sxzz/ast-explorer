@@ -21,6 +21,7 @@ const html = computed(() => {
         )
           return undefined
         if (typeof value === 'function') return `function ${value.name}(...)`
+        if (typeof value === 'bigint') return `(BigInt) ${value}n`
         return value
       },
       2
