@@ -3,6 +3,7 @@
 import { type LanguageOption, type Parser } from '../language'
 import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
+import type * as Acorn from 'acorn'
 // @unocss-include
 
 const babel: Parser<typeof Babel, Babel.ParserOptions> = {
@@ -60,6 +61,26 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   },
 }
 
+const acorn: Parser<typeof Acorn, Acorn.Options> = {
+  id: 'acorn',
+  label: 'Acorn',
+  icon: 'i-vscode-icons:file-type-js-official',
+  version: `acorn@latest`,
+  options: {
+    configurable: true,
+    defaultValue: { ecmaVersion: 'latest', sourceType: 'module' },
+    editorLanguage: 'json',
+  },
+  init() {
+    // @ts-expect-error
+    return import('https://cdn.jsdelivr.net/npm/acorn/dist/acorn.mjs')
+  },
+  parse(code, options) {
+    return this.parse(code, { ...options })
+  },
+  editorLanguage: 'javascript',
+}
+
 // const tsEslint: Parser<undefined, ParserOptions> = {
 //   id: 'tsEslint',
 //   label: '@typescript-eslint/parser',
@@ -82,6 +103,7 @@ export const javascript: LanguageOption = {
   parsers: {
     babel,
     swc,
+    acorn,
     // tsEslint,
   },
 }
