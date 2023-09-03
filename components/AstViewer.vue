@@ -87,7 +87,8 @@ function print() {
       </button>
     </div>
     <div flex="~ 1" min-h-0>
-      <div v-if="loading">Loading parser...</div>
+      <div v-if="loading === 'load'">Loading parser...</div>
+      <div v-else-if="loading === 'parse'">Parsing...</div>
       <div v-else-if="error" overflow-scroll text-red>
         <pre v-text="stringifyError(error)" />
       </div>

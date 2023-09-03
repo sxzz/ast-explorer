@@ -3,7 +3,7 @@ import { type Language } from './language'
 
 const PREFIX = 'ast-explorer:'
 
-export const loading = ref(false)
+export const loading = ref<'load' | 'parse' | false>(false)
 export const code = ref('')
 export const ast = shallowRef<any>({})
 export const error = shallowRef<any>()
@@ -84,7 +84,7 @@ watch(
   [currentParserId, code, rawOptions],
   async () => {
     parserVersion.value = ''
-    loading.value = true
+    loading.value = 'load'
     try {
       const ctx = await initParser()
 
@@ -96,6 +96,7 @@ watch(
         )
       }
 
+      loading.value = 'parse'
       ast.value = await currentParser.value.parse.call(
         ctx,
         code.value,
