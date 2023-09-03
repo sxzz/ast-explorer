@@ -84,24 +84,26 @@ function print() {
         Print in console
       </button>
     </div>
-    <div v-if="loading">Loading parser...</div>
-    <div v-else-if="error" overflow-scroll text-red>
-      <pre v-text="stringifyError(error)" />
+    <div flex="~ 1" min-h-0>
+      <div v-if="loading">Loading parser...</div>
+      <div v-else-if="error" overflow-scroll text-red>
+        <pre v-text="stringifyError(error)" />
+      </div>
+      <MonacoEditor
+        flex-1
+        lang="json"
+        :model-value="serialized"
+        :options="{
+          automaticLayout: true,
+          theme: isDark ? 'vs-dark' : 'vs',
+          readOnly: true,
+          fontSize: 14,
+          tabSize: 2,
+          minimap: {
+            enabled: false,
+          },
+        }"
+      />
     </div>
-    <MonacoEditor
-      flex-1
-      lang="json"
-      :model-value="serialized"
-      :options="{
-        automaticLayout: true,
-        theme: isDark ? 'vs-dark' : 'vs',
-        readOnly: true,
-        fontSize: 14,
-        tabSize: 2,
-        minimap: {
-          enabled: false,
-        },
-      }"
-    />
   </div>
 </template>
