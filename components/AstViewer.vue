@@ -64,8 +64,8 @@ function print() {
 </script>
 
 <template>
-  <div flex="~ col gap-2" min-w-0>
-    <div flex="~ gap-3" items-center>
+  <div flex="~ col gap-2 1" min-w-0>
+    <div flex="~ gap-3 wrap" items-center>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
       </label>
@@ -86,7 +86,7 @@ function print() {
         Print in console
       </button>
     </div>
-    <div flex="~ 1" min-h-0>
+    <div flex="~ 1" min-h-0 min-w-0>
       <div v-if="loading === 'load'">Loading parser...</div>
       <div v-else-if="loading === 'parse'">Parsing...</div>
       <div v-else-if="error" overflow-scroll text-red>
@@ -94,6 +94,7 @@ function print() {
       </div>
       <MonacoEditor
         v-else
+        min-w-0
         flex-1
         lang="json"
         :model-value="serialized"

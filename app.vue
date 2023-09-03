@@ -20,7 +20,7 @@ const language = computed(() => {
         max-w="50%"
         min-w="50%"
       />
-      <AstViewer flex-1 />
+      <AstViewer />
     </div>
   </main>
 </template>

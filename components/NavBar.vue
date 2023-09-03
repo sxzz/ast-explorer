@@ -1,5 +1,5 @@
 <template>
-  <div flex items-center justify-between p2>
+  <div flex="~ wrap" items-center justify-between p2>
     <div flex="~ gap4">
       <h1 text-lg font-bold>AST Explorer</h1>
       <LanguageSelect />
