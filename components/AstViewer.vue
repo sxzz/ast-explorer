@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getHighlighter } from 'shikiji'
+import json5 from 'json5'
 import { hideEmptyKeys, hideLocationData, loading } from '#imports'
 
 const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
@@ -17,8 +18,14 @@ const html = computed(() => {
         (key: string, value: unknown) => {
           if (hideEmptyKeys.value && value == null) return undefined
           if (
-            hideLocationData.value &&
-            ['loc', 'start', 'end', 'span', ...hideKeys.value].includes(key)
+            [
+              [
+                ...(hideLocationData.value
+                  ? ['loc', 'start', 'end', 'span']
+                  : []),
+              ],
+              ...hideKeys.value.filter((v) => !!v),
+            ].includes(key)
           )
             return undefined
           if (typeof value === 'function') return `function ${value.name}(...)`
@@ -38,13 +45,15 @@ const html = computed(() => {
   }
 })
 
-const hideKeysValue = computed({
-  get() {
-    return JSON.stringify(hideKeys.value)
-  },
-  set(val) {
-    hideKeys.value = JSON.parse(val)
-  },
+const hideKeysValue = ref(JSON.stringify(hideKeys.value))
+
+watchEffect(() => {
+  try {
+    hideKeys.value = json5.parse(hideKeysValue.value)
+  } catch (error) {
+    console.error(error)
+    hideKeys.value = []
+  }
 })
 
 function stringifyError(error: any) {
@@ -61,11 +70,16 @@ function stringifyError(error: any) {
   }
   return String(error)
 }
+
+function print() {
+  // eslint-disable-next-line no-console
+  console.info(ast.value)
+}
 </script>
 
 <template>
   <div flex="~ col gap-2" min-w-0>
-    <div flex="~ gap-2">
+    <div flex="~ gap-3" items-center>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
       </label>
@@ -79,9 +93,12 @@ function stringifyError(error: any) {
           type="input"
           border="~ $c-border"
           rounded
-          px1
+          p1
         />
       </label>
+      <button border rounded px2 py1 hover:border-emerald @click="print">
+        Print in console
+      </button>
     </div>
     <div v-if="loading">Loading parser...</div>
     <div v-else-if="error" overflow-scroll text-red>
