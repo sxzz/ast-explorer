@@ -76,11 +76,9 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
     return import('https://cdn.jsdelivr.net/npm/acorn@8.10.0/+esm')
   },
   parse(code, options) {
-    return this.parse(code, { ...(options as any) })
+    return this.parse(code, { ...options })
   },
-  editorLanguage() {
-    return 'javascript'
-  },
+  editorLanguage: 'javascript',
 }
 
 // const tsEslint: Parser<undefined, ParserOptions> = {
