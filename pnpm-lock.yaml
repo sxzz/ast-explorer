@@ -49,6 +49,9 @@ devDependencies:
   '@vueuse/nuxt':
     specifier: ^10.4.1
     version: 10.4.1(nuxt@3.7.0)(vue@3.3.4)
+  acorn:
+    specifier: ^8.10.0
+    version: 8.10.0
   eslint:
     specifier: ^8.48.0
     version: 8.48.0
