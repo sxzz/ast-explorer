@@ -19,11 +19,9 @@ const html = computed(() => {
           if (hideEmptyKeys.value && value == null) return undefined
           if (
             [
-              [
-                ...(hideLocationData.value
-                  ? ['loc', 'start', 'end', 'span']
-                  : []),
-              ],
+              ...(hideLocationData.value
+                ? ['loc', 'start', 'end', 'span']
+                : []),
               ...hideKeys.value.filter((v) => !!v),
             ].includes(key)
           )
