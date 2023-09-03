@@ -1,5 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
+  app: {
+    head: {
+      title: 'AST Explorer',
+    },
+  },
+  ssr: false,
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        moduleResolution: 'bundler',
+      },
+    },
+  },
+  vue: {
+    defineModel: true,
+  },
+  vite: {
+    define: {
+      'process.env': JSON.stringify({}),
+    },
+  },
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
@@ -10,24 +32,7 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
-  vue: {
-    defineModel: true,
-  },
-  vite: {
-    define: {
-      'process.env': JSON.stringify({}),
-    },
-  },
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        moduleResolution: 'bundler',
-      },
-    },
-  },
   imports: {
     dirs: ['./composables', './composables/language', './utils'],
   },
-  ssr: false,
 })
