@@ -93,6 +93,7 @@ watch(
       // eslint-disable-next-line unicorn/catch-error-name
     } catch (err) {
       error.value = err
+      console.error(err)
     } finally {
       loading.value = false
     }
