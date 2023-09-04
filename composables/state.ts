@@ -71,7 +71,7 @@ watch(
   { immediate: !rawUrlState }
 )
 
-export const parserContextMap: Record<string, unknown> = reactive(
+export const parserContextMap: Record<string, unknown> = shallowReactive(
   Object.create(null)
 )
 async function initParser() {
