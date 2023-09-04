@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { dropdownContextKey } from './ctx'
+import { dropdownContextKey } from './index'
 
 defineProps<{
   text?: string
