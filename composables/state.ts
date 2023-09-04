@@ -5,8 +5,8 @@ const PREFIX = 'ast-explorer:'
 
 export const loading = ref<'load' | 'parse' | false>(false)
 export const code = ref('')
-export const ast = shallowRef<any>({})
-export const error = shallowRef<any>()
+export const ast = shallowRef<unknown>({})
+export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
 
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
@@ -71,7 +71,7 @@ watch(
   { immediate: !rawUrlState }
 )
 
-export const parserContextMap: Record<string, any> = reactive(
+export const parserContextMap: Record<string, unknown> = reactive(
   Object.create(null)
 )
 async function initParser() {
@@ -80,25 +80,28 @@ async function initParser() {
   return (parserContextMap[id] = await init?.())
 }
 
+const parserContext = computed(() => initParser())
+
+watchEffect(() => {
+  parserVersion.value = ''
+  if (typeof currentParser.value.version === 'string') {
+    parserVersion.value = currentParser.value.version
+  } else {
+    Promise.resolve(currentParser.value.version.call(parserContext.value)).then(
+      (version) => (parserVersion.value = version)
+    )
+  }
+})
+
 watch(
-  [currentParserId, code, rawOptions],
+  [parserContext, currentParser, code, rawOptions],
   async () => {
-    parserVersion.value = ''
-    loading.value = 'load'
     try {
-      const ctx = await initParser()
-
-      if (typeof currentParser.value.version === 'string') {
-        parserVersion.value = currentParser.value.version
-      } else {
-        Promise.resolve(currentParser.value.version.call(ctx)).then(
-          (version) => (parserVersion.value = version)
-        )
-      }
-
+      loading.value = 'load'
+      const ctx = await parserContext.value
       loading.value = 'parse'
       ast.value = await currentParser.value.parse.call(
-        ctx,
+        await ctx,
         code.value,
         json5.parse(rawOptions.value)
       )

@@ -19,8 +19,8 @@ const vue3: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
       'https://cdn.jsdelivr.net/npm/@vue/compiler-sfc@3/dist/compiler-sfc.esm-browser.js'
     )
   },
-  version() {
-    return `@vue/compiler-sfc@${this.version}`
+  async version() {
+    return `@vue/compiler-sfc@${(await this).version}`
   },
   parse(code, options) {
     return this.parse(code, { ...options })

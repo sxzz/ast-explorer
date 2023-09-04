@@ -86,8 +86,8 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   },
   // @ts-expect-error
   init: () => import('https://cdn.jsdelivr.net/npm/acorn/dist/acorn.mjs'),
-  version() {
-    return `acorn@${this.version}`
+  async version() {
+    return `acorn@${(await this).version}`
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -108,8 +108,8 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   },
   // @ts-expect-error
   init: () => import('https://esm.sh/@typescript-eslint/typescript-estree'),
-  version() {
-    return `@typescript-eslint/parser@${this.version}`
+  async version() {
+    return `@typescript-eslint/parser@${(await this).version}`
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -133,8 +133,8 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
     import('https://cdn.jsdelivr.net/npm/typescript/+esm').then(
       (mod) => mod.default
     ),
-  version() {
-    return `typescript@${this.version}`
+  async version() {
+    return `typescript@${(await this).version}`
   },
   parse(code, options) {
     return this.createSourceFile('foo.ts', code, { ...options })

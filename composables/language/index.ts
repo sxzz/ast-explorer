@@ -3,13 +3,13 @@ import { javascript } from './javascript'
 import { vue } from './vue'
 
 export type MonacoLanguage = 'javascript' | 'typescript' | 'json' | 'vue'
-export interface Parser<C = any, O = any> {
+export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
   icon: string
   init?(): C | Promise<C>
-  version: string | ((this: C) => string | Promise<string>)
-  parse(this: C, code: string, options: O): any
+  version: string | ((this: C | Promise<C>) => string | Promise<string>)
+  parse(this: C, code: string, options: O): unknown
   options: {
     configurable: boolean
     defaultValue: O
@@ -20,7 +20,7 @@ export interface Parser<C = any, O = any> {
 export interface LanguageOption {
   label: string
   icon: string
-  parsers: Parser[]
+  parsers: Parser<any, any>[]
 }
 
 export const LANGUAGES = {

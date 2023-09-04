@@ -42,7 +42,7 @@ watchEffect(() => {
   }
 })
 
-function stringifyError(error: any) {
+function stringifyError(error: unknown) {
   if (error instanceof Error) {
     if (IS_SAFARI)
       return `${error}\n${error.stack
