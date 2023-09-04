@@ -34,7 +34,9 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
         Array.isArray(item) ? item[0] : item
       )
       if (normalizedPlugins.includes('typescript')) return 'typescript'
-    } catch {}
+    } catch (error) {
+      console.error(error)
+    }
     return 'javascript'
   },
 }

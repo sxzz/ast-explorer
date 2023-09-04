@@ -59,5 +59,4 @@ monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
   noEmit: true,
   esModuleInterop: true,
   jsx: monaco.languages.typescript.JsxEmit.Preserve,
-  allowJs: true,
 })
