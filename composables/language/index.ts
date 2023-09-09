@@ -1,8 +1,14 @@
 import * as monaco from 'monaco-editor'
 import { javascript } from './javascript'
 import { vue } from './vue'
+import { svelte } from './svelte'
 
-export type MonacoLanguage = 'javascript' | 'typescript' | 'json' | 'vue'
+export type MonacoLanguage =
+  | 'javascript'
+  | 'typescript'
+  | 'json'
+  | 'vue'
+  | 'svelte'
 export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
@@ -26,6 +32,7 @@ export interface LanguageOption {
 export const LANGUAGES = {
   javascript,
   vue,
+  svelte,
 }
 export type Language = keyof typeof LANGUAGES
 
