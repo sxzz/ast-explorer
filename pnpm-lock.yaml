@@ -32,8 +32,8 @@ devDependencies:
     specifier: ^1.3.83
     version: 1.3.83
   '@sxzz/eslint-config':
-    specifier: ^3.5.2
-    version: 3.5.2(eslint@8.49.0)(typescript@5.2.2)
+    specifier: ^3.5.4
+    version: 3.5.4(eslint@8.49.0)(typescript@5.2.2)
   '@sxzz/prettier-config':
     specifier: ^1.0.4
     version: 1.0.4
@@ -1777,8 +1777,8 @@ packages:
     resolution: {integrity: sha512-piRX+sRdg6nrQiy2l+Hot5Ku/29dMbP5p3qKT0HGbC3i69YVCa9ZwUXqhh/NSpxi+JyCj7Fqpp+pcocW4e44pQ==}
     dev: true
 
-  /@sxzz/eslint-config@3.5.2(eslint@8.49.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-2jRlBfsbNFK5Y3dQwQsvnbuKoQ31/mUDwVOeo7qjbmv7cwyfikZhI8fs6R3nS11HwL8ug/qAJP0uLLUBdpyURA==}
+  /@sxzz/eslint-config@3.5.4(eslint@8.49.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-fMq/R0PMU9RHRGl9HT115A53Rd6K6A4A4S9kMDYEyj6/FFCIjxUIt5ES9aRZddOQbdzP8FXcM4LzGjIL3TssaA==}
     engines: {node: '>=16.14.0'}
     peerDependencies:
       eslint: ^8.0.0
