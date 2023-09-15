@@ -29,6 +29,7 @@
     "@sxzz/prettier-config": "^1.0.4",
     "@typescript-eslint/parser": "^6.6.0",
     "@unocss/nuxt": "^0.55.7",
+    "@vue/compiler-dom": "^3.3.4",
     "@vue/compiler-sfc": "^3.3.4",
     "@vueuse/nuxt": "^10.4.1",
     "acorn": "^8.10.0",

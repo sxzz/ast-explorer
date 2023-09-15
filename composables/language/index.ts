@@ -7,6 +7,7 @@ export type MonacoLanguage =
   | 'javascript'
   | 'typescript'
   | 'json'
+  | 'html'
   | 'vue'
   | 'svelte'
 export interface Parser<C = unknown, O = unknown> {
