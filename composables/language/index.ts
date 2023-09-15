@@ -2,6 +2,7 @@ import * as monaco from 'monaco-editor'
 import { javascript } from './javascript'
 import { vue } from './vue'
 import { svelte } from './svelte'
+import { json } from './json'
 
 export type MonacoLanguage =
   | 'javascript'
@@ -34,6 +35,7 @@ export const LANGUAGES = {
   javascript,
   vue,
   svelte,
+  json,
 }
 export type Language = keyof typeof LANGUAGES
 
