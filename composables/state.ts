@@ -71,7 +71,7 @@ watch(
     rawOptions.value =
       currentParser.value.options.defaultValueType === 'javascript'
         ? currentParser.value.options.defaultValue
-        : JSON.stringify(currentParser.value.options.defaultValue)
+        : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
   },
   { immediate: !rawUrlState }
 )
