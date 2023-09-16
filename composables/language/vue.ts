@@ -64,8 +64,9 @@ const vue3Dom: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   editorLanguage: 'html',
   options: {
     configurable: true,
-    defaultValue: {},
-    editorLanguage: 'json',
+    defaultValue: 'return {}',
+    defaultValueType: 'javascript',
+    editorLanguage: 'javascript',
   },
   init() {
     return import(

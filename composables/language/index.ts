@@ -20,9 +20,17 @@ export interface Parser<C = unknown, O = unknown> {
   parse(this: C, code: string, options: O): unknown
   options: {
     configurable: boolean
-    defaultValue: O
     editorLanguage: MonacoLanguage
-  }
+  } & (
+    | {
+        defaultValue: string
+        defaultValueType: 'javascript'
+      }
+    | {
+        defaultValue: O
+        defaultValueType?: 'json5'
+      }
+  )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
 }
 export interface LanguageOption {

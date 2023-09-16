@@ -21,8 +21,13 @@ export const currentParserId = ref<string | undefined>(undefined)
 
 export const options = computed(() => {
   try {
-    return json5.parse(rawOptions.value)
+    if (currentParser.value.options.defaultValueType === 'javascript')
+      return new Function(rawOptions.value)()
+    else return json5.parse(rawOptions.value)
   } catch {
+    console.error(
+      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
+    )
     return null
   }
 })
@@ -62,11 +67,10 @@ watch(
 watch(
   currentParserId,
   () => {
-    rawOptions.value = JSON.stringify(
-      currentParser.value.options.defaultValue,
-      undefined,
-      2
-    )
+    rawOptions.value =
+      currentParser.value.options.defaultValueType === 'json5'
+        ? JSON.stringify(currentParser.value.options.defaultValue)
+        : currentParser.value.options.defaultValue
   },
   { immediate: !rawUrlState }
 )
@@ -103,7 +107,7 @@ watch(
       ast.value = await currentParser.value.parse.call(
         await ctx,
         code.value,
-        json5.parse(rawOptions.value)
+        options.value
       )
       error.value = null
       // eslint-disable-next-line unicorn/catch-error-name
