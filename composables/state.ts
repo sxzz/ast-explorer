@@ -19,9 +19,8 @@ export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>(undefined)
 
-export const options = computed(async () => {
+export const options = computed(() => {
   try {
-    await nextTick()
     return currentParser.value.options.defaultValueType === 'javascript'
       ? new Function(rawOptions.value)()
       : json5.parse(rawOptions.value)
