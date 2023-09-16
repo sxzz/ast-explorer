@@ -1,4 +1,3 @@
-import * as monaco from 'monaco-editor'
 import { javascript } from './javascript'
 import { vue } from './vue'
 import { svelte } from './svelte'
@@ -54,19 +53,3 @@ export const currentParser = computed(
 )
 
 export const parserVersion = ref('')
-
-monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-  allowComments: true,
-  enableSchemaRequest: true,
-  trailingCommas: 'ignore',
-})
-
-monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-  target: monaco.languages.typescript.ScriptTarget.ESNext,
-  module: monaco.languages.typescript.ModuleKind.ESNext,
-  allowNonTsExtensions: true,
-  moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-  noEmit: true,
-  esModuleInterop: true,
-  jsx: monaco.languages.typescript.JsxEmit.Preserve,
-})
