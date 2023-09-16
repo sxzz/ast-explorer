@@ -19,11 +19,12 @@ export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>(undefined)
 
-export const options = computed(() => {
+export const options = computed(async () => {
   try {
-    if (currentParser.value.options.defaultValueType === 'javascript')
-      return new Function(rawOptions.value)()
-    else return json5.parse(rawOptions.value)
+    await nextTick()
+    return currentParser.value.options.defaultValueType === 'javascript'
+      ? new Function(rawOptions.value)()
+      : json5.parse(rawOptions.value)
   } catch {
     console.error(
       `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
@@ -68,9 +69,9 @@ watch(
   currentParserId,
   () => {
     rawOptions.value =
-      currentParser.value.options.defaultValueType === 'json5'
-        ? JSON.stringify(currentParser.value.options.defaultValue)
-        : currentParser.value.options.defaultValue
+      currentParser.value.options.defaultValueType === 'javascript'
+        ? currentParser.value.options.defaultValue
+        : JSON.stringify(currentParser.value.options.defaultValue)
   },
   { immediate: !rawUrlState }
 )
