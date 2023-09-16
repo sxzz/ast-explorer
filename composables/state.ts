@@ -25,10 +25,14 @@ export const options = computed(() => {
       ? new Function(rawOptions.value)()
       : json5.parse(rawOptions.value)
   } catch {
-    console.error(
-      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
-    )
-    return null
+    try {
+      return new Function(rawOptions.value)()
+    } catch {
+      console.error(
+        `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
+      )
+      return null
+    }
   }
 })
 
