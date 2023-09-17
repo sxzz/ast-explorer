@@ -1,7 +1,11 @@
 # AST Explorer
 
+AST Explorer - For most popular front-end languages and parsers.
+
 - Stable Release: [ast.sxzz.moe](https://ast.sxzz.moe/)
 - Dev Channel: [ast-explorer.vercel.app](https://ast-explorer.vercel.app/)
+
+Feel free to add more parsers and languages via PR!
 
 ## Credit
 
