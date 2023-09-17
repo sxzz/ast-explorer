@@ -10,7 +10,7 @@ const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
 const serialized = computed(() => {
   try {
-    const seen = new WeakMap<any, string>()
+    const seen = new WeakMap<any, unknown>()
     return JSON.stringify(
       ast.value,
       (key: string, value: unknown) => {
@@ -25,8 +25,20 @@ const serialized = computed(() => {
         if (typeof value === 'function') return `function ${value.name}(...)`
         if (typeof value === 'bigint') return `(BigInt) ${value}n`
 
-        if (seen.has(value)) return `(circular: ${seen.get(value)})`
-        if (value !== null && typeof value === 'object') seen.set(value, key)
+        if (seen.has(value)) {
+          return seen.get(value)
+        }
+
+        if (value !== null && typeof value === 'object') {
+          let newValue: any
+          try {
+            JSON.stringify(value)
+            newValue = value
+          } catch {
+            newValue = `(circular: ${key || '#root'})`
+          }
+          seen.set(value, newValue)
+        }
 
         return value
       },
