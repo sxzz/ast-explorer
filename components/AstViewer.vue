@@ -65,7 +65,7 @@ watchEffect(() => {
 /** AST range -> code range */
 const positionMap = computed(() =>
   serialized.value
-    ? collectPositionMap(code.value, serialized.value)
+    ? collectPositionMap(serialized.value, currentParser.value)
     : undefined
 )
 

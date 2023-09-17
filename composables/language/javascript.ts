@@ -7,6 +7,18 @@ import type * as Ts from 'typescript'
 
 // @unocss-include
 
+function getAstLocation(preset: 'babel' | 'ts', node: JsonNode) {
+  if (node.type !== 'Object') return
+  if (!getJsonValue(node, [preset === 'babel' ? 'type' : 'kind'])) return
+
+  const start = getJsonValue(node, [preset === 'babel' ? 'start' : 'pos'])
+  const end = getJsonValue(node, ['end'])
+  if (typeof start !== 'number' || typeof end !== 'number') return
+
+  return { start, end }
+}
+const getAstLocationBabel = getAstLocation.bind(null, 'babel')
+
 const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   id: 'babel',
   label: '@babel/parser',
@@ -40,6 +52,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     }
     return 'javascript'
   },
+  getAstLocation: getAstLocationBabel,
 }
 
 const swc: Parser<typeof Swc, Swc.ParseOptions> = {
@@ -97,6 +110,7 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
     return this.parse(code, { ...options })
   },
   editorLanguage: 'javascript',
+  getAstLocation: getAstLocationBabel,
 }
 
 const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
@@ -143,6 +157,7 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
     return this.createSourceFile('foo.ts', code, { ...options })
   },
   editorLanguage: 'typescript',
+  getAstLocation: getAstLocation.bind(null, 'ts'),
 }
 
 export const javascript: LanguageOption = {

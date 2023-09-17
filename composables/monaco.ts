@@ -1,4 +1,5 @@
 import jsonToAst from 'json-to-ast'
+import { type Parser } from './language'
 
 export const editorCursor = ref<number>(0)
 
@@ -16,24 +17,20 @@ export type JsonNode =
   | jsonToAst.PropertyNode
   | jsonToAst.ValueNode
 
-export function collectPositionMap(code: string, ast: any) {
+export function collectPositionMap(ast: any, parser: Parser) {
+  const { getAstLocation } = parser
+  if (!getAstLocation) return
+
   const astAst = jsonToAst(ast, { loc: true })
 
   // AST range -> code range
   const positionMap: Map<Range, Range> = new Map()
   traverseNode(astAst, (node) => {
-    if (!node.loc || node.type !== 'Object') return
-    if (!getValue(node, ['type'])) return
-    const start = getValue(node, ['start'])
-    const end = getValue(node, ['end'])
-    if (typeof start !== 'number' || typeof end !== 'number') return
-
+    const range = getAstLocation(node)
+    if (!range) return
     positionMap.set(
-      {
-        start: node.loc!.start.offset,
-        end: node.loc!.end.offset,
-      },
-      { start, end }
+      { start: node.loc!.start.offset, end: node.loc!.end.offset },
+      range
     )
   })
   return positionMap
@@ -54,23 +51,26 @@ export function collectPositionMap(code: string, ast: any) {
       case 'Literal':
     }
   }
+}
 
-  function getValue(node: jsonToAst.ValueNode, path: (string | number)[]) {
-    let current: JsonNode | undefined = node
-    for (const sub of path) {
-      if (!current) return
-      switch (current.type) {
-        case 'Object':
-          current = current.children.find((n) => n.key.value === sub)?.value
-          break
-        case 'Array':
-          current = current.children[sub as number]
-          break
-        default:
-          return
-      }
+export function getJsonValue(
+  node: jsonToAst.ValueNode,
+  path: (string | number)[]
+) {
+  let current: JsonNode | undefined = node
+  for (const sub of path) {
+    if (!current) return
+    switch (current.type) {
+      case 'Object':
+        current = current.children.find((n) => n.key.value === sub)?.value
+        break
+      case 'Array':
+        current = current.children[sub as number]
+        break
+      default:
+        return
     }
-    if (current?.type === 'Literal') return current.value
-    return current
   }
+  if (current?.type === 'Literal') return current.value
+  return current
 }

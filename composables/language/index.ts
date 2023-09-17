@@ -1,3 +1,4 @@
+import { type JsonNode, type Range } from '../monaco'
 import { javascript } from './javascript'
 import { vue } from './vue'
 import { svelte } from './svelte'
@@ -24,6 +25,7 @@ export interface Parser<C = unknown, O = unknown> {
       }
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
+  getAstLocation?(ast: JsonNode): Range | undefined
 }
 export interface LanguageOption {
   label: string

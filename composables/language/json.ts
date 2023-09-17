@@ -20,6 +20,16 @@ const jsonToAst: Parser<undefined, parse.Options> = {
   parse(code, options) {
     return parse(code, options)
   },
+  getAstLocation(node: JsonNode) {
+    if (node.type !== 'Object') return
+    if (!getJsonValue(node, ['type'])) return
+
+    const start = getJsonValue(node, ['loc', 'start', 'offset'])
+    const end = getJsonValue(node, ['loc', 'end', 'offset'])
+    if (typeof start !== 'number' || typeof end !== 'number') return
+
+    return { start, end }
+  },
 }
 
 export const json: LanguageOption = {
