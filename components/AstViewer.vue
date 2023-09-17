@@ -153,7 +153,15 @@ function print() {
           p1
         />
       </label>
-      <button border rounded px2 py1 hover:border-emerald @click="print">
+      <button
+        border
+        rounded
+        px1
+        py0.5
+        text-sm
+        hover:border-emerald
+        @click="print"
+      >
         Print in console
       </button>
     </div>
