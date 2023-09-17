@@ -15,6 +15,7 @@ export const hideLocationData = useLocalStorage(
   true
 )
 export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
+export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
 
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>(undefined)

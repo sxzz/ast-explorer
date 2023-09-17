@@ -2,7 +2,7 @@
 import json5 from 'json5'
 import type * as Monaco from 'monaco-editor'
 import { type MonacoEditor } from '#build/components'
-import { hideEmptyKeys, hideLocationData, loading } from '#imports'
+import { autoFocus, hideEmptyKeys, hideLocationData, loading } from '#imports'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
@@ -103,7 +103,7 @@ function highlight() {
       },
     },
   ])
-  editor.revealPositionNearTop(start)
+  if (autoFocus.value) editor.revealPositionNearTop(start)
 }
 
 onMounted(() => highlight())
@@ -136,6 +136,7 @@ function print() {
 <template>
   <div flex="~ col gap-2 1" min-w-0>
     <div flex="~ gap-3 wrap" items-center>
+      <label><input v-model="autoFocus" type="checkbox" /> Auto focus</label>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
       </label>
