@@ -1,6 +1,7 @@
 # AST Explorer
 
-Preview: [ast.sxzz.moe](https://ast.sxzz.moe/)
+- Stable Release: [ast.sxzz.moe](https://ast.sxzz.moe/)
+- Dev Channel: [ast-explorer.vercel.app](https://ast-explorer.vercel.app/)
 
 ## Credit
 
