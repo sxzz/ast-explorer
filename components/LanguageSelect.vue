@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Language } from '~/composables/language'
+import { type Language } from '#imports'
 
 function changeLanguage(language: Language) {
   currentLanguageId.value = language

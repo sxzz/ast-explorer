@@ -1,5 +1,5 @@
 import jsonToAst from 'json-to-ast'
-import { type Parser } from './language'
+import { type Parser } from '#imports'
 
 export const editorCursor = ref<number>(0)
 

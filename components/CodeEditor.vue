@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type * as monaco from 'monaco-editor'
 import { type MonacoEditor } from '#build/components'
-import { type MonacoLanguage } from '~/composables/language'
+import { type MonacoLanguage } from '#imports'
 
 defineProps<{
   language: MonacoLanguage
