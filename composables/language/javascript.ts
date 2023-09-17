@@ -15,6 +15,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     configurable: true,
     defaultValue: {
       sourceType: 'module',
+      plugins: [],
     },
     editorLanguage: 'json',
   },
@@ -49,6 +50,9 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
     configurable: true,
     defaultValue: {
       syntax: 'ecmascript',
+      jsx: false,
+      decorators: false,
+      importAssertions: false,
     },
     editorLanguage: 'json',
   },
