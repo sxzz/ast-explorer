@@ -22,17 +22,13 @@ export const currentParserId = ref<string | undefined>(undefined)
 export const options = computed(() => {
   try {
     return currentParser.value.options.defaultValueType === 'javascript'
-      ? new Function(rawOptions.value)()
+      ? // TODO: use a better way to eval
+        new Function(rawOptions.value)()
       : json5.parse(rawOptions.value)
   } catch {
-    try {
-      return new Function(rawOptions.value)()
-    } catch {
-      console.error(
-        `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
-      )
-      return null
-    }
+    console.error(
+      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
+    )
   }
 })
 
