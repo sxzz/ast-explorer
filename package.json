@@ -15,9 +15,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^6.7.0",
     "fflate": "^0.8.0",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
+    "memfs": "^4.3.0",
     "monaco-editor": "^0.43.0"
   },
   "devDependencies": {
@@ -29,7 +31,6 @@
     "@sxzz/eslint-config": "^3.5.4",
     "@sxzz/prettier-config": "^1.0.4",
     "@types/json-to-ast": "^2.1.2",
-    "@typescript-eslint/parser": "^6.7.0",
     "@unocss/nuxt": "^0.55.7",
     "@vue/compiler-dom": "^3.3.4",
     "@vue/compiler-sfc": "^3.3.4",
@@ -45,6 +46,7 @@
     "svelte": "^4.2.0",
     "tsx": "^3.12.10",
     "typescript": "^5.2.2",
+    "vite-plugin-node-polyfills": "^0.14.0",
     "vue-tsc": "^1.8.11"
   },
   "prettier": "@sxzz/prettier-config"

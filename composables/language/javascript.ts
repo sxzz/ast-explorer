@@ -106,8 +106,7 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
     },
     editorLanguage: 'json',
   },
-  // @ts-expect-error
-  init: () => import('https://esm.sh/@typescript-eslint/typescript-estree'),
+  init: () => import('@typescript-eslint/parser'),
   async version() {
     return `@typescript-eslint/parser@${(await this).version}`
   },
