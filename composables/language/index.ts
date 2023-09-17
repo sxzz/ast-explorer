@@ -3,13 +3,6 @@ import { vue } from './vue'
 import { svelte } from './svelte'
 import { json } from './json'
 
-export type MonacoLanguage =
-  | 'javascript'
-  | 'typescript'
-  | 'json'
-  | 'html'
-  | 'vue'
-  | 'svelte'
 export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string

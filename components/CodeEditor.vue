@@ -8,7 +8,7 @@ defineProps<{
 }>()
 const code = defineModel<string>()
 
-const editorRef = shallowRef<InstanceType<typeof MonacoEditor>>()
+const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 
 const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
   () => {
@@ -23,11 +23,20 @@ const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
     }
   }
 )
+
+onMounted(() => {
+  const editor = toRaw(
+    container.value!.$editor as monaco.editor.IStandaloneCodeEditor
+  )
+  editor.onDidChangeCursorPosition((e) => {
+    editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
+  })
+})
 </script>
 
 <template>
   <MonacoEditor
-    ref="editorRef"
+    ref="container"
     v-model="code"
     h-full
     :lang="language"

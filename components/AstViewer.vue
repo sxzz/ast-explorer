@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import json5 from 'json5'
+import type * as Monaco from 'monaco-editor'
+import { type MonacoEditor } from '#build/components'
 import { hideEmptyKeys, hideLocationData, loading } from '#imports'
 
+const container = shallowRef<InstanceType<typeof MonacoEditor>>()
+const monaco = useMonaco()!
 const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
 const serialized = computed(() => {
@@ -44,6 +48,56 @@ watchEffect(() => {
     console.error(error)
     hideKeys.value = []
   }
+})
+
+/** AST range -> code range */
+const positionMap = computed(() =>
+  serialized.value
+    ? collectPositionMap(code.value, serialized.value)
+    : undefined
+)
+
+const highlightRange = computed(() => {
+  if (!positionMap.value) return
+  return Array.from(positionMap.value.entries()).findLast(
+    ([, { start, end }]) =>
+      start <= editorCursor.value! && end >= editorCursor.value!
+  )?.[0]
+})
+
+let decorationsCollection:
+  | Monaco.editor.IEditorDecorationsCollection
+  | undefined
+
+function highlight() {
+  decorationsCollection?.clear()
+
+  const range = highlightRange.value
+  if (!range) return
+
+  const editor: Monaco.editor.IStandaloneCodeEditor = toRaw(
+    container.value?.$editor
+  )
+  if (!editor) return
+
+  const start = editor.getModel()!.getPositionAt(range.start)
+  const end = editor.getModel()!.getPositionAt(range.end)
+
+  decorationsCollection = editor.createDecorationsCollection([
+    {
+      range: monaco.Range.fromPositions(start, end),
+      options: {
+        className: `important-bg-yellow-400 important-bg-opacity-30`,
+      },
+    },
+  ])
+  editor.revealPositionNearTop(start)
+}
+
+onMounted(() => highlight())
+watch(highlightRange, () => highlight(), {
+  immediate: true,
+  flush: 'post',
 })
 
 function stringifyError(error: unknown) {
@@ -97,7 +151,8 @@ function print() {
         <pre v-text="stringifyError(error)" />
       </div>
       <MonacoEditor
-        v-else
+        v-show="!loading && !error"
+        ref="container"
         min-w-0
         flex-1
         lang="json"
