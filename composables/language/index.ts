@@ -56,3 +56,14 @@ export const currentParser = computed(
 )
 
 export const parserVersion = ref('')
+
+export function getAstLocation(preset: 'babel' | 'ts', node: JsonNode) {
+  if (node.type !== 'Object') return
+  if (!getJsonValue(node, [preset === 'babel' ? 'type' : 'kind'])) return
+
+  const start = getJsonValue(node, [preset === 'babel' ? 'start' : 'pos'])
+  const end = getJsonValue(node, ['end'])
+  if (typeof start !== 'number' || typeof end !== 'number') return
+
+  return { start, end }
+}

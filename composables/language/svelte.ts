@@ -1,5 +1,5 @@
 import { type CompileOptions, type compile } from 'svelte/compiler'
-import { type LanguageOption, type Parser } from '../language'
+import { type LanguageOption, type Parser, getAstLocation } from '../language'
 
 // @unocss-include
 
@@ -28,6 +28,7 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
   parse(code, options) {
     return this(code, options)?.ast
   },
+  getAstLocation: getAstLocation.bind(null, 'babel'),
 }
 
 export const svelte: LanguageOption = {

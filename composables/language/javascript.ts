@@ -1,4 +1,4 @@
-import { type LanguageOption, type Parser } from '../language'
+import { type LanguageOption, type Parser, getAstLocation } from '../language'
 import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
@@ -7,16 +7,6 @@ import type * as Ts from 'typescript'
 
 // @unocss-include
 
-function getAstLocation(preset: 'babel' | 'ts', node: JsonNode) {
-  if (node.type !== 'Object') return
-  if (!getJsonValue(node, [preset === 'babel' ? 'type' : 'kind'])) return
-
-  const start = getJsonValue(node, [preset === 'babel' ? 'start' : 'pos'])
-  const end = getJsonValue(node, ['end'])
-  if (typeof start !== 'number' || typeof end !== 'number') return
-
-  return { start, end }
-}
 const getAstLocationBabel = getAstLocation.bind(null, 'babel')
 
 const babel: Parser<typeof Babel, Babel.ParserOptions> = {
