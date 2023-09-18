@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^5.2.2
     version: 5.2.2
   vite-plugin-node-polyfills:
-    specifier: ^0.14.0
-    version: 0.14.0(vite@4.4.9)
+    specifier: ^0.14.1
+    version: 0.14.1(vite@4.4.9)
   vue-tsc:
     specifier: ^1.8.11
     version: 1.8.11(typescript@5.2.2)
@@ -9384,8 +9384,8 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-node-polyfills@0.14.0(vite@4.4.9):
-    resolution: {integrity: sha512-ADd9hQ3zjxbdLxmI5q5w3sdSB8r8fqtYswjzBONN+mwUeALO78y1avJfc5UFxz27ZHaf+z2BxRw5mxdopAcX5w==}
+  /vite-plugin-node-polyfills@0.14.1(vite@4.4.9):
+    resolution: {integrity: sha512-S5ofYUkXea/d94AHzDwiTA7Pv/yEwzagnjgVEuBZdy7E72GBfK17qpljAlyK3CD+CRcDzAwwl/4bEjKdvZmTGQ==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
