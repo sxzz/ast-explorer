@@ -45,6 +45,32 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   getAstLocation: getAstLocationBabel,
 }
 
+function adjustSwcOffsetOfAst(obj: unknown, startOffset: number) {
+  if (Array.isArray(obj)) {
+    obj.forEach((item) => adjustSwcOffsetOfAst(item, startOffset))
+  } else if (isRecord(obj)) {
+    Object.entries(obj).forEach(([key, value]) => {
+      if (key === 'span' && value && isSpan(value)) {
+        const span = value
+        span.start -= startOffset
+        span.end -= startOffset
+      } else {
+        adjustSwcOffsetOfAst(obj[key], startOffset)
+      }
+    })
+  }
+
+  function isRecord(obj: unknown): obj is Record<string, unknown> {
+    return typeof obj === 'object' && obj !== null
+  }
+
+  function isSpan(obj: unknown): obj is { start: number; end: number } {
+    return (
+      typeof obj === 'object' && obj !== null && 'start' in obj && 'end' in obj
+    )
+  }
+}
+
 const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   id: 'swc',
   label: 'SWC',
@@ -71,12 +97,15 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
     fetch('https://cdn.jsdelivr.net/npm/@swc/wasm-web/package.json')
       .then((r) => r.json())
       .then((raw) => `@swc/wasm-web@${raw.version}`),
-  parse(code, options) {
-    return this.parse(code, { ...(options as any) })
+  async parse(code, options) {
+    const result = await this.parse(code, { ...(options as any) })
+    adjustSwcOffsetOfAst(result, result.span.start)
+    return result
   },
   editorLanguage(options) {
     return options?.syntax === 'typescript' ? 'typescript' : 'javascript'
   },
+  getAstLocation: getAstLocation.bind(null, 'swc'),
 }
 
 const acorn: Parser<typeof Acorn, Acorn.Options> = {

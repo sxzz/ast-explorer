@@ -55,7 +55,7 @@ export function collectPositionMap(ast: any, parser: Parser) {
 
 export function getJsonValue(
   node: jsonToAst.ValueNode,
-  path: (string | number)[]
+  path: Readonly<(string | number)[]>
 ) {
   let current: JsonNode | undefined = node
   for (const sub of path) {
