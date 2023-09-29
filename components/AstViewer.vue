@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import json5 from 'json5'
+import { autoFocus, hideEmptyKeys, hideLocationData, loading } from '#imports'
 import type * as Monaco from 'monaco-editor'
 import { type MonacoEditor } from '#build/components'
-import { autoFocus, hideEmptyKeys, hideLocationData, loading } from '#imports'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!

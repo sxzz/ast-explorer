@@ -1,8 +1,8 @@
+import { type JsonNode, type Range } from '#imports'
 import { javascript } from './javascript'
 import { vue } from './vue'
 import { svelte } from './svelte'
 import { json } from './json'
-import { type JsonNode, type Range } from '#imports'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
