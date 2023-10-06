@@ -47,10 +47,10 @@ git clone https://github.com/sxzz/ast-explorer.git
 cd ast-explorer
 ```
 
-3. Install the required dependencies. The project uses the pnpm package manager. If you don't have it installed, you can install it using npm:
+3. Install the required dependencies. The project uses the pnpm package manager. If you don't have it installed, you can enable it using corepack:
 
 ```bash
-npm install -g pnpm
+corepack enable
 ```
 
 Then, install the project dependencies:
