@@ -6,6 +6,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'AST Explorer',
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/logo.svg',
+        },
+      ],
     },
   },
   ssr: false,

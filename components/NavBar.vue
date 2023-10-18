@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import logo from '~/assets/logo.svg?raw'
 import { version } from '../package.json'
 </script>
 
@@ -6,6 +7,7 @@ import { version } from '../package.json'
   <div flex="~ wrap" items-center justify-between p2>
     <div flex="~ gap4">
       <div flex="~ gap1">
+        <Logo />
         <h1 text-lg font-bold>AST Explorer</h1>
         <small>v{{ version }}</small>
       </div>
