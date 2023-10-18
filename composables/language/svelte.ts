@@ -1,5 +1,5 @@
-import { type CompileOptions, type compile } from 'svelte/compiler'
 import { type LanguageOption, type Parser, getAstLocation } from '../language'
+import type { CompileOptions, compile } from 'svelte/compiler'
 
 // @unocss-include
 

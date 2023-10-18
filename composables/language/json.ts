@@ -1,6 +1,6 @@
 import parse from 'json-to-ast'
 import { version } from 'json-to-ast/package.json'
-import { type LanguageOption, type Parser } from '../language'
+import type { LanguageOption, Parser } from '../language'
 
 // @unocss-include
 

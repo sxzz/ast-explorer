@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import logo from '~/assets/logo.svg?raw'
 import { version } from '../package.json'
 </script>
 

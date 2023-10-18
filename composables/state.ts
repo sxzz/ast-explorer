@@ -1,5 +1,5 @@
 import json5 from 'json5'
-import { type Language } from '#imports'
+import type { Language } from '#imports'
 
 const PREFIX = 'ast-explorer:'
 
