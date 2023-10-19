@@ -46,9 +46,6 @@ export default defineNuxtConfig({
     '~/styles/global.css',
     '~/styles/dropdown.css',
   ],
-  devtools: {
-    enabled: true,
-  },
   imports: {
     dirs: ['./composables', './composables/language', './utils'],
   },

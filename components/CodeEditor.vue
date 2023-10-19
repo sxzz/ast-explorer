@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { MonacoLanguage } from '#imports'
 import type * as monaco from 'monaco-editor'
-import { MonacoEditor } from '#build/components'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { MonacoEditor } from '#build/components'
 
 defineProps<{
   language: MonacoLanguage
