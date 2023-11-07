@@ -137,6 +137,7 @@ function print() {
 <template>
   <div flex="~ col gap-2 1" min-w-0>
     <div flex="~ gap-3 wrap" items-center>
+      <div v-if="!showLeftLayout" />
       <label><input v-model="autoFocus" type="checkbox" /> Auto focus</label>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
