@@ -17,10 +17,11 @@ const language = computed(() => {
         v-model="code"
         :language="language"
         flex-1
-        max-w="50%"
-        min-w="50%"
+        :max-w="showRightLayout ? '50%' : '100%'"
+        :min-w="showRightLayout ? '50%' : '100%'"
+        v-show="showLeftLayout"
       />
-      <AstViewer />
+      <AstViewer v-show="showRightLayout" />
     </div>
   </main>
 </template>
