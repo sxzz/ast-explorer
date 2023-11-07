@@ -9,6 +9,9 @@ export const ast = shallowRef<unknown>({})
 export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
 
+export const showLeftLayout = useLocalStorage('show-left-layout', true)
+export const showRightLayout = useLocalStorage('show-right-layout', true)
+
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
 export const hideLocationData = useLocalStorage(
   `${PREFIX}hide-location-data`,
