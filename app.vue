@@ -14,12 +14,12 @@ const language = computed(() => {
     <NavBar mb-1 />
     <div min-h-0 flex="~ gap3 1">
       <CodeEditor
+        v-show="showLeftLayout"
         v-model="code"
         :language="language"
         flex-1
         :max-w="showRightLayout ? '50%' : '100%'"
         :min-w="showRightLayout ? '50%' : '100%'"
-        v-show="showLeftLayout"
       />
       <AstViewer v-show="showRightLayout" />
     </div>
