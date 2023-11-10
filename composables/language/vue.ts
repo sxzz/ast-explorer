@@ -57,9 +57,9 @@ const vue3SfcCompiled: Parser<
   },
 }
 
-const vue3Dom: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
-  id: 'vue3-dom',
-  label: '@vue/compiler-dom',
+const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
+  id: 'vue3-dom-parse',
+  label: '@vue/compiler-dom (parse)',
   icon: 'i-vscode-icons:file-type-vue',
   editorLanguage: 'html',
   options: {
@@ -83,8 +83,37 @@ const vue3Dom: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   },
 }
 
+const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
+  id: 'vue3-dom-compile',
+  label: '@vue/compiler-dom (compile)',
+  icon: 'i-vscode-icons:file-type-vue',
+  editorLanguage: 'html',
+  options: {
+    configurable: true,
+    defaultValue: 'return {}',
+    defaultValueType: 'javascript',
+    editorLanguage: 'javascript',
+  },
+  init() {
+    return import(
+      // @ts-expect-error
+      'https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/dist/compiler-dom.esm-browser.js'
+    )
+  },
+  version: () =>
+    fetch('https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/package.json')
+      .then((r) => r.json())
+      .then((raw) => `@vue/compiler-dom@${raw.version}`),
+  parse(code, options) {
+    return this.compile(code, {
+      nodeTransforms: [...this.DOMNodeTransforms],
+      ...options,
+    }).ast
+  },
+}
+
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  parsers: [vue3Sfc, vue3SfcCompiled, vue3Dom],
+  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile],
 }
