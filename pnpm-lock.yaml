@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^3.7.4
     version: 3.7.4(eslint@8.53.0)(typescript@5.2.2)
   '@sxzz/prettier-config':
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^2.0.0
+    version: 2.0.0
   '@types/json-to-ast':
     specifier: ^2.1.4
     version: 2.1.4
@@ -1783,8 +1783,8 @@ packages:
       - typescript
     dev: true
 
-  /@sxzz/prettier-config@1.0.4:
-    resolution: {integrity: sha512-KqgPNwMYloKI+LGAW8LwS0hEJHgwnrIJjgQC0B/saoDJZKUIrqc+lLme/lobrzBetPNhrCuhSDELRrZTg32l0w==}
+  /@sxzz/prettier-config@2.0.0:
+    resolution: {integrity: sha512-qckaqLpgHzfuoNXzdXfyQW8NyidxYQ1aPTSZRg9hSg7aiIaKtjxZQsdcOs8Pw9sk+/LPNhRchrxa8N55qJitBQ==}
     dev: true
 
   /@trysound/sax@0.2.0:
