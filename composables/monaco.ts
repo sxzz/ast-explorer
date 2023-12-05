@@ -30,7 +30,7 @@ export function collectPositionMap(ast: any, parser: Parser) {
     if (!range) return
     positionMap.set(
       { start: node.loc!.start.offset, end: node.loc!.end.offset },
-      range
+      range,
     )
   })
   return positionMap
@@ -55,7 +55,7 @@ export function collectPositionMap(ast: any, parser: Parser) {
 
 export function getJsonValue(
   node: jsonToAst.ValueNode,
-  path: Readonly<(string | number)[]>
+  path: Readonly<(string | number)[]>,
 ) {
   let current: JsonNode | undefined = node
   for (const sub of path) {

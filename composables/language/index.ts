@@ -42,7 +42,7 @@ export const LANGUAGES = {
 export type Language = keyof typeof LANGUAGES
 
 export const currentLanguage = computed(
-  () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript
+  () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
 
 export const currentParser = computed(
@@ -50,9 +50,9 @@ export const currentParser = computed(
     (currentLanguage.value &&
       currentParserId.value &&
       currentLanguage.value.parsers.find(
-        (p) => p.id === currentParserId.value
+        (p) => p.id === currentParserId.value,
       )) ||
-    Object.values(currentLanguage.value.parsers)[0]
+    Object.values(currentLanguage.value.parsers)[0],
 )
 
 export const parserVersion = ref('')
@@ -77,7 +77,7 @@ const astLocationFields = {
 
 export function getAstLocation(
   preset: keyof typeof astLocationFields,
-  node: JsonNode
+  node: JsonNode,
 ) {
   if (node.type !== 'Object') return
   if (!getJsonValue(node, astLocationFields[preset].type)) return

@@ -34,7 +34,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     try {
       const plugins = Array.isArray(options?.plugins) ? options!.plugins : []
       const normalizedPlugins = plugins.map((item) =>
-        Array.isArray(item) ? item[0] : item
+        Array.isArray(item) ? item[0] : item,
       )
       if (normalizedPlugins.includes('typescript')) return 'typescript'
     } catch (error) {
@@ -167,7 +167,7 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   init: () =>
     // @ts-expect-error
     import('https://cdn.jsdelivr.net/npm/typescript/+esm').then(
-      (mod) => mod.default
+      (mod) => mod.default,
     ),
   async version() {
     return `typescript@${(await this).version}`

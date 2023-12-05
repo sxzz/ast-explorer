@@ -19,7 +19,7 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
   init: () =>
     // @ts-expect-error
     import('https://esm.sh/svelte/src/compiler/compile/index.js').then(
-      (mod) => mod.default
+      (mod) => mod.default,
     ),
   version: () =>
     fetch('https://esm.sh/svelte/package.json')

@@ -15,7 +15,7 @@ export const showRightLayout = useLocalStorage('show-right-layout', true)
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
 export const hideLocationData = useLocalStorage(
   `${PREFIX}hide-location-data`,
-  true
+  true,
 )
 export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
@@ -31,7 +31,7 @@ export const options = computed(() => {
       : json5.parse(rawOptions.value)
   } catch {
     console.error(
-      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`
+      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
     )
   }
 })
@@ -65,7 +65,7 @@ watch(
     )
       currentParserId.value = currentLanguage.value.parsers[0].id
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 watch(
@@ -76,11 +76,11 @@ watch(
         ? currentParser.value.options.defaultValue
         : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
   },
-  { immediate: !rawUrlState }
+  { immediate: !rawUrlState },
 )
 
 export const parserContextMap: Record<string, unknown> = shallowReactive(
-  Object.create(null)
+  Object.create(null),
 )
 async function initParser() {
   const { id, init } = currentParser.value
@@ -96,7 +96,7 @@ watchEffect(() => {
     parserVersion.value = currentParser.value.version
   } else {
     Promise.resolve(currentParser.value.version.call(parserContext.value)).then(
-      (version) => (parserVersion.value = version)
+      (version) => (parserVersion.value = version),
     )
   }
 })
@@ -111,7 +111,7 @@ watch(
       ast.value = await currentParser.value.parse.call(
         await ctx,
         code.value,
-        options.value
+        options.value,
       )
       error.value = null
       // eslint-disable-next-line unicorn/catch-error-name
@@ -122,5 +122,5 @@ watch(
       loading.value = false
     }
   },
-  { immediate: true }
+  { immediate: true },
 )

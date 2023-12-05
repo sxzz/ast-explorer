@@ -22,12 +22,12 @@ const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
         enabled: false,
       },
     }
-  }
+  },
 )
 
 onMounted(() => {
   const editor = toRaw(
-    container.value!.$editor as monaco.editor.IStandaloneCodeEditor
+    container.value!.$editor as monaco.editor.IStandaloneCodeEditor,
   )
   editor.onDidChangeCursorPosition((e) => {
     editorCursor.value = editor.getModel()!.getOffsetAt(e.position)

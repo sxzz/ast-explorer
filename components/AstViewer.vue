@@ -43,7 +43,7 @@ const serialized = computed(() => {
 
         return value
       },
-      2
+      2,
     )
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
@@ -67,14 +67,14 @@ watchEffect(() => {
 const positionMap = computed(() =>
   serialized.value
     ? collectPositionMap(serialized.value, currentParser.value)
-    : undefined
+    : undefined,
 )
 
 const highlightRange = computed(() => {
   if (!positionMap.value) return
   return Array.from(positionMap.value.entries()).findLast(
     ([, { start, end }]) =>
-      start <= editorCursor.value! && end >= editorCursor.value!
+      start <= editorCursor.value! && end >= editorCursor.value!,
   )?.[0]
 })
 
@@ -89,7 +89,7 @@ function highlight() {
   if (!range) return
 
   const editor: Monaco.editor.IStandaloneCodeEditor = toRaw(
-    container.value?.$editor
+    container.value?.$editor,
   )
   if (!editor) return
 

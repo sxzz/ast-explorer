@@ -16,7 +16,7 @@ import { version } from '../package.json'
     </div>
 
     <div flex="~ gap-3">
-      <span font-mono text-gray>{{ parserVersion }}</span>
+      <span text-gray font-mono>{{ parserVersion }}</span>
       <button title="Toggle Left Layout" @click="toggleLeftLayout">
         <div v-if="showLeftLayout" i-ri:layout-column-fill />
         <div v-else i-ri:layout-left-line />
