@@ -132,27 +132,6 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   getAstLocation: getAstLocationBabel,
 }
 
-const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
-  id: 'typescript-eslint',
-  label: '@typescript-eslint/parser',
-  icon: 'i-vscode-icons:file-type-eslint',
-  options: {
-    configurable: true,
-    defaultValue: {
-      sourceType: 'module',
-    },
-    editorLanguage: 'json',
-  },
-  init: () => import('@typescript-eslint/parser'),
-  async version() {
-    return `@typescript-eslint/parser@${(await this).version}`
-  },
-  parse(code, options) {
-    return this.parse(code, { ...options })
-  },
-  editorLanguage: 'typescript',
-}
-
 const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   id: 'typescript',
   label: 'typescript',
@@ -179,8 +158,58 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   getAstLocation: getAstLocation.bind(null, 'ts'),
 }
 
+const espree: Parser<any, any> = {
+  id: 'espree',
+  label: 'espree',
+  icon: 'i-vscode-icons:file-type-eslint',
+  options: {
+    configurable: true,
+    defaultValue: {
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+      loc: true,
+    },
+    editorLanguage: 'json',
+  },
+  // @ts-expect-error
+  init: () => import('https://cdn.skypack.dev/espree?min'),
+  async version() {
+    return `espree@${(await this).version}`
+  },
+  parse(code, options) {
+    return this.parse(code, { ...options })
+  },
+  editorLanguage: 'javascript',
+  getAstLocation: getAstLocation.bind(null, 'babel'),
+}
+
+const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
+  id: 'typescript-eslint',
+  label: '@typescript-eslint/parser',
+  icon: 'i-vscode-icons:file-type-eslint',
+  options: {
+    configurable: true,
+    defaultValue: {
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+      // loc: true,
+      range: true,
+    },
+    editorLanguage: 'json',
+  },
+  init: () => import('@typescript-eslint/parser'),
+  async version() {
+    return `@typescript-eslint/parser@${(await this).version}`
+  },
+  parse(code, options) {
+    return this.parse(code, { ...options })
+  },
+  editorLanguage: 'typescript',
+  getAstLocation: getAstLocation.bind(null, 'ranges'),
+}
+
 export const javascript: LanguageOption = {
   label: 'JavaScript',
   icon: 'i-vscode-icons:file-type-js-official',
-  parsers: [babel, swc, acorn, tsEslint, ts],
+  parsers: [babel, swc, acorn, ts, espree, tsEslint],
 }

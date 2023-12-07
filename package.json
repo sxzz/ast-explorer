@@ -16,12 +16,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.2",
     "fflate": "^0.8.1",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
     "memfs": "^4.6.0",
-    "monaco-editor": "^0.44.0"
+    "monaco-editor": "^0.45.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.23.5",
@@ -32,22 +32,22 @@
     "@sxzz/prettier-config": "^2.0.0",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.58.0",
-    "@vue/compiler-dom": "^3.3.9",
-    "@vue/compiler-sfc": "^3.3.9",
-    "@vueuse/nuxt": "^10.6.1",
+    "@vue/compiler-dom": "^3.3.10",
+    "@vue/compiler-sfc": "^3.3.10",
+    "@vueuse/nuxt": "^10.7.0",
     "acorn": "^8.11.2",
     "bumpp": "^9.2.0",
     "eslint": "^8.55.0",
     "floating-vue": "2.0.0-beta.24",
     "nuxt": "3.8.2",
-    "nuxt-monaco-editor": "^1.2.4",
+    "nuxt-monaco-editor": "^1.2.5",
     "onigasm": "^2.2.5",
     "serve": "^14.2.1",
     "svelte": "^4.2.8",
     "tsx": "^4.6.2",
-    "typescript": "^5.3.2",
+    "typescript": "^5.3.3",
     "vite-plugin-node-polyfills": "^0.17.0",
-    "vue-tsc": "^1.8.24"
+    "vue-tsc": "^1.8.25"
   },
   "prettier": "@sxzz/prettier-config"
 }

@@ -73,6 +73,11 @@ const astLocationFields = {
     start: ['span', 'start'],
     end: ['span', 'end'],
   },
+  ranges: {
+    type: ['type'],
+    start: ['range', 0],
+    end: ['range', 1],
+  },
 } as const
 
 export function getAstLocation(
