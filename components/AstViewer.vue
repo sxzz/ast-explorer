@@ -88,7 +88,7 @@ function highlight() {
   const range = highlightRange.value
   if (!range) return
 
-  const editor: Monaco.editor.IStandaloneCodeEditor = toRaw(
+  const editor: Monaco.editor.IStandaloneCodeEditor | undefined = toRaw(
     container.value?.$editor,
   )
   if (!editor) return
