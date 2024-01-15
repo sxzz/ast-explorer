@@ -38,7 +38,7 @@
     "acorn": "^8.11.3",
     "bumpp": "^9.2.1",
     "eslint": "^8.56.0",
-    "floating-vue": "2.0.0-beta.24",
+    "floating-vue": "5.0.3",
     "nuxt": "3.9.1",
     "nuxt-monaco-editor": "^1.2.6",
     "onigasm": "^2.2.5",
