@@ -16,16 +16,6 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        moduleResolution: 'bundler',
-      },
-    },
-  },
-  vue: {
-    defineModel: true,
-  },
   vite: {
     define: {
       'process.env': JSON.stringify({}),
@@ -38,6 +28,9 @@ export default defineNuxtConfig({
         },
       }),
     ],
+  },
+  future: {
+    typescriptBundlerResolution: true,
   },
   css: [
     '@unocss/reset/tailwind.css',
