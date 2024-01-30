@@ -25,10 +25,9 @@ const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
   },
 )
 
-onMounted(() => {
-  const editor = toRaw(
-    container.value!.$editor as monaco.editor.IStandaloneCodeEditor,
-  )
+watchEffect(() => {
+  const editor = toRaw(container.value?.$editor)
+  if (!editor) return
   editor.onDidChangeCursorPosition((e) => {
     editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
   })
