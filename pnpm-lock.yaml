@@ -34,6 +34,9 @@ devDependencies:
   '@iconify-json/vscode-icons':
     specifier: ^1.1.33
     version: 1.1.33
+  '@oxc-parser/wasm':
+    specifier: ^0.0.4
+    version: 0.0.4
   '@swc/wasm-web':
     specifier: 1.3.107
     version: 1.3.107
@@ -1623,6 +1626,10 @@ packages:
       - vls
       - vti
       - vue-tsc
+    dev: true
+
+  /@oxc-parser/wasm@0.0.4:
+    resolution: {integrity: sha512-C5L9Gd0IUE2DIZ2KGNRAmBSQsJ9RZ5t8db6wsXAOpqi2T5UwXHAX2HuA3K4GpEjHcD+uYwlIH68GIaxBsTg7EA==}
     dev: true
 
   /@parcel/watcher-android-arm64@2.3.0:

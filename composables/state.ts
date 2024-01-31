@@ -15,7 +15,7 @@ export const showRightLayout = useLocalStorage('show-right-layout', true)
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
 export const hideLocationData = useLocalStorage(
   `${PREFIX}hide-location-data`,
-  true,
+  false,
 )
 export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)

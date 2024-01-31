@@ -4,6 +4,7 @@ import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
 import type * as Acorn from 'acorn'
 import type * as Ts from 'typescript'
+import type * as Oxc from '@oxc-parser/wasm'
 
 // @unocss-include
 
@@ -106,6 +107,41 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
     return options?.syntax === 'typescript' ? 'typescript' : 'javascript'
   },
   getAstLocation: getAstLocation.bind(null, 'swc'),
+}
+
+const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
+  id: 'oxc',
+  label: 'oxc',
+  icon: 'i-vscode-icons:file-type-js-official',
+  options: {
+    configurable: true,
+    defaultValue: {
+      sourceType: 'module',
+      sourceFilename: 'foo.ts',
+    },
+    editorLanguage: 'json',
+  },
+  init: () =>
+    import(
+      // @ts-expect-error
+      'https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/oxc_parser_wasm.js'
+    ).then(async (mod: typeof Oxc) => {
+      // debugger
+      await mod.default()
+      return mod
+    }),
+  version: () =>
+    fetch('https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/package.json')
+      .then((r) => r.json())
+      .then((raw) => `@swc/wasm-web@${raw.version}`),
+  parse(code, options) {
+    const { program, errors } = this.parseSync(code, { ...options })
+    return { program, errors }
+  },
+  editorLanguage(options) {
+    return options.sourceFilename?.endsWith('.ts') ? 'typescript' : 'javascript'
+  },
+  getAstLocation: getAstLocation.bind(null, 'babel'),
 }
 
 const acorn: Parser<typeof Acorn, Acorn.Options> = {
@@ -211,5 +247,5 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
 export const javascript: LanguageOption = {
   label: 'JavaScript',
   icon: 'i-vscode-icons:file-type-js-official',
-  parsers: [babel, swc, acorn, ts, espree, tsEslint],
+  parsers: [babel, swc, oxc, acorn, ts, espree, tsEslint],
 }
