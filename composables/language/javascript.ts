@@ -111,7 +111,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
 
 const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   id: 'oxc',
-  label: 'oxc',
+  label: 'Oxc',
   icon: 'i-vscode-icons:file-type-js-official',
   options: {
     configurable: true,
@@ -126,14 +126,13 @@ const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
       // @ts-expect-error
       'https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/oxc_parser_wasm.js'
     ).then(async (mod: typeof Oxc) => {
-      // debugger
       await mod.default()
       return mod
     }),
   version: () =>
     fetch('https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/package.json')
       .then((r) => r.json())
-      .then((raw) => `@swc/wasm-web@${raw.version}`),
+      .then((raw) => `@oxc-parser/wasm@${raw.version}`),
   parse(code, options) {
     const { program, errors } = this.parseSync(code, { ...options })
     return { program, errors }
