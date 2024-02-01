@@ -8,6 +8,7 @@ export const code = ref('')
 export const ast = shallowRef<unknown>({})
 export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
+export const parseCost = ref(0)
 
 export const showLeftLayout = useLocalStorage('show-left-layout', true)
 export const showRightLayout = useLocalStorage('show-right-layout', true)
@@ -108,11 +109,13 @@ watch(
       loading.value = 'load'
       const ctx = await parserContext.value
       loading.value = 'parse'
+      const t = window.performance.now()
       ast.value = await currentParser.value.parse.call(
         await ctx,
         code.value,
         options.value,
       )
+      parseCost.value = window.performance.now() - t
       error.value = null
       // eslint-disable-next-line unicorn/catch-error-name
     } catch (err) {
