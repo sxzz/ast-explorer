@@ -8,9 +8,9 @@ export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
   icon: string
-  init?(): C | Promise<C>
+  init?: () => C | Promise<C>
   version: string | ((this: C | Promise<C>) => string | Promise<string>)
-  parse(this: C, code: string, options: O): unknown
+  parse: (this: C, code: string, options: O) => unknown
   options: {
     configurable: boolean
     editorLanguage: MonacoLanguage
@@ -25,7 +25,7 @@ export interface Parser<C = unknown, O = unknown> {
       }
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
-  getAstLocation?(ast: JsonNode): Range | undefined
+  getAstLocation?: (ast: JsonNode) => Range | undefined
 }
 export interface LanguageOption {
   label: string

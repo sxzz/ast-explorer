@@ -29,7 +29,7 @@
     "@iconify-json/vscode-icons": "^1.1.33",
     "@oxc-parser/wasm": "^0.0.5",
     "@swc/wasm-web": "1.4.2",
-    "@sxzz/eslint-config": "^3.8.0",
+    "@sxzz/eslint-config": "^3.8.1",
     "@sxzz/prettier-config": "^2.0.0",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.58.5",
