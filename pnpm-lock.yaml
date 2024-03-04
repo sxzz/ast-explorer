@@ -41,8 +41,8 @@ devDependencies:
     specifier: 1.4.2
     version: 1.4.2
   '@sxzz/eslint-config':
-    specifier: ^3.8.4
-    version: 3.8.4(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(svelte@4.2.12)(typescript@5.3.3)
+    specifier: ^3.8.5
+    version: 3.8.5(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(svelte@4.2.12)(typescript@5.3.3)
   '@sxzz/prettier-config':
     specifier: ^2.0.1
     version: 2.0.1
@@ -1913,8 +1913,8 @@ packages:
     resolution: {integrity: sha512-v1g8zs6anbeZKjAv3oFkCA/E+OSaJftAVTgBT7tvmI+nUrIaTucShcIuQuDcbE2yXQPb3aEs3s9bakr7xqJq9A==}
     dev: true
 
-  /@sxzz/eslint-config@3.8.4(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(svelte@4.2.12)(typescript@5.3.3):
-    resolution: {integrity: sha512-HOFBdjaJxUoFeBb4cRA3kmgznsOb5OePaxxKByrPFZjPeE10Xxeq46hdqVyPOmu42SftaloL0kwam50RyETqZA==}
+  /@sxzz/eslint-config@3.8.5(@typescript-eslint/parser@7.1.0)(eslint@8.57.0)(svelte@4.2.12)(typescript@5.3.3):
+    resolution: {integrity: sha512-ke0G3Zu0cpDUWeXCUWcv1xS6/sy6VZO44wgXRxlI6j52KjDZTUMj8NlEHF8iXQt0LxMUrQKzwHtMmbbjKZW03Q==}
     engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       eslint: ^8.56.0 || ^9.0.0
@@ -3374,7 +3374,7 @@ packages:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.0.1
+      chalk: 5.3.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
