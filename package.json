@@ -16,20 +16,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.1",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
     "memfs": "^4.7.7",
-    "monaco-editor": "^0.46.0"
+    "monaco-editor": "^0.47.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.24.0",
     "@iconify-json/ri": "^1.1.20",
     "@iconify-json/vscode-icons": "^1.1.33",
     "@oxc-parser/wasm": "^0.0.5",
-    "@swc/wasm-web": "1.4.2",
-    "@sxzz/eslint-config": "^3.8.5",
+    "@swc/wasm-web": "1.4.6",
+    "@sxzz/eslint-config": "^3.8.6",
     "@sxzz/prettier-config": "^2.0.1",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.58.5",
@@ -37,7 +37,7 @@
     "@vue/compiler-sfc": "^3.4.21",
     "@vueuse/nuxt": "^10.9.0",
     "acorn": "^8.11.3",
-    "bumpp": "^9.3.1",
+    "bumpp": "^9.4.0",
     "eslint": "^8.57.0",
     "floating-vue": "5.2.2",
     "nuxt": "3.10.3",
@@ -46,7 +46,7 @@
     "serve": "^14.2.1",
     "svelte": "^4.2.12",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.2",
     "vite-plugin-node-polyfills": "^0.21.0",
     "vue-tsc": "^1.8.27"
   },
