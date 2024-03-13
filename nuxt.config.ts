@@ -27,6 +27,14 @@ export default defineNuxtConfig({
           fs: 'memfs',
         },
       }),
+      {
+        name: 'fix-monaco-platform',
+        transform(code, id) {
+          if (!id.includes('monaco-editor/esm/vs/base/common/platform.js'))
+            return
+          return code.replace('typeof process', "'undefined'")
+        },
+      },
     ],
   },
   future: {
