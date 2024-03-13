@@ -73,6 +73,9 @@ devDependencies:
   floating-vue:
     specifier: 5.2.2
     version: 5.2.2(vue@3.4.20)
+  htmlparser2:
+    specifier: ^9.1.0
+    version: 9.1.0
   nuxt:
     specifier: 3.10.3
     version: 3.10.3(eslint@8.57.0)(typescript@5.4.2)(vite@5.1.4)(vue-tsc@1.8.27)
@@ -5473,6 +5476,15 @@ packages:
   /html-tags@3.3.1:
     resolution: {integrity: sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /htmlparser2@9.1.0:
+    resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
+    dependencies:
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
+      domutils: 3.1.0
+      entities: 4.5.0
     dev: true
 
   /http-cache-semantics@4.1.1:

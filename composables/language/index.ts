@@ -2,6 +2,7 @@ import { javascript } from './javascript'
 import { vue } from './vue'
 import { svelte } from './svelte'
 import { json } from './json'
+import { html } from './html'
 import type { JsonNode, Range } from '#imports'
 
 export interface Parser<C = unknown, O = unknown> {
@@ -38,6 +39,7 @@ export const LANGUAGES = {
   vue,
   svelte,
   json,
+  html,
 }
 export type Language = keyof typeof LANGUAGES
 
