@@ -1,4 +1,4 @@
-import { type LanguageOption, type Parser, getAstLocation } from '../language'
+import type { LanguageOption, Parser } from '../language'
 import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
@@ -24,10 +24,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   },
   // @ts-expect-error
   init: () => import('https://cdn.jsdelivr.net/npm/@babel/parser/+esm'),
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/@babel/parser/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@babel/parser@${raw.version}`),
+  version: fetchVersion('@babel/parser'),
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -94,10 +91,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
       await mod.default()
       return mod
     }),
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/@swc/wasm-web/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@swc/wasm-web@${raw.version}`),
+  version: fetchVersion('@swc/wasm-web'),
   async parse(code, options) {
     const result = await this.parse(code, { ...(options as any) })
     adjustSwcOffsetOfAst(result, result.span.start)
@@ -129,10 +123,7 @@ const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
       await mod.default()
       return mod
     }),
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@oxc-parser/wasm@${raw.version}`),
+  version: fetchVersion('@oxc-parser/wasm'),
   parse(code, options) {
     const { program, errors } = this.parseSync(code, { ...options })
     return { program, errors }

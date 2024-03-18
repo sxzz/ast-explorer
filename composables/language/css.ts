@@ -43,10 +43,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   },
   // @ts-expect-error
   init: () => import('https://esm.sh/postcss'),
-  version: () =>
-    fetch('https://esm.sh/postcss/package.json')
-      .then((res) => res.json())
-      .then((pkg) => `postcss@${pkg.version}`),
+  version: fetchVersion('postcss', 'https://esm.sh/postcss/package.json'),
   parse(code, options) {
     return this.parse(code, { ...options })
   },

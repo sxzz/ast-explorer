@@ -16,10 +16,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   },
   // @ts-expect-error
   init: () => import('https://cdn.jsdelivr.net/npm/htmlparser2@9.1.0/+esm'),
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/htmlparser2/package.json')
-      .then((r) => r.json())
-      .then((raw) => `htmlparser2@${raw.version}`),
+  version: fetchVersion('htmlparser2'),
   parse(code, options) {
     return this.parseDocument(code, options)
   },

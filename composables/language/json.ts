@@ -16,7 +16,7 @@ const jsonToAst: Parser<undefined, parse.Options> = {
     },
     editorLanguage: 'json',
   },
-  version,
+  version: `json-to-ast@${version}`,
   parse(code, options) {
     return parse(code, options)
   },

@@ -1,4 +1,4 @@
-import { type LanguageOption, type Parser, getAstLocation } from '../language'
+import type { LanguageOption, Parser } from '../language'
 import type { CompileOptions, compile } from 'svelte/compiler'
 
 // @unocss-include
@@ -21,10 +21,10 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
     import('https://esm.sh/svelte/src/compiler/compile/index.js').then(
       (mod) => mod.default,
     ),
-  version: () =>
-    fetch('https://esm.sh/svelte/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@svelte/compiler@${raw.version}`),
+  version: fetchVersion(
+    '@svelte/compiler',
+    'https://esm.sh/svelte/package.json',
+  ),
   parse(code, options) {
     return this(code, options)?.ast
   },

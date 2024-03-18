@@ -6,7 +6,7 @@ import type * as Vue3Dom from '@vue/compiler-dom'
 // @unocss-include
 
 const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
-  id: 'vue3',
+  id: 'vue3-sfc',
   label: '@vue/compiler-sfc',
   icon: 'i-vscode-icons:file-type-vue',
   editorLanguage: 'vue',
@@ -74,10 +74,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
       'https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/dist/compiler-dom.esm-browser.js'
     )
   },
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@vue/compiler-dom@${raw.version}`),
+  version: fetchVersion('@vue/compiler-dom'),
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -100,10 +97,7 @@ const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
       'https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/dist/compiler-dom.esm-browser.js'
     )
   },
-  version: () =>
-    fetch('https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/package.json')
-      .then((r) => r.json())
-      .then((raw) => `@vue/compiler-dom@${raw.version}`),
+  version: fetchVersion('@vue/compiler-dom'),
   parse(code, options) {
     return this.compile(code, {
       nodeTransforms: [...this.DOMNodeTransforms],
