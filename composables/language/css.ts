@@ -8,6 +8,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   id: 'csstree',
   label: 'csstree',
   icon: 'i-vscode-icons:file-type-css',
+  link: 'https://github.com/csstree/csstree',
   editorLanguage: 'css',
   options: {
     configurable: true,
@@ -34,6 +35,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   id: 'postcss',
   label: 'postcss',
   icon: 'i-vscode-icons:file-type-postcss',
+  link: 'https://postcss.org/',
   editorLanguage: 'css',
   options: {
     configurable: true,

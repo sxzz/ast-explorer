@@ -10,6 +10,7 @@ export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
   icon: string
+  link: string
   init?: () => C | Promise<C>
   version: string | ((this: C | Promise<C>) => string | Promise<string>)
   parse: (this: C, code: string, options: O) => unknown

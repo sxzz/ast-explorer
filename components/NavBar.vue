@@ -17,7 +17,15 @@ import { version } from '../package.json'
 
     <div flex="~ gap-3">
       <span op-80>{{ +parseCost.toFixed(1) }} ms</span>
-      <span font-mono op-80>{{ parserVersion }}</span>
+      <a
+        font-mono
+        op-80
+        hover:underline
+        :href="currentParser.link"
+        target="_blank"
+      >
+        {{ parserVersion }}
+      </a>
       <button title="Toggle Left Layout" @click="toggleLeftLayout">
         <div v-if="showLeftLayout" i-ri:layout-column-fill />
         <div v-else i-ri:layout-left-line />

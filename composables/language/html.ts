@@ -7,6 +7,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   id: 'htmlparser2',
   label: 'htmlparser2',
   icon: 'i-vscode-icons:file-type-html',
+  link: 'https://feedic.com/htmlparser2/',
   editorLanguage: 'html',
   options: {
     configurable: true,

@@ -8,6 +8,7 @@ const jsonToAst: Parser<undefined, parse.Options> = {
   id: 'json-to-ast',
   label: 'json-to-ast',
   icon: 'i-vscode-icons:file-type-json',
+  link: 'https://github.com/vtrushin/json-to-ast',
   editorLanguage: 'json',
   options: {
     configurable: true,

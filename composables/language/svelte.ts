@@ -7,6 +7,7 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
   id: 'svelte-compiler',
   label: 'svelte/compiler',
   icon: 'i-vscode-icons:file-type-svelte',
+  link: 'https://svelte.dev/docs/svelte-compiler#parse',
   editorLanguage: 'svelte',
   options: {
     configurable: true,

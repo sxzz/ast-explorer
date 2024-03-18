@@ -14,6 +14,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   id: 'babel',
   label: '@babel/parser',
   icon: 'i-vscode-icons:file-type-babel2',
+  link: 'https://babeljs.io/docs/babel-parser',
   options: {
     configurable: true,
     defaultValue: {
@@ -73,6 +74,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   id: 'swc',
   label: 'SWC',
   icon: 'i-vscode-icons:file-type-swc',
+  link: 'https://swc.rs/docs/usage/core#parse',
   options: {
     configurable: true,
     defaultValue: {
@@ -107,6 +109,7 @@ const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   id: 'oxc',
   label: 'Oxc',
   icon: 'i-vscode-icons:file-type-js-official',
+  link: 'https://oxc-project.github.io/docs/guide/usage/parser.html',
   options: {
     configurable: true,
     defaultValue: {
@@ -138,6 +141,7 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
   label: 'Acorn',
   icon: 'i-vscode-icons:file-type-js-official',
+  link: 'https://github.com/acornjs/acorn',
   options: {
     configurable: true,
     defaultValue: {
@@ -162,6 +166,7 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   id: 'typescript',
   label: 'typescript',
   icon: 'i-vscode-icons:file-type-typescript-official',
+  link: 'https://www.typescriptlang.org/',
   options: {
     configurable: true,
     defaultValue: {
@@ -188,6 +193,7 @@ const espree: Parser<any, any> = {
   id: 'espree',
   label: 'espree',
   icon: 'i-vscode-icons:file-type-eslint',
+  link: 'https://github.com/eslint/espree',
   options: {
     configurable: true,
     defaultValue: {
@@ -213,6 +219,7 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
   icon: 'i-vscode-icons:file-type-eslint',
+  link: 'https://typescript-eslint.io/packages/parser/',
   options: {
     configurable: true,
     defaultValue: {
