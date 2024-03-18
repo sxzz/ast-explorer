@@ -37,9 +37,6 @@ export default defineNuxtConfig({
       },
     ],
   },
-  future: {
-    typescriptBundlerResolution: true,
-  },
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
