@@ -45,6 +45,7 @@
     "nuxt": "3.11.0",
     "nuxt-monaco-editor": "^1.2.7",
     "onigasm": "^2.2.5",
+    "postcss": "^8.4.36",
     "serve": "^14.2.1",
     "svelte": "^4.2.12",
     "tsx": "^4.7.1",
