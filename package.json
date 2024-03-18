@@ -31,6 +31,7 @@
     "@swc/wasm-web": "1.4.8",
     "@sxzz/eslint-config": "^3.8.6",
     "@sxzz/prettier-config": "^2.0.1",
+    "@types/css-tree": "^2.3.7",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.58.6",
     "@vue/compiler-dom": "^3.4.21",

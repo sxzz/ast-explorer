@@ -3,6 +3,7 @@ import { vue } from './vue'
 import { svelte } from './svelte'
 import { json } from './json'
 import { html } from './html'
+import { css } from './css'
 import type { JsonNode, Range } from '#imports'
 
 export interface Parser<C = unknown, O = unknown> {
@@ -38,8 +39,9 @@ export const LANGUAGES = {
   javascript,
   vue,
   svelte,
-  json,
+  css,
   html,
+  json,
 }
 export type Language = keyof typeof LANGUAGES
 
@@ -79,6 +81,11 @@ const astLocationFields = {
     type: ['type'],
     start: ['range', 0],
     end: ['range', 1],
+  },
+  cssTree: {
+    type: ['type'],
+    start: ['loc', 'start', 'offset'],
+    end: ['loc', 'end', 'offset'],
   },
 } as const
 
