@@ -20,7 +20,7 @@
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
-    "memfs": "^4.8.0",
+    "memfs": "^4.8.1",
     "monaco-editor": "^0.47.0"
   },
   "devDependencies": {
