@@ -50,7 +50,7 @@
     "tsx": "^4.7.1",
     "typescript": "^5.4.3",
     "vite-plugin-node-polyfills": "^0.21.0",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^2.0.10"
   },
   "prettier": "@sxzz/prettier-config"
 }
