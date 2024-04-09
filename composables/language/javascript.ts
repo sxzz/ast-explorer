@@ -4,7 +4,7 @@ import type * as Babel from '@babel/parser'
 import type * as Swc from '@swc/wasm-web'
 import type * as Acorn from 'acorn'
 import type * as Ts from 'typescript'
-import type * as Oxc from '@oxc-parser/wasm'
+import type * as Oxc from '@oxc-parser/wasm/web/oxc_parser_wasm'
 
 // @unocss-include
 
