@@ -1,4 +1,3 @@
-/* eslint-disable vue/prefer-import-from-vue */
 import type { LanguageOption, Parser } from '../language'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
 import type * as Vue3Dom from '@vue/compiler-dom'
