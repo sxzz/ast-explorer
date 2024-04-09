@@ -39,7 +39,7 @@
     "@vueuse/nuxt": "^10.9.0",
     "acorn": "^8.11.3",
     "bumpp": "^9.4.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "floating-vue": "5.2.2",
     "htmlparser2": "^9.1.0",
     "nuxt": "3.11.2",
