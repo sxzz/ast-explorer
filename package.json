@@ -2,7 +2,7 @@
   "name": "ast-explorer",
   "version": "0.9.2",
   "private": true,
-  "packageManager": "pnpm@8.15.7",
+  "packageManager": "pnpm@9.0.5",
   "type": "module",
   "license": "AGPL-3.0",
   "scripts": {
