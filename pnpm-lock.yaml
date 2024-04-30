@@ -57,6 +57,9 @@ importers:
       '@unocss/nuxt':
         specifier: ^0.59.4
         version: 0.59.4(postcss@8.4.38)(rollup@4.13.2)(vite@5.2.8(@types/node@20.11.30)(terser@5.30.0))(webpack@5.91.0)
+      '@vue-vapor/compiler-vapor':
+        specifier: latest
+        version: 3.2024.0-098b6fc
       '@vue/compiler-dom':
         specifier: ^3.4.25
         version: 3.4.25
@@ -1430,6 +1433,18 @@ packages:
     peerDependenciesMeta:
       vue:
         optional: true
+
+  '@vue-vapor/compiler-core@3.2024.0-098b6fc':
+    resolution: {integrity: sha512-ntYIsc6EVzzKzJZHXf+7Oz7cBFwL4hxIwz9YZJJCXEjMiVqH/guFc/66Ld7i0tECaDQ67BBa0KB5JyfBaN/l/Q==}
+
+  '@vue-vapor/compiler-dom@3.2024.0-098b6fc':
+    resolution: {integrity: sha512-6SJ2yuv91PNn5HZTYnhYoNAYPxU9wSX4uyoUgAKhAaZ/9H4ywVV1IwwMhhr2YrIGHhYnJPumtgqSq33JyfuZsA==}
+
+  '@vue-vapor/compiler-vapor@3.2024.0-098b6fc':
+    resolution: {integrity: sha512-H9LTiYyES+Kv78jBmg/HU644nXYEwRMSe30ksPruaWqPUIB6vQL04v6WT9AYLevVdgnXLHeHa202VwKptWJyWQ==}
+
+  '@vue-vapor/shared@3.2024.0-098b6fc':
+    resolution: {integrity: sha512-ftkkKKntwfM/zhlPTBVpl4sWo2zjPmyQNrPUpwPA5StHWXuhKEji2BoUf5AIa5PPR6lIIhP0jZhgpij0OfZfYA==}
 
   '@vue/babel-helper-vue-transform-on@1.2.2':
     resolution: {integrity: sha512-nOttamHUR3YzdEqdM/XXDyCSdxMA9VizUKoroLX6yTyRtggzQMHXcmwh8a7ZErcJttIBIc9s68a1B8GZ+Dmvsw==}
@@ -6944,6 +6959,27 @@ snapshots:
       vue: 3.4.21(typescript@5.4.5)
     transitivePeerDependencies:
       - rollup
+
+  '@vue-vapor/compiler-core@3.2024.0-098b6fc':
+    dependencies:
+      '@babel/parser': 7.24.4
+      '@vue/shared': '@vue-vapor/shared@3.2024.0-098b6fc'
+      entities: 4.5.0
+      estree-walker: 2.0.2
+      source-map-js: 1.2.0
+
+  '@vue-vapor/compiler-dom@3.2024.0-098b6fc':
+    dependencies:
+      '@vue/compiler-core': '@vue-vapor/compiler-core@3.2024.0-098b6fc'
+      '@vue/shared': '@vue-vapor/shared@3.2024.0-098b6fc'
+
+  '@vue-vapor/compiler-vapor@3.2024.0-098b6fc':
+    dependencies:
+      '@vue/compiler-dom': '@vue-vapor/compiler-dom@3.2024.0-098b6fc'
+      '@vue/shared': '@vue-vapor/shared@3.2024.0-098b6fc'
+      source-map-js: 1.2.0
+
+  '@vue-vapor/shared@3.2024.0-098b6fc': {}
 
   '@vue/babel-helper-vue-transform-on@1.2.2': {}
 

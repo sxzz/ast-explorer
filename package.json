@@ -34,6 +34,7 @@
     "@types/css-tree": "^2.3.7",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.59.4",
+    "@vue-vapor/compiler-vapor": "latest",
     "@vue/compiler-dom": "^3.4.25",
     "@vue/compiler-sfc": "^3.4.25",
     "@vueuse/nuxt": "^10.9.0",

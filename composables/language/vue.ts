@@ -1,7 +1,7 @@
 import type { LanguageOption, Parser } from '../language'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
 import type * as Vue3Dom from '@vue/compiler-dom'
-
+import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'
 // @unocss-include
 
 const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
@@ -81,7 +81,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   },
 }
 
-const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
+const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.CompilerOptions> = {
   ...vue3DomParse,
   id: 'vue3-dom-compile',
   label: '@vue/compiler-dom (compile)',
@@ -93,8 +93,35 @@ const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   },
 }
 
+const vueVapor: Parser<
+  typeof VueVaporCompiler,
+  VueVaporCompiler.CompilerOptions
+> = {
+  id: 'vue-vapor',
+  label: '@vue-vapor/compiler-vapor',
+  icon: 'i-vscode-icons:file-type-vue',
+  link: 'https://github.com/vuejs/core-vapor/tree/main/packages/compiler-vapor',
+  editorLanguage: 'html',
+  options: {
+    configurable: true,
+    defaultValue: 'return {}',
+    defaultValueType: 'javascript',
+    editorLanguage: 'javascript',
+  },
+  init() {
+    return import(
+      // @ts-expect-error
+      'https://cdn.jsdelivr.net/npm/@vue-vapor/compiler-vapor/dist/compiler-vapor.esm-browser.js'
+    )
+  },
+  version: fetchVersion('@vue-vapor/compiler-vapor'),
+  parse(code, options) {
+    return this.compile(code, { ...options }).ast
+  },
+}
+
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile],
+  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile, vueVapor],
 }
