@@ -17,7 +17,10 @@ const jsonToAst: Parser<undefined, parse.Options> = {
     },
     editorLanguage: 'json',
   },
-  version: `json-to-ast@${version}`,
+  pkgName: 'json-to-ast',
+  version,
+  // TODO override version
+  overrideVersion: false,
   parse(code, options) {
     return parse(code, options)
   },

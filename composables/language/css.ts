@@ -18,12 +18,12 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
     editorLanguage: 'json',
     defaultValueType: 'json5',
   },
-  init: () =>
-    // @ts-expect-error
-    import('https://cdn.jsdelivr.net/npm/css-tree/dist/csstree.esm.js'),
+  pkgName: 'css-tree',
+  init: (pkg) =>
+    import(`https://cdn.jsdelivr.net/npm/${pkg}/dist/csstree.esm.js`),
   async version() {
     // @ts-expect-error missing property
-    return `css-tree@${(await this).version}`
+    return (await this).version
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -43,9 +43,9 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
     editorLanguage: 'json',
     defaultValueType: 'json5',
   },
-  // @ts-expect-error
-  init: () => import('https://esm.sh/postcss'),
-  version: fetchVersion('postcss', 'https://esm.sh/postcss/package.json'),
+  pkgName: 'postcss',
+  init: (pkgName) => import(`https://esm.sh/${pkgName}`),
+  version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

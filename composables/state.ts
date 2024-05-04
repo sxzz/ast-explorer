@@ -40,23 +40,29 @@ export const options = computed(() => {
 const location = useBrowserLocation()
 
 const rawUrlState = atou(location.value.hash!.slice(1))
+
 if (rawUrlState) {
   const urlState = JSON.parse(rawUrlState)
   currentLanguageId.value = urlState.l
   currentParserId.value = urlState.p
   code.value = urlState.c
   rawOptions.value = urlState.o
+  overrideVersion.value = urlState.v
 }
-watch([currentLanguageId, currentParserId, code, rawOptions], () => {
+
+// serialize state to url
+watchEffect(() => {
   const serialized = JSON.stringify({
     l: currentLanguageId.value,
     p: currentParserId.value,
     c: code.value,
     o: rawOptions.value,
+    v: overrideVersion.value,
   })
   location.value.hash = utoa(serialized)
 })
 
+// ensure currentParserId is valid
 watch(
   [currentLanguage, currentParserId],
   () => {
@@ -64,11 +70,17 @@ watch(
       !currentParserId.value ||
       !currentLanguage.value.parsers.some((p) => p.id === currentParserId.value)
     )
-      currentParserId.value = currentLanguage.value.parsers[0].id
+      setParserId(currentLanguage.value.parsers[0].id)
   },
   { immediate: true },
 )
 
+export function setParserId(id: string) {
+  overrideVersion.value = undefined
+  currentParserId.value = id
+}
+
+// set default options
 watch(
   currentParserId,
   () => {
@@ -80,34 +92,47 @@ watch(
   { immediate: !rawUrlState },
 )
 
-export const parserContextMap: Record<string, unknown> = shallowReactive(
-  Object.create(null),
-)
+const parserContextCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
-  const { id, init } = currentParser.value
-  if (parserContextMap[id]) return parserContextMap[id]
-  return (parserContextMap[id] = await init?.())
+  const { pkgName, init } = currentParser.value
+  const pkgId =
+    pkgName + (overrideVersion.value ? `@${overrideVersion.value}` : '')
+  if (parserContextCache[pkgId]) return parserContextCache[pkgId]
+  return (parserContextCache[pkgId] = await init?.(pkgId))
 }
 
-const parserContext = computed(() => initParser())
+const parserContextPromise = computed(() => initParser())
 
-watchEffect(() => {
-  parserVersion.value = ''
-  if (typeof currentParser.value.version === 'string') {
-    parserVersion.value = currentParser.value.version
-  } else {
-    Promise.resolve(currentParser.value.version.call(parserContext.value)).then(
-      (version) => (parserVersion.value = version),
-    )
-  }
-})
+// fetch display version
+watch(
+  [currentParserId, overrideVersion],
+  async () => {
+    if (overrideVersion.value) {
+      displayVersion.value = overrideVersion.value
+      displayVersion.value = await fetchVersion(
+        `${currentParser.value.pkgName}@${displayVersion.value}`,
+      )
+      return
+    }
+
+    const parser = currentParser.value
+    if (typeof parser.version === 'string') {
+      displayVersion.value = parser.version
+    } else {
+      Promise.resolve(
+        parser.version.call(parserContextPromise.value, parser.pkgName),
+      ).then((version) => (displayVersion.value = version))
+    }
+  },
+  { immediate: true },
+)
 
 watch(
-  [parserContext, currentParser, code, rawOptions],
+  [parserContextPromise, currentParser, code, rawOptions],
   async () => {
     try {
       loading.value = 'load'
-      const ctx = await parserContext.value
+      const ctx = await parserContextPromise.value
       loading.value = 'parse'
       const t = window.performance.now()
       ast.value = await currentParser.value.parse.call(

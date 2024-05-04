@@ -1,6 +1,6 @@
 <script setup lang="ts">
 function changeParser(parser: string) {
-  currentParserId.value = parser
+  setParserId(parser)
 }
 </script>
 

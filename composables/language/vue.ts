@@ -15,14 +15,13 @@ const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
     defaultValue: {},
     editorLanguage: 'json',
   },
-  init() {
-    return import(
-      // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@vue/compiler-sfc@3/dist/compiler-sfc.esm-browser.js'
-    )
-  },
+  pkgName: '@vue/compiler-sfc',
+  init: (pkg) =>
+    import(
+      `https://cdn.jsdelivr.net/npm/${pkg}/dist/compiler-sfc.esm-browser.js`
+    ),
   async version() {
-    return `@vue/compiler-sfc@${(await this).version}`
+    return (await this).version
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -69,13 +68,12 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
     defaultValueType: 'javascript',
     editorLanguage: 'javascript',
   },
-  init() {
-    return import(
-      // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@vue/compiler-dom@3/dist/compiler-dom.esm-browser.js'
-    )
-  },
-  version: fetchVersion('@vue/compiler-dom'),
+  pkgName: '@vue/compiler-dom',
+  init: (pkg) =>
+    import(
+      `https://cdn.jsdelivr.net/npm/${pkg}/dist/compiler-dom.esm-browser.js`
+    ),
+  version: (pkg) => fetchVersion(pkg),
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -108,13 +106,13 @@ const vueVapor: Parser<
     defaultValueType: 'javascript',
     editorLanguage: 'javascript',
   },
-  init() {
+  pkgName: '@vue-vapor/compiler-vapor',
+  init(pkg) {
     return import(
-      // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@vue-vapor/compiler-vapor/dist/compiler-vapor.esm-browser.js'
+      `https://cdn.jsdelivr.net/npm/${pkg}/dist/compiler-vapor.esm-browser.js`
     )
   },
-  version: fetchVersion('@vue-vapor/compiler-vapor'),
+  version: fetchVersion,
   parse(code, options) {
     return this.compile(code, { ...options }).ast
   },

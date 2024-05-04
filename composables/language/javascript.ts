@@ -23,9 +23,9 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     },
     editorLanguage: 'json',
   },
-  // @ts-expect-error
-  init: () => import('https://cdn.jsdelivr.net/npm/@babel/parser/+esm'),
-  version: fetchVersion('@babel/parser'),
+  pkgName: '@babel/parser',
+  init: (pkg) => import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`),
+  version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -85,15 +85,15 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
     },
     editorLanguage: 'json',
   },
-  init: () =>
-    import(
-      // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@swc/wasm-web/wasm-web.js'
-    ).then(async (mod: typeof Swc) => {
-      await mod.default()
-      return mod
-    }),
-  version: fetchVersion('@swc/wasm-web'),
+  pkgName: '@swc/wasm-web',
+  init: (pkg) =>
+    import(`https://cdn.jsdelivr.net/npm/${pkg}/wasm-web.js`).then(
+      async (mod: typeof Swc) => {
+        await mod.default()
+        return mod
+      },
+    ),
+  version: fetchVersion,
   async parse(code, options) {
     const result = await this.parse(code, { ...(options as any) })
     adjustSwcOffsetOfAst(result, result.span.start)
@@ -118,15 +118,15 @@ const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
     },
     editorLanguage: 'json',
   },
-  init: () =>
-    import(
-      // @ts-expect-error
-      'https://cdn.jsdelivr.net/npm/@oxc-parser/wasm@latest/oxc_parser_wasm.js'
-    ).then(async (mod: typeof Oxc) => {
-      await mod.default()
-      return mod
-    }),
-  version: fetchVersion('@oxc-parser/wasm'),
+  pkgName: '@oxc-parser/wasm',
+  init: (pkg) =>
+    import(`https://cdn.jsdelivr.net/npm/${pkg}/oxc_parser_wasm.js`).then(
+      async (mod: typeof Oxc) => {
+        await mod.default()
+        return mod
+      },
+    ),
+  version: fetchVersion,
   parse(code, options) {
     const { program, errors } = this.parseSync(code, { ...options })
     return { program, errors }
@@ -150,10 +150,10 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
     },
     editorLanguage: 'json',
   },
-  // @ts-expect-error
-  init: () => import('https://cdn.jsdelivr.net/npm/acorn/dist/acorn.mjs'),
+  pkgName: 'acorn',
+  init: (pkg) => import(`https://cdn.jsdelivr.net/npm/${pkg}/dist/acorn.mjs`),
   async version() {
-    return `acorn@${(await this).version}`
+    return (await this).version
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -174,13 +174,13 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
     },
     editorLanguage: 'json',
   },
-  init: () =>
-    // @ts-expect-error
-    import('https://cdn.jsdelivr.net/npm/typescript/+esm').then(
+  pkgName: 'typescript',
+  init: (pkg) =>
+    import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`).then(
       (mod) => mod.default,
     ),
   async version() {
-    return `typescript@${(await this).version}`
+    return (await this).version
   },
   parse(code, options) {
     return this.createSourceFile('foo.ts', code, { ...options })
@@ -203,10 +203,10 @@ const espree: Parser<any, any> = {
     },
     editorLanguage: 'json',
   },
-  // @ts-expect-error
-  init: () => import('https://cdn.skypack.dev/espree?min'),
+  pkgName: 'espree',
+  init: (pkg) => import(`https://cdn.skypack.dev/${pkg}?min`),
   async version() {
-    return `espree@${(await this).version}`
+    return (await this).version
   },
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -230,10 +230,12 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
     },
     editorLanguage: 'json',
   },
+  pkgName: '@typescript-eslint/parser',
   init: () => import('@typescript-eslint/parser'),
   async version() {
-    return `@typescript-eslint/parser@${(await this).version}`
+    return (await this).version
   },
+  overrideVersion: false,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

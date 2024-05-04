@@ -11,8 +11,12 @@ export interface Parser<C = unknown, O = unknown> {
   label: string
   icon: string
   link: string
-  init?: () => C | Promise<C>
-  version: string | ((this: C | Promise<C>) => string | Promise<string>)
+  pkgName: string
+  version:
+    | string
+    | ((this: C | Promise<C>, pkgName: string) => string | Promise<string>)
+  overrideVersion?: boolean
+  init?: (pkgId: string) => C | Promise<C>
   parse: (this: C, code: string, options: O) => unknown
   options: {
     configurable: boolean
@@ -60,4 +64,5 @@ export const currentParser = computed(
     Object.values(currentLanguage.value.parsers)[0],
 )
 
-export const parserVersion = ref('')
+export const overrideVersion = ref<string>()
+export const displayVersion = ref<string>()

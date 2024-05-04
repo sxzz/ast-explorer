@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import { version } from '../package.json'
+
+const disableOverrideVersion = computed(
+  () => currentParser.value.overrideVersion === false,
+)
+
+function editVersion() {
+  // eslint-disable-next-line no-alert
+  const newVersion = prompt('Enter a new version number:', displayVersion.value)
+  overrideVersion.value = newVersion || undefined
+}
 </script>
 
 <template>
@@ -24,8 +34,15 @@ import { version } from '../package.json'
         :href="currentParser.link"
         target="_blank"
       >
-        {{ parserVersion }}
+        {{ currentParser.pkgName }}@{{ displayVersion }}
       </a>
+      <button
+        :disabled="disableOverrideVersion"
+        :class="{ 'cursor-not-allowed op30': disableOverrideVersion }"
+        @click="editVersion"
+      >
+        <div i-ri:edit-line />
+      </button>
       <button title="Toggle Left Layout" @click="toggleLeftLayout">
         <div v-if="showLeftLayout" i-ri:layout-column-fill />
         <div v-else i-ri:layout-left-line />

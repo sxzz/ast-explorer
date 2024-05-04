@@ -17,15 +17,12 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
     },
     editorLanguage: 'json',
   },
-  init: () =>
-    // @ts-expect-error
-    import('https://esm.sh/svelte/src/compiler/compile/index.js').then(
+  pkgName: 'svelte',
+  init: (pkg) =>
+    import(`https://esm.sh/${pkg}/src/compiler/compile/index.js`).then(
       (mod) => mod.default,
     ),
-  version: fetchVersion(
-    '@svelte/compiler',
-    'https://esm.sh/svelte/package.json',
-  ),
+  version: fetchVersion,
   parse(code, options) {
     return this(code, options)?.ast
   },

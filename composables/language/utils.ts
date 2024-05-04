@@ -40,12 +40,9 @@ export function getAstLocation(
   return { start, end }
 }
 
-export function fetchVersion(
-  pkg: string,
-  url = `https://cdn.jsdelivr.net/npm/${pkg}/package.json`,
-) {
-  return () =>
-    fetch(url)
-      .then((res) => res.json())
-      .then((raw) => `${pkg}@${raw.version}`)
+export async function fetchVersion(pkg: string) {
+  const raw = await fetch(
+    `https://cdn.jsdelivr.net/npm/${pkg}/package.json`,
+  ).then((r) => r.json())
+  return raw.version
 }
