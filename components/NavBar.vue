@@ -7,7 +7,10 @@ const disableOverrideVersion = computed(
 
 function editVersion() {
   // eslint-disable-next-line no-alert
-  const newVersion = prompt('Enter a new version number:', displayVersion.value)
+  const newVersion = prompt(
+    'Enter a semver version or tag (e.g. 1.0.0, ^1.2.3, next):',
+    displayVersion.value,
+  )
   overrideVersion.value = newVersion || undefined
 }
 </script>
@@ -31,7 +34,7 @@ function editVersion() {
         font-mono
         op-80
         hover:underline
-        :href="currentParser.link"
+        :href="`https://www.npmjs.com/package/${currentParser.pkgName}`"
         target="_blank"
       >
         {{ currentParser.pkgName }}@{{ displayVersion }}
@@ -39,10 +42,14 @@ function editVersion() {
       <button
         :disabled="disableOverrideVersion"
         :class="{ 'cursor-not-allowed op30': disableOverrideVersion }"
+        title="Change Version"
         @click="editVersion"
       >
         <div i-ri:edit-line />
       </button>
+      <a :href="currentParser.link" target="_blank" flex items-center>
+        <div i-ri:book-2-line />
+      </a>
       <button title="Toggle Left Layout" @click="toggleLeftLayout">
         <div v-if="showLeftLayout" i-ri:layout-column-fill />
         <div v-else i-ri:layout-left-line />
