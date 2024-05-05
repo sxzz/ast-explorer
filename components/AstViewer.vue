@@ -136,12 +136,15 @@ function print() {
   <div flex="~ col gap-2 1" min-w-0>
     <div flex="~ gap-3 wrap" items-center>
       <div v-if="!showLeftLayout" />
-      <label><input v-model="autoFocus" type="checkbox" /> Auto focus</label>
-      <label>
-        <input v-model="hideEmptyKeys" type="checkbox" /> Hide empty keys
+      <label flex="~ gap1" items-center>
+        <input v-model="autoFocus" type="checkbox" switch /> Auto focus
       </label>
-      <label>
-        <input v-model="hideLocationData" type="checkbox" /> Hide location data
+      <label flex="~ gap1" items-center>
+        <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
+      </label>
+      <label flex="~ gap1" items-center>
+        <input v-model="hideLocationData" type="checkbox" switch /> Hide
+        location data
       </label>
       <label>
         Hide keys:
