@@ -2,7 +2,7 @@
 import { version } from '../package.json'
 
 const disableOverrideVersion = computed(
-  () => currentParser.value.overrideVersion === false,
+  () => currentParser.value.versionOverridable === false,
 )
 
 function editVersion() {
@@ -37,7 +37,16 @@ function editVersion() {
         :href="`https://www.npmjs.com/package/${currentParser.pkgName}`"
         target="_blank"
       >
-        {{ currentParser.pkgName }}@{{ displayVersion }}
+        {{ currentParser.pkgName }}@<span
+          :class="{ 'font-italic text-red': overrideVersion }"
+          >{{ displayVersion }}</span
+        >
+        <small
+          v-if="overrideVersion && overrideVersion !== displayVersion"
+          op50
+        >
+          ({{ overrideVersion }})
+        </small>
       </a>
       <button
         :disabled="disableOverrideVersion"

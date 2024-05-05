@@ -95,8 +95,7 @@ watch(
 const parserContextCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
   const { pkgName, init } = currentParser.value
-  const pkgId =
-    pkgName + (overrideVersion.value ? `@${overrideVersion.value}` : '')
+  const pkgId = `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : ''}`
   if (parserContextCache[pkgId]) return parserContextCache[pkgId]
   return (parserContextCache[pkgId] = await init?.(pkgId))
 }

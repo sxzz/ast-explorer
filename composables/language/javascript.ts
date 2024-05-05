@@ -235,7 +235,7 @@ const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   async version() {
     return (await this).version
   },
-  overrideVersion: false,
+  versionOverridable: false,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

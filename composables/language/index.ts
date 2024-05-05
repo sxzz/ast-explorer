@@ -15,7 +15,7 @@ export interface Parser<C = unknown, O = unknown> {
   version:
     | string
     | ((this: C | Promise<C>, pkgName: string) => string | Promise<string>)
-  overrideVersion?: boolean
+  versionOverridable?: boolean
   init?: (pkgId: string) => C | Promise<C>
   parse: (this: C, code: string, options: O) => unknown
   options: {

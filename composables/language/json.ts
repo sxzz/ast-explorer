@@ -1,10 +1,9 @@
-import parse from 'json-to-ast'
-import { version } from 'json-to-ast/package.json'
 import type { LanguageOption, Parser } from '../language'
+import type parse from 'json-to-ast'
 
 // @unocss-include
 
-const jsonToAst: Parser<undefined, parse.Options> = {
+const jsonToAst: Parser<typeof parse, parse.Options> = {
   id: 'json-to-ast',
   label: 'json-to-ast',
   icon: 'i-vscode-icons:file-type-json',
@@ -18,11 +17,13 @@ const jsonToAst: Parser<undefined, parse.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'json-to-ast',
-  version,
-  // TODO override version
-  overrideVersion: false,
+  version: fetchVersion,
+  async init(pkg) {
+    const mod = await import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`)
+    return mod.default
+  },
   parse(code, options) {
-    return parse(code, options)
+    return this(code, { ...options })
   },
   getAstLocation(node: JsonNode) {
     if (node.type !== 'Object') return
