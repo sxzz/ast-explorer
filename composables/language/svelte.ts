@@ -19,7 +19,7 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
   },
   pkgName: 'svelte',
   init: (pkg) =>
-    import(`https://esm.sh/${pkg}/src/compiler/compile/index.js`).then(
+    importUrl(`https://esm.sh/${pkg}/src/compiler/compile/index.js`).then(
       (mod) => mod.default,
     ),
   version: fetchVersion,

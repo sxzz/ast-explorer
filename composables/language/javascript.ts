@@ -24,7 +24,7 @@ const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@babel/parser',
-  init: (pkg) => import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`),
+  init: (pkg) => importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`),
   version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
@@ -87,7 +87,7 @@ const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   },
   pkgName: '@swc/wasm-web',
   init: (pkg) =>
-    import(`https://cdn.jsdelivr.net/npm/${pkg}/wasm-web.js`).then(
+    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/wasm-web.js`).then(
       async (mod: typeof Swc) => {
         await mod.default()
         return mod
@@ -120,7 +120,7 @@ const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   },
   pkgName: '@oxc-parser/wasm',
   init: (pkg) =>
-    import(`https://cdn.jsdelivr.net/npm/${pkg}/oxc_parser_wasm.js`).then(
+    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/oxc_parser_wasm.js`).then(
       async (mod: typeof Oxc) => {
         await mod.default()
         return mod
@@ -151,7 +151,8 @@ const acorn: Parser<typeof Acorn, Acorn.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'acorn',
-  init: (pkg) => import(`https://cdn.jsdelivr.net/npm/${pkg}/dist/acorn.mjs`),
+  init: (pkg) =>
+    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/dist/acorn.mjs`),
   async version() {
     return (await this).version
   },
@@ -176,7 +177,7 @@ const ts: Parser<typeof Ts, Ts.CreateSourceFileOptions> = {
   },
   pkgName: 'typescript',
   init: (pkg) =>
-    import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`).then(
+    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`).then(
       (mod) => mod.default,
     ),
   async version() {
@@ -204,7 +205,7 @@ const espree: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'espree',
-  init: (pkg) => import(`https://cdn.skypack.dev/${pkg}?min`),
+  init: (pkg) => importUrl(`https://cdn.skypack.dev/${pkg}?min`),
   async version() {
     return (await this).version
   },

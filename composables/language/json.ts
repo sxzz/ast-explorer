@@ -19,7 +19,7 @@ const jsonToAst: Parser<typeof parse, parse.Options> = {
   pkgName: 'json-to-ast',
   version: fetchVersion,
   async init(pkg) {
-    const mod = await import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`)
+    const mod = await importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`)
     return mod.default
   },
   parse(code, options) {

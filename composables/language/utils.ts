@@ -46,3 +46,7 @@ export async function fetchVersion(pkg: string) {
   ).then((r) => r.json())
   return raw.version
 }
+
+export function importUrl(url: string) {
+  return import(/* @vite-ignore */ url)
+}

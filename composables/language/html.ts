@@ -16,7 +16,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
     defaultValueType: 'javascript',
   },
   pkgName: 'htmlparser2',
-  init: (pkg) => import(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`),
+  init: (pkg) => importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`),
   version: fetchVersion,
   parse(code, options) {
     return this.parseDocument(code, options)

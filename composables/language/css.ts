@@ -20,7 +20,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   },
   pkgName: 'css-tree',
   init: (pkg) =>
-    import(`https://cdn.jsdelivr.net/npm/${pkg}/dist/csstree.esm.js`),
+    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/dist/csstree.esm.js`),
   async version() {
     // @ts-expect-error missing property
     return (await this).version
@@ -44,7 +44,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
     defaultValueType: 'json5',
   },
   pkgName: 'postcss',
-  init: (pkgName) => import(`https://esm.sh/${pkgName}`),
+  init: (pkgName) => importUrl(`https://esm.sh/${pkgName}`),
   version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
