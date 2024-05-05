@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import json5 from 'json5'
 import { autoFocus, hideEmptyKeys, hideLocationData, loading } from '#imports'
 import type * as Monaco from 'monaco-editor'
 import type { MonacoEditor } from '#build/components'
@@ -51,11 +50,11 @@ const serialized = computed(() => {
   }
 })
 
-const hideKeysValue = ref(JSON.stringify(hideKeys.value))
+const hideKeysValue = ref(hideKeys.value.join(', '))
 
 watchEffect(() => {
   try {
-    hideKeys.value = json5.parse(hideKeysValue.value)
+    hideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
   } catch (error) {
     console.error(error)
     hideKeys.value = []
@@ -149,6 +148,7 @@ function print() {
         <input
           v-model="hideKeysValue"
           type="input"
+          placeholder="field1, field2, ..."
           border="~ $c-border"
           rounded
           p1
