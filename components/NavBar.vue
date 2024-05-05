@@ -37,16 +37,19 @@ function editVersion() {
         :href="`https://www.npmjs.com/package/${currentParser.pkgName}`"
         target="_blank"
       >
-        {{ currentParser.pkgName }}@<span
-          :class="{ 'font-italic text-red': overrideVersion }"
-          >{{ displayVersion }}</span
-        >
-        <small
-          v-if="overrideVersion && overrideVersion !== displayVersion"
-          op50
-        >
-          ({{ overrideVersion }})
-        </small>
+        <span>{{ currentParser.pkgName }}</span>
+        <template v-if="displayVersion">
+          <span>@</span>
+          <span :class="{ 'text-red': overrideVersion }">{{
+            displayVersion
+          }}</span>
+          <small
+            v-if="overrideVersion && overrideVersion !== displayVersion"
+            op50
+          >
+            ({{ overrideVersion }})
+          </small>
+        </template>
       </a>
       <button
         :disabled="disableOverrideVersion"

@@ -118,9 +118,10 @@ watch(
     if (typeof parser.version === 'string') {
       displayVersion.value = parser.version
     } else {
-      Promise.resolve(
+      displayVersion.value = ''
+      displayVersion.value = await Promise.resolve(
         parser.version.call(parserContextPromise.value, parser.pkgName),
-      ).then((version) => (displayVersion.value = version))
+      )
     }
   },
   { immediate: true },
