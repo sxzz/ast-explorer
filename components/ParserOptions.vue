@@ -15,7 +15,14 @@ function handleDialogClick(evt: MouseEvent) {
 <template>
   <div flex items-center justify-center>
     <button class="i-ri:settings-line" @click="openDialog" />
-    <dialog ref="dialog" h-50vh rounded p0 @click="handleDialogClick">
+    <dialog
+      ref="dialog"
+      h-80vh
+      border="~ gray"
+      rounded
+      p0
+      @click="handleDialogClick"
+    >
       <div py2 text-center text-lg font-bold>
         Parser Options
         <button
@@ -27,7 +34,7 @@ function handleDialogClick(evt: MouseEvent) {
       </div>
       <CodeEditor
         v-model="rawOptions"
-        w-50vw
+        w-60vw
         :language="currentParser.options.editorLanguage"
       />
     </dialog>
