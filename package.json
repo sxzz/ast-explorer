@@ -16,15 +16,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/parser": "^7.8.0",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
-    "memfs": "^4.9.1",
+    "memfs": "^4.9.2",
     "monaco-editor": "^0.48.0"
   },
   "devDependencies": {
-    "@babel/parser": "^7.24.4",
+    "@babel/parser": "^7.24.5",
     "@iconify-json/ri": "^1.1.20",
     "@iconify-json/vscode-icons": "^1.1.33",
     "@oxc-parser/wasm": "^0.1.0",
@@ -35,12 +35,12 @@
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.59.4",
     "@vue-vapor/compiler-vapor": "latest",
-    "@vue/compiler-dom": "^3.4.25",
-    "@vue/compiler-sfc": "^3.4.25",
+    "@vue/compiler-dom": "^3.4.26",
+    "@vue/compiler-sfc": "^3.4.26",
     "@vueuse/nuxt": "^10.9.0",
     "acorn": "^8.11.3",
-    "bumpp": "^9.4.0",
-    "eslint": "^9.1.1",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.2.0",
     "floating-vue": "5.2.2",
     "htmlparser2": "^9.1.0",
     "nuxt": "3.11.2",
@@ -48,10 +48,10 @@
     "postcss": "^8.4.38",
     "serve": "^14.2.3",
     "svelte": "^4.2.15",
-    "tsx": "^4.7.3",
+    "tsx": "^4.9.3",
     "typescript": "^5.4.5",
     "vite-plugin-node-polyfills": "^0.21.0",
-    "vue-tsc": "^2.0.14"
+    "vue-tsc": "^2.0.16"
   },
   "prettier": "@sxzz/prettier-config"
 }
