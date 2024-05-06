@@ -3,6 +3,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
+  extends: ['nuxt-umami'],
   app: {
     head: {
       title: 'AST Explorer',
@@ -55,6 +56,13 @@ export default defineNuxtConfig({
       for (const key of Object.keys(manifest)) {
         manifest[key].dynamicImports = []
       }
+    },
+  },
+  appConfig: {
+    umami: {
+      version: 2,
+      autoTrack: false,
+      ignoreLocalhost: true,
     },
   },
 })

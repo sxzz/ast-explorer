@@ -45,6 +45,7 @@
     "htmlparser2": "^9.1.0",
     "nuxt": "3.11.2",
     "nuxt-monaco-editor": "^1.2.9",
+    "nuxt-umami": "^2.6.1",
     "postcss": "^8.4.38",
     "serve": "^14.2.3",
     "svelte": "^4.2.15",

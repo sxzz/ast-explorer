@@ -90,6 +90,9 @@ importers:
       nuxt-monaco-editor:
         specifier: ^1.2.9
         version: 1.2.9(monaco-editor@0.48.0)(rollup@4.13.2)(vite@5.2.8(@types/node@20.12.8)(terser@5.31.0))
+      nuxt-umami:
+        specifier: ^2.6.1
+        version: 2.6.1
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
@@ -3550,6 +3553,9 @@ packages:
     resolution: {integrity: sha512-O51sng1MxDAmmm1drOvlUyu6sMdRQtC7ZeSU/r+Hp8KWDDi0JWblPwMOJ+oxMDBnvWw1mOXEhaUBlLjUTEeU/Q==}
     peerDependencies:
       monaco-editor: '*'
+
+  nuxt-umami@2.6.1:
+    resolution: {integrity: sha512-/dZd5ImGoLhzGPbuXkS7bffJX1AnofvjPQhNYIOfvqeKeT8/n9l7mE8TbA8h/QeuJbC+cfV01AI0dwnnKKXd/w==}
 
   nuxt@3.11.2:
     resolution: {integrity: sha512-Be1d4oyFo60pdF+diBolYDcfNemoMYM3R8PDjhnGrs/w3xJoDH1YMUVWHXXY8WhSmYZI7dyBehx/6kTfGFliVA==}
@@ -9310,6 +9316,8 @@ snapshots:
       - rollup
       - supports-color
       - vite
+
+  nuxt-umami@2.6.1: {}
 
   nuxt@3.11.2(@parcel/watcher@2.4.1)(@types/node@20.12.8)(@unocss/reset@0.59.4)(encoding@0.1.13)(eslint@9.2.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.13.2))(vue@3.4.21(typescript@5.4.5)))(ioredis@5.3.2)(optionator@0.9.4)(rollup@4.13.2)(terser@5.31.0)(typescript@5.4.5)(unocss@0.59.4(@unocss/webpack@0.59.4(rollup@4.13.2)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.13.2)(vite@5.2.8(@types/node@20.12.8)(terser@5.31.0)))(vite@5.2.8(@types/node@20.12.8)(terser@5.31.0))(vue-tsc@2.0.16(typescript@5.4.5)):
     dependencies:
