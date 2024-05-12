@@ -26,19 +26,19 @@ const astLocationFields = {
   },
 } as const
 
-export function getAstLocation(
-  preset: keyof typeof astLocationFields,
-  node: JsonNode,
-) {
-  if (node.type !== 'Object') return
-  if (!getJsonValue(node, astLocationFields[preset].type)) return
+export function getAstLocation(preset: keyof typeof astLocationFields) {
+  return (node: JsonNode) => {
+    if (node.type !== 'Object') return
+    if (!getJsonValue(node, astLocationFields[preset].type)) return
 
-  const start = getJsonValue(node, astLocationFields[preset].start)
-  const end = getJsonValue(node, astLocationFields[preset].end)
-  if (typeof start !== 'number' || typeof end !== 'number') return
+    const start = getJsonValue(node, astLocationFields[preset].start)
+    const end = getJsonValue(node, astLocationFields[preset].end)
+    if (typeof start !== 'number' || typeof end !== 'number') return
 
-  return { start, end }
+    return { start, end }
+  }
 }
+export const getAstLocationBabel = getAstLocation('babel')
 
 export async function fetchVersion(pkg: string) {
   const raw = await fetch(

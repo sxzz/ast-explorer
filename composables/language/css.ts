@@ -28,7 +28,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getAstLocation: getAstLocation.bind(null, 'cssTree'),
+  getAstLocation: getAstLocation('cssTree'),
 }
 
 const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
