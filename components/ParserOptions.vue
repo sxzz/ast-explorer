@@ -18,7 +18,7 @@ function handleDialogClick(evt: MouseEvent) {
     <dialog
       ref="dialog"
       h-80vh
-      border="~ gray"
+      border="~ base"
       rounded
       p0
       @click="handleDialogClick"
@@ -35,6 +35,7 @@ function handleDialogClick(evt: MouseEvent) {
       </div>
       <CodeEditor
         v-model="rawOptions"
+        h-full
         w-60vw
         :language="currentParser.options.editorLanguage"
       />

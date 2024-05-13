@@ -4,6 +4,7 @@ import { svelte } from './svelte'
 import { json } from './json'
 import { html } from './html'
 import { css } from './css'
+import type { AsyncComponentLoader } from 'vue'
 import type { JsonNode, Range } from '#imports'
 
 export interface Parser<C = unknown, O = unknown> {
@@ -33,6 +34,7 @@ export interface Parser<C = unknown, O = unknown> {
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
   getAstLocation?: (ast: JsonNode) => Range | undefined
+  gui?: AsyncComponentLoader
 }
 export interface LanguageOption {
   label: string
@@ -62,6 +64,11 @@ export const currentParser = computed(
         (p) => p.id === currentParserId.value,
       )) ||
     Object.values(currentLanguage.value.parsers)[0],
+)
+
+export const currentParserGui = computed(
+  () =>
+    currentParser.value.gui && defineAsyncComponent(currentParser.value.gui),
 )
 
 export const overrideVersion = ref<string>()

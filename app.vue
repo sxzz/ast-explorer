@@ -10,18 +10,19 @@ const language = computed(() => {
 </script>
 
 <template>
-  <main h-screen flex="~ col">
+  <main flex="~ col" lg:h-screen>
     <NavBar mb-1 />
-    <div min-h-0 flex="~ gap3 1">
-      <CodeEditor
-        v-show="showLeftLayout"
-        v-model="code"
-        :language="language"
-        flex-1
-        :max-w="showRightLayout ? '50%' : '100%'"
-        :min-w="showRightLayout ? '50%' : '100%'"
-      />
-      <AstViewer v-show="showRightLayout" />
+
+    <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
+      <SideBar v-show="showSideBar" overflow-auto lg:w-75 lg:flex-none />
+
+      <div min-h-95vh min-w-0 flex flex-col gap2 p2 lg:flex-1 lg:flex-row>
+        <div v-show="showLeftLayout" min-w-0 flex-1>
+          <CodeEditor v-model="code" :language="language" h-full w-full />
+        </div>
+
+        <AstViewer v-show="showRightLayout" min-w-0 flex-1 />
+      </div>
     </div>
   </main>
 </template>

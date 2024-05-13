@@ -133,8 +133,8 @@ function print() {
 </script>
 
 <template>
-  <div flex="~ col gap-2 1" min-w-0>
-    <div flex="~ gap-3 wrap" items-center>
+  <div flex="~ col gap-2">
+    <div flex="~ gap-3 wrap" items-center text-sm>
       <div v-if="!showLeftLayout" />
       <label flex="~ gap1" items-center>
         <input v-model="autoFocus" type="checkbox" switch /> Auto focus
@@ -158,6 +158,9 @@ function print() {
         />
       </label>
       <button
+        flex
+        items-center
+        gap1
         border
         rounded
         px1
@@ -166,7 +169,8 @@ function print() {
         hover:border-emerald
         @click="print"
       >
-        Print in console
+        <div class="i-ri:printer-line" />
+        Print in Console
       </button>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
@@ -178,8 +182,10 @@ function print() {
       <MonacoEditor
         v-show="!loading && !error"
         ref="container"
+        h-full
         min-w-0
-        flex-1
+        w-full
+        max-sm:min-h-50vh
         lang="json"
         :model-value="serialized"
         :options="{

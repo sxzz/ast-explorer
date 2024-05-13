@@ -11,17 +11,18 @@ const code = defineModel<string>()
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 
 const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
-  () => {
-    return {
-      automaticLayout: true,
-      theme: isDark.value ? 'vs-dark' : 'vs',
-      fontSize: 14,
-      tabSize: 2,
-      minimap: {
-        enabled: false,
-      },
-    }
-  },
+  () => ({
+    automaticLayout: true,
+    theme: isDark.value ? 'vs-dark' : 'vs',
+    fontFamily:
+      '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
+    fontSize: 14,
+    fontLigatures: true,
+    tabSize: 2,
+    minimap: {
+      enabled: false,
+    },
+  }),
 )
 
 watchEffect(() => {
@@ -37,7 +38,6 @@ watchEffect(() => {
   <MonacoEditor
     ref="container"
     v-model="code"
-    h-full
     :lang="language"
     :options="options"
   >

@@ -50,3 +50,7 @@ export async function fetchVersion(pkg: string) {
 export function importUrl(url: string) {
   return import(/* @vite-ignore */ url)
 }
+
+export function del<T extends Array<any>>(arr: T, values: T[number][]): T {
+  return arr.filter((v) => !values.includes(v)) as T
+}

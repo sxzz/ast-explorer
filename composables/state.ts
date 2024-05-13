@@ -24,18 +24,27 @@ export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>(undefined)
 
-export const options = computed(() => {
-  try {
-    return currentParser.value.options.defaultValueType === 'javascript'
-      ? // TODO: use a better way to eval
-        new Function(rawOptions.value)()
-      : json5.parse(rawOptions.value)
-  } catch {
-    console.error(
-      `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
-    )
-  }
+export const options = computed({
+  get() {
+    try {
+      return currentParser.value.options.defaultValueType === 'javascript'
+        ? // TODO: use a better way to eval
+          new Function(rawOptions.value)()
+        : json5.parse(rawOptions.value)
+    } catch {
+      console.error(
+        `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
+      )
+    }
+  },
+  set(value) {
+    rawOptions.value = JSON.stringify(value, undefined, 2)
+  },
 })
+
+export const showSideBar = computed(
+  () => currentParser.value.options.configurable && !!currentParserGui.value,
+)
 
 const location = useBrowserLocation()
 
