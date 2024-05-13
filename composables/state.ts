@@ -1,4 +1,5 @@
 import json5 from 'json5'
+import ansiRegex from 'ansi-regex'
 import type { Language } from '#imports'
 
 const PREFIX = 'ast-explorer:'
@@ -152,8 +153,8 @@ watch(
       parseCost.value = window.performance.now() - t
       error.value = null
       // eslint-disable-next-line unicorn/catch-error-name
-    } catch (err) {
-      error.value = err
+    } catch (err: any) {
+      error.value = `${err}`.replace(ansiRegex(), '')
       console.error(err)
     } finally {
       loading.value = false

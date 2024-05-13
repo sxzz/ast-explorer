@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@typescript-eslint/parser": "^7.8.0",
+    "ansi-regex": "^6.0.1",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
