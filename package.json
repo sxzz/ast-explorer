@@ -2,7 +2,7 @@
   "name": "ast-explorer",
   "version": "0.11.3",
   "private": true,
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.1.1",
   "type": "module",
   "license": "AGPL-3.0",
   "scripts": {
@@ -26,17 +26,17 @@
   "devDependencies": {
     "@babel/parser": "^7.24.5",
     "@iconify-json/ri": "^1.1.20",
-    "@iconify-json/vscode-icons": "^1.1.33",
+    "@iconify-json/vscode-icons": "^1.1.34",
     "@oxc-parser/wasm": "^0.1.0",
-    "@swc/wasm-web": "1.5.2",
+    "@swc/wasm-web": "1.5.5",
     "@sxzz/eslint-config": "^3.11.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/css-tree": "^2.3.7",
     "@types/json-to-ast": "^2.1.4",
-    "@unocss/nuxt": "^0.59.4",
+    "@unocss/nuxt": "^0.60.2",
     "@vue-vapor/compiler-vapor": "latest",
-    "@vue/compiler-dom": "^3.4.26",
-    "@vue/compiler-sfc": "^3.4.26",
+    "@vue/compiler-dom": "^3.4.27",
+    "@vue/compiler-sfc": "^3.4.27",
     "@vueuse/nuxt": "^10.9.0",
     "acorn": "^8.11.3",
     "bumpp": "^9.4.1",
@@ -48,11 +48,11 @@
     "nuxt-umami": "^2.6.1",
     "postcss": "^8.4.38",
     "serve": "^14.2.3",
-    "svelte": "^4.2.15",
-    "tsx": "^4.9.3",
+    "svelte": "^4.2.16",
+    "tsx": "^4.10.1",
     "typescript": "^5.4.5",
     "vite-plugin-node-polyfills": "^0.21.0",
-    "vue-tsc": "^2.0.16"
+    "vue-tsc": "^2.0.17"
   },
   "prettier": "@sxzz/prettier-config"
 }
