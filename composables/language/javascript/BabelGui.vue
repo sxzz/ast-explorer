@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useBabelOptions, useOption, usePlugin } from './babel'
+import { useOption, usePlugin } from './babel'
+import type { ParserOptions } from '@babel/parser'
 
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
@@ -38,10 +39,12 @@ const v8intrinsic = usePlugin('v8intrinsic')
 const doExpressions = usePlugin('doExpressions')
 const asyncDoExpressions = usePlugin('asyncDoExpressions', [doExpressions])
 
-const decorators = useBabelOptions(
-  (opt) =>
-    opt.plugins?.includes?.('decorators') ||
-    opt.plugins?.includes?.('decorators-legacy'),
+const decorators = useOptions(
+  (opt: ParserOptions) =>
+    !!(
+      opt.plugins?.includes?.('decorators') ||
+      opt.plugins?.includes?.('decorators-legacy')
+    ),
   (value, opt) => {
     if (!Array.isArray(opt.plugins)) opt.plugins = []
     if (value) {
@@ -51,8 +54,8 @@ const decorators = useBabelOptions(
     }
   },
 )
-const decoratorsLegacy = useBabelOptions(
-  (opt) => opt.plugins?.includes?.('decorators-legacy'),
+const decoratorsLegacy = useOptions(
+  (opt: ParserOptions) => opt.plugins?.includes?.('decorators-legacy'),
   (value, opt) => {
     if (!Array.isArray(opt.plugins)) opt.plugins = []
     if (value) {
@@ -320,7 +323,8 @@ const throwExpressions = usePlugin('throwExpressions')
 label {
   --at-apply: 'flex gap-2 items-center';
 }
-label > span {
-  --at-apply: 'font-bold';
+label span,
+summary {
+  --at-apply: 'op85';
 }
 </style>

@@ -37,40 +37,13 @@ export const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   gui: () => import('./BabelGui.vue'),
 }
 
-export function useBabelOptions<T>(
-  read: (opt: Babel.ParserOptions) => T,
-  write: (value: T, opt: Babel.ParserOptions) => void,
-) {
-  return computed<T>({
-    get: () => read(options.value),
-    set(value) {
-      const newOpt: Babel.ParserOptions =
-        typeof options.value === 'object' ? options.value : {}
-      write(value, newOpt)
-      options.value = { ...newOpt }
-    },
-  })
-}
-
-export function useOption<K extends keyof Babel.ParserOptions>(
-  key: K,
-  defaultValue: Babel.ParserOptions[K] = false as any,
-) {
-  return useBabelOptions<Babel.ParserOptions[K]>(
-    (opt) => opt[key] ?? defaultValue,
-    (value, opt) => {
-      if (value === defaultValue) delete opt[key]
-      else opt[key] = value
-    },
-  )
-}
-
+export const useOption = makeUseOption<Babel.ParserOptions>()
 export function usePlugin(
   name: Babel.ParserPlugin,
   deps: Ref<boolean | undefined>[] = [],
 ) {
-  const value = useBabelOptions<boolean>(
-    (opt) => !!opt.plugins?.includes?.(name),
+  const value = useOptions(
+    (opt: Babel.ParserOptions) => !!opt.plugins?.includes?.(name),
     (value, opt) => {
       if (!Array.isArray(opt.plugins)) opt.plugins = []
 
