@@ -1,6 +1,9 @@
-<script setup lang="ts">
-import { useOption } from './oxc'
+<script lang="ts">
+import type { ParserOptions } from '@oxc-parser/wasm'
+const useOption = makeUseOption<ParserOptions>()
+</script>
 
+<script setup lang="ts">
 const sourceType = useOption('sourceType', 'script', true)
 const sourceFilename = useOption('sourceFilename', '', true)
 </script>

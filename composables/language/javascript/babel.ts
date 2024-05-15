@@ -36,34 +36,3 @@ export const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   getAstLocation: getAstLocationBabel,
   gui: () => import('./BabelGui.vue'),
 }
-
-export const useOption = makeUseOption<Babel.ParserOptions>()
-export function usePlugin(
-  name: Babel.ParserPlugin,
-  deps: Ref<boolean | undefined>[] = [],
-) {
-  const value = useOptions(
-    (opt: Babel.ParserOptions) => !!opt.plugins?.includes?.(name),
-    (value, opt) => {
-      if (!Array.isArray(opt.plugins)) opt.plugins = []
-
-      if (value) {
-        deps.forEach((dep) => !dep.value && (dep.value = true))
-        opt.plugins.push(name)
-      } else {
-        opt.plugins = del(opt.plugins, [name])
-      }
-    },
-  )
-
-  watch(
-    () => deps.map((dep) => dep.value),
-    (deps) => {
-      if (value.value && deps.some((dep) => !dep)) {
-        value.value = false
-      }
-    },
-  )
-
-  return value
-}

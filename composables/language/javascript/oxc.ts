@@ -34,5 +34,3 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   getAstLocation: getAstLocationBabel,
   gui: () => import('./OxcGui.vue'),
 }
-
-export const useOption = makeUseOption<Oxc.ParserOptions>()

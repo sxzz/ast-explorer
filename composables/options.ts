@@ -12,8 +12,10 @@ export function useOptions<O extends object, T>(
   })
 }
 
+type KeysOfUnion<T> = T extends T ? keyof T : never
+
 export function makeUseOption<O extends object>() {
-  return <K extends keyof O>(
+  return <K extends KeysOfUnion<O>>(
     key: K,
     defaultValue: O[K] = false as any,
     keep?: boolean,

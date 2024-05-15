@@ -68,7 +68,18 @@ export const currentParser = computed(
 
 export const currentParserGui = computed(
   () =>
-    currentParser.value.gui && defineAsyncComponent(currentParser.value.gui),
+    currentParser.value.gui &&
+    defineAsyncComponent({
+      loader: currentParser.value.gui,
+      // @unocss-include
+      loadingComponent: () =>
+        h('div', { class: 'flex justify-center items-center gap1' }, [
+          h('div', { class: 'i-ri:loader-4-fill animate-spin' }),
+          'Loading...',
+        ]),
+      suspensible: false,
+      delay: 200,
+    }),
 )
 
 export const overrideVersion = ref<string>()

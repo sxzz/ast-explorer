@@ -1,7 +1,36 @@
-<script setup lang="ts">
-import { useOption, usePlugin } from './babel'
-import type { ParserOptions } from '@babel/parser'
+<script lang="ts">
+import type { ParserOptions, ParserPlugin } from '@babel/parser'
 
+const useOption = makeUseOption<ParserOptions>()
+function usePlugin(name: ParserPlugin, deps: Ref<boolean | undefined>[] = []) {
+  const value = useOptions(
+    (opt: ParserOptions) => !!opt.plugins?.includes?.(name),
+    (value, opt) => {
+      if (!Array.isArray(opt.plugins)) opt.plugins = []
+
+      if (value) {
+        deps.forEach((dep) => !dep.value && (dep.value = true))
+        opt.plugins.push(name)
+      } else {
+        opt.plugins = del(opt.plugins, [name])
+      }
+    },
+  )
+
+  watch(
+    () => deps.map((dep) => dep.value),
+    (deps) => {
+      if (value.value && deps.some((dep) => !dep)) {
+        value.value = false
+      }
+    },
+  )
+
+  return value
+}
+</script>
+
+<script setup lang="ts">
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
 const allowAwaitOutsideFunction = useOption('allowAwaitOutsideFunction')
