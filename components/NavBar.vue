@@ -18,7 +18,7 @@ function editVersion() {
 </script>
 
 <template>
-  <div flex="~ wrap" items-center justify-between gap2 p2>
+  <div flex="~ wrap" items-center justify-between gap2 border-b p2>
     <div flex="~ gap4 wrap" max-sm:flex-col>
       <div flex="~ gap1">
         <Logo />

@@ -122,11 +122,11 @@ const throwExpressions = usePlugin('throwExpressions')
       <span>ESTree</span>
     </label>
 
-    <h3 border-t="1 $c-border" pt1 text-center font-bold>Options</h3>
+    <h3 border-t pt1 text-center font-bold>Options</h3>
 
     <label>
       <span>sourceType</span>
-      <select v-model="sourceType" p1>
+      <select v-model="sourceType">
         <option value="script">script</option>
         <option value="module">module</option>
         <option value="unambiguous">unambiguous</option>
@@ -203,7 +203,7 @@ const throwExpressions = usePlugin('throwExpressions')
       <span>attachComment</span>
     </label>
 
-    <h3 border-t="1 $c-border" pt1 text-center font-bold>Languages</h3>
+    <h3 border-t pt1 text-center font-bold>Languages</h3>
 
     <label>
       <input v-model="typeScript" type="checkbox" switch />
@@ -225,7 +225,7 @@ const throwExpressions = usePlugin('throwExpressions')
       <span>V8 Intrinsic</span>
     </label>
 
-    <h3 border-t="1 $c-border" pt1 text-center font-bold>ES Modules</h3>
+    <h3 border-t pt1 text-center font-bold>ES Modules</h3>
 
     <label>
       <!-- Stage 3 -->
@@ -263,7 +263,7 @@ const throwExpressions = usePlugin('throwExpressions')
       <span>exportDefaultFrom</span>
     </label>
 
-    <h3 border-t="1 $c-border" pt1 text-center font-bold>Functions</h3>
+    <h3 border-t pt1 text-center font-bold>Functions</h3>
 
     <label>
       <!-- Stage 2 -->
@@ -289,7 +289,7 @@ const throwExpressions = usePlugin('throwExpressions')
       <span>partialApplication</span>
     </label>
 
-    <h3 border-t="1 $c-border" pt1 text-center font-bold>Syntaxes</h3>
+    <h3 border-t pt1 text-center font-bold>Syntaxes</h3>
 
     <label>
       <!-- Stage 3 -->

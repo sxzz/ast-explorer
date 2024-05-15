@@ -12,7 +12,7 @@ const language = computed(() => {
 <template>
   <Suspense>
     <main flex="~ col" lg:h-screen>
-      <NavBar mb-1 />
+      <NavBar />
 
       <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
         <SideBar v-show="showSideBar" overflow-auto lg:w-75 lg:flex-none />

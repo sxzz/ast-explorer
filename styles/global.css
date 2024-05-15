@@ -1,14 +1,15 @@
-html,
-body,
-#__nuxt {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
 html.dark {
   color-scheme: dark;
   background-color: var(--c-bg-base);
+}
+
+select,
+input {
+  --at-apply: 'border rounded p1 accent-current';
+}
+
+select {
+  --at-apply: 'bg-#0000000d dark:bg-#ffffff1a';
 }
 
 /* Color Mode transition */

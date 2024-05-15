@@ -152,9 +152,6 @@ function print() {
           v-model="hideKeysValue"
           type="input"
           placeholder="field1, field2, ..."
-          border="~ $c-border"
-          rounded
-          p1
         />
       </label>
       <button
@@ -166,10 +163,10 @@ function print() {
         px1
         py0.5
         text-sm
-        hover:border-emerald
+        hover:border-current
         @click="print"
       >
-        <div class="i-ri:printer-line" />
+        <div i-ri:printer-line />
         Print in Console
       </button>
     </div>

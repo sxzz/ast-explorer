@@ -12,7 +12,7 @@ const sourceFilename = useOption('sourceFilename', '', true)
   <div flex="~ col gap4" text-sm font-mono>
     <label flex="~ col gap1">
       <span>source type</span>
-      <select v-model="sourceType" p1>
+      <select v-model="sourceType">
         <option value="script">script</option>
         <option value="module">module</option>
       </select>

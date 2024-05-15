@@ -3,7 +3,7 @@ import { currentParserGui as ParserGui } from '~/composables/language'
 </script>
 
 <template>
-  <div border-r="1 $c-border" p2>
+  <div border-r p2>
     <h2 flex="~ gap1" mb3 items-center justify-center text-lg font-bold>
       Parser Options
       <ParserOptions v-if="currentParser.options.configurable" />
