@@ -105,7 +105,9 @@ watch(
 const parserContextCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
   const { pkgName, init } = currentParser.value
-  const pkgId = `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : ''}`
+  const pkgId = `${pkgName}${
+    overrideVersion.value ? `@${overrideVersion.value}` : ''
+  }`
   if (parserContextCache[pkgId]) return parserContextCache[pkgId]
   return (parserContextCache[pkgId] = await init?.(pkgId))
 }
@@ -129,9 +131,12 @@ watch(
       displayVersion.value = parser.version
     } else {
       displayVersion.value = ''
-      displayVersion.value = await Promise.resolve(
+      const res = await Promise.resolve(
         parser.version.call(parserContextPromise.value, parser.pkgName),
       )
+      if (currentParser.value.id === parser.id) {
+        displayVersion.value = res
+      }
     }
   },
   { immediate: true },
@@ -141,8 +146,10 @@ watch(
   [parserContextPromise, currentParser, code, rawOptions],
   async () => {
     try {
+      const id = currentParser.value.id
       loading.value = 'load'
       const ctx = await parserContextPromise.value
+      if (currentParser.value.id !== id) return
       loading.value = 'parse'
       const t = window.performance.now()
       ast.value = await currentParser.value.parse.call(
