@@ -1,5 +1,4 @@
 import process from 'node:process'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -19,25 +18,9 @@ export default defineNuxtConfig({
   },
   ssr: false,
   vite: {
-    define: {
-      'process.env': JSON.stringify({}),
-      'process.versions.node': JSON.stringify('18.17.1'),
+    esbuild: {
+      legalComments: 'external',
     },
-    plugins: [
-      nodePolyfills({
-        overrides: {
-          fs: 'memfs',
-        },
-      }),
-      {
-        name: 'fix-monaco-platform',
-        transform(code, id) {
-          if (!id.includes('monaco-editor/esm/vs/base/common/platform.js'))
-            return
-          return code.replace('typeof process', "'undefined'")
-        },
-      },
-    ],
   },
   devtools: {
     enabled: true,
