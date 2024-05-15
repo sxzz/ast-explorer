@@ -1,16 +1,19 @@
 <script setup lang="ts">
-defineProps<{
-  value: string
-}>()
+withDefaults(
+  defineProps<{
+    value: string
+    size?: string
+  }>(),
+  { size: '1.2em' },
+)
 </script>
 
 <template>
   <img
     v-if="value.startsWith('https://')"
     :src="value"
-    w="1.2em"
-    h="1.2em"
+    :style="{ width: size, height: size }"
     object-contain
   />
-  <div v-else :class="value" />
+  <div v-else :class="value" :style="{ width: size, height: size }" />
 </template>

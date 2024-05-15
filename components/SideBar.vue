@@ -3,13 +3,16 @@ import { currentParserGui as ParserGui } from '~/composables/language'
 </script>
 
 <template>
-  <div border-r p2>
-    <h2 flex="~ gap1" mb3 items-center justify-center text-lg font-bold>
+  <div flex="~ col" items-center gap2 border-r p2>
+    <div>
+      <IconPreview :value="currentParser.icon" size="5em" />
+    </div>
+    <h2 flex items-center justify-center gap2 text-lg font-bold>
       Parser Options
       <ParserOptions v-if="currentParser.options.configurable" />
     </h2>
-    <template v-if="ParserGui">
+    <div v-if="ParserGui" w-full>
       <ParserGui />
-    </template>
+    </div>
   </div>
 </template>

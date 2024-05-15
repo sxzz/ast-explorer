@@ -23,7 +23,7 @@ function handleDialogClick(evt: MouseEvent) {
       p0
       @click="handleDialogClick"
     >
-      <div relative flex items-center justify-center py2 text-lg font-bold>
+      <div relative flex items-center justify-center gap1 py2 text-lg font-bold>
         Parser Options
         <button
           class="i-ri:close-line"
