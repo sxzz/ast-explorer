@@ -43,13 +43,13 @@ const createImportExpressions = useOption('createImportExpressions')
 const createParenthesizedExpressions = useOption(
   'createParenthesizedExpressions',
 )
+const sourceType = useOption('sourceType', 'script', true)
 const errorRecovery = useOption('errorRecovery')
 const ranges = useOption('ranges')
 const tokens = useOption('tokens')
 
 // not popular
 // const annexB = useOption('annexB')
-// const sourceType = useOption('sourceType')
 // const sourceFilename = useOption('sourceFilename')
 // const startColumn = useOption('startColumn')
 // const startLine = useOption('startLine')
@@ -123,6 +123,15 @@ const throwExpressions = usePlugin('throwExpressions')
     </label>
 
     <h3 border-t="1 $c-border" pt1 text-center font-bold>Options</h3>
+
+    <label>
+      <span>sourceType</span>
+      <select v-model="sourceType" p1>
+        <option value="script">script</option>
+        <option value="module">module</option>
+        <option value="unambiguous">unambiguous</option>
+      </select>
+    </label>
 
     <details>
       <summary cursor-pointer>allow syntaxes...</summary>
