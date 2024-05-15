@@ -34,7 +34,7 @@ const handleClick = (evt: MouseEvent) => {
     @click="handleClick"
   >
     <div flex="~ gap-2" items-center>
-      <div v-if="icon" :class="icon" />
+      <IconPreview v-if="icon" :value="icon" />
       <slot>{{ text }}</slot>
       <div v-if="!checked" h-1.2em w-1.2em />
     </div>

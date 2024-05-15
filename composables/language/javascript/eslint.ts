@@ -31,8 +31,7 @@ export const espree: Parser<any, any> = {
 export const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
-  // @unocss-include
-  icon: 'i-vscode-icons:file-type-eslint',
+  icon: 'https://typescript-eslint.io/img/logo.svg',
   link: 'https://typescript-eslint.io/packages/parser/',
   options: {
     configurable: true,

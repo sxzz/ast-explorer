@@ -4,8 +4,7 @@ import type * as Acorn from 'acorn'
 export const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
   label: 'Acorn',
-  // @unocss-include
-  icon: 'i-vscode-icons:file-type-js-official',
+  icon: 'https://raw.githubusercontent.com/acornjs/acorn/master/logo.svg',
   link: 'https://github.com/acornjs/acorn',
   options: {
     configurable: true,
