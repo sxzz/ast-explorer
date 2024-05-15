@@ -11,8 +11,14 @@ import { currentParserGui as ParserGui } from '~/composables/language'
       Parser Options
       <ParserOptions v-if="currentParser.options.configurable" />
     </h2>
-    <div v-if="ParserGui" w-full>
-      <ParserGui />
-    </div>
+    <Suspense :timeout="0">
+      <ParserGui v-if="ParserGui" w-full />
+      <template #fallback>
+        <div class="flex items-center justify-center gap1">
+          <div i-ri:loader-4-fill animate-spin />
+          <span>Loading...</span>
+        </div>
+      </template>
+    </Suspense>
   </div>
 </template>
