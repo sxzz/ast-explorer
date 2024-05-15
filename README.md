@@ -41,9 +41,10 @@ This will start the development server. You can access the application by naviga
 
 To contribute to the project, please visit https://github.com/sxzz/contribute for more information.
 
-## Credit
+## Credits
 
 - https://astexplorer.net/
+- https://play.swc.rs/
 
 ## License
 
