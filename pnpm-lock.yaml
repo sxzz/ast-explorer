@@ -84,6 +84,9 @@ importers:
       floating-vue:
         specifier: 5.2.2
         version: 5.2.2(@nuxt/kit@3.11.2(rollup@4.13.2))(vue@3.4.21(typescript@5.4.5))
+      flow-parser:
+        specifier: ^0.236.0
+        version: 0.236.0
       htmlparser2:
         specifier: ^9.1.0
         version: 9.1.0
@@ -1381,9 +1384,6 @@ packages:
   '@vue/shared@3.4.21':
     resolution: {integrity: sha512-PuJe7vDIi6VYSinuEbUIQgMIRZGgM8e4R+G+/dQTk0X1NEdvgvvgv7m+rfmDH1gZzyA1OjjoWskvHlfRNfQf3g==}
 
-  '@vue/shared@3.4.26':
-    resolution: {integrity: sha512-Fg4zwR0GNnjzodMt3KRy2AWGMKQXByl56+4HjN87soxLNU9P5xcJkstAlIeEF3cU6UYOzmJl1tV0dVPGIljCnQ==}
-
   '@vue/shared@3.4.27':
     resolution: {integrity: sha512-DL3NmY2OFlqmYYrzp39yi3LDkKxa5vZVwxWdQ3rG0ekuWscHraeIbnI8t+aZK7qhYqEqWKTUdijadunb9pnrgA==}
 
@@ -2610,6 +2610,10 @@ packages:
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true
+
+  flow-parser@0.236.0:
+    resolution: {integrity: sha512-0OEk9Gr+Yj7wjDW2KgaNYUypKau71jAfFyeLQF5iVtxqc6uJHag/MT7pmaEApf4qM7u86DkBcd4ualddYMfbLw==}
+    engines: {node: '>=0.4.0'}
 
   focus-trap@7.5.4:
     resolution: {integrity: sha512-N7kHdlgsO/v+iD/dMoJKtsSqs5Dz/dXZVebRgJw23LDk+jMi/974zyiOYDziY2JPp8xivq9BmUGwIJMiuSBi7w==}
@@ -6958,7 +6962,7 @@ snapshots:
     dependencies:
       '@volar/language-core': 2.2.2
       '@vue/compiler-dom': 3.4.27
-      '@vue/shared': 3.4.26
+      '@vue/shared': 3.4.27
       computeds: 0.0.1
       minimatch: 9.0.4
       path-browserify: 1.0.1
@@ -6988,8 +6992,6 @@ snapshots:
       vue: 3.4.21(typescript@5.4.5)
 
   '@vue/shared@3.4.21': {}
-
-  '@vue/shared@3.4.26': {}
 
   '@vue/shared@3.4.27': {}
 
@@ -8393,6 +8395,8 @@ snapshots:
       vue-resize: 2.0.0-alpha.1(vue@3.4.21(typescript@5.4.5))
     optionalDependencies:
       '@nuxt/kit': 3.11.2(rollup@4.13.2)
+
+  flow-parser@0.236.0: {}
 
   focus-trap@7.5.4:
     dependencies:

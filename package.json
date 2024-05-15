@@ -43,6 +43,7 @@
     "bumpp": "^9.4.1",
     "eslint": "^9.2.0",
     "floating-vue": "5.2.2",
+    "flow-parser": "^0.236.0",
     "htmlparser2": "^9.1.0",
     "nuxt": "3.11.2",
     "nuxt-monaco-editor": "^1.2.9",

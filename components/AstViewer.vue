@@ -16,7 +16,9 @@ const serialized = computed(() => {
         if (hideEmptyKeys.value && value == null) return
         if (
           [
-            ...(hideLocationData.value ? ['loc', 'start', 'end', 'span'] : []),
+            ...(hideLocationData.value
+              ? ['loc', 'start', 'end', 'span', 'range']
+              : []),
             ...hideKeys.value.filter((v) => !!v),
           ].includes(key)
         )
