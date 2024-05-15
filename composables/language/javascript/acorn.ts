@@ -25,4 +25,5 @@ export const acorn: Parser<typeof Acorn, Acorn.Options> = {
   },
   editorLanguage: 'javascript',
   getAstLocation: getAstLocationBabel,
+  gui: () => import('./AcornGui.vue'),
 }

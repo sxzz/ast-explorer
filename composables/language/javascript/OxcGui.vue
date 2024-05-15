@@ -20,7 +20,13 @@ const sourceFilename = useOption('sourceFilename', '', true)
 
     <label flex="~ col gap1">
       <span>source filename</span>
-      <input v-model="sourceFilename" p1 />
+      <input v-model="sourceFilename" />
     </label>
   </div>
 </template>
+
+<style scoped>
+label span {
+  --at-apply: 'op85';
+}
+</style>
