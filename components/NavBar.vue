@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { version } from '../package.json'
 
+const { branch } = useAppConfig()
+
 const disableOverrideVersion = computed(
   () => currentParser.value.versionOverridable === false,
 )
@@ -21,7 +23,7 @@ function editVersion() {
       <div flex="~ gap1">
         <Logo />
         <h1 text-lg font-bold>AST Explorer</h1>
-        <small>v{{ version }}</small>
+        <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
       </div>
       <LanguageSelect />
       <div flex gap2>

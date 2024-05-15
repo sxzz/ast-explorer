@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -64,5 +65,6 @@ export default defineNuxtConfig({
       autoTrack: false,
       ignoreLocalhost: true,
     },
+    branch: process.env.VERCEL_GIT_COMMIT_REF,
   },
 })
