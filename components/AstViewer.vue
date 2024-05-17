@@ -175,7 +175,7 @@ function print() {
     <div flex="~ 1" min-h-0 min-w-0>
       <div v-if="loading === 'load'">Loading parser...</div>
       <div v-else-if="loading === 'parse'">Parsing...</div>
-      <div v-else-if="error" overflow-scroll text-red>
+      <div v-else-if="error" overflow-scroll text-sm text-red>
         <pre v-text="stringifyError(error)" />
       </div>
       <MonacoEditor
@@ -191,7 +191,7 @@ function print() {
           automaticLayout: true,
           theme: isDark ? 'vs-dark' : 'vs',
           readOnly: true,
-          fontSize: 14,
+          fontSize: 13,
           tabSize: 2,
           minimap: {
             enabled: false,
