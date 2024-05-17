@@ -26,6 +26,7 @@ export const espree: Parser<any, any> = {
   },
   editorLanguage: 'javascript',
   getAstLocation: getAstLocationBabel,
+  gui: () => import('./EslintEspreeGui.vue'),
 }
 
 export const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
