@@ -14,13 +14,15 @@ export function useOptions<O extends object, T>(
   })
 }
 
+type KeysOfUnion<T> = T extends T ? keyof T : never
+
 type GetWithPath<T, Keys extends readonly string[]> = Keys extends readonly []
   ? T
   : Keys extends readonly [infer Head, ...infer Tail]
     ? GetWithPath<NonNullable<T[Head & keyof T]>, Extract<Tail, string[]>>
     : never
 
-function getWithPath<T>(object: T, keys: keyof T & string): T[keyof T]
+function getWithPath<T>(object: T, keys: KeysOfUnion<T> & string): T[keyof T]
 function getWithPath<T, K extends string[]>(
   object: T,
   keys: K,
@@ -33,14 +35,18 @@ function getWithPath(object: any, keys: string | string[]): any {
 export function makeUseOption<O extends object>() {
   return <const K extends string | string[]>(
     keys: K,
-    defaultValue: K extends keyof O
+    defaultValue: K extends KeysOfUnion<O>
       ? O[K]
       : K extends any[]
         ? [O, K]
         : never = false as any,
     keep?: boolean,
   ): WritableComputedRef<
-    K extends keyof O ? O[K] : K extends any[] ? GetWithPath<O, K> : never
+    K extends KeysOfUnion<O>
+      ? O[K]
+      : K extends any[]
+        ? GetWithPath<O, K>
+        : never
   > =>
     useOptions(
       (opt: O) => getWithPath(opt, keys as any) ?? defaultValue,
