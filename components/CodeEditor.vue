@@ -12,16 +12,9 @@ const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 
 const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
   () => ({
-    automaticLayout: true,
-    theme: isDark.value ? 'vs-dark' : 'vs',
-    fontFamily:
-      '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
+    ...getSharedMonacoOptions(),
     fontSize: 14,
     fontLigatures: true,
-    tabSize: 2,
-    minimap: {
-      enabled: false,
-    },
   }),
 )
 

@@ -7,6 +7,12 @@ const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
 const IS_SAFARI = /Apple Computer/.test(globalThis.navigator?.vendor)
 
+const options = computed(() => ({
+  ...getSharedMonacoOptions(),
+  readOnly: true,
+  fontSize: 13,
+}))
+
 const serialized = computed(() => {
   try {
     const seen = new WeakMap<any, unknown>()
@@ -187,16 +193,7 @@ function print() {
         max-sm:min-h-50vh
         lang="json"
         :model-value="serialized"
-        :options="{
-          automaticLayout: true,
-          theme: isDark ? 'vs-dark' : 'vs',
-          readOnly: true,
-          fontSize: 13,
-          tabSize: 2,
-          minimap: {
-            enabled: false,
-          },
-        }"
+        :options
       />
     </div>
   </div>
