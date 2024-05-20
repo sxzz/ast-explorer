@@ -5,8 +5,8 @@ export const showRightLayout = useLocalStorage(
   `${PREFIX}show-right-layout`,
   true,
 )
-export const toggleLeftLayout: () => boolean = useToggle(showLeftLayout)
-export const toggleRightLayout: () => boolean = useToggle(showRightLayout)
+export const toggleLeftLayout = useToggle(showLeftLayout)
+export const toggleRightLayout = useToggle(showRightLayout)
 
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
 export const hideLocationData = useLocalStorage(
