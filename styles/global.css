@@ -12,6 +12,11 @@ select {
   --at-apply: 'bg-#0000000d dark:bg-#ffffff1a';
 }
 
+.shiki {
+  display: inline;
+  background-color: transparent !important;
+}
+
 /* Color Mode transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {

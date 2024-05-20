@@ -22,9 +22,7 @@ const serialized = computed(() => {
         if (hideEmptyKeys.value && value == null) return
         if (
           [
-            ...(hideLocationData.value
-              ? ['loc', 'start', 'end', 'span', 'range']
-              : []),
+            ...(hideLocationData.value ? locationKeyList : []),
             ...hideKeys.value.filter((v) => !!v),
           ].includes(key)
         )
@@ -184,6 +182,17 @@ function print() {
       <div v-else-if="error" overflow-scroll text-sm text-red>
         <pre v-text="stringifyError(error)" />
       </div>
+      <!-- <div
+        v-show="!loading && !error"
+        w-full
+        overflow-auto
+        pl4
+        text-sm
+        leading-relaxed
+        font-mono
+      >
+        <AstProperty :value="ast" />
+      </div> -->
       <MonacoEditor
         v-show="!loading && !error"
         ref="container"

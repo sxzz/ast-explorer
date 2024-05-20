@@ -30,4 +30,10 @@ export const typescript: Parser<
   },
   editorLanguage: 'typescript',
   getAstLocation: getAstLocation('ts'),
+  astTitleField: 'kind',
+  getAstTitle(value) {
+    const kind = value?.kind
+    if (kind == null) return
+    return this.SyntaxKind[kind]
+  },
 }

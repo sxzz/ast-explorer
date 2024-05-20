@@ -22,7 +22,8 @@
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
     "memfs": "^4.9.2",
-    "monaco-editor": "^0.48.0"
+    "monaco-editor": "^0.48.0",
+    "shiki": "^1.6.0"
   },
   "devDependencies": {
     "@babel/parser": "^7.24.5",

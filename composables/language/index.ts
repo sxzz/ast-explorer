@@ -34,6 +34,8 @@ export interface Parser<C = unknown, O = unknown> {
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
   getAstLocation?: (ast: JsonNode) => Range | undefined
+  astTitleField?: string
+  getAstTitle?: (this: C, value: any) => string | undefined
   gui?: AsyncComponentLoader
 }
 export interface LanguageOption {

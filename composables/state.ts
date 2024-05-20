@@ -22,6 +22,8 @@ export const hideLocationData = useLocalStorage(
 export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
 
+export const locationKeyList = ['loc', 'start', 'end', 'span', 'range']
+
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>(undefined)
 
@@ -112,7 +114,8 @@ async function initParser() {
   return (parserContextCache[pkgId] = await init?.(pkgId))
 }
 
-const parserContextPromise = computed(() => initParser())
+export const parserContextPromise = computed(() => initParser())
+export const parserContext = computedAsync(() => parserContextPromise.value)
 
 // fetch display version
 watch(
@@ -153,7 +156,7 @@ watch(
       loading.value = 'parse'
       const t = window.performance.now()
       ast.value = await currentParser.value.parse.call(
-        await ctx,
+        ctx,
         code.value,
         options.value,
       )

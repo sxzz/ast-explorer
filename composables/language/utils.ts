@@ -25,7 +25,6 @@ const astLocationFields = {
     end: ['loc', 'end', 'offset'],
   },
 } as const
-
 export function getAstLocation(preset: keyof typeof astLocationFields) {
   return (node: JsonNode) => {
     if (node.type !== 'Object') return
