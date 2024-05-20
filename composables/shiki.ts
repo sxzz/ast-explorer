@@ -1,14 +1,7 @@
-import { type HighlighterCore, getHighlighterCore } from 'shiki/core'
-import vitesseLight from 'shiki/themes/vitesse-light.mjs'
-import vitesseDark from 'shiki/themes/vitesse-dark.mjs'
-import javascript from 'shiki/langs/javascript.mjs'
-import loadWasm from 'shiki/wasm'
+import type { HighlighterCore } from 'shiki'
 
-const highlighterPromise = getHighlighterCore({
-  themes: [vitesseLight, vitesseDark],
-  langs: [javascript],
-  loadWasm,
-})
+const highlighterPromise = getShikiHighlighter()
+
 let highlighter: HighlighterCore
 const highlight = useMemoize(async (code: string, theme: string) => {
   highlighter ||= await highlighterPromise
