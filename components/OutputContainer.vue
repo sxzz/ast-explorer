@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { autoFocus, hideEmptyKeys, hideLocationData } from '#imports'
 
-const isSafari = /Apple Computer/.test(globalThis.navigator?.vendor)
 const hideKeysValue = ref(hideKeys.value.join(', '))
-
 watchEffect(() => {
   try {
     hideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
