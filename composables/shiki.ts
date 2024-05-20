@@ -21,7 +21,7 @@ const highlight = useMemoize(async (code: string, theme: string) => {
 export function useHighlightColor(
   content: MaybeRefOrGetter<string | undefined>,
 ) {
-  return computedAsync(async () => {
+  return useAsyncState(async () => {
     const code = toValue(content)
     if (code == null) return ''
     const theme = `vitesse-${isDark.value ? 'dark' : 'light'}`
@@ -31,5 +31,5 @@ export function useHighlightColor(
       idx = 1
     }
     return result.tokens[0][idx].color
-  })
+  }, undefined).state
 }
