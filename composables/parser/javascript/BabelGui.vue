@@ -254,7 +254,7 @@ const throwExpressions = usePlugin('throwExpressions')
     <label>
       <!-- Stage 2 -->
       <input v-model="deferredImportEvaluation" type="checkbox" switch />
-      <span text-xs>deferredImportEvaluation</span>
+      <span>deferredImportEvaluation</span>
     </label>
 
     <label>

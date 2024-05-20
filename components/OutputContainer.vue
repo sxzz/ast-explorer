@@ -11,6 +11,10 @@ watchEffect(() => {
   }
 })
 
+const currentView = ref<'tree' | 'json'>('tree')
+const tabClass = 'w-20 border rounded p1'
+const tabSelectedClass = 'bg-$c-text-base text-$c-bg-base'
+
 function stringifyError(error: unknown) {
   if (error instanceof Error) {
     if (isSafari)
@@ -34,15 +38,28 @@ function print() {
 
 <template>
   <div flex="~ col" gap2>
-    <div flex="~ y-center wrap" gap3 text-sm>
-      <div v-if="!showLeftLayout" />
-      <label flex="~ y-center" gap1>
+    <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
+      <div flex gap1>
+        <button
+          :class="[tabClass, currentView === 'tree' && tabSelectedClass]"
+          @click="currentView = 'tree'"
+        >
+          Tree
+        </button>
+        <button
+          :class="[tabClass, currentView === 'json' && tabSelectedClass]"
+          @click="currentView = 'json'"
+        >
+          JSON
+        </button>
+      </div>
+      <label>
         <input v-model="autoFocus" type="checkbox" switch /> Auto focus
       </label>
-      <label flex="~ y-center" gap1>
+      <label>
         <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
       </label>
-      <label flex="~ y-center" gap1>
+      <label>
         <input v-model="hideLocationData" type="checkbox" switch /> Hide
         location data
       </label>
@@ -75,24 +92,22 @@ function print() {
       <div v-else-if="error" overflow-scroll text-sm text-red>
         <pre v-text="stringifyError(error)" />
       </div>
-      <!-- <div
-        v-show="!loading && !error"
-        w-full
-        overflow-auto
-        pl4
-        text-sm
-        leading-relaxed
-        font-mono
-      >
-        <AstProperty :value="ast" />
-      </div> -->
-      <OutputEditor
-        v-show="!loading && !error"
-        h-full
-        min-w-0
-        w-full
-        max-sm:min-h-50vh
-      />
+      <div v-show="!loading && !error" h-full min-w-0 w-full flex>
+        <OutputJson
+          v-if="currentView === 'json'"
+          h-full
+          min-w-0
+          w-full
+          max-sm:min-h-50vh
+        />
+        <OutputTree v-else w-full />
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.output-form label {
+  --at-apply: 'flex flex-y-center gap1';
+}
+</style>

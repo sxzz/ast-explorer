@@ -3,7 +3,7 @@ const props = defineProps<{
   id?: string | number
   value?: any
 }>()
-const open = defineModel('open', { default: true })
+const open = defineModel<boolean>('open', { required: false })
 
 const show = computed(() => {
   if (hideEmptyKeys.value && props.value == null) {
@@ -42,6 +42,10 @@ const keyColor = useHighlightColor(key)
 const keyClass = computed(() => ({
   'cursor-pointer hover:underline': openable.value,
 }))
+
+defineExpose({
+  toggleOpen,
+})
 </script>
 
 <template>
@@ -73,7 +77,7 @@ const keyClass = computed(() => ({
         v-text="title"
       />&nbsp;</span
     >
-    <AstValue v-if="open" :data="value" />
+    <AstValue v-if="!openable || open" :data="value" />
     <AstSummaryValue v-else :data="value" @toggle="toggleOpen" />
   </div>
 </template>

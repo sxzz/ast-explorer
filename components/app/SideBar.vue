@@ -3,7 +3,7 @@ import { currentParserGui as ParserGui } from '~/composables/state/parser'
 </script>
 
 <template>
-  <div flex="~ y-center col" gap2 p2>
+  <div flex="~ y-center col" gap2 px3 py2>
     <div>
       <IconPreview :value="currentParser.icon" size="5em" />
     </div>
