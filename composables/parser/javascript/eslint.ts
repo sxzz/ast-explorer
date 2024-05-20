@@ -32,7 +32,7 @@ export const espree: Parser<any, any> = {
 export const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
-  icon: 'https://typescript-eslint.io/img/logo.svg',
+  icon: 'https://cdn.jsdelivr.net/gh/typescript-eslint/typescript-eslint@main/packages/website/static/img/logo.svg',
   link: 'https://typescript-eslint.io/packages/parser/',
   options: {
     configurable: true,

@@ -3,7 +3,7 @@ import type { Parser } from '..'
 export const hermes: Parser<any, any> = {
   id: 'hermes',
   label: 'Hermes',
-  icon: 'https://github.com/facebook/hermes/raw/main/doc/img/logo.svg',
+  icon: 'https://cdn.jsdelivr.net/gh/facebook/hermes@main/doc/img/logo.svg',
   link: 'https://github.com/facebook/hermes',
   options: {
     configurable: true,

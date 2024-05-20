@@ -4,7 +4,7 @@ import type * as Acorn from 'acorn'
 export const acorn: Parser<typeof Acorn, Acorn.Options> = {
   id: 'acorn',
   label: 'Acorn',
-  icon: 'https://raw.githubusercontent.com/acornjs/acorn/master/logo.svg',
+  icon: 'https://cdn.jsdelivr.net/gh/acornjs/acorn@master/logo.svg',
   link: 'https://github.com/acornjs/acorn',
   options: {
     configurable: true,
