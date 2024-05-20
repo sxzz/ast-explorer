@@ -31,7 +31,7 @@ watch(language, (language) => {
 </script>
 
 <template>
-  <div flex="~ col gap4" text-sm font-mono>
+  <div flex="~ col" gap4 text-sm font-mono>
     <label>
       <span>Language</span>
       <select v-model="language">
@@ -89,9 +89,6 @@ watch(language, (language) => {
 
 <style scoped>
 label {
-  --at-apply: 'flex gap-2 items-center';
-}
-label span {
-  --at-apply: 'op85';
+  --at-apply: 'flex flex-y-center gap2';
 }
 </style>

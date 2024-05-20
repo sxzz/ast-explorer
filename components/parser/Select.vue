@@ -6,7 +6,7 @@ function changeParser(parser: string) {
 
 <template>
   <VMenu :class="{ dark: isDark }" flex>
-    <button flex="~ gap-1" items-center>
+    <button flex="~ center" gap1>
       <IconPreview :value="currentParser.icon" />
       <span font-mono>{{ currentParser.label }}</span>
     </button>

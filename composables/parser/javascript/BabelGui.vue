@@ -116,7 +116,7 @@ const throwExpressions = usePlugin('throwExpressions')
 </script>
 
 <template>
-  <div flex="~ col gap2" text-sm font-mono>
+  <div flex="~ col" gap2 text-sm font-mono>
     <label>
       <input v-model="estree" type="checkbox" switch />
       <span>ESTree</span>
@@ -359,10 +359,6 @@ const throwExpressions = usePlugin('throwExpressions')
 
 <style scoped>
 label {
-  --at-apply: 'flex gap-2 items-center';
-}
-label span,
-summary {
-  --at-apply: 'op85';
+  --at-apply: 'flex flex-y-center gap2';
 }
 </style>

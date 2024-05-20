@@ -21,7 +21,7 @@ const preserveParens = useOption('preserveParens')
 </script>
 
 <template>
-  <div flex="~ col gap2" text-sm font-mono>
+  <div flex="~ col" gap2 text-sm font-mono>
     <label>
       <span>sourceType</span>
       <select v-model="sourceType">
@@ -89,9 +89,6 @@ const preserveParens = useOption('preserveParens')
 
 <style scoped>
 label {
-  --at-apply: 'flex gap-2 items-center';
-}
-label span {
-  --at-apply: 'op85';
+  --at-apply: 'flex flex-y-center gap2';
 }
 </style>

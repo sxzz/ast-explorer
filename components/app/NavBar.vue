@@ -18,9 +18,9 @@ function editVersion() {
 </script>
 
 <template>
-  <div flex="~ wrap" items-center justify-between gap2 p2>
+  <div flex="~ y-center wrap" justify-between gap2 p2>
     <div flex="~ gap4 wrap" max-sm:flex-col>
-      <div flex="~ gap1">
+      <div flex gap1>
         <AppLogo />
         <h1 text-lg font-bold>AST Explorer</h1>
         <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
@@ -34,10 +34,10 @@ function editVersion() {
 
     <div flex gap3 max-sm:flex-col>
       <div flex gap3>
-        <span op-80>{{ +parseCost.toFixed(1) }} ms</span>
+        <span op80>{{ +parseCost.toFixed(1) }} ms</span>
         <a
           font-mono
-          op-80
+          op80
           hover:underline
           :href="`https://www.npmjs.com/package/${currentParser.pkgName}`"
           target="_blank"
@@ -67,7 +67,7 @@ function editVersion() {
         >
           <div i-ri:edit-line />
         </button>
-        <a :href="currentParser.link" target="_blank" flex items-center>
+        <a :href="currentParser.link" target="_blank" flex="~ center">
           <div i-ri:book-2-line />
         </a>
         <button title="Toggle Left Layout" @click="toggleLeftLayout">
@@ -84,8 +84,7 @@ function editVersion() {
         <a
           href="https://github.com/sxzz/ast-explorer"
           target="_blank"
-          flex
-          items-center
+          flex="~ center"
         >
           <div i-ri:github-line />
         </a>

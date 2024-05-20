@@ -35,16 +35,16 @@ function print() {
 </script>
 
 <template>
-  <div flex="~ col gap-2">
-    <div flex="~ gap-3 wrap" items-center text-sm>
+  <div flex="~ col" gap2>
+    <div flex="~ y-center wrap" gap3 text-sm>
       <div v-if="!showLeftLayout" />
-      <label flex="~ gap1" items-center>
+      <label flex="~ y-center" gap1>
         <input v-model="autoFocus" type="checkbox" switch /> Auto focus
       </label>
-      <label flex="~ gap1" items-center>
+      <label flex="~ y-center" gap1>
         <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
       </label>
-      <label flex="~ gap1" items-center>
+      <label flex="~ y-center" gap1>
         <input v-model="hideLocationData" type="checkbox" switch /> Hide
         location data
       </label>
@@ -57,8 +57,7 @@ function print() {
         />
       </label>
       <button
-        flex
-        items-center
+        flex="~ y-center"
         gap1
         border
         rounded

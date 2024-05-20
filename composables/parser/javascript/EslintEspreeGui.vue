@@ -31,7 +31,7 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
 </script>
 
 <template>
-  <div flex="~ col gap4" text-sm font-mono>
+  <div flex="~ col" gap4 text-sm font-mono>
     <label>
       <span>sourceType</span>
       <select v-model="sourceType">
@@ -90,9 +90,6 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
 
 <style scoped>
 label {
-  --at-apply: 'flex gap-2 items-center';
-}
-label span {
-  --at-apply: 'op85';
+  --at-apply: 'flex flex-y-center gap2';
 }
 </style>

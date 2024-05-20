@@ -24,19 +24,19 @@ const handleClick = (evt: MouseEvent) => {
     v-bind="$attrs"
     ref="el"
     hover-bg-active
-    flex="~ gap-2"
+    flex="~ y-center"
     cursor-pointer
-    items-center
     justify-between
+    gap2
     px3
     py2
     :aria-label="text"
     @click="handleClick"
   >
-    <div flex="~ gap-2" items-center>
+    <div flex="~ y-center" gap2>
       <IconPreview v-if="icon" :value="icon" />
       <slot>{{ text }}</slot>
-      <div v-if="!checked" h-1.2em w-1.2em />
+      <div v-if="!checked" h="1.2em" w="1.2em" />
     </div>
 
     <div v-if="checked" i-ri:check-line />

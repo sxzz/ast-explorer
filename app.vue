@@ -20,7 +20,7 @@
     </main>
 
     <template #fallback>
-      <div h-screen flex items-center justify-center gap1 text-3xl font-bold>
+      <div flex="~ center" h-screen gap1 text-3xl font-bold>
         <div i-ri:loader-4-fill animate-spin />
         Loading...
       </div>

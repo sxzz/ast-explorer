@@ -8,7 +8,7 @@ function changeLanguage(language: Language) {
 
 <template>
   <VMenu :class="{ dark: isDark }" flex>
-    <button flex="~ gap-1" items-center>
+    <button flex="~ center" gap1>
       <div :class="currentLanguage.icon" />
       {{ currentLanguage.label }}
     </button>

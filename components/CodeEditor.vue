@@ -34,7 +34,7 @@ watchEffect(() => {
     :lang="language"
     :options="options"
   >
-    <div flex="~ col gap-2" h-full w-full items-center justify-center>
+    <div flex="~ col center" h-full w-full gap2>
       <div i-ri:loader-2-line animate-spin text-4xl />
       <span text-lg>Loading...</span>
     </div>

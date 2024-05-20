@@ -12,6 +12,9 @@ export default defineConfig({
     'border-bg-base': 'border-$c-bg-base',
     'bg-base': 'bg-$c-bg-base',
     'text-base': 'text-$c-text-base',
+    'flex-center': 'items-center justify-center',
+    'flex-x-center': 'justify-center',
+    'flex-y-center': 'items-center',
   },
   presets: [
     presetUno({

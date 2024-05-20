@@ -13,7 +13,7 @@ function handleDialogClick(evt: MouseEvent) {
 </script>
 
 <template>
-  <div flex items-center justify-center>
+  <div flex="~ center">
     <button class="i-ri:settings-line" @click="openDialog" />
     <dialog
       ref="dialog"
@@ -23,7 +23,7 @@ function handleDialogClick(evt: MouseEvent) {
       p0
       @click="handleDialogClick"
     >
-      <div relative flex items-center justify-center gap1 py2 text-lg font-bold>
+      <div relative flex="~ center" gap1 py2 text-lg font-bold>
         Parser Options
         <button
           class="i-ri:close-line"
