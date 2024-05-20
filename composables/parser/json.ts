@@ -1,4 +1,4 @@
-import type { LanguageOption, Parser } from '../language'
+import type { LanguageOption, Parser } from './index'
 import type parse from 'json-to-ast'
 
 // @unocss-include

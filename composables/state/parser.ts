@@ -2,8 +2,6 @@ import json5 from 'json5'
 import ansiRegex from 'ansi-regex'
 import type { Language } from '#imports'
 
-const PREFIX = 'ast-explorer:'
-
 export const loading = ref<'load' | 'parse' | false>(false)
 export const code = ref('')
 export const ast = shallowRef<unknown>({})
@@ -11,23 +9,32 @@ export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
 export const parseCost = ref(0)
 
-export const showLeftLayout = useLocalStorage('show-left-layout', true)
-export const showRightLayout = useLocalStorage('show-right-layout', true)
-
-export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
-export const hideLocationData = useLocalStorage(
-  `${PREFIX}hide-location-data`,
-  false,
-)
-export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
-export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
-
-export const locationKeyList = ['loc', 'start', 'end', 'span', 'range']
-
 export const currentLanguageId = ref<Language>('javascript')
-export const currentParserId = ref<string | undefined>(undefined)
+export const currentParserId = ref<string | undefined>()
 
-export const options = computed({
+export const overrideVersion = ref<string>()
+export const displayVersion = ref<string>()
+
+export const currentLanguage = computed(
+  () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
+)
+
+export const currentParser = computed(
+  () =>
+    (currentLanguage.value &&
+      currentParserId.value &&
+      currentLanguage.value.parsers.find(
+        (p) => p.id === currentParserId.value,
+      )) ||
+    Object.values(currentLanguage.value.parsers)[0],
+)
+
+export const currentParserGui = computed(
+  () =>
+    currentParser.value.gui && defineAsyncComponent(currentParser.value.gui),
+)
+
+export const parserOptions = computed({
   get() {
     try {
       return currentParser.value.options.defaultValueType === 'javascript'
@@ -158,7 +165,7 @@ watch(
       ast.value = await currentParser.value.parse.call(
         ctx,
         code.value,
-        options.value,
+        parserOptions.value,
       )
       parseCost.value = window.performance.now() - t
       error.value = null

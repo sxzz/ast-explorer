@@ -1,5 +1,5 @@
+import type { LanguageOption, Parser } from './index'
 import type * as CssTree from 'css-tree'
-import type { LanguageOption, Parser } from '.'
 import type * as Postcss from 'postcss'
 
 // @unocss-include

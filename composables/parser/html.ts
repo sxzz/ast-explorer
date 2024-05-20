@@ -1,5 +1,5 @@
+import type { LanguageOption, Parser } from './index'
 import type * as Htmlparser2 from 'htmlparser2'
-import type { LanguageOption, Parser } from '../language'
 
 // @unocss-include
 

@@ -10,6 +10,13 @@ const highlighterPromise = getHighlighterCore({
   loadWasm,
 })
 let highlighter: HighlighterCore
+const highlight = useMemoize(async (code: string, theme: string) => {
+  highlighter ||= await highlighterPromise
+  return highlighter.codeToTokens(code, {
+    lang: 'javascript',
+    theme,
+  })
+})
 
 export function useHighlightColor(
   content: MaybeRefOrGetter<string | undefined>,
@@ -26,11 +33,3 @@ export function useHighlightColor(
     return result.tokens[0][idx].color
   })
 }
-
-const highlight = useMemoize(async (code: string, theme: string) => {
-  highlighter ||= await highlighterPromise
-  return highlighter.codeToTokens(code, {
-    lang: 'javascript',
-    theme,
-  })
-})

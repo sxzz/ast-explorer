@@ -1,4 +1,4 @@
-import type { LanguageOption, Parser } from '../language'
+import type { LanguageOption, Parser } from './index'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
 import type * as Vue3Dom from '@vue/compiler-dom'
 import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'

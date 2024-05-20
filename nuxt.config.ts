@@ -33,7 +33,12 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   imports: {
-    dirs: ['./composables', './composables/language', './utils'],
+    dirs: [
+      './composables',
+      './composables/state',
+      './composables/parser',
+      './utils',
+    ],
   },
   hooks: {
     'build:manifest': (manifest) => {

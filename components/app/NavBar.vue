@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { version } from '../package.json'
+import { version } from '~/package.json'
 
 const { branch } = useAppConfig()
 
@@ -18,10 +18,10 @@ function editVersion() {
 </script>
 
 <template>
-  <div flex="~ wrap" items-center justify-between gap2 border-b p2>
+  <div flex="~ wrap" items-center justify-between gap2 p2>
     <div flex="~ gap4 wrap" max-sm:flex-col>
       <div flex="~ gap1">
-        <Logo />
+        <AppLogo />
         <h1 text-lg font-bold>AST Explorer</h1>
         <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
       </div>

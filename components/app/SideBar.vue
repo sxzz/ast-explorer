@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { currentParserGui as ParserGui } from '~/composables/language'
+import { currentParserGui as ParserGui } from '~/composables/state/parser'
 </script>
 
 <template>
-  <div flex="~ col" items-center gap2 border-r p2>
+  <div flex="~ col" items-center gap2 p2>
     <div>
       <IconPreview :value="currentParser.icon" size="5em" />
     </div>

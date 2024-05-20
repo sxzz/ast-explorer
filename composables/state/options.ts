@@ -5,11 +5,12 @@ export function useOptions<O extends object, T>(
   write: (value: T, opt: O) => void,
 ) {
   return computed<T>({
-    get: () => read(options.value),
+    get: () => read(parserOptions.value),
     set(value) {
-      const newOpt: O = typeof options.value === 'object' ? options.value : {}
+      const newOpt: O =
+        typeof parserOptions.value === 'object' ? parserOptions.value : {}
       write(value, newOpt)
-      options.value = { ...newOpt }
+      parserOptions.value = { ...newOpt }
     },
   })
 }
