@@ -294,7 +294,7 @@ const throwExpressions = usePlugin('throwExpressions')
     <label>
       <!-- Stage 3 -->
       <input v-model="explicitResourceManagement" type="checkbox" switch />
-      <span text-xs>explicitResourceManagement</span>
+      <span>explicitResourceManagement</span>
     </label>
 
     <label>
