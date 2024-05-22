@@ -15,3 +15,8 @@ export const hideLocationData = useLocalStorage(
 )
 export const hideKeys = useLocalStorage<string[]>(`${PREFIX}hide-keys`, [])
 export const autoFocus = useLocalStorage<boolean>(`${PREFIX}auto-focus`, true)
+
+export const outputView = useLocalStorage<'tree' | 'json'>(
+  `${PREFIX}output-view`,
+  'tree',
+)

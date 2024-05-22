@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { autoFocus, hideEmptyKeys, hideLocationData } from '#imports'
+import {
+  autoFocus,
+  hideEmptyKeys,
+  hideLocationData,
+  outputView,
+} from '#imports'
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
@@ -11,7 +16,6 @@ watchEffect(() => {
   }
 })
 
-const currentView = ref<'tree' | 'json'>('tree')
 const tabClass = 'w-20 border rounded p1'
 const tabSelectedClass = 'bg-$c-text-base text-$c-bg-base'
 
@@ -30,9 +34,35 @@ function stringifyError(error: unknown) {
   return String(error)
 }
 
+function toggleView(view: 'tree' | 'json') {
+  outputView.value = view
+}
+
 function print() {
   // eslint-disable-next-line no-console
   console.info(ast.value)
+}
+
+function toggleAutoFocus() {
+  autoFocus.value = !autoFocus.value
+  if (
+    outputView.value === 'json' &&
+    hideLocationData.value &&
+    autoFocus.value
+  ) {
+    hideLocationData.value = false
+  }
+}
+
+function toggleHideLocationData() {
+  hideLocationData.value = !hideLocationData.value
+  if (
+    outputView.value === 'json' &&
+    autoFocus.value &&
+    hideLocationData.value
+  ) {
+    autoFocus.value = false
+  }
 }
 </script>
 
@@ -41,27 +71,39 @@ function print() {
     <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
       <div flex gap1>
         <button
-          :class="[tabClass, currentView === 'tree' && tabSelectedClass]"
-          @click="currentView = 'tree'"
+          :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
+          @click="toggleView('tree')"
         >
           Tree
         </button>
         <button
-          :class="[tabClass, currentView === 'json' && tabSelectedClass]"
-          @click="currentView = 'json'"
+          :class="[tabClass, outputView === 'json' && tabSelectedClass]"
+          @click="toggleView('json')"
         >
           JSON
         </button>
       </div>
-      <label>
-        <input v-model="autoFocus" type="checkbox" switch /> Auto focus
+      <!-- TODO implement auto-focus on tree view -->
+      <label v-if="outputView === 'json'">
+        <input
+          :checked="autoFocus"
+          type="checkbox"
+          switch
+          @click="toggleAutoFocus"
+        />
+        Auto focus
       </label>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
       </label>
       <label>
-        <input v-model="hideLocationData" type="checkbox" switch /> Hide
-        location data
+        <input
+          :checked="hideLocationData"
+          type="checkbox"
+          switch
+          @click="toggleHideLocationData"
+        />
+        Hide location data
       </label>
       <label>
         Hide keys:
@@ -94,7 +136,7 @@ function print() {
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson
-          v-if="currentView === 'json'"
+          v-if="outputView === 'json'"
           h-full
           min-w-0
           w-full

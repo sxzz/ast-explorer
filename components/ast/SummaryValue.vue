@@ -10,7 +10,7 @@ const contentSummary = computed(() => {
     return `${len} element${len === 1 ? '' : 's'}`
   } else {
     const keys = Object.entries(props.data)
-      .filter(([, v]) => v != null || !hideEmptyKeys.value)
+      .filter(([k, v]) => !shouldHideKey(k, v))
       .map(([k]) => k)
     const len = keys.length
     return keys.slice(0, 5).join(', ') + (len > 5 ? `, ... +${len - 5}` : '')

@@ -5,19 +5,7 @@ const props = defineProps<{
 }>()
 const open = defineModel<boolean>('open', { required: false })
 
-const show = computed(() => {
-  if (hideEmptyKeys.value && props.value == null) {
-    return false
-  }
-  if (
-    hideLocationData.value &&
-    typeof props.id === 'string' &&
-    locationKeyList.includes(props.id)
-  ) {
-    return false
-  }
-  return true
-})
+const show = computed(() => !shouldHideKey(props.id, props.value))
 
 const title = computed(() => {
   const parser = currentParser.value
