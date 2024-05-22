@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { dropdownContextKey } from './ctx'
-
 defineProps<{
   text?: string
   description?: string
   icon?: string
   checked?: boolean
 }>()
-const emit = defineEmits(['click'])
-
-const { hide } = inject(dropdownContextKey, undefined) || {}
 
 const el = ref<HTMLDivElement>()
-
-const handleClick = (evt: MouseEvent) => {
-  hide?.()
-  emit('click', evt)
-}
 </script>
 
 <template>
@@ -31,7 +21,6 @@ const handleClick = (evt: MouseEvent) => {
     px3
     py2
     :aria-label="text"
-    @click="handleClick"
   >
     <div flex="~ y-center" gap2>
       <IconPreview v-if="icon" :value="icon" />

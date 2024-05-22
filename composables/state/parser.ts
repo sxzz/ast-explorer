@@ -57,9 +57,9 @@ export const showSideBar = computed(
 )
 
 const location = useBrowserLocation()
-
-const rawUrlState = atou(location.value.hash!.slice(1))
-
+const rawUrlState = import.meta.client
+  ? atou(location.value.hash!.slice(1))
+  : undefined
 if (rawUrlState) {
   const urlState = JSON.parse(rawUrlState)
   currentLanguageId.value = urlState.l
@@ -69,47 +69,10 @@ if (rawUrlState) {
   overrideVersion.value = urlState.v
 }
 
-// serialize state to url
-watchEffect(() => {
-  const serialized = JSON.stringify({
-    l: currentLanguageId.value,
-    p: currentParserId.value,
-    c: code.value,
-    o: rawOptions.value,
-    v: overrideVersion.value,
-  })
-  location.value.hash = utoa(serialized)
-})
-
-// ensure currentParserId is valid
-watch(
-  [currentLanguage, currentParserId],
-  () => {
-    if (
-      !currentParserId.value ||
-      !currentLanguage.value.parsers.some((p) => p.id === currentParserId.value)
-    )
-      setParserId(currentLanguage.value.parsers[0].id)
-  },
-  { immediate: true },
-)
-
 export function setParserId(id: string) {
   overrideVersion.value = undefined
   currentParserId.value = id
 }
-
-// set default options
-watch(
-  currentParserId,
-  () => {
-    rawOptions.value =
-      currentParser.value.options.defaultValueType === 'javascript'
-        ? currentParser.value.options.defaultValue
-        : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
-  },
-  { immediate: !rawUrlState },
-)
 
 const parserContextCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
@@ -124,58 +87,98 @@ async function initParser() {
 export const parserContextPromise = computed(() => initParser())
 export const parserContext = computedAsync(() => parserContextPromise.value)
 
-// fetch display version
-watch(
-  [currentParserId, overrideVersion],
-  async () => {
-    if (overrideVersion.value) {
-      displayVersion.value = overrideVersion.value
-      displayVersion.value = await fetchVersion(
-        `${currentParser.value.pkgName}@${displayVersion.value}`,
-      )
-      return
-    }
+if (import.meta.client) {
+  // serialize state to url
+  watchEffect(() => {
+    const serialized = JSON.stringify({
+      l: currentLanguageId.value,
+      p: currentParserId.value,
+      c: code.value,
+      o: rawOptions.value,
+      v: overrideVersion.value,
+    })
+    location.value.hash = utoa(serialized)
+  })
 
-    const parser = currentParser.value
-    if (typeof parser.version === 'string') {
-      displayVersion.value = parser.version
-    } else {
-      displayVersion.value = ''
-      const res = await Promise.resolve(
-        parser.version.call(parserContextPromise.value, parser.pkgName),
+  // ensure currentParserId is valid
+  watch(
+    [currentLanguage, currentParserId],
+    () => {
+      if (
+        !currentParserId.value ||
+        !currentLanguage.value.parsers.some(
+          (p) => p.id === currentParserId.value,
+        )
       )
-      if (currentParser.value.id === parser.id) {
-        displayVersion.value = res
+        setParserId(currentLanguage.value.parsers[0].id)
+    },
+    { immediate: true },
+  )
+  // set default options
+  watch(
+    currentParserId,
+    () => {
+      rawOptions.value =
+        currentParser.value.options.defaultValueType === 'javascript'
+          ? currentParser.value.options.defaultValue
+          : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
+    },
+    { immediate: !rawUrlState },
+  )
+
+  // fetch display version
+  watch(
+    [currentParserId, overrideVersion],
+    async () => {
+      if (overrideVersion.value) {
+        displayVersion.value = overrideVersion.value
+        displayVersion.value = await fetchVersion(
+          `${currentParser.value.pkgName}@${displayVersion.value}`,
+        )
+        return
       }
-    }
-  },
-  { immediate: true },
-)
 
-watch(
-  [parserContextPromise, currentParser, code, rawOptions],
-  async () => {
-    try {
-      const id = currentParser.value.id
-      loading.value = 'load'
-      const ctx = await parserContextPromise.value
-      if (currentParser.value.id !== id) return
-      loading.value = 'parse'
-      const t = window.performance.now()
-      ast.value = await currentParser.value.parse.call(
-        ctx,
-        code.value,
-        parserOptions.value,
-      )
-      parseCost.value = window.performance.now() - t
-      error.value = null
-      // eslint-disable-next-line unicorn/catch-error-name
-    } catch (err: any) {
-      error.value = `${err}`.replace(ansiRegex(), '')
-      console.error(err)
-    } finally {
-      loading.value = false
-    }
-  },
-  { immediate: true },
-)
+      const parser = currentParser.value
+      if (typeof parser.version === 'string') {
+        displayVersion.value = parser.version
+      } else {
+        displayVersion.value = ''
+        const res = await Promise.resolve(
+          parser.version.call(parserContextPromise.value, parser.pkgName),
+        )
+        if (currentParser.value.id === parser.id) {
+          displayVersion.value = res
+        }
+      }
+    },
+    { immediate: true },
+  )
+
+  watch(
+    [parserContextPromise, currentParser, code, rawOptions],
+    async () => {
+      try {
+        const id = currentParser.value.id
+        loading.value = 'load'
+        const ctx = await parserContextPromise.value
+        if (currentParser.value.id !== id) return
+        loading.value = 'parse'
+        const t = window.performance.now()
+        ast.value = await currentParser.value.parse.call(
+          ctx,
+          code.value,
+          parserOptions.value,
+        )
+        parseCost.value = window.performance.now() - t
+        error.value = null
+        // eslint-disable-next-line unicorn/catch-error-name
+      } catch (err: any) {
+        error.value = `${err}`.replace(ansiRegex(), '')
+        console.error(err)
+      } finally {
+        loading.value = false
+      }
+    },
+    { immediate: true },
+  )
+}

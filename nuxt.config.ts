@@ -4,19 +4,6 @@ import process from 'node:process'
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor', 'nuxt-shiki'],
   extends: ['nuxt-umami'],
-  app: {
-    head: {
-      title: 'AST Explorer',
-      link: [
-        {
-          rel: 'icon',
-          type: 'image/svg+xml',
-          href: '/logo.svg',
-        },
-      ],
-    },
-  },
-  ssr: false,
   vite: {
     esbuild: {
       legalComments: 'external',
@@ -39,13 +26,6 @@ export default defineNuxtConfig({
       './composables/parser',
       './utils',
     ],
-  },
-  hooks: {
-    'build:manifest': (manifest) => {
-      for (const key of Object.keys(manifest)) {
-        manifest[key].dynamicImports = []
-      }
-    },
   },
   appConfig: {
     umami: {
