@@ -64,6 +64,12 @@ function toggleHideLocationData() {
     autoFocus.value = false
   }
 }
+
+watch(outputView, (view) => {
+  if (view === 'json' && autoFocus.value) {
+    hideLocationData.value = false
+  }
+})
 </script>
 
 <template>
