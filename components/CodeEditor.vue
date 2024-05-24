@@ -34,28 +34,23 @@ if (props.input) {
 
   const monaco = useMonaco()!
   watchEffect(() => {
-    if (!container.value) return
+    const editor = container.value?.$editor
+    if (!editor) return
 
-    if (hoverLocation.value) {
+    if (outputHoverRange.value) {
       decorationsCollection?.clear()
+      const start = editor.getModel()!.getPositionAt(outputHoverRange.value[0])
+      const end = editor.getModel()!.getPositionAt(outputHoverRange.value[1])
 
-      const start = container.value
-        ?.$editor!.getModel()!
-        .getPositionAt(hoverLocation.value.start!)
-      const end = container.value
-        ?.$editor!.getModel()!
-        .getPositionAt(hoverLocation.value.end!)
-
-      decorationsCollection =
-        container.value?.$editor?.createDecorationsCollection([
-          {
-            range: monaco.Range.fromPositions(start, end),
-            options: {
-              isWholeLine: false,
-              className: 'monaco-bg-highlight',
-            },
+      decorationsCollection = editor.createDecorationsCollection([
+        {
+          range: monaco.Range.fromPositions(start, end),
+          options: {
+            isWholeLine: false,
+            className: 'input-editor-highlight',
           },
-        ])
+        },
+      ])
     } else {
       decorationsCollection?.clear()
     }
@@ -78,7 +73,7 @@ if (props.input) {
 </template>
 
 <style>
-.monaco-bg-highlight {
+.input-editor-highlight {
   --at-apply: 'bg-yellow-400/30 dark:bg-yellow-600/30';
 }
 </style>

@@ -2,6 +2,7 @@
 const props = defineProps<{
   id?: string | number
   value?: any
+  root?: boolean
 }>()
 const open = defineModel<boolean>('open', { required: false })
 
@@ -35,26 +36,21 @@ const keyClass = computed(() => ({
 }))
 
 function handleMouseOver(event: MouseEvent) {
-  if (props.id === undefined) {
+  if (props.root) {
     event.stopPropagation()
-    hoverLocation.value = undefined
-  } else if (
-    typeof props.value?.start === 'number' &&
-    typeof props.value?.end === 'number'
-  ) {
-    event.stopPropagation()
-    const { start, end } = props.value
+    outputHoverRange.value = undefined
+  } else if (props.value) {
+    const range = currentParser.value.getAstLocation?.(props.value)
+    if (!range) return
 
-    hoverLocation.value = {
-      start,
-      end,
-    }
+    event.stopPropagation()
+    outputHoverRange.value = range
   }
 }
 
 function handleMouseLeave() {
-  if (props.id === undefined) {
-    hoverLocation.value = undefined
+  if (props.root) {
+    outputHoverRange.value = undefined
   }
 }
 
@@ -67,8 +63,8 @@ defineExpose({
   <div
     v-if="show"
     relative
-    @mouseleave="handleMouseLeave"
     @mouseover="handleMouseOver"
+    @mouseleave="handleMouseLeave"
   >
     <span
       v-if="openable"
