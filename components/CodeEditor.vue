@@ -27,6 +27,33 @@ if (props.input)
       editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
     })
   })
+
+let decorationsCollection:
+  | monaco.editor.IEditorDecorationsCollection
+  | undefined
+
+watchEffect(() => {
+  if (hoverLocation.value) {
+    decorationsCollection?.clear()
+    decorationsCollection =
+      container.value?.$editor?.createDecorationsCollection([
+        {
+          range: {
+            startColumn: hoverLocation.value.startColumn,
+            endColumn: hoverLocation.value.endColumn + 1,
+            startLineNumber: hoverLocation.value.startLineNumber,
+            endLineNumber: hoverLocation.value.endLineNumber,
+          },
+          options: {
+            isWholeLine: false,
+            className: 'monaco-bg-highlight',
+          },
+        },
+      ])
+  } else {
+    decorationsCollection?.clear()
+  }
+})
 </script>
 
 <template>
@@ -42,3 +69,9 @@ if (props.input)
     </div>
   </MonacoEditor>
 </template>
+
+<style>
+.monaco-bg-highlight {
+  --at-apply: 'bg-yellow-300/50 dark:bg-yellow-700/50';
+}
+</style>
