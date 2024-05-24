@@ -72,6 +72,6 @@ watchEffect(() => {
 
 <style>
 .monaco-bg-highlight {
-  --at-apply: 'bg-yellow-300/50 dark:bg-yellow-700/50';
+  --at-apply: 'bg-yellow-400/30 dark:bg-yellow-600/30';
 }
 </style>
