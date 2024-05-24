@@ -1,6 +1,6 @@
 import json5 from 'json5'
 import ansiRegex from 'ansi-regex'
-import type { Language } from '#imports'
+import type { Language, Range } from '#imports'
 
 export const loading = ref<'load' | 'parse' | false>(false)
 export const code = ref('')
@@ -9,6 +9,7 @@ export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
 export const parseCost = ref(0)
 export const editorCursor = ref<number>(0)
+export const outputHoverRange = ref<Range | undefined>()
 
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>()

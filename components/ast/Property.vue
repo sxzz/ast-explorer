@@ -2,6 +2,7 @@
 const props = defineProps<{
   id?: string | number
   value?: any
+  root?: boolean
 }>()
 const open = defineModel<boolean>('open', { required: false })
 
@@ -34,13 +35,37 @@ const keyClass = computed(() => ({
   'cursor-pointer hover:underline': openable.value,
 }))
 
+function handleMouseOver(event: MouseEvent) {
+  if (props.root) {
+    event.stopPropagation()
+    outputHoverRange.value = undefined
+  } else if (props.value) {
+    const range = currentParser.value.getAstLocation?.(props.value)
+    if (!range) return
+
+    event.stopPropagation()
+    outputHoverRange.value = range
+  }
+}
+
+function handleMouseLeave() {
+  if (props.root) {
+    outputHoverRange.value = undefined
+  }
+}
+
 defineExpose({
   toggleOpen,
 })
 </script>
 
 <template>
-  <div v-if="show" relative>
+  <div
+    v-if="show"
+    relative
+    @mouseover="handleMouseOver"
+    @mouseleave="handleMouseLeave"
+  >
     <span
       v-if="openable"
       left="-3.5"
