@@ -19,7 +19,7 @@ const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
   }),
 )
 
-if (props.input)
+if (props.input) {
   watchEffect(() => {
     const editor = toRaw(container.value?.$editor)
     if (!editor) return
@@ -28,38 +28,39 @@ if (props.input)
     })
   })
 
-let decorationsCollection:
-  | Monaco.editor.IEditorDecorationsCollection
-  | undefined
+  let decorationsCollection:
+    | Monaco.editor.IEditorDecorationsCollection
+    | undefined
 
-const monaco = useMonaco()!
-watchEffect(() => {
-  if (!container.value) return
+  const monaco = useMonaco()!
+  watchEffect(() => {
+    if (!container.value) return
 
-  if (hoverLocation.value) {
-    decorationsCollection?.clear()
+    if (hoverLocation.value) {
+      decorationsCollection?.clear()
 
-    const start = container.value
-      ?.$editor!.getModel()!
-      .getPositionAt(hoverLocation.value.start!)
-    const end = container.value
-      ?.$editor!.getModel()!
-      .getPositionAt(hoverLocation.value.end!)
+      const start = container.value
+        ?.$editor!.getModel()!
+        .getPositionAt(hoverLocation.value.start!)
+      const end = container.value
+        ?.$editor!.getModel()!
+        .getPositionAt(hoverLocation.value.end!)
 
-    decorationsCollection =
-      container.value?.$editor?.createDecorationsCollection([
-        {
-          range: monaco.Range.fromPositions(start, end),
-          options: {
-            isWholeLine: false,
-            className: 'monaco-bg-highlight',
+      decorationsCollection =
+        container.value?.$editor?.createDecorationsCollection([
+          {
+            range: monaco.Range.fromPositions(start, end),
+            options: {
+              isWholeLine: false,
+              className: 'monaco-bg-highlight',
+            },
           },
-        },
-      ])
-  } else {
-    decorationsCollection?.clear()
-  }
-})
+        ])
+    } else {
+      decorationsCollection?.clear()
+    }
+  })
+}
 </script>
 
 <template>
