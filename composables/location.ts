@@ -2,40 +2,72 @@ import jsonToAst from 'json-to-ast'
 import type { Parser } from '#imports'
 import type * as monaco from 'monaco-editor'
 
-export const editorCursor = ref<number>(0)
+const astLocationFields = {
+  startEnd: {
+    type: ['type'],
+    start: ['start'],
+    end: ['end'],
+  },
+  swc: {
+    type: ['type'],
+    start: ['span', 'start'],
+    end: ['span', 'end'],
+  },
+  range: {
+    type: ['type'],
+    start: ['range', 0],
+    end: ['range', 1],
+  },
+  locOffset: {
+    type: ['type'],
+    start: ['loc', 'start', 'offset'],
+    end: ['loc', 'end', 'offset'],
+  },
+  typescript: {
+    type: ['kind'],
+    start: ['pos'],
+    end: ['end'],
+  },
+} as const
 
-export type MonacoLanguage =
-  | 'javascript'
-  | 'typescript'
-  | 'json'
-  | 'html'
-  | 'vue'
-  | 'svelte'
-  | 'css'
+export function genGetAstLocation(
+  preset: keyof typeof astLocationFields,
+): NonNullable<Parser['getAstLocation']> {
+  return (node: any, ast?: boolean) => {
+    if (ast ? node.type !== 'Object' : typeof node !== 'object') return
 
-export type Range = { start: number; end: number }
+    const get = ast ? getJsonValue : getValue
+    if (!get(node, astLocationFields[preset].type)) return
+
+    const start = get(node, astLocationFields[preset].start)
+    const end = get(node, astLocationFields[preset].end)
+    if (typeof start !== 'number' || typeof end !== 'number') return
+
+    return [start, end]
+  }
+}
+export const getAstLocation = genGetAstLocation('startEnd')
+
+export type Range = [start: number, end: number]
 export type JsonNode =
   | jsonToAst.IdentifierNode
   | jsonToAst.PropertyNode
   | jsonToAst.ValueNode
 
-export function collectPositionMap(ast: any, parser: Parser) {
+export function getLocationMapping(ast: any, parser: Parser) {
   const { getAstLocation } = parser
   if (!getAstLocation) return
 
   const astAst = jsonToAst(ast, { loc: true })
 
   // AST range -> code range
-  const positionMap: Map<Range, Range> = new Map()
+  const locationMap: Map<Range, Range> = new Map()
   traverseNode(astAst, (node) => {
-    const range = getAstLocation(node)
+    const range = getAstLocation(node, true)
     if (!range) return
-    positionMap.set(
-      { start: node.loc!.start.offset, end: node.loc!.end.offset },
-      range,
-    )
+    locationMap.set([node.loc!.start.offset, node.loc!.end.offset], range)
   })
-  return positionMap
+  return locationMap
 
   function traverseNode(node: JsonNode, cb: (node: JsonNode) => void): void {
     cb(node)
@@ -55,7 +87,16 @@ export function collectPositionMap(ast: any, parser: Parser) {
   }
 }
 
-export function getJsonValue(
+function getValue(object: object, path: Readonly<(string | number)[]>) {
+  let current: any = object
+  for (const sub of path) {
+    if (!current) return
+    current = current[sub]
+  }
+  return current
+}
+
+function getJsonValue(
   node: jsonToAst.ValueNode,
   path: Readonly<(string | number)[]>,
 ) {

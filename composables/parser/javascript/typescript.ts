@@ -29,7 +29,7 @@ export const typescript: Parser<
     return this.createSourceFile('foo.ts', code, { ...options })
   },
   editorLanguage: 'typescript',
-  getAstLocation: getAstLocation('ts'),
+  getAstLocation: genGetAstLocation('typescript'),
   astTitleField: 'kind',
   getAstTitle(value) {
     const kind = value?.kind

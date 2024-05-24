@@ -56,14 +56,14 @@ const serialized = computed(() => {
 /** AST range -> code range */
 const positionMap = computed(() =>
   serialized.value
-    ? collectPositionMap(serialized.value, currentParser.value)
+    ? getLocationMapping(serialized.value, currentParser.value)
     : undefined,
 )
 
 const highlightRange = computed(() => {
   if (!positionMap.value) return
   return Array.from(positionMap.value.entries()).findLast(
-    ([, { start, end }]) =>
+    ([, [start, end]]) =>
       start <= editorCursor.value! && end >= editorCursor.value!,
   )?.[0]
 })
@@ -83,8 +83,8 @@ function highlight() {
   )
   if (!editor) return
 
-  const start = editor.getModel()!.getPositionAt(range.start)
-  const end = editor.getModel()!.getPositionAt(range.end)
+  const start = editor.getModel()!.getPositionAt(range[0])
+  const end = editor.getModel()!.getPositionAt(range[1])
 
   decorationsCollection = editor.createDecorationsCollection([
     {
@@ -98,7 +98,7 @@ function highlight() {
 }
 
 onMounted(() => highlight())
-watch(highlightRange, () => highlight(), {
+watch([highlightRange, () => container.value?.$editor], () => highlight(), {
   immediate: true,
   flush: 'post',
 })

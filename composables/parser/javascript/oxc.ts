@@ -30,6 +30,6 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   editorLanguage(options) {
     return options.sourceFilename?.endsWith('.ts') ? 'typescript' : 'javascript'
   },
-  getAstLocation: getAstLocationBabel,
+  getAstLocation,
   gui: () => import('./OxcGui.vue'),
 }

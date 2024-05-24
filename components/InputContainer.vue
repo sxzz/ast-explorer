@@ -11,6 +11,6 @@ const language = computed(() => {
 
 <template>
   <div>
-    <CodeEditor v-model="code" :language="language" h-full w-full />
+    <CodeEditor v-model="code" :language input h-full w-full />
   </div>
 </template>

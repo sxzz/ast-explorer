@@ -7,6 +7,15 @@ import { css } from './css'
 import type { AsyncComponentLoader } from 'vue'
 import type { JsonNode, Range } from '#imports'
 
+export type MonacoLanguage =
+  | 'javascript'
+  | 'typescript'
+  | 'json'
+  | 'html'
+  | 'vue'
+  | 'svelte'
+  | 'css'
+
 export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
@@ -33,7 +42,10 @@ export interface Parser<C = unknown, O = unknown> {
       }
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
-  getAstLocation?: (ast: JsonNode) => Range | undefined
+  getAstLocation?: {
+    (node: JsonNode, ast: true): Range | undefined
+    (object: any, ast?: false): Range | undefined
+  }
   astTitleField?: string
   getAstTitle?: (this: C, value: any) => string | undefined
   gui?: AsyncComponentLoader

@@ -8,6 +8,7 @@ export const ast = shallowRef<unknown>({})
 export const error = shallowRef<unknown>()
 export const rawOptions = ref('')
 export const parseCost = ref(0)
+export const editorCursor = ref<number>(0)
 
 export const currentLanguageId = ref<Language>('javascript')
 export const currentParserId = ref<string | undefined>()

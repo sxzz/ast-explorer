@@ -3,8 +3,9 @@ import type { MonacoLanguage } from '#imports'
 import type * as monaco from 'monaco-editor'
 import type { MonacoEditor } from '#build/components'
 
-defineProps<{
+const props = defineProps<{
   language: MonacoLanguage
+  input?: boolean
 }>()
 const code = defineModel<string>()
 
@@ -18,13 +19,14 @@ const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
   }),
 )
 
-watchEffect(() => {
-  const editor = toRaw(container.value?.$editor)
-  if (!editor) return
-  editor.onDidChangeCursorPosition((e) => {
-    editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
+if (props.input)
+  watchEffect(() => {
+    const editor = toRaw(container.value?.$editor)
+    if (!editor) return
+    editor.onDidChangeCursorPosition((e) => {
+      editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
+    })
   })
-})
 </script>
 
 <template>
