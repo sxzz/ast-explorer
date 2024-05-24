@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { MonacoLanguage } from '#imports'
-import type * as monaco from 'monaco-editor'
+import type * as Monaco from 'monaco-editor'
 import type { MonacoEditor } from '#build/components'
 
 const props = defineProps<{
@@ -11,7 +11,7 @@ const code = defineModel<string>()
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 
-const options = computed<monaco.editor.IStandaloneEditorConstructionOptions>(
+const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
   () => ({
     ...getSharedMonacoOptions(),
     fontSize: 14,
@@ -29,21 +29,27 @@ if (props.input)
   })
 
 let decorationsCollection:
-  | monaco.editor.IEditorDecorationsCollection
+  | Monaco.editor.IEditorDecorationsCollection
   | undefined
 
+const monaco = useMonaco()!
 watchEffect(() => {
+  if (!container.value) return
+
   if (hoverLocation.value) {
     decorationsCollection?.clear()
+
+    const start = container.value
+      ?.$editor!.getModel()!
+      .getPositionAt(hoverLocation.value.start!)
+    const end = container.value
+      ?.$editor!.getModel()!
+      .getPositionAt(hoverLocation.value.end!)
+
     decorationsCollection =
       container.value?.$editor?.createDecorationsCollection([
         {
-          range: {
-            startColumn: hoverLocation.value.startColumn,
-            endColumn: hoverLocation.value.endColumn + 1,
-            startLineNumber: hoverLocation.value.startLineNumber,
-            endLineNumber: hoverLocation.value.endLineNumber,
-          },
+          range: monaco.Range.fromPositions(start, end),
           options: {
             isWholeLine: false,
             className: 'monaco-bg-highlight',

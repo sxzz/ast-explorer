@@ -38,29 +38,16 @@ function handleMouseOver(event: MouseEvent) {
   if (props.id === undefined) {
     event.stopPropagation()
     hoverLocation.value = undefined
-  } else if (props.value?.loc) {
-    event.stopPropagation()
-    const { start, end } = props.value.loc
-    hoverLocation.value = {
-      startColumn: start.column,
-      endColumn: end.column,
-      startLineNumber: start.line,
-      endLineNumber: end.line,
-    }
-  } else if (props.value?.start && props.value?.end) {
+  } else if (
+    typeof props.value?.start === 'number' &&
+    typeof props.value?.end === 'number'
+  ) {
     event.stopPropagation()
     const { start, end } = props.value
-    const startColumn = start - code.value.slice(0, start).lastIndexOf('\n')
-    const endColumn = end - code.value.slice(0, end).lastIndexOf('\n') - 1
-
-    const startLine = code.value.slice(0, start).split('\n').length
-    const endLine = code.value.slice(0, end).split('\n').length
 
     hoverLocation.value = {
-      startColumn,
-      endColumn,
-      startLineNumber: startLine,
-      endLineNumber: endLine,
+      start,
+      end,
     }
   }
 }

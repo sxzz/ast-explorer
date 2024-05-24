@@ -1,8 +1,6 @@
 interface HoverLocation {
-  startColumn: number
-  endColumn: number
-  startLineNumber: number
-  endLineNumber: number
+  start: number
+  end: number
 }
 
 export const hoverLocation = ref<HoverLocation | undefined>()
