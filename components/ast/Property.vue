@@ -8,9 +8,12 @@ const open = defineModel<boolean>('open', { required: false })
 const show = computed(() => !shouldHideKey(props.id, props.value))
 
 const title = computed(() => {
-  const parser = currentParser.value
-  const { getAstTitle: getter, astTitleField: field = 'type' } = parser
-  if (getter) return getter.call(parserContext.value, props.value)
+  const {
+    module,
+    getAstTitle: getter,
+    astTitleField: field = 'type',
+  } = parserContext.value
+  if (getter) return getter.call(module, props.value)
   return props.value?.[field]
 })
 const titleColor = useHighlightColor(() => `${title.value}()`)

@@ -75,18 +75,22 @@ export function setParserId(id: string) {
   currentParserId.value = id
 }
 
-const parserContextCache: Record<string, unknown> = Object.create(null)
+const parserModuleCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
   const { pkgName, init } = currentParser.value
   const pkgId = `${pkgName}${
     overrideVersion.value ? `@${overrideVersion.value}` : ''
   }`
-  if (parserContextCache[pkgId]) return parserContextCache[pkgId]
-  return (parserContextCache[pkgId] = await init?.(pkgId))
+  if (parserModuleCache[pkgId]) return parserModuleCache[pkgId]
+  return (parserModuleCache[pkgId] = await init?.(pkgId))
 }
 
-export const parserContextPromise = computed(() => initParser())
-export const parserContext = computedAsync(() => parserContextPromise.value)
+const parserModulePromise = computed(() => initParser())
+const parserModule = computedAsync(() => parserModulePromise.value)
+export const parserContext = computedWithControl(parserModule, () => ({
+  ...currentParser.value,
+  module: parserModule.value,
+}))
 
 if (import.meta.client) {
   // serialize state to url
@@ -113,8 +117,9 @@ if (import.meta.client) {
       )
         setParserId(currentLanguage.value.parsers[0].id)
     },
-    { immediate: true },
+    { immediate: true, flush: 'sync' },
   )
+
   // set default options
   watch(
     currentParserId,
@@ -124,7 +129,7 @@ if (import.meta.client) {
           ? currentParser.value.options.defaultValue
           : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
     },
-    { immediate: !rawUrlState },
+    { immediate: !rawUrlState, flush: 'sync' },
   )
 
   // fetch display version
@@ -145,7 +150,7 @@ if (import.meta.client) {
       } else {
         displayVersion.value = ''
         const res = await Promise.resolve(
-          parser.version.call(parserContextPromise.value, parser.pkgName),
+          parser.version.call(parserModulePromise.value, parser.pkgName),
         )
         if (currentParser.value.id === parser.id) {
           displayVersion.value = res
@@ -156,12 +161,12 @@ if (import.meta.client) {
   )
 
   watch(
-    [parserContextPromise, currentParser, code, rawOptions],
+    [parserModulePromise, code, rawOptions],
     async () => {
       try {
         const id = currentParser.value.id
         loading.value = 'load'
-        const ctx = await parserContextPromise.value
+        const ctx = await parserModulePromise.value
         if (currentParser.value.id !== id) return
         loading.value = 'parse'
         const t = window.performance.now()
