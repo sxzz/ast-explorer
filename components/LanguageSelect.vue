@@ -2,7 +2,6 @@
 import type { Language } from '#imports'
 
 function changeLanguage(language: Language) {
-  code.value = ''
   currentLanguageId.value = language
 }
 </script>
