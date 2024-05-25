@@ -62,11 +62,11 @@ const location = useBrowserLocation()
 const rawUrlState = import.meta.client
   ? atou(location.value.hash!.slice(1))
   : undefined
+const urlState = rawUrlState && JSON.parse(rawUrlState)
+code.value = urlState?.c || currentLanguage.value.codeTemplate
 if (rawUrlState) {
-  const urlState = JSON.parse(rawUrlState)
   currentLanguageId.value = urlState.l
   currentParserId.value = urlState.p
-  code.value = urlState.c || currentLanguage.value.codeTemplate
   rawOptions.value = urlState.o
   overrideVersion.value = urlState.v
 }
