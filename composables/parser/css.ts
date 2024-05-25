@@ -1,4 +1,4 @@
-import { cssTemplate } from './template/css'
+import { cssTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as CssTree from 'css-tree'
 import type * as Postcss from 'postcss'

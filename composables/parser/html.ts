@@ -1,4 +1,4 @@
-import { htmlTemplate } from './template/html'
+import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Htmlparser2 from 'htmlparser2'
 

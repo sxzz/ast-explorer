@@ -1,4 +1,4 @@
-export const vueTemplate = `<script setup>
+<script setup>
 import { ref } from 'vue'
 
 const count = ref(0)
@@ -8,4 +8,3 @@ const count = ref(0)
   {{ count }}
   <button @click="count++">Count</button>
 </template>
-`

@@ -1,4 +1,4 @@
-export const jsonTemplate = `{
+{
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,4 +13,4 @@ export const jsonTemplate = `{
     "@vitejs/plugin-vue": "^5.0.4",
     "vite": "^5.2.11"
   }
-}`
+}

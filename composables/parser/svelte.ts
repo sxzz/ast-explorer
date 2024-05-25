@@ -1,4 +1,4 @@
-import { svelteTemplate } from './template/svelte'
+import { svelteTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type { CompileOptions, compile } from 'svelte/compiler'
 

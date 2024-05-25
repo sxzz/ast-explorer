@@ -1,4 +1,4 @@
-export const svelteTemplate = `<script>
+<script>
 let count = 0;
 
 function handleClick() {
@@ -10,4 +10,3 @@ function handleClick() {
 Clicked {count}
 {count === 1 ? 'time' : 'times'}
 </button>
-`
