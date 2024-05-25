@@ -1,3 +1,4 @@
+import { javascriptTemplate } from '../template'
 import { babel } from './babel'
 import { swc } from './swc'
 import { oxc } from './oxc'
@@ -13,4 +14,5 @@ export const javascript: LanguageOption = {
   // @unocss-include
   icon: 'i-vscode-icons:file-type-js-official',
   parsers: [babel, swc, oxc, acorn, typescript, espree, tsEslint, flow, hermes],
+  codeTemplate: javascriptTemplate,
 }

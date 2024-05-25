@@ -5,4 +5,7 @@ export default sxzz([
       'node/no-unsupported-features/es-builtins': 'off',
     },
   },
+  {
+    ignores: ['composables/parser/template/**'],
+  },
 ])

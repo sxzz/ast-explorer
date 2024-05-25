@@ -54,6 +54,7 @@ export interface LanguageOption {
   label: string
   icon: string
   parsers: Parser<any, any>[]
+  codeTemplate: string
 }
 
 export const LANGUAGES = {

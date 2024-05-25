@@ -62,11 +62,11 @@ const location = useBrowserLocation()
 const rawUrlState = import.meta.client
   ? atou(location.value.hash!.slice(1))
   : undefined
+const urlState = rawUrlState && JSON.parse(rawUrlState)
+code.value = urlState?.c || currentLanguage.value.codeTemplate
 if (rawUrlState) {
-  const urlState = JSON.parse(rawUrlState)
   currentLanguageId.value = urlState.l
   currentParserId.value = urlState.p
-  code.value = urlState.c
   rawOptions.value = urlState.o
   overrideVersion.value = urlState.v
 }
@@ -96,14 +96,21 @@ export const parserContext = computedWithControl(parserModule, () => ({
 if (import.meta.client) {
   // serialize state to url
   watchEffect(() => {
+    // code
+    const c =
+      code.value === currentLanguage.value.codeTemplate ? '' : code.value
     const serialized = JSON.stringify({
       l: currentLanguageId.value,
       p: currentParserId.value,
-      c: code.value,
+      c,
       o: rawOptions.value,
       v: overrideVersion.value,
     })
     location.value.hash = utoa(serialized)
+  })
+
+  watch(currentLanguage, (language) => {
+    code.value = language.codeTemplate
   })
 
   // ensure currentParserId is valid
