@@ -66,7 +66,7 @@ if (rawUrlState) {
   const urlState = JSON.parse(rawUrlState)
   currentLanguageId.value = urlState.l
   currentParserId.value = urlState.p
-  code.value = urlState.c
+  code.value = urlState.c || currentLanguage.value.codeTemplate
   rawOptions.value = urlState.o
   overrideVersion.value = urlState.v
 }
@@ -93,24 +93,24 @@ export const parserContext = computedWithControl(parserModule, () => ({
   module: parserModule.value,
 }))
 
-export const isFillWithTemplate = ref(true)
-
 if (import.meta.client) {
   // serialize state to url
   watchEffect(() => {
-    if (isFillWithTemplate.value) {
-      code.value ||= currentLanguage.value.codeTemplate || ''
-    }
+    // code
+    const c =
+      code.value === currentLanguage.value.codeTemplate ? '' : code.value
     const serialized = JSON.stringify({
       l: currentLanguageId.value,
       p: currentParserId.value,
-      c: code.value,
+      c,
       o: rawOptions.value,
       v: overrideVersion.value,
     })
-
     location.value.hash = utoa(serialized)
-    isFillWithTemplate.value = false
+  })
+
+  watch(currentLanguage, (language) => {
+    code.value = language.codeTemplate
   })
 
   // ensure currentParserId is valid
