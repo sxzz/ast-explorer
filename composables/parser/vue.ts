@@ -1,3 +1,4 @@
+import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
 import type * as Vue3Dom from '@vue/compiler-dom'
@@ -121,4 +122,5 @@ export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
   parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile, vueVapor],
+  codeTemplate: vueTemplate,
 }

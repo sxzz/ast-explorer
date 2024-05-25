@@ -1,3 +1,4 @@
+import { cssTemplate } from './template/css'
 import type { LanguageOption, Parser } from './index'
 import type * as CssTree from 'css-tree'
 import type * as Postcss from 'postcss'
@@ -55,4 +56,5 @@ export const css: LanguageOption = {
   label: 'CSS',
   icon: 'i-vscode-icons:file-type-css',
   parsers: [cssTree, postcss],
+  codeTemplate: cssTemplate,
 }

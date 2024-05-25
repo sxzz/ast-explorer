@@ -93,9 +93,14 @@ export const parserContext = computedWithControl(parserModule, () => ({
   module: parserModule.value,
 }))
 
+export const isFillWithTemplate = ref(true)
+
 if (import.meta.client) {
   // serialize state to url
   watchEffect(() => {
+    if (isFillWithTemplate.value) {
+      code.value ||= currentLanguage.value.codeTemplate || ''
+    }
     const serialized = JSON.stringify({
       l: currentLanguageId.value,
       p: currentParserId.value,
@@ -103,7 +108,9 @@ if (import.meta.client) {
       o: rawOptions.value,
       v: overrideVersion.value,
     })
+
     location.value.hash = utoa(serialized)
+    isFillWithTemplate.value = false
   })
 
   // ensure currentParserId is valid

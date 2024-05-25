@@ -1,3 +1,4 @@
+import { svelteTemplate } from './template/svelte'
 import type { LanguageOption, Parser } from './index'
 import type { CompileOptions, compile } from 'svelte/compiler'
 
@@ -33,4 +34,5 @@ export const svelte: LanguageOption = {
   label: 'Svelte',
   icon: 'i-vscode-icons:file-type-svelte',
   parsers: [svelteCompiler],
+  codeTemplate: svelteTemplate,
 }

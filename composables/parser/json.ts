@@ -1,3 +1,4 @@
+import { jsonTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type parse from 'json-to-ast'
 
@@ -32,4 +33,5 @@ export const json: LanguageOption = {
   label: 'JSON',
   icon: 'i-vscode-icons:file-type-json',
   parsers: [jsonToAst],
+  codeTemplate: jsonTemplate,
 }

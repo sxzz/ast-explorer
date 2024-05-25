@@ -2,6 +2,8 @@
 import type { Language } from '#imports'
 
 function changeLanguage(language: Language) {
+  isFillWithTemplate.value = true
+  code.value = ''
   currentLanguageId.value = language
 }
 </script>

@@ -1,3 +1,4 @@
+import { htmlTemplate } from './template/html'
 import type { LanguageOption, Parser } from './index'
 import type * as Htmlparser2 from 'htmlparser2'
 
@@ -27,4 +28,5 @@ export const html: LanguageOption = {
   label: 'HTML',
   icon: 'i-vscode-icons:file-type-html',
   parsers: [htmlparser2],
+  codeTemplate: htmlTemplate,
 }
