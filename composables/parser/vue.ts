@@ -10,7 +10,7 @@ const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
   label: '@vue/compiler-sfc',
   icon: 'i-vscode-icons:file-type-vue',
   link: 'https://github.com/vuejs/core/tree/main/packages/compiler-sfc#api',
-  editorLanguage: 'vue',
+  editorLanguage: 'html',
   options: {
     configurable: true,
     defaultValue: {},
@@ -36,7 +36,7 @@ const vue3SfcCompiled: Parser<
   ...vue3Sfc,
   id: 'vue3-script-setup',
   label: '@vue/compiler-sfc (script setup)',
-  editorLanguage: 'vue',
+  editorLanguage: 'html',
   options: {
     configurable: true,
     defaultValue: {

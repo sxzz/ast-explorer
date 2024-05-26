@@ -12,8 +12,8 @@ export type MonacoLanguage =
   | 'typescript'
   | 'json'
   | 'html'
-  | 'vue'
-  | 'svelte'
+  // | 'vue' // TODO volar
+  // | 'svelte'
   | 'css'
 
 export interface Parser<C = unknown, O = unknown> {
