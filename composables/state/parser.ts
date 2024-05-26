@@ -63,13 +63,13 @@ const rawUrlState = import.meta.client
   ? atou(location.value.hash!.slice(1))
   : undefined
 const urlState = rawUrlState && JSON.parse(rawUrlState)
-code.value = urlState?.c || currentLanguage.value.codeTemplate
 if (rawUrlState) {
   currentLanguageId.value = urlState.l
   currentParserId.value = urlState.p
   rawOptions.value = urlState.o
   overrideVersion.value = urlState.v
 }
+code.value = urlState?.c || currentLanguage.value.codeTemplate
 
 export function setParserId(id: string) {
   overrideVersion.value = undefined
