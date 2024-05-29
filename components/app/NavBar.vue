@@ -45,7 +45,7 @@ function editVersion() {
           <span>{{ currentParser.pkgName }}</span>
           <template v-if="displayVersion">
             <span>@</span>
-            <span :class="{ 'text-red': overrideVersion }">{{
+            <span :class="overrideVersion && 'text-red'">{{
               displayVersion
             }}</span>
             <small
@@ -61,7 +61,7 @@ function editVersion() {
       <div flex gap3>
         <button
           :disabled="disableOverrideVersion"
-          :class="{ 'cursor-not-allowed op30': disableOverrideVersion }"
+          :class="disableOverrideVersion && 'cursor-not-allowed op30'"
           title="Change Version"
           @click="editVersion"
         >
