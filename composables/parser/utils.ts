@@ -5,7 +5,7 @@ export async function fetchVersion(pkg: string) {
   return raw.version
 }
 
-export function importUrl(url: string, sandbox?: boolean): Promise<any> {
+export function importUrl<T = any>(url: string, sandbox?: boolean): Promise<T> {
   if (sandbox) {
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
