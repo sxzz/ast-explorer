@@ -26,6 +26,9 @@ importers:
       monaco-editor:
         specifier: ^0.49.0
         version: 0.49.0
+      monaco-editor-auto-typings:
+        specifier: ^0.4.5
+        version: 0.4.5(monaco-editor@0.49.0)
     devDependencies:
       '@babel/parser':
         specifier: ^7.24.6
@@ -3405,6 +3408,11 @@ packages:
 
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
+
+  monaco-editor-auto-typings@0.4.5:
+    resolution: {integrity: sha512-J1iVXKKhcBRc8t3jhHl2l9WYhnnPBXFOSuRCIpiC7d2aEOX9ZhWuIAWcCtTtvAN4944lfi0lhjuTi4iebe8VDg==}
+    peerDependencies:
+      monaco-editor: '*'
 
   monaco-editor@0.49.0:
     resolution: {integrity: sha512-2I8/T3X/hLxB2oPHgqcNYUVdA/ZEFShT7IAujifIPMfKkNbLOqY8XCoyHCXrsdjb36dW9MwoTwBCFpXKMwNwaQ==}
@@ -8910,6 +8918,10 @@ snapshots:
       pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.5.3
+
+  monaco-editor-auto-typings@0.4.5(monaco-editor@0.49.0):
+    dependencies:
+      monaco-editor: 0.49.0
 
   monaco-editor@0.49.0: {}
 

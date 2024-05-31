@@ -21,7 +21,8 @@
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
-    "monaco-editor": "^0.49.0"
+    "monaco-editor": "^0.49.0",
+    "monaco-editor-auto-typings": "^0.4.5"
   },
   "devDependencies": {
     "@babel/parser": "^7.24.6",

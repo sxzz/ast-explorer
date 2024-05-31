@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AutoTypings, LocalStorageCache } from 'monaco-editor-auto-typings'
 import type { MonacoLanguage } from '#imports'
 import type * as Monaco from 'monaco-editor'
 import type { MonacoEditor } from '#build/components'
@@ -20,13 +21,20 @@ const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
 )
 
 if (props.input) {
-  watchEffect(() => {
-    const editor = toRaw(container.value?.$editor)
-    if (!editor) return
-    editor.onDidChangeCursorPosition((e) => {
-      editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
-    })
-  })
+  watch(
+    () => container.value?.$editor,
+    (editor) => {
+      if (!editor) return
+
+      editor.onDidChangeCursorPosition((e) => {
+        editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
+      })
+      AutoTypings.create(editor, {
+        sourceCache: new LocalStorageCache(),
+      })
+    },
+    { immediate: true },
+  )
 
   let decorationsCollection:
     | Monaco.editor.IEditorDecorationsCollection

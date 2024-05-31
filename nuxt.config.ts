@@ -8,6 +8,11 @@ export default defineNuxtConfig({
     esbuild: {
       legalComments: 'external',
     },
+    resolve: {
+      alias: {
+        path: 'pathe',
+      },
+    },
   },
   devtools: {
     enabled: true,
