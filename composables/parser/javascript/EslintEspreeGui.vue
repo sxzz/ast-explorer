@@ -34,7 +34,7 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
   <div flex="~ col" gap4 text-sm font-mono>
     <label>
       <span>sourceType</span>
-      <select v-model="sourceType">
+      <select v-model="sourceType" w-full>
         <option value="script">script</option>
         <option value="module">module</option>
         <option value="commonjs">commonjs</option>
@@ -43,7 +43,7 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
 
     <label>
       <span>ecmaVersion</span>
-      <input v-model="ecmaVersion" />
+      <input v-model="ecmaVersion" w-full />
     </label>
 
     <label>

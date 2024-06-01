@@ -24,7 +24,7 @@ const preserveParens = useOption('preserveParens')
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
       <span>sourceType</span>
-      <select v-model="sourceType">
+      <select v-model="sourceType" w-full>
         <option value="script">script</option>
         <option value="module">module</option>
       </select>
@@ -32,7 +32,7 @@ const preserveParens = useOption('preserveParens')
 
     <label>
       <span>ecmaVersion</span>
-      <input v-model="ecmaVersion" />
+      <input v-model="ecmaVersion" w-full />
     </label>
 
     <label>
