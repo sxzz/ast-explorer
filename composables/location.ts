@@ -1,6 +1,5 @@
 import jsonToAst from 'json-to-ast'
 import type { Parser } from '#imports'
-import type * as monaco from 'monaco-editor'
 
 const astLocationFields = {
   startEnd: {
@@ -116,17 +115,4 @@ function getJsonValue(
   }
   if (current?.type === 'Literal') return current.value
   return current
-}
-
-export function getSharedMonacoOptions(): monaco.editor.IStandaloneEditorConstructionOptions {
-  return {
-    automaticLayout: true,
-    theme: isDark.value ? 'vs-dark' : 'vs',
-    fontFamily:
-      '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
-    tabSize: 2,
-    minimap: {
-      enabled: false,
-    },
-  }
 }
