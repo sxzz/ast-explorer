@@ -171,8 +171,8 @@ if (import.meta.client) {
   watch(
     [parserModulePromise, code, rawOptions],
     async () => {
+      const id = currentParser.value.id
       try {
-        const id = currentParser.value.id
         loading.value = 'load'
         const ctx = await parserModulePromise.value
         if (currentParser.value.id !== id) return
@@ -187,8 +187,10 @@ if (import.meta.client) {
         error.value = null
         // eslint-disable-next-line unicorn/catch-error-name
       } catch (err: any) {
-        error.value = `${err}`.replace(ansiRegex(), '')
         console.error(err)
+        if (currentParser.value.id === id) {
+          error.value = `${err}`.replace(ansiRegex(), '')
+        }
       } finally {
         loading.value = false
       }
