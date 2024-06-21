@@ -1,6 +1,6 @@
 export { default as vueTemplate } from './vue.vue?raw'
 export { default as javascriptTemplate } from './javascript.js?raw'
 export { default as svelteTemplate } from './svelte.svelte?raw'
-export { default as cssTemplate } from './css.css?raw'
+export { default as cssTemplate } from './css'
 export { default as jsonTemplate } from './json.json?raw'
 export { default as htmlTemplate } from './html.html?raw'

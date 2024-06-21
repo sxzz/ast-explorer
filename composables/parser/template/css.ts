@@ -1,4 +1,4 @@
-@import './base.css';
+export default `@import './base.css';
 
 #app {
   max-width: 1280px;
@@ -32,4 +32,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+}`
