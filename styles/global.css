@@ -12,6 +12,10 @@ select {
   --at-apply: 'bg-#0000000d dark:bg-#ffffff1a';
 }
 
+option {
+  --at-apply: 'dark:bg-base';
+}
+
 .shiki {
   display: inline;
   background-color: transparent !important;
