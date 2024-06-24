@@ -2,7 +2,7 @@
   "name": "ast-explorer",
   "version": "0.14.0",
   "private": true,
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.4.0",
   "type": "module",
   "license": "AGPL-3.0",
   "scripts": {
@@ -16,12 +16,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.1",
     "ansi-regex": "^6.0.1",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
-    "monaco-editor": "^0.49.0",
+    "monaco-editor": "^0.50.0",
     "monaco-editor-auto-typings": "^0.4.5"
   },
   "devDependencies": {
@@ -29,16 +29,16 @@
     "@iconify-json/ri": "^1.1.21",
     "@iconify-json/vscode-icons": "^1.1.35",
     "@nuxt/kit": "^3.12.2",
-    "@oxc-parser/wasm": "^0.14.0",
-    "@swc/wasm-web": "1.6.1",
+    "@oxc-parser/wasm": "^0.15.0",
+    "@swc/wasm-web": "1.6.5",
     "@sxzz/eslint-config": "^3.13.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/css-tree": "^2.3.8",
     "@types/json-to-ast": "^2.1.4",
     "@unocss/nuxt": "^0.61.0",
     "@vue-vapor/compiler-vapor": "latest",
-    "@vue/compiler-dom": "^3.4.29",
-    "@vue/compiler-sfc": "^3.4.29",
+    "@vue/compiler-dom": "^3.4.30",
+    "@vue/compiler-sfc": "^3.4.30",
     "@vueuse/nuxt": "^10.11.0",
     "acorn": "^8.12.0",
     "bumpp": "^9.4.1",
@@ -54,10 +54,10 @@
     "postcss": "^8.4.38",
     "serve": "^14.2.3",
     "svelte": "^4.2.18",
-    "tsx": "^4.15.5",
-    "typescript": "^5.4.5",
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2",
     "unplugin-replace": "^0.3.2",
-    "vue-tsc": "^2.0.21"
+    "vue-tsc": "^2.0.22"
   },
   "prettier": "@sxzz/prettier-config"
 }
