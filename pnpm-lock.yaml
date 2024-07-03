@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@shikijs/monaco':
+        specifier: ^1.11.1
+        version: 1.11.1
       '@typescript-eslint/parser':
         specifier: ^7.16.1
         version: 7.16.1(eslint@9.7.0)(typescript@5.5.3)
@@ -29,6 +32,9 @@ importers:
       monaco-editor-auto-typings:
         specifier: ^0.4.5
         version: 0.4.5(monaco-editor@0.50.0)
+      shiki:
+        specifier: ^1.11.1
+        version: 1.11.1
     devDependencies:
       '@babel/parser':
         specifier: ^7.24.8
@@ -1208,8 +1214,11 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@shikijs/core@1.6.0':
-    resolution: {integrity: sha512-NIEAi5U5R7BLkbW1pG/ZKu3eb1lzc3/+jD0lFsuxMT7zjaf9bbNwdNyMr7zh/Zl8EXQtQ+MYBAt5G+JLu+5DlA==}
+  '@shikijs/core@1.11.1':
+    resolution: {integrity: sha512-Qsn8h15SWgv5TDRoDmiHNzdQO2BxDe86Yq6vIHf5T0cCvmfmccJKIzHtep8bQO9HMBZYCtCBzaXdd1MnxZBPSg==}
+
+  '@shikijs/monaco@1.11.1':
+    resolution: {integrity: sha512-1okdUa2+KGbYLUnBdztHpdAwNgzeqgBzILMeChqvw1npNkl8080EPBMrrT80ZLFUDcy/t/73nAOk2nb/SHVlPg==}
 
   '@sindresorhus/merge-streams@2.3.0':
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
@@ -1242,6 +1251,9 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/hast@3.0.4':
+    resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
   '@types/http-proxy@1.17.14':
     resolution: {integrity: sha512-SSrD0c1OQzlFX7pGu1eXxSEjemej64aaNPRhhVYUGqXh0BtldAAx37MG8btcumvpgKyZp1F5Gn3JkktdxiFv6w==}
@@ -4050,8 +4062,8 @@ packages:
   shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  shiki@1.6.0:
-    resolution: {integrity: sha512-P31ROeXcVgW/k3Z+vUUErcxoTah7ZRaimctOpzGuqAntqnnSmx1HOsvnbAB8Z2qfXPRhw61yptAzCsuKOhTHwQ==}
+  shiki@1.11.1:
+    resolution: {integrity: sha512-VHD3Q0EBXaaa245jqayBe5zQyMQUdXBFjmGr9MpDaDpAKRMYn7Ff00DM5MLk26UyKjnml3yQ0O2HNX7PtYVNFQ==}
 
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
@@ -5965,7 +5977,13 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@shikijs/core@1.6.0': {}
+  '@shikijs/core@1.11.1':
+    dependencies:
+      '@types/hast': 3.0.4
+
+  '@shikijs/monaco@1.11.1':
+    dependencies:
+      '@shikijs/core': 1.11.1
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
@@ -6022,6 +6040,10 @@ snapshots:
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
+
+  '@types/hast@3.0.4':
+    dependencies:
+      '@types/unist': 2.0.10
 
   '@types/http-proxy@1.17.14':
     dependencies:
@@ -8654,7 +8676,7 @@ snapshots:
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.18.0)
       knitwork: 1.1.0
-      shiki: 1.6.0
+      shiki: 1.11.1
       unwasm: 0.3.9
     transitivePeerDependencies:
       - magicast
@@ -9386,9 +9408,10 @@ snapshots:
 
   shell-quote@1.8.1: {}
 
-  shiki@1.6.0:
+  shiki@1.11.1:
     dependencies:
-      '@shikijs/core': 1.6.0
+      '@shikijs/core': 1.11.1
+      '@types/hast': 3.0.4
 
   signal-exit@3.0.7: {}
 

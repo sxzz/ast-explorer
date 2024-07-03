@@ -16,13 +16,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@shikijs/monaco": "^1.11.1",
     "@typescript-eslint/parser": "^7.16.1",
     "ansi-regex": "^6.0.1",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
     "monaco-editor": "^0.50.0",
-    "monaco-editor-auto-typings": "^0.4.5"
+    "monaco-editor-auto-typings": "^0.4.5",
+    "shiki": "^1.11.1"
   },
   "devDependencies": {
     "@babel/parser": "^7.24.8",
