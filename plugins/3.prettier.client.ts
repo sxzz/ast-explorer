@@ -3,22 +3,6 @@ import type { BuiltInParserName, Plugin } from 'prettier'
 export default defineNuxtPlugin(() => {
   const monaco = useMonaco()!
 
-  monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-    allowComments: true,
-    enableSchemaRequest: true,
-    trailingCommas: 'ignore',
-  })
-
-  monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
-    target: monaco.languages.typescript.ScriptTarget.ESNext,
-    module: monaco.languages.typescript.ModuleKind.ESNext,
-    allowNonTsExtensions: true,
-    moduleResolution: monaco.languages.typescript.ModuleResolutionKind.NodeJs,
-    noEmit: true,
-    esModuleInterop: true,
-    jsx: monaco.languages.typescript.JsxEmit.Preserve,
-  })
-
   monaco.languages.registerDocumentFormattingEditProvider(
     (
       [
@@ -27,6 +11,7 @@ export default defineNuxtPlugin(() => {
         'json',
         'html',
         'css',
+        'vue',
       ] satisfies MonacoLanguage[]
     ).map((language) => ({ language, exclusive: true })),
     {
@@ -57,13 +42,12 @@ export default defineNuxtPlugin(() => {
             parser = language
             pluginIds = ['postcss']
             break
+          case 'vue':
           case 'html':
-            pluginIds = [language]
-            if (currentLanguageId.value === 'vue') {
-              parser = currentLanguageId.value
+            pluginIds = ['html']
+            parser = language
+            if (language === 'vue') {
               pluginIds.push('estree', 'babel', 'typescript')
-            } else {
-              parser = language
             }
             break
           default:

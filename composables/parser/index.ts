@@ -12,7 +12,7 @@ export type MonacoLanguage =
   | 'typescript'
   | 'json'
   | 'html'
-  // | 'vue' // TODO volar
+  | 'vue'
   // | 'svelte'
   | 'css'
 
