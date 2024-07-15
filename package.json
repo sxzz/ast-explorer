@@ -16,7 +16,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^7.15.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "ansi-regex": "^6.0.1",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
@@ -25,11 +25,11 @@
     "monaco-editor-auto-typings": "^0.4.5"
   },
   "devDependencies": {
-    "@babel/parser": "^7.24.7",
+    "@babel/parser": "^7.24.8",
     "@iconify-json/ri": "^1.1.21",
     "@iconify-json/vscode-icons": "^1.1.35",
     "@nuxt/kit": "^3.12.3",
-    "@oxc-parser/wasm": "^0.17.1",
+    "@oxc-parser/wasm": "^0.20.0",
     "@swc/wasm-web": "1.6.7",
     "@sxzz/eslint-config": "^3.13.0",
     "@sxzz/prettier-config": "^2.0.2",
@@ -43,9 +43,9 @@
     "acorn": "^8.12.1",
     "bumpp": "^9.4.1",
     "esbuild": "^0.23.0",
-    "eslint": "^9.6.0",
+    "eslint": "^9.7.0",
     "floating-vue": "5.2.2",
-    "flow-parser": "^0.239.0",
+    "flow-parser": "^0.239.1",
     "htmlparser2": "^9.1.0",
     "nuxt": "3.12.3",
     "nuxt-monaco-editor": "^1.2.9",
