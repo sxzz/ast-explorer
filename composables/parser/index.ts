@@ -1,11 +1,11 @@
-import { javascript } from './javascript'
-import { vue } from './vue'
-import { svelte } from './svelte'
-import { json } from './json'
-import { html } from './html'
-import { css } from './css'
-import type { AsyncComponentLoader } from 'vue'
 import type { JsonNode, Range } from '#imports'
+import { css } from './css'
+import { html } from './html'
+import { javascript } from './javascript'
+import { json } from './json'
+import { svelte } from './svelte'
+import { vue } from './vue'
+import type { AsyncComponentLoader } from 'vue'
 
 export type MonacoLanguage =
   | 'javascript'

@@ -1,6 +1,6 @@
 import { svelteTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
-import type { CompileOptions, compile } from 'svelte/compiler'
+import type { compile, CompileOptions } from 'svelte/compiler'
 
 // @unocss-include
 

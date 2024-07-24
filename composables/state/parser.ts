@@ -1,5 +1,5 @@
-import json5 from 'json5'
 import ansiRegex from 'ansi-regex'
+import json5 from 'json5'
 import type { Language, Range } from '#imports'
 
 export const loading = ref<'load' | 'parse' | false>(false)

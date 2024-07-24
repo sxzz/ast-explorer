@@ -1,8 +1,8 @@
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
-import type * as Vue3Sfc from '@vue/compiler-sfc'
-import type * as Vue3Dom from '@vue/compiler-dom'
 import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'
+import type * as Vue3Dom from '@vue/compiler-dom'
+import type * as Vue3Sfc from '@vue/compiler-sfc'
 // @unocss-include
 
 const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {

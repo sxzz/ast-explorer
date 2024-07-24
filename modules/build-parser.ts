@@ -1,9 +1,9 @@
-import path from 'node:path'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import path from 'node:path'
 import { addVitePlugin, defineNuxtModule, useLogger } from '@nuxt/kit'
+import { version } from '@typescript-eslint/parser'
 import { build } from 'esbuild'
 import Replace from 'unplugin-replace/esbuild'
-import { version } from '@typescript-eslint/parser'
 
 const VIRTUAL_ID = '/virtual/typescript-eslint/parser'
 
