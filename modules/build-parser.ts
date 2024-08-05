@@ -42,10 +42,12 @@ export async function buildTsEslint() {
     minify: true,
     alias: {
       path: 'pathe',
+      'node:path': 'pathe',
       fs: 'unenv/runtime/mock/proxy',
       os: 'unenv/runtime/mock/proxy',
       'node:os': 'unenv/runtime/mock/proxy',
       'node:process': 'unenv/runtime/mock/proxy',
+      'node:util': 'unenv/runtime/mock/proxy',
       stream: 'unenv/runtime/mock/proxy',
       globby: 'unenv/runtime/mock/proxy',
       perf_hooks: 'unenv/runtime/mock/proxy',
