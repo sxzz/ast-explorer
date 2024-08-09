@@ -89,8 +89,7 @@ watch(outputView, (view) => {
           JSON
         </button>
       </div>
-      <!-- TODO implement auto-focus on tree view -->
-      <label v-if="outputView === 'json'">
+      <label>
         <input
           :checked="autoFocus"
           type="checkbox"

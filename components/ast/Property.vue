@@ -28,7 +28,7 @@ const openable = computed(
     Object.keys(props.value).length > 0,
 )
 
-const isHover = computed(() => {
+const isHovering = computed(() => {
   if (Array.isArray(props.value)) {
     return props.value.some((v) => checkRange(getRange(v)))
   }
@@ -41,15 +41,20 @@ const isHover = computed(() => {
 })
 const openManual = ref<boolean>()
 const open = computed(
-  () => openable.value && (openManual.value ?? (props.open || isHover.value)),
+  () =>
+    openable.value &&
+    (openManual.value ?? (props.open || (autoFocus.value && isHovering.value))),
 )
+
+const valueCreated = ref(false)
+watch(open, () => (valueCreated.value ||= open.value), { immediate: true })
 
 function toggleOpen() {
   if (!openable.value) return
 
   if (
     openManual.value !== undefined &&
-    openManual.value !== (props.open || isHover.value)
+    openManual.value !== (props.open || isHovering.value)
   ) {
     openManual.value = undefined
   } else {
@@ -81,12 +86,33 @@ function handleMouseLeave() {
     outputHoverRange.value = undefined
   }
 }
+
+const container = ref<HTMLDivElement>()
+const exactHover = ref(false)
+
+function handleSubHoverChange(subHovering: boolean) {
+  exactHover.value = isHovering.value && !subHovering
+}
+
+watch(
+  [autoFocus, exactHover, isHovering, container],
+  ([autoFocus, exactHover, isHovering, container]) => {
+    if (autoFocus && exactHover && isHovering && container) {
+      requestAnimationFrame(() => container.scrollIntoView({ block: 'center' }))
+    }
+  },
+  { immediate: true },
+)
+
+defineExpose({ isHovering })
 </script>
 
 <template>
   <div
     v-if="show"
+    ref="container"
     relative
+    :class="isHovering && exactHover && 'ast-highlight'"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
   >
@@ -117,7 +143,13 @@ function handleMouseLeave() {
         v-text="title"
       />&nbsp;</span
     >
-    <AstValue v-if="!openable || open" :data="value" />
-    <AstSummaryValue v-else :data="value" @toggle="toggleOpen" />
+    <span v-if="!openable || valueCreated" v-show="!openable || open">
+      <AstValue :data="value" @update:hover="handleSubHoverChange" />
+    </span>
+    <AstSummaryValue
+      v-if="openable && !open"
+      :data="value"
+      @toggle="toggleOpen"
+    />
   </div>
 </template>

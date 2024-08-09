@@ -21,6 +21,10 @@ option {
   background-color: transparent !important;
 }
 
+.ast-highlight {
+  --at-apply: 'bg-yellow-400/30 dark:bg-yellow-400/20';
+}
+
 /* Color Mode transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {

@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import type { AstProperty } from '#components'
 const props = defineProps<{ data: any }>()
+const emit = defineEmits<{
+  'update:hover': [value: boolean]
+}>()
 
 const hasChildren = computed(
   () =>
@@ -14,6 +18,12 @@ const value = computed<string | undefined>(() => {
   return props.data == null ? String(props.data) : JSON.stringify(props.data)
 })
 const valueColor = useHighlightColor(value)
+
+const properties = useTemplateRefsList<InstanceType<typeof AstProperty>>()
+watchEffect(() => {
+  const hovering = properties.value.some((p) => p.isHovering)
+  emit('update:hover', hovering)
+})
 </script>
 
 <template>
@@ -21,7 +31,7 @@ const valueColor = useHighlightColor(value)
     <AstBrackets :data>
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of data" :key="key">
-          <AstProperty :id="key" :value="item" />
+          <AstProperty :id="key" :ref="properties.set" :value="item" />
         </template>
       </div>
     </AstBrackets>

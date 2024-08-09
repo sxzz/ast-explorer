@@ -55,7 +55,7 @@ if (props.input) {
           range: monaco.Range.fromPositions(start, end),
           options: {
             isWholeLine: false,
-            className: 'input-editor-highlight',
+            className: 'ast-highlight',
           },
         },
       ])
@@ -79,9 +79,3 @@ if (props.input) {
     </div>
   </MonacoEditor>
 </template>
-
-<style>
-.input-editor-highlight {
-  --at-apply: 'bg-yellow-400/30 dark:bg-yellow-600/30';
-}
-</style>
