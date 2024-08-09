@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { Range } from '#imports'
+
 const props = defineProps<{
   id?: string | number
   value?: any
   root?: boolean
+  open?: boolean
 }>()
-const open = defineModel<boolean>('open', { required: false })
 
 const show = computed(() => !shouldHideKey(props.id, props.value))
 
@@ -25,8 +27,34 @@ const openable = computed(
     props.value != null &&
     Object.keys(props.value).length > 0,
 )
+
+const isHover = computed(() => {
+  if (Array.isArray(props.value)) {
+    return props.value.some((v) => checkRange(getRange(v)))
+  }
+  return checkRange(getRange(props.value))
+
+  function checkRange(range?: Range) {
+    if (!range) return false
+    return range[0] <= editorCursor.value && range[1] > editorCursor.value
+  }
+})
+const openManual = ref<boolean>()
+const open = computed(
+  () => openable.value && (openManual.value ?? (props.open || isHover.value)),
+)
+
 function toggleOpen() {
-  if (openable.value) open.value = !open.value
+  if (!openable.value) return
+
+  if (
+    openManual.value !== undefined &&
+    openManual.value !== (props.open || isHover.value)
+  ) {
+    openManual.value = undefined
+  } else {
+    openManual.value = !open.value
+  }
 }
 
 const key = computed(() => (props.id != null ? String(props.id) : undefined))
@@ -40,7 +68,7 @@ function handleMouseOver(event: MouseEvent) {
     event.stopPropagation()
     outputHoverRange.value = undefined
   } else if (props.value) {
-    const range = currentParser.value.getAstLocation?.(props.value)
+    const range = getRange(props.value)
     if (!range) return
 
     event.stopPropagation()
@@ -53,10 +81,6 @@ function handleMouseLeave() {
     outputHoverRange.value = undefined
   }
 }
-
-defineExpose({
-  toggleOpen,
-})
 </script>
 
 <template>

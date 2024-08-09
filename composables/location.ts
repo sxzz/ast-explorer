@@ -116,3 +116,7 @@ function getJsonValue(
   if (current?.type === 'Literal') return current.value
   return current
 }
+
+export function getRange(ast: any) {
+  return currentParser.value.getAstLocation?.(ast)
+}
