@@ -27,6 +27,11 @@ const astLocationFields = {
     start: ['pos'],
     end: ['end'],
   },
+  htmlparser2: {
+    type: ['type'],
+    start: ['startIndex'],
+    end: ['endIndex'],
+  },
 } as const
 
 export function genGetAstLocation(

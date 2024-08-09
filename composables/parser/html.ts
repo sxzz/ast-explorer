@@ -12,7 +12,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   editorLanguage: 'html',
   options: {
     configurable: true,
-    defaultValue: 'return {}',
+    defaultValue: `return { withStartIndices: true, withEndIndices: true }`,
     editorLanguage: 'javascript',
     defaultValueType: 'javascript',
   },
@@ -22,6 +22,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   parse(code, options) {
     return this.parseDocument(code, options)
   },
+  getAstLocation: genGetAstLocation('htmlparser2'),
 }
 
 export const html: LanguageOption = {
