@@ -28,9 +28,14 @@ const openable = computed(
     Object.keys(props.value).length > 0,
 )
 
+function isArrayLike(n: unknown) {
+  return typeof n == 'object' && n && (Array.isArray(n) || Symbol.iterator in n)
+}
+
 const isHovering = computed(() => {
-  if (Array.isArray(props.value)) {
-    return props.value.some((v) => checkRange(getRange(v)))
+  // children of csstree is iterable but not array
+  if (isArrayLike(props.value)) {
+    return Array.from(props.value).some((v) => checkRange(getRange(v)))
   }
   return checkRange(getRange(props.value))
 
