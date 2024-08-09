@@ -72,7 +72,7 @@ function editVersion() {
         </a>
         <button
           title="Toggle Side Bar"
-          :class="!showSidebar && 'op-40'"
+          :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
           :disabled="!sideBarAvailable"
           @click="toggleSidebar()"
         >
