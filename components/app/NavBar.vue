@@ -70,13 +70,27 @@ function editVersion() {
         <a :href="currentParser.link" target="_blank" flex="~ center">
           <div i-ri:book-2-line />
         </a>
-        <button title="Toggle Left Layout" @click="toggleLeftLayout()">
-          <div v-if="showLeftLayout" i-ri:layout-column-fill />
-          <div v-else i-ri:layout-left-line />
+        <button
+          title="Toggle Side Bar"
+          :class="!showSidebar && 'op-40'"
+          :disabled="!sideBarAvailable"
+          @click="toggleSidebar()"
+        >
+          <div i-ri:list-settings-line />
         </button>
-        <button title="Toggle Right Layout" @click="toggleRightLayout()">
-          <div v-if="showRightLayout" i-ri:layout-column-fill rotate-180 />
-          <div v-else i-ri:layout-left-line rotate-180 />
+        <button
+          title="Toggle Input Editor"
+          :class="!showInputEditor && 'op-40'"
+          @click="toggleInputEditor()"
+        >
+          <div i-ri:code-block />
+        </button>
+        <button
+          title="Toggle Output Result"
+          :class="!showOutput && 'op-40'"
+          @click="toggleOutput()"
+        >
+          <div i-ri:tree-line />
         </button>
         <button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />

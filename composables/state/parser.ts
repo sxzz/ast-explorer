@@ -54,7 +54,7 @@ export const parserOptions = computed({
   },
 })
 
-export const showSideBar = computed(
+export const sideBarAvailable = computed(
   () => currentParser.value.options.configurable && !!currentParserGui.value,
 )
 

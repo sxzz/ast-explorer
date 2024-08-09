@@ -1,12 +1,14 @@
 const PREFIX = 'ast-explorer:'
 
-export const showLeftLayout = useLocalStorage(`${PREFIX}show-left-layout`, true)
-export const showRightLayout = useLocalStorage(
-  `${PREFIX}show-right-layout`,
+export const showSidebar = useLocalStorage(`${PREFIX}show-sidebar`, true)
+export const showInputEditor = useLocalStorage(
+  `${PREFIX}show-input-editor`,
   true,
 )
-export const toggleLeftLayout = useToggle(showLeftLayout)
-export const toggleRightLayout = useToggle(showRightLayout)
+export const showOutput = useLocalStorage(`${PREFIX}show-output`, true)
+export const toggleSidebar = useToggle(showSidebar)
+export const toggleInputEditor = useToggle(showInputEditor)
+export const toggleOutput = useToggle(showOutput)
 
 export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
 export const hideLocationData = useLocalStorage(
