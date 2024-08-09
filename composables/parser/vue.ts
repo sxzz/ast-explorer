@@ -78,6 +78,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
+  getAstLocation: genGetAstLocation('locOffset'),
 }
 
 const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.CompilerOptions> = {
