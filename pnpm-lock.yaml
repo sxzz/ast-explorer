@@ -93,6 +93,9 @@ importers:
       eslint:
         specifier: ^9.9.0
         version: 9.9.0(jiti@1.21.6)
+      esprima-next:
+        specifier: ^6.0.3
+        version: 6.0.3
       floating-vue:
         specifier: 5.2.2
         version: 5.2.2(@nuxt/kit@3.12.4(magicast@0.3.4)(rollup@4.20.0))(vue@3.4.35(typescript@5.5.4))
@@ -2538,6 +2541,11 @@ packages:
   espree@9.6.1:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  esprima-next@6.0.3:
+    resolution: {integrity: sha512-fVfE+9qIOJSbS3AR7roIuL0gCeS+tC86bJV9GlJtwXCRoo67q6tsGGUjThW+JtR5IQSShnHqaDqX8D0IYDfRGA==}
+    engines: {node: '>=12'}
+    hasBin: true
 
   esquery@1.6.0:
     resolution: {integrity: sha512-ca9pw9fomFcKPvFLXhBKUK90ZvGibiGOvRJNbjljY7s7uq/5YO4BOzcYtJqExdx99rF6aAcnRxHmcUHcz6sQsg==}
@@ -6499,7 +6507,7 @@ snapshots:
       '@volar/language-core': 2.4.0-alpha.18
       '@vue/compiler-dom': 3.4.37
       '@vue/compiler-vue2': 2.7.16
-      '@vue/shared': 3.4.35
+      '@vue/shared': 3.4.37
       computeds: 0.0.1
       minimatch: 9.0.5
       muggle-string: 0.4.1
@@ -7661,6 +7669,8 @@ snapshots:
       acorn: 8.12.1
       acorn-jsx: 5.3.2(acorn@8.12.1)
       eslint-visitor-keys: 3.4.3
+
+  esprima-next@6.0.3: {}
 
   esquery@1.6.0:
     dependencies:

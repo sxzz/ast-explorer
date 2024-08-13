@@ -46,6 +46,7 @@
     "bumpp": "^9.4.2",
     "esbuild": "^0.23.0",
     "eslint": "^9.9.0",
+    "esprima-next": "^6.0.3",
     "floating-vue": "5.2.2",
     "flow-parser": "^0.243.0",
     "htmlparser2": "^9.1.0",
