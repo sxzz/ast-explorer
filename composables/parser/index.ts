@@ -5,6 +5,7 @@ import { javascript } from './javascript'
 import { json } from './json'
 import { svelte } from './svelte'
 import { vue } from './vue'
+import { wxml } from './wxml'
 import type { AsyncComponentLoader } from 'vue'
 
 export type MonacoLanguage =
@@ -64,5 +65,6 @@ export const LANGUAGES = {
   css,
   html,
   json,
+  wxml,
 }
 export type Language = keyof typeof LANGUAGES
