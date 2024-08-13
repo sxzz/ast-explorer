@@ -13,7 +13,7 @@ const jsonToAst: Parser<typeof parse, parse.Options> = {
   options: {
     configurable: true,
     defaultValue: {
-      loc: false,
+      loc: true,
     },
     editorLanguage: 'json',
   },
