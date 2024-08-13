@@ -7,6 +7,10 @@ AST Explorer - For most popular front-end languages and parsers.
 
 Feel free to add more parsers and languages via PR!
 
+<div align="center">
+  <img alt="Screenshot" src="./.github/screenshot.png" width="800px" />
+</div>
+
 ## Features
 
 - 🦾 Enable code highlighting, suggestions, and formatting with Monaco Editor.
