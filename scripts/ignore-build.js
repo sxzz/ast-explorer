@@ -1,12 +1,9 @@
 // @ts-check
 
-import { execSync } from 'node:child_process'
 import process from 'node:process'
 
-const gitLog = execSync('git log -1 --pretty=%B', { encoding: 'utf8' }).trim()
-const gitBranch = execSync('git branch --show-current', {
-  encoding: 'utf8',
-}).trim()
+const gitLog = process.env.VERCEL_GIT_COMMIT_MESSAGE || ''
+const gitBranch = process.env.VERCEL_GIT_COMMIT_REF
 
 if (gitLog.startsWith('chore: release') && gitBranch !== 'release') {
   console.log('Release commit, skipped.')
