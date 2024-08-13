@@ -1,9 +1,11 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import process from 'node:process'
 import { addVitePlugin, defineNuxtModule, useLogger } from '@nuxt/kit'
 import { version } from '@typescript-eslint/parser'
 import { build } from 'esbuild'
 import Replace from 'unplugin-replace/esbuild'
+import type { ConsolaInstance } from 'consola'
 
 const VIRTUAL_ID = '/virtual/typescript-eslint/parser'
 
@@ -19,23 +21,29 @@ export default defineNuxtModule(() => {
     async load(id) {
       if (id !== VIRTUAL_ID) return
 
-      logger.start('Building @typescript-eslint/parser')
-      const result = await buildTsEslint()
-      logger.success('Built @typescript-eslint/parser')
+      const result = await buildTsEslint(logger)
       return result
     },
   })
 })
 
-export async function buildTsEslint() {
+export async function buildTsEslint(logger: ConsolaInstance) {
   const cacheDir = path.resolve(__dirname, `../.nuxt/cache`)
   await mkdir(cacheDir, { recursive: true }).catch(() => null)
   const cachePath = path.resolve(cacheDir, `ts-eslint-parser@${version}.js`)
   const cache = await readFile(cachePath, 'utf8').catch(() => null)
-  if (cache) return cache
+  if (cache) {
+    logger.info(`Using cached @typescript-eslint/parser from ${cachePath}`)
+    return cache
+  }
 
+  logger.start('Building @typescript-eslint/parser')
   const result = await build({
-    entryPoints: ['@typescript-eslint/parser'],
+    stdin: {
+      contents: `export { version, parse } from '@typescript-eslint/parser'`,
+      resolveDir: process.cwd(),
+    },
+    format: 'esm',
     write: false,
     bundle: true,
     platform: 'browser',
@@ -60,9 +68,9 @@ export async function buildTsEslint() {
         values: [{ find: /process\.cwd\(\)/g, replacement: '"/"' }],
       }),
     ],
-    format: 'esm',
   })
   const text = result.outputFiles[0].text
   await writeFile(cachePath, text, 'utf8')
+  logger.success('Built @typescript-eslint/parser')
   return text
 }

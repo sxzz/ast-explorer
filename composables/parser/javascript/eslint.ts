@@ -29,7 +29,10 @@ export const espree: Parser<any, any> = {
   gui: () => import('./EslintEspreeGui.vue'),
 }
 
-export const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
+export const tsEslint: Parser<
+  Pick<typeof TsEslint, 'parse' | 'version'>,
+  TsEslint.ParserOptions
+> = {
   id: 'typescript-eslint',
   label: '@typescript-eslint/parser',
   icon: 'https://cdn.jsdelivr.net/gh/typescript-eslint/typescript-eslint@main/packages/website/static/img/logo.svg',
@@ -47,7 +50,7 @@ export const tsEslint: Parser<typeof TsEslint, TsEslint.ParserOptions> = {
   pkgName: '@typescript-eslint/parser',
   init: () =>
     // @ts-expect-error
-    import('/virtual/typescript-eslint/parser').then((mod) => mod.default),
+    import('/virtual/typescript-eslint/parser'),
   async version() {
     return (await this).version
   },
