@@ -99,8 +99,17 @@ function editVersion() {
           href="https://github.com/sxzz/ast-explorer"
           target="_blank"
           flex="~ center"
+          title="GitHub"
         >
           <div i-ri:github-line />
+        </a>
+        <a
+          href="https://github.com/sponsors/sxzz"
+          target="_blank"
+          flex="~ center"
+          title="Sponsor"
+        >
+          <div i-ri:heart-3-line text-pink-400 />
         </a>
       </div>
     </div>

@@ -15,6 +15,7 @@ Feel free to add more parsers and languages via PR!
 - 🐙 Customize parser version via CDN, e.g., `@babel/parser` alpha.
 - 🌈 Set custom parser options with a GUI.
 - 🌚 Good-looking dark mode theme.
+- 📱 Even compatible with mobile devices.
 
 ## Contributing
 
