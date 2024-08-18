@@ -47,7 +47,7 @@ if (import.meta.server) {
             lg:flex-none
           />
 
-          <div min-h-95vh min-w-0 flex flex-col gap2 p2 lg:flex-1 lg:flex-row>
+          <div min-w-0 flex flex-col gap2 p2 lg:flex-1 lg:flex-row>
             <InputContainer v-show="showInputEditor" min-w-0 flex-1 />
             <OutputContainer v-show="showOutput" min-w-0 flex-1 />
           </div>
