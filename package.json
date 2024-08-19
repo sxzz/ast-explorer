@@ -41,7 +41,7 @@
     "@vue-vapor/compiler-vapor": "latest",
     "@vue/compiler-dom": "^3.4.37",
     "@vue/compiler-sfc": "^3.4.37",
-    "@vueuse/nuxt": "^10.11.1",
+    "@vueuse/nuxt": "^11.0.0",
     "acorn": "^8.12.1",
     "bumpp": "^9.4.2",
     "esbuild": "^0.23.0",
