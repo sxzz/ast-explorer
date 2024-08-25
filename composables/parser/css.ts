@@ -20,8 +20,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
     defaultValueType: 'json5',
   },
   pkgName: 'css-tree',
-  init: (pkg) =>
-    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/dist/csstree.esm.js`),
+  init: (pkg) => importJsdelivr(pkg, `/dist/csstree.esm.js`),
   async version() {
     // @ts-expect-error missing property
     return (await this).version

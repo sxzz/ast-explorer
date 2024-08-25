@@ -12,10 +12,7 @@ export const wxmlParser: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: '@wxml/parser',
-  init: (pkg) =>
-    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`).then(
-      (mod) => mod.default,
-    ),
+  init: (pkg) => importJsdelivr(pkg).then((mod) => mod.default),
   version: fetchVersion,
   parse(code) {
     return this.parse(code)

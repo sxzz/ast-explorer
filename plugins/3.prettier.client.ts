@@ -55,8 +55,9 @@ export default defineNuxtPlugin(() => {
         }
 
         const [prettier, plugins] = await Promise.all([
-          importUrl<typeof import('prettier/standalone')>(
-            'https://cdn.jsdelivr.net/npm/prettier/standalone.mjs',
+          importJsdelivr<typeof import('prettier/standalone')>(
+            `prettier`,
+            `/standalone.mjs`,
           ),
           loadPrettierPlugins(pluginIds),
         ])
@@ -79,9 +80,9 @@ export default defineNuxtPlugin(() => {
 function loadPrettierPlugins(plugins: string[]): Promise<Plugin[]> {
   return Promise.all(
     plugins.map((plugin) =>
-      importUrl(
-        `https://cdn.jsdelivr.net/npm/prettier/plugins/${plugin}.mjs`,
-      ).then((mod) => mod.default),
+      importJsdelivr(`prettier`, `/plugins/${plugin}.mjs`).then(
+        (mod) => mod.default,
+      ),
     ),
   )
 }

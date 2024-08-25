@@ -45,12 +45,10 @@ export const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   },
   pkgName: '@swc/wasm-web',
   init: (pkg) =>
-    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/wasm-web.js`).then(
-      async (mod: typeof Swc) => {
-        await mod.default()
-        return mod
-      },
-    ),
+    importJsdelivr(pkg, `/wasm-web.js`).then(async (mod: typeof Swc) => {
+      await mod.default()
+      return mod
+    }),
   version: fetchVersion,
   async parse(code, options) {
     const result = await this.parse(code, { ...(options as any) })

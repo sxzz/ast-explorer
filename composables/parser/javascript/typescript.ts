@@ -18,10 +18,7 @@ export const typescript: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'typescript',
-  init: (pkg) =>
-    importUrl(`https://cdn.jsdelivr.net/npm/${pkg}/+esm`).then(
-      (mod) => mod.default,
-    ),
+  init: (pkg) => importJsdelivr(pkg).then((mod) => mod.default),
   async version() {
     return (await this).version
   },

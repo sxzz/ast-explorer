@@ -1,8 +1,15 @@
 export async function fetchVersion(pkg: string) {
   const raw = await fetch(
-    `https://cdn.jsdelivr.net/npm/${pkg}/package.json`,
+    `${'https://cdn.jsdelivr.net/npm/'}${pkg}/package.json`,
   ).then((r) => r.json())
   return raw.version
+}
+
+export function importJsdelivr<T = any>(
+  pkg: string,
+  path: string = '/+esm',
+): Promise<T> {
+  return importUrl(`https://cdn.jsdelivr.net/npm/${pkg}${path || ''}`)
 }
 
 export function importUrl<T = any>(url: string, sandbox?: boolean): Promise<T> {

@@ -16,12 +16,12 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   },
   pkgName: '@oxc-parser/wasm',
   init: (pkg) =>
-    importUrl(
-      `https://cdn.jsdelivr.net/npm/${pkg}/web/oxc_parser_wasm.js`,
-    ).then(async (mod: typeof Oxc) => {
-      await mod.default()
-      return mod
-    }),
+    importJsdelivr(pkg, `/web/oxc_parser_wasm.js`).then(
+      async (mod: typeof Oxc) => {
+        await mod.default()
+        return mod
+      },
+    ),
   version: fetchVersion,
   parse(code, options) {
     const { program, errors } = this.parseSync(code, { ...options })
