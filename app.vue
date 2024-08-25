@@ -47,9 +47,15 @@ if (import.meta.server) {
             lg:flex-none
           />
 
-          <div min-w-0 flex flex-col gap2 p2 lg:flex-1 lg:flex-row>
-            <InputContainer v-show="showInputEditor" min-w-0 flex-1 />
-            <OutputContainer v-show="showOutput" min-w-0 flex-1 />
+          <div min-w-0 flex flex-col gap2 lg:flex-1 lg:flex-row>
+            <InputContainer v-show="showInputEditor" min-w-0 flex-1 py1 />
+            <div
+              v-show="showInputEditor && showOutput"
+              border-t
+              lg:border-l
+              lg:border-t-none
+            />
+            <OutputContainer v-show="showOutput" min-w-0 flex-1 py1 />
           </div>
         </div>
       </ClientOnly>

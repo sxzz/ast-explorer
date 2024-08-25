@@ -11,7 +11,7 @@ const sourceFilename = useOption('sourceFilename', '', true)
 <template>
   <div flex="~ col" gap4 text-sm font-mono>
     <label flex="~ col" gap1>
-      <span>source type</span>
+      <span>sourceType</span>
       <select v-model="sourceType">
         <option value="script">script</option>
         <option value="module">module</option>
@@ -19,7 +19,7 @@ const sourceFilename = useOption('sourceFilename', '', true)
     </label>
 
     <label flex="~ col" gap1>
-      <span>source filename</span>
+      <span>sourceFilename</span>
       <input v-model="sourceFilename" />
     </label>
   </div>
