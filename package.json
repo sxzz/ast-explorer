@@ -11,7 +11,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
-    "lint": "eslint .",
+    "lint": "eslint --cache",
     "release": "bumpp && tsx scripts/release.ts",
     "postinstall": "nuxt prepare"
   },
