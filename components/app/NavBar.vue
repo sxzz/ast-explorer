@@ -109,7 +109,12 @@ function editVersion() {
           flex="~ center"
           title="Sponsor"
         >
-          <div i-ri:heart-3-line text-pink-400 />
+          <div
+            i-ri:heart-3-line
+            hover:i-ri:heart-3-fill
+            text-pink-400
+            hover:text-pink-400
+          />
         </a>
       </div>
     </div>
