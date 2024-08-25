@@ -1,4 +1,3 @@
-import ansiRegex from 'ansi-regex'
 import json5 from 'json5'
 import type { Language, Range } from '#imports'
 
@@ -189,7 +188,7 @@ if (import.meta.client) {
       } catch (err: any) {
         console.error(err)
         if (currentParser.value.id === id) {
-          error.value = `${err}`.replace(ansiRegex(), '')
+          error.value = err
         }
       } finally {
         loading.value = false

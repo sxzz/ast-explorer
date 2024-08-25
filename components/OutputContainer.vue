@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ansiRegex from 'ansi-regex'
 import {
   autoFocus,
   hideEmptyKeys,
@@ -19,20 +20,23 @@ watchEffect(() => {
 const tabClass = 'w-20 border rounded p1'
 const tabSelectedClass = 'bg-$c-text-base text-$c-bg-base'
 
-function stringifyError(error: unknown) {
-  if (error instanceof Error) {
+const errorString = computed(() => {
+  if (!error.value) return ''
+  const str = String(error.value).replace(ansiRegex(), '')
+  let stack: string | undefined
+  if (error.value instanceof Error) {
+    stack = error.value.stack
     if (isSafari)
-      return `${error}\n${error.stack
+      stack = stack
         ?.split('\n')
         .map((line) => {
           const [fn, file] = line.split('@', 2)
           return `${' '.repeat(4)}at ${fn} (${file})`
         })
-        .join('\n')}`
-    return error.stack
+        .join('\n')
   }
-  return String(error)
-}
+  return `${str}${stack ? `${stack}\n` : ''}`
+})
 
 function toggleView(view: 'tree' | 'json') {
   outputView.value = view
@@ -137,7 +141,7 @@ watch(outputView, (view) => {
       <div v-if="loading === 'load'">Loading parser...</div>
       <div v-else-if="loading === 'parse'">Parsing...</div>
       <div v-else-if="error" overflow-scroll text-sm text-red>
-        <pre v-text="stringifyError(error)" />
+        <pre v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson
