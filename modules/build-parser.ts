@@ -52,6 +52,7 @@ export async function buildTsEslint(logger: ConsolaInstance) {
       path: 'pathe',
       'node:path': 'pathe',
       fs: 'unenv/runtime/mock/proxy',
+      'node:fs': 'unenv/runtime/mock/proxy',
       os: 'unenv/runtime/mock/proxy',
       'node:os': 'unenv/runtime/mock/proxy',
       'node:process': 'unenv/runtime/mock/proxy',
