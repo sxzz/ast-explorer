@@ -10,7 +10,9 @@ const props = defineProps<{
 }>()
 const code = defineModel<string>()
 
-const container = shallowRef<InstanceType<typeof MonacoEditor>>()
+const container = shallowRef<{
+  $editor: Monaco.editor.IStandaloneCodeEditor | undefined
+}>()
 
 const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
   () => ({
