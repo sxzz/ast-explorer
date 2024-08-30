@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { AutoTypings, LocalStorageCache } from 'monaco-editor-auto-typings'
 import type { MonacoLanguage } from '#imports'
-import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
 const props = defineProps<{

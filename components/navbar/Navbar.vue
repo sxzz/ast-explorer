@@ -25,7 +25,7 @@ function editVersion() {
         <h1 text-lg font-bold>AST Explorer</h1>
         <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
       </div>
-      <LanguageSelect />
+      <NavbarLanguageSelect />
       <div flex gap2>
         <ParserSelect />
         <ParserOptions v-if="currentParser.options.configurable" />

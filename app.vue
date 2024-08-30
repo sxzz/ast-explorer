@@ -36,7 +36,7 @@ if (import.meta.server) {
   <Suspense>
     <main flex="~ col" lg:h-screen>
       <ClientOnly>
-        <AppNavBar border-b />
+        <Navbar border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
           <AppSideBar
