@@ -62,6 +62,7 @@ export async function buildTsEslint(logger: ConsolaInstance) {
       perf_hooks: 'unenv/runtime/mock/proxy',
       inspector: 'unenv/runtime/mock/proxy',
       crypto: 'unenv/runtime/mock/proxy',
+      util: 'unenv/runtime/mock/proxy',
     },
     plugins: [
       Replace({
