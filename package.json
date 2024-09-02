@@ -33,7 +33,7 @@
     "@nuxt/kit": "^3.13.0",
     "@oxc-parser/wasm": "^0.25.0",
     "@swc/wasm-web": "1.7.18",
-    "@sxzz/eslint-config": "^3.17.4",
+    "@sxzz/eslint-config": "^4.1.0",
     "@sxzz/prettier-config": "^2.0.2",
     "@types/css-tree": "^2.3.8",
     "@types/json-to-ast": "^2.1.4",
