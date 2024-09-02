@@ -15,16 +15,15 @@ function adjustSwcOffsetOfAst(obj: unknown, startOffset: number) {
       }
     })
   }
+}
+function isRecord(obj: unknown): obj is Record<string, unknown> {
+  return typeof obj === 'object' && obj !== null
+}
 
-  function isRecord(obj: unknown): obj is Record<string, unknown> {
-    return typeof obj === 'object' && obj !== null
-  }
-
-  function isSpan(obj: unknown): obj is { start: number; end: number } {
-    return (
-      typeof obj === 'object' && obj !== null && 'start' in obj && 'end' in obj
-    )
-  }
+function isSpan(obj: unknown): obj is { start: number; end: number } {
+  return (
+    typeof obj === 'object' && obj !== null && 'start' in obj && 'end' in obj
+  )
 }
 
 export const swc: Parser<typeof Swc, Swc.ParseOptions> = {

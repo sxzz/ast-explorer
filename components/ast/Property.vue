@@ -38,12 +38,12 @@ const isHovering = computed(() => {
     return Array.from(props.value).some((v) => checkRange(getRange(v)))
   }
   return checkRange(getRange(props.value))
-
-  function checkRange(range?: Range) {
-    if (!range) return false
-    return range[0] <= editorCursor.value && range[1] > editorCursor.value
-  }
 })
+function checkRange(range?: Range) {
+  if (!range) return false
+  return range[0] <= editorCursor.value && range[1] > editorCursor.value
+}
+
 const openManual = ref<boolean>()
 const open = computed(
   () =>
