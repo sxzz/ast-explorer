@@ -8,4 +8,10 @@ export default sxzz([
   {
     ignores: ['composables/parser/template/**'],
   },
+  {
+    files: ['modules/**'],
+    rules: {
+      'import/no-default-export': 'off',
+    },
+  },
 ])
