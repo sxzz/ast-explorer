@@ -111,9 +111,6 @@ importers:
       nuxt-monaco-editor:
         specifier: ^1.2.9
         version: 1.2.9(magicast@0.3.4)(monaco-editor@0.51.0)(rollup@4.20.0)(vite@5.4.2(@types/node@22.1.0)(terser@5.31.3))
-      nuxt-shiki:
-        specifier: ^0.3.0
-        version: 0.3.0(magicast@0.3.4)(rollup@4.20.0)
       nuxt-umami:
         specifier: ^2.6.4
         version: 2.6.4
@@ -3580,9 +3577,6 @@ packages:
     resolution: {integrity: sha512-O51sng1MxDAmmm1drOvlUyu6sMdRQtC7ZeSU/r+Hp8KWDDi0JWblPwMOJ+oxMDBnvWw1mOXEhaUBlLjUTEeU/Q==}
     peerDependencies:
       monaco-editor: '*'
-
-  nuxt-shiki@0.3.0:
-    resolution: {integrity: sha512-edeP230QQmQ02PdquCjE0noM8+RNTrpjJk1pfR1tIJ5gBp1DegzTe4WdFUWXu7sjSiIndfDy2KbQ9SPscGROJw==}
 
   nuxt-umami@2.6.4:
     resolution: {integrity: sha512-R+Fv+chpa3CcLLkAERzeCFmvZcFv3irUhtAH9x4Ukm12hjHGKeUSArZK07Ld/bzkq+2WJp6QqmXdr/KK/f6g1w==}
@@ -9043,17 +9037,6 @@ snapshots:
       - rollup
       - supports-color
       - vite
-
-  nuxt-shiki@0.3.0(magicast@0.3.4)(rollup@4.20.0):
-    dependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.20.0)
-      knitwork: 1.1.0
-      shiki: 1.16.1
-      unwasm: 0.3.9
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
 
   nuxt-umami@2.6.4: {}
 

@@ -2,7 +2,7 @@ import process from 'node:process'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor', 'nuxt-shiki'],
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
   extends: ['nuxt-umami'],
   vite: {
     esbuild: {
@@ -39,9 +39,5 @@ export default defineNuxtConfig({
       ignoreLocalhost: true,
     },
     branch: process.env.VERCEL_GIT_COMMIT_REF,
-  },
-  shiki: {
-    bundledLangs: ['javascript'],
-    bundledThemes: ['vitesse-dark', 'vitesse-light'],
   },
 })

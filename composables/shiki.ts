@@ -1,10 +1,21 @@
-import type { HighlighterCore } from 'shiki'
+import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki'
+import langCss from 'shiki/langs/css.mjs'
+import langHtml from 'shiki/langs/html.mjs'
+import langJson from 'shiki/langs/json.mjs'
+import langTs from 'shiki/langs/typescript.mjs'
+import langVue from 'shiki/langs/vue.mjs'
+import themeDarkPlus from 'shiki/themes/dark-plus.mjs'
+import themeLightPlus from 'shiki/themes/light-plus.mjs'
+import vitesseDark from 'shiki/themes/vitesse-dark.mjs'
+import vitesseLight from 'shiki/themes/vitesse-light.mjs'
 
-const highlighterPromise = getShikiHighlighter()
+export const highlighter = createHighlighterCoreSync({
+  langs: [langTs, langVue, langJson, langHtml, langCss],
+  themes: [themeLightPlus, themeDarkPlus, vitesseLight, vitesseDark],
+  engine: createJavaScriptRegexEngine(),
+})
 
-let highlighter: HighlighterCore
-const highlight = useMemoize(async (code: string, theme: string) => {
-  highlighter ||= await highlighterPromise
+const highlight = useMemoize((code: string, theme: string) => {
   return highlighter.codeToTokens(code, {
     lang: 'javascript',
     theme,
@@ -14,15 +25,15 @@ const highlight = useMemoize(async (code: string, theme: string) => {
 export function useHighlightColor(
   content: MaybeRefOrGetter<string | undefined>,
 ) {
-  return useAsyncState(async () => {
+  return computed(() => {
     const code = toValue(content)
     if (code == null) return ''
     const theme = `vitesse-${isDark.value ? 'dark' : 'light'}`
-    const result = await highlight(code, theme)
+    const result = highlight(code, theme)
     let idx = 0
     if (code.startsWith('"')) {
       idx = 1
     }
     return result.tokens[0][idx].color
-  }, undefined).state
+  })
 }
