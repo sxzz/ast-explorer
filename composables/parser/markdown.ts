@@ -1,8 +1,8 @@
 import { markdownTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Remark from 'remark'
-// @unocss-include
 
+// @unocss-include
 const remarkAst: Parser<typeof Remark> = {
   id: 'remark',
   label: 'remark',
@@ -10,10 +10,9 @@ const remarkAst: Parser<typeof Remark> = {
   link: 'https://github.com/remarkjs/remark',
   editorLanguage: 'markdown',
   options: {
-    configurable: true,
-    defaultValue: `return {}`,
-    editorLanguage: 'javascript',
-    defaultValueType: 'javascript',
+    configurable: false,
+    defaultValue: {},
+    editorLanguage: 'json',
   },
   pkgName: 'remark',
   init: (pkg) => importJsdelivr(pkg),
@@ -25,7 +24,7 @@ const remarkAst: Parser<typeof Remark> = {
 }
 
 export const markdown: LanguageOption = {
-  label: 'MARKDOWN',
+  label: 'Markdown',
   icon: 'i-vscode-icons:file-type-markdown',
   parsers: [remarkAst],
   codeTemplate: markdownTemplate,
