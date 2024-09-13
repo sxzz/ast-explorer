@@ -12,6 +12,7 @@ export default defineNuxtPlugin(() => {
         'html',
         'css',
         'vue',
+        'markdown',
       ] satisfies MonacoLanguage[]
     ).map((language) => ({ language, exclusive: true })),
     {
@@ -49,6 +50,10 @@ export default defineNuxtPlugin(() => {
             if (language === 'vue') {
               pluginIds.push('estree', 'babel', 'typescript')
             }
+            break
+          case 'markdown':
+            parser = language
+            pluginIds = [language]
             break
           default:
             return []
