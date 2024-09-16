@@ -18,6 +18,7 @@ export type MonacoLanguage =
   // | 'svelte'
   | 'css'
   | 'markdown'
+  | 'yaml'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -69,5 +70,6 @@ export const LANGUAGES = {
   json,
   wxml,
   markdown,
+  yaml,
 }
 export type Language = keyof typeof LANGUAGES
