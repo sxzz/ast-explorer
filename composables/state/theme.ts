@@ -2,7 +2,7 @@ export const isDark = useDark()
 
 const isAppearanceTransition =
   typeof document !== 'undefined' &&
-  document.startViewTransition &&
+  !!document.startViewTransition &&
   !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /**
@@ -21,7 +21,7 @@ export function toggleDark(event?: MouseEvent) {
     Math.max(x, innerWidth - x),
     Math.max(y, innerHeight - y),
   )
-  // @ts-expect-error: Transition API
+
   const transition = document.startViewTransition(async () => {
     isDark.value = !isDark.value
     await nextTick()
