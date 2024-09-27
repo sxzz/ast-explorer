@@ -19,8 +19,8 @@ function editVersion() {
 
 <template>
   <div flex="~ y-center wrap" justify-between gap2 p2>
-    <div flex="~ gap4 wrap" max-sm:flex-col>
-      <div flex gap1>
+    <div flex="~ gap4 wrap center" max-sm="w-full flex-col flex-gap2">
+      <div mr8 flex gap1>
         <AppLogo />
         <h1 text-lg font-bold>AST Explorer</h1>
         <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
@@ -28,13 +28,13 @@ function editVersion() {
       <NavbarLanguageSelect />
       <div flex gap2>
         <ParserSelect />
-        <ParserOptions v-if="currentParser.options.configurable" />
+        <ParserOptions v-if="currentParser.options.configurable" nav-button />
       </div>
     </div>
 
-    <div flex gap3 max-sm:flex-col>
-      <div flex gap3>
-        <span op80>{{ +parseCost.toFixed(1) }} ms</span>
+    <div flex gap3 max-sm="flex-col w-full">
+      <div flex="~ center" gap3>
+        <span op70>{{ +parseCost.toFixed(1) }} ms</span>
         <a
           font-mono
           op80
@@ -58,22 +58,29 @@ function editVersion() {
         </a>
       </div>
 
-      <div flex gap3>
+      <div flex="~ center" gap1>
         <button
           :disabled="disableOverrideVersion"
           :class="disableOverrideVersion && 'cursor-not-allowed op30'"
           title="Change Version"
+          nav-button
           @click="editVersion"
         >
           <div i-ri:edit-line />
         </button>
-        <a :href="currentParser.link" target="_blank" flex="~ center">
+        <a
+          :href="currentParser.link"
+          target="_blank"
+          flex="~ center"
+          nav-button
+        >
           <div i-ri:book-2-line />
         </a>
         <button
           title="Toggle Side Bar"
           :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
           :disabled="!sideBarAvailable"
+          nav-button
           @click="toggleSidebar()"
         >
           <div i-ri:list-settings-line />
@@ -81,6 +88,7 @@ function editVersion() {
         <button
           title="Toggle Input Editor"
           :class="!showInputEditor && 'op-40'"
+          nav-button
           @click="toggleInputEditor()"
         >
           <div i-ri:code-block />
@@ -88,18 +96,19 @@ function editVersion() {
         <button
           title="Toggle Output Result"
           :class="!showOutput && 'op-40'"
+          nav-button
           @click="toggleOutput()"
         >
           <div i-ri:tree-line />
         </button>
-        <button @click="toggleDark">
+        <button nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
         <a
           href="https://github.com/sxzz/ast-explorer"
           target="_blank"
-          flex="~ center"
           title="GitHub"
+          nav-button
         >
           <div i-ri:github-line />
         </a>
@@ -108,12 +117,14 @@ function editVersion() {
           target="_blank"
           flex="~ center"
           title="Sponsor"
+          group
+          nav-button
         >
           <div
             i-ri:heart-3-line
-            hover:i-ri:heart-3-fill
+            group-hover:i-ri:heart-3-fill
             text-pink-400
-            hover:text-pink-400
+            group-hover:text-pink-400
           />
         </a>
       </div>

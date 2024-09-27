@@ -15,6 +15,8 @@ export default defineConfig({
     'flex-center': 'items-center justify-center',
     'flex-x-center': 'justify-center',
     'flex-y-center': 'items-center',
+    'nav-button':
+      'flex flex-center rounded-md p1.5 hover:bg-gray hover:bg-opacity-20',
   },
   presets: [
     presetUno({

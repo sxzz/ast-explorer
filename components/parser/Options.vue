@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { rawOptions } from '#imports'
 
+defineOptions({ inheritAttrs: false })
+
 const dialog = ref<HTMLDialogElement>()
 
 function openDialog() {
@@ -14,7 +16,9 @@ function handleDialogClick(evt: MouseEvent) {
 
 <template>
   <div flex="~ center">
-    <button class="i-ri:settings-line" @click="openDialog" />
+    <button v-bind="$attrs" @click="openDialog">
+      <div i-ri:settings-line />
+    </button>
     <dialog
       ref="dialog"
       h-80vh

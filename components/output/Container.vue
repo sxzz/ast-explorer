@@ -17,8 +17,8 @@ watchEffect(() => {
   }
 })
 
-const tabClass = 'w-20 border rounded p1'
-const tabSelectedClass = 'bg-$c-text-base text-$c-bg-base'
+const tabClass = 'w-20 border rounded p1 hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
+const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
 
 const errorString = computed(() => {
   if (!error.value) return ''
@@ -130,7 +130,7 @@ watch(outputView, (view) => {
         px1
         py0.5
         text-sm
-        hover:border-current
+        hover="bg-gray bg-opacity-20 border-white/20"
         @click="print"
       >
         <div i-ri:printer-line />
