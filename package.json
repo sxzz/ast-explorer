@@ -52,7 +52,7 @@
     "htmlparser2": "^9.1.0",
     "nuxt": "3.13.2",
     "nuxt-monaco-editor": "^1.2.9",
-    "nuxt-umami": "^2.6.7",
+    "nuxt-umami": "^3.0.2",
     "postcss": "^8.4.47",
     "remark": "^15.0.1",
     "serve": "^14.2.3",
