@@ -2,8 +2,7 @@ import process from 'node:process'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
-  extends: ['nuxt-umami'],
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor', 'nuxt-umami'],
   vite: {
     esbuild: {
       legalComments: 'external',
@@ -32,12 +31,11 @@ export default defineNuxtConfig({
       './utils',
     ],
   },
+  umami: {
+    autoTrack: false,
+    ignoreLocalhost: true,
+  },
   appConfig: {
-    umami: {
-      version: 2,
-      autoTrack: false,
-      ignoreLocalhost: true,
-    },
     branch: process.env.VERCEL_GIT_COMMIT_REF,
   },
 })
