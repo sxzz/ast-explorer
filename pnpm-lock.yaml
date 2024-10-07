@@ -112,8 +112,8 @@ importers:
         specifier: ^1.2.9
         version: 1.2.9(magicast@0.3.5)(monaco-editor@0.52.0)(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.3)(terser@5.34.0))(webpack-sources@3.2.3)
       nuxt-umami:
-        specifier: ^2.6.7
-        version: 2.6.7
+        specifier: ^3.0.2
+        version: 3.0.2(magicast@0.3.5)(rollup@4.22.5)(webpack-sources@3.2.3)
       postcss:
         specifier: ^8.4.47
         version: 8.4.47
@@ -3738,8 +3738,8 @@ packages:
     peerDependencies:
       monaco-editor: '*'
 
-  nuxt-umami@2.6.7:
-    resolution: {integrity: sha512-qa/YZf26l3sQ5VGXOyha8SAP00BULw4VrZxeDfklUsroHPaeVkTU46AiSTEpz6I1UF/u9NDJR+u8SQy0l5yUsA==}
+  nuxt-umami@3.0.2:
+    resolution: {integrity: sha512-Sd2QptIWgC1zZ3dDy6GcpcYrVBGpnkDV/i2NN8gA0/fJPs+HAmdS1exZTn0UyS+BvbEYXJ7ZRn9dfoObWnUcwg==}
 
   nuxt@3.13.2:
     resolution: {integrity: sha512-Bjc2qRsipfBhjXsBEJCN+EUAukhdgFv/KoIR5HFB2hZOYRSqXBod3oWQs78k3ja1nlIhAEdBG533898KJxUtJw==}
@@ -4231,6 +4231,9 @@ packages:
 
   remark@15.0.1:
     resolution: {integrity: sha512-Eht5w30ruCXgFmxVUSlNWQ9iiimq07URKeFS3hNc8cUWy1llX4KDWfyEDZRycMc+znsN9Ux5/tJ/BFdgdOwA3A==}
+
+  request-ip@3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -9358,7 +9361,15 @@ snapshots:
       - vite
       - webpack-sources
 
-  nuxt-umami@2.6.7: {}
+  nuxt-umami@3.0.2(magicast@0.3.5)(rollup@4.22.5)(webpack-sources@3.2.3):
+    dependencies:
+      '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.22.5)(webpack-sources@3.2.3)
+      request-ip: 3.3.0
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+      - webpack-sources
 
   nuxt@3.13.2(@parcel/watcher@2.4.1)(@types/node@22.7.3)(encoding@0.1.13)(eslint@9.11.1(jiti@2.0.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.22.5)(terser@5.34.0)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.3)(terser@5.34.0))(vue-tsc@2.1.6(typescript@5.6.2))(webpack-sources@3.2.3):
     dependencies:
@@ -9960,6 +9971,8 @@ snapshots:
       unified: 11.0.5
     transitivePeerDependencies:
       - supports-color
+
+  request-ip@3.3.0: {}
 
   require-directory@2.1.1: {}
 
