@@ -20,7 +20,7 @@ const remarkAst: Parser<typeof Remark> = {
   parse(code) {
     return this.remark().parse(code)
   },
-  getAstLocation: genGetAstLocation('remark'),
+  getAstLocation: genGetAstLocation('positionOffset'),
 }
 
 export const markdown: LanguageOption = {

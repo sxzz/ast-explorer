@@ -54,6 +54,7 @@
     "nuxt-monaco-editor": "^1.2.9",
     "nuxt-umami": "^3.0.2",
     "postcss": "^8.4.47",
+    "rehype": "^13.0.2",
     "remark": "^15.0.1",
     "serve": "^14.2.3",
     "svelte": "^4.2.19",

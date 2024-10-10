@@ -32,7 +32,7 @@ const astLocationFields = {
     start: ['startIndex'],
     end: ['endIndex'],
   },
-  remark: {
+  positionOffset: {
     type: ['type'],
     start: ['position', 'start', 'offset'],
     end: ['position', 'end', 'offset'],
