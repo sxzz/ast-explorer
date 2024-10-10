@@ -31,7 +31,7 @@ const rehypeAst: Parser<typeof Rehype> = {
   label: 'rehype',
   icon: 'https://avatars.githubusercontent.com/u/25711728',
   link: 'https://github.com/rehypejs/rehype',
-  editorLanguage: 'markdown',
+  editorLanguage: 'html',
   options: {
     configurable: false,
     defaultValue: {},
