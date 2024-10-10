@@ -37,6 +37,11 @@ const astLocationFields = {
     start: ['position', 'start', 'offset'],
     end: ['position', 'end', 'offset'],
   },
+  rehype: {
+    type: ['type'],
+    start: ['position', 'start', 'offset'],
+    end: ['position', 'end', 'offset'],
+  },
 } as const
 
 export function genGetAstLocation(
