@@ -35,7 +35,7 @@ const rehypeAst: Parser<typeof Rehype> = {
   options: {
     configurable: false,
     defaultValue: {},
-    editorLanguage: 'html',
+    editorLanguage: 'javascript',
   },
   pkgName: 'rehype',
   init: (pkg) => importJsdelivr(pkg),
@@ -43,7 +43,7 @@ const rehypeAst: Parser<typeof Rehype> = {
   parse(code) {
     return this.rehype().parse(code)
   },
-  getAstLocation: genGetAstLocation('rehype'),
+  getAstLocation: genGetAstLocation('positionOffset'),
 }
 
 export const html: LanguageOption = {
