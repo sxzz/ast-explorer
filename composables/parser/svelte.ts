@@ -12,10 +12,7 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
   editorLanguage: 'html',
   options: {
     configurable: true,
-    defaultValue: {
-      generate: 'dom',
-      hydratable: true,
-    },
+    defaultValue: {},
     editorLanguage: 'json',
   },
   pkgName: 'svelte',
