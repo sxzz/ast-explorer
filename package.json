@@ -23,7 +23,6 @@
     "json-to-ast": "^2.1.0",
     "json5": "^2.2.3",
     "monaco-editor": "^0.52.0",
-    "monaco-editor-auto-typings": "^0.4.5",
     "shiki": "^1.22.0"
   },
   "devDependencies": {

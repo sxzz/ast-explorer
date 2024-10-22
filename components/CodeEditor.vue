@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { AutoTypings, LocalStorageCache } from 'monaco-editor-auto-typings'
 import type { MonacoLanguage } from '#imports'
 import type * as Monaco from 'monaco-editor'
 
@@ -29,9 +28,6 @@ if (props.input) {
 
       editor.onDidChangeCursorPosition((e) => {
         editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
-      })
-      AutoTypings.create(editor, {
-        sourceCache: new LocalStorageCache(),
       })
     },
     { immediate: true },
