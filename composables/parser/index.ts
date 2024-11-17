@@ -28,9 +28,13 @@ export interface Parser<C = unknown, O = unknown> {
   pkgName: string
   version:
     | string
-    | ((this: C | Promise<C>, pkgName: string) => string | Promise<string>)
+    | ((
+        this: C | Promise<C>,
+        pkgName: string,
+        version?: string,
+      ) => string | Promise<string>)
   versionOverridable?: boolean
-  getModuleUrl?: (pkgName: string) => string
+  getModuleUrl?: (pkgName: string, version?: string) => string
   init?: (moduleUrl: string, pkgId: string) => C | Promise<C>
   parse: (this: C, code: string, options: O) => unknown
   options: {

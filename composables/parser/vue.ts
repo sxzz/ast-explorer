@@ -105,9 +105,15 @@ const vueVapor: Parser<
     editorLanguage: 'javascript',
   },
   pkgName: '@vue-vapor/compiler-vapor',
-  getModuleUrl: (pkg) =>
-    getJsdelivrUrl(pkg, `/dist/compiler-vapor.esm-browser.js`),
-  version: fetchVersion,
+  getModuleUrl: (pkg, version) =>
+    `https://next.esm.sh/pr/vuejs/vue-vapor/@vue/compiler-vapor@${version || 'main'}`,
+  version: async (pkg, version) => {
+    if (version) return version
+    const { url } = await fetch(
+      'https://pkg.pr.new/vuejs/vue-vapor/@vue/compiler-vapor@main',
+    )
+    return url.split('@').pop()!
+  },
   parse(code, options) {
     return this.compile(code, { ...options }).ast
   },

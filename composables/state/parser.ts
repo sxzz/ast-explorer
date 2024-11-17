@@ -96,7 +96,9 @@ async function initParser() {
     : `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : ''}`
   if (parserModuleCache[pkgId]) return parserModuleCache[pkgId]
 
-  const moduleUrl = isUrlVersion.value ? pkgId : getModuleUrl(pkgId)
+  const moduleUrl = isUrlVersion.value
+    ? pkgId
+    : getModuleUrl(pkgId, overrideVersion.value)
   return (parserModuleCache[pkgId] = await init(moduleUrl, pkgId))
 }
 
@@ -174,7 +176,11 @@ if (import.meta.client) {
       } else {
         displayVersion.value = ''
         const res = await Promise.resolve(
-          parser.version.call(parserModulePromise.value, parser.pkgName),
+          parser.version.call(
+            parserModulePromise.value,
+            parser.pkgName,
+            overrideVersion.value,
+          ),
         )
         if (currentParser.value.id === parser.id) {
           displayVersion.value = res
