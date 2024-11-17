@@ -35,7 +35,7 @@ const errorString = computed(() => {
         })
         .join('\n')
   }
-  return `${str}${stack ? `${stack}\n` : ''}`
+  return `${str}\n\n${stack ? `${stack}\n` : ''}`
 })
 
 function toggleView(view: 'tree' | 'json') {
