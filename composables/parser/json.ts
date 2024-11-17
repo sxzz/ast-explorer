@@ -19,10 +19,8 @@ const jsonToAst: Parser<typeof parse, parse.Options> = {
   },
   pkgName: 'json-to-ast',
   version: fetchVersion,
-  async init(pkg) {
-    const mod = await importJsdelivr(pkg)
-    return mod.default
-  },
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
+  init: (url) => importUrl(url).then((mod) => mod.default),
   parse(code, options) {
     return this(code, { ...options })
   },

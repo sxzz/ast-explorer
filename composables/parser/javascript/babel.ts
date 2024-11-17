@@ -16,7 +16,7 @@ export const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@babel/parser',
-  init: (pkg) => importJsdelivr(pkg),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
   version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })

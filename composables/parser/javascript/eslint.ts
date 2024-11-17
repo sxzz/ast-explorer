@@ -17,7 +17,7 @@ export const espree: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'espree',
-  init: (pkg) => importUrl(`https://cdn.skypack.dev/${pkg}?min`),
+  getModuleUrl: (pkg) => `https://cdn.skypack.dev/${pkg}?min`,
   async version() {
     return (await this).version
   },
@@ -48,9 +48,8 @@ export const tsEslint: Parser<
     editorLanguage: 'json',
   },
   pkgName: '@typescript-eslint/parser',
-  init: () =>
-    // @ts-expect-error
-    import('/virtual/typescript-eslint/parser'),
+  // @ts-expect-error
+  init: () => import('/virtual/typescript-eslint/parser'),
   async version() {
     return (await this).version
   },

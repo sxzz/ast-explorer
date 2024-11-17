@@ -7,11 +7,12 @@ export async function fetchVersion(pkg: string) {
   return raw.version
 }
 
-export function importJsdelivr<T = any>(
-  pkg: string,
-  path: string = '/+esm',
-): Promise<T> {
-  return importUrl(`${JSDELIVR_PREFIX}${pkg}${path || ''}`)
+export function getJsdelivrUrl(pkg: string, path: string = '/+esm'): string {
+  return `${JSDELIVR_PREFIX}${pkg}${path || ''}`
+}
+
+export function importJsdelivr<T = any>(pkg: string, path: string): Promise<T> {
+  return importUrl(getJsdelivrUrl(pkg, path))
 }
 
 export function importUrl<T = any>(url: string, sandbox?: boolean): Promise<T> {

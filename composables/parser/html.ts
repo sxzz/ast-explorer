@@ -18,7 +18,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
     defaultValueType: 'javascript',
   },
   pkgName: 'htmlparser2',
-  init: (pkg) => importJsdelivr(pkg),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
   version: fetchVersion,
   parse(code, options) {
     return this.parseDocument(code, options)
@@ -38,7 +38,7 @@ const rehypeAst: Parser<typeof Rehype> = {
     editorLanguage: 'javascript',
   },
   pkgName: 'rehype',
-  init: (pkg) => importJsdelivr(pkg),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
   version: fetchVersion,
   parse(code) {
     return this.rehype().parse(code)

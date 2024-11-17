@@ -7,7 +7,7 @@ const yamlParser: Parser<
   Yaml.ParseOptions & Yaml.DocumentOptions & Yaml.SchemaOptions
 > = {
   id: 'yaml',
-  label: 'Yaml',
+  label: 'yaml',
   icon: 'https://raw.githubusercontent.com/eemeli/yaml-docs/5b416c12ce605370bb1df76833d19fd0df51f70c/source/images/logo.png',
   link: 'https://eemeli.org/yaml/',
   editorLanguage: 'yaml',
@@ -17,7 +17,7 @@ const yamlParser: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'yaml',
-  init: (pkg) => importJsdelivr(pkg),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
   version: fetchVersion,
   parse(code, options) {
     return this.parseDocument(code, { ...options })
@@ -26,7 +26,7 @@ const yamlParser: Parser<
 }
 
 export const yaml: LanguageOption = {
-  label: 'Yaml',
+  label: 'YAML',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-yaml',
   parsers: [yamlParser],

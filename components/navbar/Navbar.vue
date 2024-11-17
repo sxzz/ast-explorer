@@ -10,7 +10,7 @@ const disableOverrideVersion = computed(
 function editVersion() {
   // eslint-disable-next-line no-alert
   const newVersion = prompt(
-    'Enter a semver version or tag (e.g. 1.0.0, ^1.2.3, next):',
+    'Enter a semver version, tag or URL (e.g. 1.0.0, ^1.2.3, next, https://example.com):',
     displayVersion.value,
   )
   overrideVersion.value = newVersion || undefined
@@ -39,15 +39,24 @@ function editVersion() {
           font-mono
           op80
           hover:underline
-          :href="`https://www.npmjs.com/package/${currentParser.pkgName}`"
+          :href="
+            isUrlVersion
+              ? overrideVersion
+              : `https://www.npmjs.com/package/${currentParser.pkgName}`
+          "
           target="_blank"
         >
           <span>{{ currentParser.pkgName }}</span>
           <template v-if="displayVersion">
             <span>@</span>
-            <span :class="overrideVersion && 'text-red'">{{
-              displayVersion
-            }}</span>
+            <span
+              :class="[
+                isUrlVersion && 'text-xs text-blue',
+                overrideVersion && !isUrlVersion && 'text-red',
+                'max-w50 inline-block truncate align-middle',
+              ]"
+              >{{ displayVersion }}</span
+            >
             <small
               v-if="overrideVersion && overrideVersion !== displayVersion"
               op50

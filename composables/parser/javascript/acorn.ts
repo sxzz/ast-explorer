@@ -15,7 +15,7 @@ export const acorn: Parser<typeof Acorn, Acorn.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'acorn',
-  init: (pkg) => importJsdelivr(pkg, `/dist/acorn.mjs`),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/acorn.mjs`),
   async version() {
     return (await this).version
   },

@@ -11,8 +11,8 @@ export const hermes: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'hermes-parser',
-  init: (pkg) =>
-    importUrl(`https://esm.sh/${pkg}`, true).then((mod) => mod.default),
+  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
+  init: (url) => importUrl(url, true).then((mod) => mod.default),
   version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })

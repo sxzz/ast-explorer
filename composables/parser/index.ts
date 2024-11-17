@@ -30,7 +30,8 @@ export interface Parser<C = unknown, O = unknown> {
     | string
     | ((this: C | Promise<C>, pkgName: string) => string | Promise<string>)
   versionOverridable?: boolean
-  init?: (pkgId: string) => C | Promise<C>
+  getModuleUrl?: (pkgName: string) => string
+  init?: (moduleUrl: string, pkgId: string) => C | Promise<C>
   parse: (this: C, code: string, options: O) => unknown
   options: {
     configurable: boolean

@@ -16,6 +16,8 @@ export const currentParserId = ref<string | undefined>()
 export const overrideVersion = ref<string>()
 export const displayVersion = ref<string>()
 
+export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
+
 export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
@@ -75,14 +77,27 @@ export function setParserId(id: string) {
   currentParserId.value = id
 }
 
+function isUrl(text: string) {
+  return /https?:\/\//.test(text)
+}
+
 const parserModuleCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
-  const { pkgName, init } = currentParser.value
-  const pkgId = `${pkgName}${
-    overrideVersion.value ? `@${overrideVersion.value}` : ''
-  }`
+  const defaultModuleUrl = (pkg: string) => getJsdelivrUrl(pkg)
+  const defaultInit = (url: string) => importUrl(url)
+  const {
+    pkgName,
+    getModuleUrl = defaultModuleUrl,
+    init = defaultInit,
+  } = currentParser.value
+
+  const pkgId = isUrlVersion.value
+    ? overrideVersion.value!
+    : `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : ''}`
   if (parserModuleCache[pkgId]) return parserModuleCache[pkgId]
-  return (parserModuleCache[pkgId] = await init?.(pkgId))
+
+  const moduleUrl = isUrlVersion.value ? pkgId : getModuleUrl(pkgId)
+  return (parserModuleCache[pkgId] = await init(moduleUrl, pkgId))
 }
 
 const parserModulePromise = computed(() => initParser())
@@ -145,9 +160,11 @@ if (import.meta.client) {
     async () => {
       if (overrideVersion.value) {
         displayVersion.value = overrideVersion.value
-        displayVersion.value = await fetchVersion(
-          `${currentParser.value.pkgName}@${displayVersion.value}`,
-        )
+        if (!isUrl(overrideVersion.value)) {
+          displayVersion.value = await fetchVersion(
+            `${currentParser.value.pkgName}@${displayVersion.value}`,
+          )
+        }
         return
       }
 

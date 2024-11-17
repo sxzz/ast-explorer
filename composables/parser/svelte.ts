@@ -16,10 +16,8 @@ const svelteCompiler: Parser<typeof compile, CompileOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'svelte',
-  init: (pkg) =>
-    importUrl(`https://esm.sh/${pkg}/src/compiler/compile/index.js`).then(
-      (mod) => mod.default,
-    ),
+  getModuleUrl: (pkg) => `https://esm.sh/${pkg}/src/compiler/compile/index.js`,
+  init: (url) => importUrl(url).then((mod) => mod.default),
   version: fetchVersion,
   parse(code, options) {
     return this(code, options)?.ast
