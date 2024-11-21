@@ -176,7 +176,7 @@ if (import.meta.client) {
       } else {
         displayVersion.value = ''
         const res = await Promise.resolve(
-          parser.version.call(
+          (parser.version || (fetchVersion as never)).call(
             parserModulePromise.value,
             parser.pkgName,
             overrideVersion.value,

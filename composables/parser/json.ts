@@ -18,9 +18,7 @@ const jsonToAst: Parser<typeof parse, parse.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'json-to-ast',
-  version: fetchVersion,
-  getModuleUrl: getJsdelivrUrl,
-  init: (url) => importUrl(url).then((mod) => mod.default),
+  init: (url) => resolveDefault(importUrl(url)),
   parse(code, options) {
     return this(code, { ...options })
   },

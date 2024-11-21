@@ -45,7 +45,6 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   },
   pkgName: 'postcss',
   getModuleUrl: (pkgName) => `https://esm.sh/${pkgName}`,
-  version: fetchVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

@@ -12,8 +12,7 @@ export const hermes: Parser<any, any> = {
   },
   pkgName: 'hermes-parser',
   getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
-  init: (url) => importUrl(url, true).then((mod) => mod.default),
-  version: fetchVersion,
+  init: (url) => resolveDefault(importUrl(url, true)),
   parse(code, options) {
     return this.parse(code, { ...options })
   },

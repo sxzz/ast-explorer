@@ -30,3 +30,7 @@ export function importUrl<T = any>(url: string, sandbox?: boolean): Promise<T> {
 export function del<T extends Array<any>>(arr: T, values: T[number][]): T {
   return arr.filter((v) => !values.includes(v)) as T
 }
+
+export async function resolveDefault(p: Promise<any>) {
+  return (await p).default
+}

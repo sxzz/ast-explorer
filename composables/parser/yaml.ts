@@ -17,8 +17,6 @@ const yamlParser: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'yaml',
-  getModuleUrl: getJsdelivrUrl,
-  version: fetchVersion,
   parse(code, options) {
     return this.parseDocument(code, { ...options })
   },

@@ -22,8 +22,6 @@ const sqlParserCst: Parser<typeof SqlParser, SqlParser.ParserOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'sql-parser-cst',
-  version: fetchVersion,
-  getModuleUrl: getJsdelivrUrl,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

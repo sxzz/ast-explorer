@@ -17,7 +17,6 @@ const svelteCompiler: Parser<typeof Svelte, Svelte.CompileOptions> = {
   },
   pkgName: 'svelte',
   getModuleUrl: (pkg) => `https://esm.sh/${pkg}/src/compiler/index.js`,
-  version: fetchVersion,
   parse(code, options) {
     return this.compile(code, options)?.ast
   },

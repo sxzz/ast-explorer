@@ -87,9 +87,7 @@ export default defineNuxtPlugin(() => {
 function loadPrettierPlugins(plugins: string[]): Promise<Plugin[]> {
   return Promise.all(
     plugins.map((plugin) =>
-      importJsdelivr(`prettier`, `/plugins/${plugin}.mjs`).then(
-        (mod) => mod.default,
-      ),
+      resolveDefault(importJsdelivr(`prettier`, `/plugins/${plugin}.mjs`)),
     ),
   )
 }

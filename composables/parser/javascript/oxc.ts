@@ -21,7 +21,6 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
       await mod.default()
       return mod
     }),
-  version: fetchVersion,
   parse(code, options) {
     const { program, errors } = this.parseSync(code, { ...options })
     return { program, errors }

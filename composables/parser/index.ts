@@ -28,7 +28,7 @@ export interface Parser<C = unknown, O = unknown> {
   icon: string
   link: string
   pkgName: string
-  version:
+  version?:
     | string
     | ((
         this: C | Promise<C>,

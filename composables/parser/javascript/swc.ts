@@ -49,7 +49,6 @@ export const swc: Parser<typeof Swc, Swc.ParseOptions> = {
       await mod.default()
       return mod
     }),
-  version: fetchVersion,
   async parse(code, options) {
     const result = await this.parse(code, { ...(options as any) })
     adjustSwcOffsetOfAst(result, result.span.start)

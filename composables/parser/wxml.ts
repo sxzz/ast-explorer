@@ -12,9 +12,7 @@ export const wxmlParser: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: '@wxml/parser',
-  getModuleUrl: getJsdelivrUrl,
-  init: (pkg) => importUrl(pkg).then((mod) => mod.default),
-  version: fetchVersion,
+  init: (pkg) => resolveDefault(importUrl(pkg)),
   parse(code) {
     return this.parse(code)
   },
