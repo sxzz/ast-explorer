@@ -96,7 +96,7 @@ const vueVapor: Parser<
   id: 'vue-vapor',
   label: '@vue-vapor/compiler-vapor',
   icon: 'i-vscode-icons:file-type-vue',
-  link: 'https://github.com/vuejs/core-vapor/tree/main/packages/compiler-vapor',
+  link: 'https://github.com/vuejs/vue-vapor',
   editorLanguage: 'html',
   options: {
     configurable: true,
