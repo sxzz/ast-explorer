@@ -30,8 +30,19 @@ export const typescript: Parser<
   getAstLocation: genGetAstLocation('typescript'),
   astTitleField: 'kind',
   getAstTitle(value) {
-    const kind = value?.kind
+    const kind: Typescript.SyntaxKind | undefined = value?.kind
     if (kind == null) return
-    return this.SyntaxKind[kind]
+    return getSyntaxKind(this, kind)
   },
+}
+
+function getSyntaxKind(ts: typeof Typescript, kind: Typescript.SyntaxKind) {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  const syntaxKinds = {} as Record<Typescript.SyntaxKind, string>
+  for (const [key, value] of Object.entries(ts.SyntaxKind)) {
+    if (typeof value === 'number' && !syntaxKinds[value]) {
+      syntaxKinds[value] = key
+    }
+  }
+  return syntaxKinds[kind]
 }
