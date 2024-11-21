@@ -23,7 +23,7 @@ const sqlParserCst: Parser<typeof SqlParser, SqlParser.ParserOptions> = {
   },
   pkgName: 'sql-parser-cst',
   version: fetchVersion,
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
+  getModuleUrl: getJsdelivrUrl,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

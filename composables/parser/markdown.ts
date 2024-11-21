@@ -15,7 +15,7 @@ const remarkAst: Parser<typeof Remark> = {
     editorLanguage: 'json',
   },
   pkgName: 'remark',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
+  getModuleUrl: getJsdelivrUrl,
   version: fetchVersion,
   parse(code) {
     return this.remark().parse(code)

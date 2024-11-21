@@ -18,7 +18,7 @@ export const typescript: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'typescript',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
+  getModuleUrl: getJsdelivrUrl,
   init: (url) => importUrl(url).then((mod) => mod.default),
   async version() {
     return (await this).version
