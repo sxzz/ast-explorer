@@ -123,6 +123,9 @@ importers:
       serve:
         specifier: ^14.2.4
         version: 14.2.4
+      sql-parser-cst:
+        specifier: ^0.30.0
+        version: 0.30.0
       svelte:
         specifier: ^5.2.2
         version: 5.2.2
@@ -4435,6 +4438,9 @@ packages:
   speakingurl@14.0.1:
     resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
     engines: {node: '>=0.10.0'}
+
+  sql-parser-cst@0.30.0:
+    resolution: {integrity: sha512-izm1h9QuQT39jnQfl/UiEdkNaprAKSPA1WSdlR5jJuArui6e6/j9E4z9p8VE07qKbNPhDrPCJl+qGoKTbjHwbw==}
 
   stable-hash@0.0.4:
     resolution: {integrity: sha512-LjdcbuBeLcdETCrPn9i8AYAZ1eCtu4ECAWtP7UleOiZ9LzVxRzzUZEoZ8zB24nhkQnDWyET0I+3sWokSDS3E7g==}
@@ -10341,6 +10347,8 @@ snapshots:
   spdx-license-ids@3.0.20: {}
 
   speakingurl@14.0.1: {}
+
+  sql-parser-cst@0.30.0: {}
 
   stable-hash@0.0.4: {}
 

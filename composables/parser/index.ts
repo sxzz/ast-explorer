@@ -4,6 +4,7 @@ import { html } from './html'
 import { javascript } from './javascript'
 import { json } from './json'
 import { markdown } from './markdown'
+import { sql } from './sql'
 import { svelte } from './svelte'
 import { vue } from './vue'
 import { wxml } from './wxml'
@@ -19,6 +20,7 @@ export type MonacoLanguage =
   | 'css'
   | 'markdown'
   | 'yaml'
+  | 'text'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -76,5 +78,6 @@ export const LANGUAGES = {
   wxml,
   markdown,
   yaml,
+  sql,
 }
 export type Language = keyof typeof LANGUAGES
