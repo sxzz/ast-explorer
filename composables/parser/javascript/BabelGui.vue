@@ -104,7 +104,7 @@ const explicitResourceManagement = usePlugin('explicitResourceManagement')
 const exportDefaultFrom = usePlugin('exportDefaultFrom')
 const functionBind = usePlugin('functionBind')
 const functionSent = usePlugin('functionSent')
-const importAttributes = usePlugin('importAttributes')
+const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
 const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
 const optionalChainingAssign = usePlugin('optionalChainingAssign')
@@ -228,9 +228,8 @@ const throwExpressions = usePlugin('throwExpressions')
     <h3 border-t pt1 text-center font-bold>ES Modules</h3>
 
     <label>
-      <!-- Stage 3 -->
-      <input v-model="importAttributes" type="checkbox" switch />
-      <span>importAttributes</span>
+      <input v-model="deprecatedImportAssert" type="checkbox" switch />
+      <span>deprecatedImportAssert</span>
     </label>
 
     <label>
