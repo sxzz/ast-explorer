@@ -70,7 +70,7 @@ function toggleOpen() {
 const key = computed(() => (props.id != null ? String(props.id) : undefined))
 const keyColor = useHighlightColor(key)
 const keyClass = computed(
-  () => openable.value && 'cursor-pointer hover:underline',
+  () => openable.value && 'cursor-pointer hover:underline whitespace-pre',
 )
 
 function handleMouseOver(event: MouseEvent) {

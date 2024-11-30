@@ -37,7 +37,7 @@ watchEffect(() => {
     </AstBrackets>
   </template>
   <span v-else>
-    <span :style="{ color: valueColor }" v-text="value" />
+    <span :style="{ color: valueColor }" whitespace-pre v-text="value" />
     <span op70>,</span>
   </span>
 </template>
