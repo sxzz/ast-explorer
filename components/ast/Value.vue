@@ -2,7 +2,7 @@
 import type { AstProperty } from '#components'
 const props = defineProps<{ data: any }>()
 const emit = defineEmits<{
-  'update:hover': [value: boolean]
+  'update:focus': [value: boolean]
 }>()
 
 const hasChildren = computed(
@@ -21,8 +21,8 @@ const valueColor = useHighlightColor(value)
 
 const properties = useTemplateRefsList<InstanceType<typeof AstProperty>>()
 watchEffect(() => {
-  const hovering = properties.value.some((p) => p.isHovering)
-  emit('update:hover', hovering)
+  const focusing = properties.value.some((p) => p.isFocusing)
+  emit('update:focus', focusing)
 })
 </script>
 

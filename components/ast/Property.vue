@@ -32,7 +32,11 @@ function isArrayLike(n: unknown) {
   return typeof n == 'object' && n && (Array.isArray(n) || Symbol.iterator in n)
 }
 
-const isHovering = computed(() => {
+const isFocusing = computed(() => {
+  if (currentParser.value.ignoreFocusFields?.includes(props.id as any)) {
+    return false
+  }
+
   // children of csstree is iterable but not array
   if (isArrayLike(props.value)) {
     return Array.from(props.value).some((v) => checkRange(getRange(v)))
@@ -48,7 +52,7 @@ const openManual = ref<boolean>()
 const open = computed(
   () =>
     openable.value &&
-    (openManual.value ?? (props.open || (autoFocus.value && isHovering.value))),
+    (openManual.value ?? (props.open || (autoFocus.value && isFocusing.value))),
 )
 
 const valueCreated = ref(false)
@@ -59,7 +63,7 @@ function toggleOpen() {
 
   if (
     openManual.value !== undefined &&
-    openManual.value !== (props.open || isHovering.value)
+    openManual.value !== (props.open || isFocusing.value)
   ) {
     openManual.value = undefined
   } else {
@@ -93,23 +97,23 @@ function handleMouseLeave() {
 }
 
 const container = ref<HTMLDivElement>()
-const exactHover = ref(false)
+const exactFocusing = ref(false)
 
-function handleSubHoverChange(subHovering: boolean) {
-  exactHover.value = isHovering.value && !subHovering
+function handleSubFocusingChange(subFocusing: boolean) {
+  exactFocusing.value = isFocusing.value && !subFocusing
 }
 
 watch(
-  [autoFocus, exactHover, isHovering, container],
-  ([autoFocus, exactHover, isHovering, container]) => {
-    if (autoFocus && exactHover && isHovering && container) {
+  [autoFocus, exactFocusing, isFocusing, container],
+  ([autoFocus, exactFocusing, isFocusing, container]) => {
+    if (autoFocus && exactFocusing && isFocusing && container) {
       requestAnimationFrame(() => container.scrollIntoView({ block: 'center' }))
     }
   },
   { immediate: true },
 )
 
-defineExpose({ isHovering })
+defineExpose({ isFocusing })
 </script>
 
 <template>
@@ -117,7 +121,7 @@ defineExpose({ isHovering })
     v-if="show"
     ref="container"
     relative
-    :class="isHovering && exactHover && 'ast-highlight'"
+    :class="isFocusing && exactFocusing && 'ast-highlight'"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
   >
@@ -149,7 +153,7 @@ defineExpose({ isHovering })
       />&nbsp;</span
     >
     <span v-if="!openable || valueCreated" v-show="!openable || open">
-      <AstValue :data="value" @update:hover="handleSubHoverChange" />
+      <AstValue :data="value" @update:focus="handleSubFocusingChange" />
     </span>
     <AstSummaryValue
       v-if="openable && !open"

@@ -59,6 +59,7 @@ export interface Parser<C = unknown, O = unknown> {
   }
   astTitleField?: string
   getAstTitle?: (this: C, value: any) => string | undefined
+  ignoreFocusFields?: (string | number)[]
   gui?: AsyncComponentLoader
 }
 export interface LanguageOption {
