@@ -35,7 +35,14 @@ export const typescript: Parser<
   },
 }
 
+const cache = new WeakMap<
+  typeof Typescript,
+  Record<Typescript.SyntaxKind, string>
+>()
+
 function getSyntaxKind(ts: typeof Typescript, kind: Typescript.SyntaxKind) {
+  const cached = cache.get(ts)
+  if (cached) return cached[kind]
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const syntaxKinds = {} as Record<Typescript.SyntaxKind, string>
   for (const [key, value] of Object.entries(ts.SyntaxKind)) {
@@ -43,5 +50,6 @@ function getSyntaxKind(ts: typeof Typescript, kind: Typescript.SyntaxKind) {
       syntaxKinds[value] = key
     }
   }
+  cache.set(ts, syntaxKinds)
   return syntaxKinds[kind]
 }
