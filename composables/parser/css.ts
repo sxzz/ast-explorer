@@ -48,6 +48,8 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
+  getAstLocation: genGetAstLocation('postcss'),
+  ignoreFocusFields: ['parent'],
 }
 
 export const css: LanguageOption = {
