@@ -49,6 +49,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
+}
 
 const lightningcss: Parser<
   typeof Lightningcss,
