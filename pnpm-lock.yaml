@@ -102,6 +102,9 @@ importers:
       htmlparser2:
         specifier: ^9.1.0
         version: 9.1.0
+      lightningcss-wasm:
+        specifier: ^1.28.2
+        version: 1.28.2
       nuxt:
         specifier: 3.14.1592
         version: 3.14.1592(@parcel/watcher@2.4.1)(@types/node@22.7.8)(encoding@0.1.13)(eslint@9.17.0(jiti@2.4.2))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.25.0)(terser@5.36.0)(typescript@5.7.2)(vite@5.4.11(@types/node@22.7.8)(terser@5.36.0))(vue-tsc@2.2.0(typescript@5.7.2))
@@ -3246,6 +3249,12 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
+
+  lightningcss-wasm@1.28.2:
+    resolution: {integrity: sha512-g5aNMCathgTUunh8HWBIBDhnjM65hWZEEem6h2LoHU4nLiwGQLebXRnVV/HpavrnkvL1g7iYog4BURcq7YWKCA==}
+    engines: {node: '>= 12.0.0'}
+    bundledDependencies:
+      - napi-wasm
 
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
@@ -8723,6 +8732,8 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  lightningcss-wasm@1.28.2: {}
 
   lilconfig@3.1.2: {}
 
