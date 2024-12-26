@@ -37,6 +37,11 @@ const astLocationFields = {
     start: ['position', 'start', 'offset'],
     end: ['position', 'end', 'offset'],
   },
+  postcss: {
+    type: ['type'],
+    start: ['source', 'start', 'offset'],
+    end: ['source', 'end', 'offset'],
+  },
 } as const
 
 export function genGetAstLocation(
