@@ -1,4 +1,3 @@
-import type { JsonNode, Range } from '#imports'
 import { css } from './css'
 import { html } from './html'
 import { javascript } from './javascript'
@@ -8,6 +7,7 @@ import { sql } from './sql'
 import { svelte } from './svelte'
 import { vue } from './vue'
 import { wxml } from './wxml'
+import type { JsonNode, Range } from '#imports'
 import type { AsyncComponentLoader } from 'vue'
 
 export type MonacoLanguage =
