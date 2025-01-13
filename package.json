@@ -36,7 +36,7 @@
     "@sxzz/prettier-config": "^2.0.2",
     "@types/css-tree": "^2.3.10",
     "@types/json-to-ast": "^2.1.4",
-    "@unocss/nuxt": "^0.65.3",
+    "@unocss/nuxt": "^65.4.0",
     "@vue-vapor/compiler-vapor": "latest",
     "@vue/compiler-dom": "^3.5.13",
     "@vue/compiler-sfc": "^3.5.13",
