@@ -42,7 +42,7 @@
     "@vue/compiler-sfc": "^3.5.13",
     "@vueuse/nuxt": "^12.5.0",
     "acorn": "^8.14.0",
-    "bumpp": "^9.11.1",
+    "bumpp": "^10.0.1",
     "esbuild": "^0.24.2",
     "eslint": "^9.19.0",
     "esprima-next": "^6.0.3",
