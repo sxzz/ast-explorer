@@ -5,7 +5,7 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   id: 'oxc',
   label: 'Oxc',
   icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square-min.png',
-  link: 'https://oxc-project.github.io/docs/guide/usage/parser.html',
+  link: 'https://oxc.rs/docs/guide/usage/parser.html',
   options: {
     configurable: true,
     defaultValue: {

@@ -21,6 +21,38 @@ Feel free to add more languages and parsers via PR!
 - 🌚 Good-looking dark mode theme.
 - 📱 Even compatible with mobile devices.
 
+## Languages and Parsers
+
+- JavaScript / TypeScript
+  - [Babel](https://babel.dev/)
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Oxc](https://oxc.rs/docs/guide/usage/parser.html)
+  - [SWC](https://swc.rs/docs/usage/core#parse)
+  - [Acron](https://github.com/acornjs/acorn)
+  - [Espree](https://github.com/eslint/espree)
+  - [TypeScript ESLint](https://typescript-eslint.io/packages/parser/)
+  - [Esprima Next](https://github.com/node-projects/esprima-next)
+  - [Flow](https://github.com/facebook/flow/tree/main/packages/flow-parser)
+  - [Hermes](https://github.com/facebook/hermes)
+- [Vue](https://vuejs.org/)
+- [Svelte](https://svelte.dev/)
+- CSS
+  - [csstree](https://github.com/csstree/csstree)
+  - [PostCSS](https://postcss.org/)
+  - [Lightning CSS](https://lightningcss.dev/)
+- HTML
+  - [htmlparser2](https://feedic.com/htmlparser2/)
+  - [rehype](https://github.com/rehypejs/rehype)
+- JSON
+  - [json-to-ast](https://github.com/vtrushin/json-to-ast)
+- [WXML](https://github.com/wxmlfile/wxml-parser)
+- Markdown
+  - [remark](https://github.com/remarkjs/remark)
+- YAML
+  - [yaml](https://eemeli.org/yaml/)
+- SQL
+  - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
+
 ## Contributing
 
 To contribute to the project, see [Contribution Guide](https://github.com/sxzz/contribute).
