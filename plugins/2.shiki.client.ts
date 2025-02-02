@@ -1,8 +1,6 @@
 import { shikiToMonaco } from '@shikijs/monaco'
-import {
-  createHighlighterCoreSync,
-  createJavaScriptRegexEngine,
-} from 'shiki/core'
+import { createHighlighterCoreSync } from 'shiki/core'
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 import themeDark from 'shiki/themes/dark-plus.mjs'
 import themeLight from 'shiki/themes/light-plus.mjs'
 import { shikiLangs } from '~/composables/shiki'
