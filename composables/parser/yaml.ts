@@ -1,4 +1,4 @@
-import { markdownTemplate } from './template'
+import { yamlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Yaml from 'yaml'
 
@@ -28,5 +28,5 @@ export const yaml: LanguageOption = {
   // @unocss-include
   icon: 'i-vscode-icons:file-type-yaml',
   parsers: [yamlParser],
-  codeTemplate: markdownTemplate,
+  codeTemplate: yamlTemplate,
 }
