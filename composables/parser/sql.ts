@@ -9,7 +9,7 @@ const sqlParserCst: Parser<typeof SqlParser, SqlParser.ParserOptions> = {
   label: 'sql-parser-cst',
   icon: 'i-vscode-icons:file-type-sql',
   link: 'https://github.com/nene/sql-parser-cst',
-  editorLanguage: 'text',
+  editorLanguage: 'sql',
   options: {
     configurable: true,
     defaultValue: {

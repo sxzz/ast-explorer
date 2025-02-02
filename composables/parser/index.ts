@@ -16,11 +16,12 @@ export type MonacoLanguage =
   | 'json'
   | 'html'
   | 'vue'
-  // | 'svelte'
+  | 'svelte'
   | 'css'
   | 'markdown'
   | 'yaml'
   | 'text'
+  | 'sql'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string

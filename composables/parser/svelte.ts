@@ -9,7 +9,7 @@ const svelteCompiler: Parser<typeof Svelte, Svelte.CompileOptions> = {
   label: 'svelte/compiler',
   icon: 'i-vscode-icons:file-type-svelte',
   link: 'https://svelte.dev/docs/svelte-compiler#parse',
-  editorLanguage: 'html',
+  editorLanguage: 'svelte',
   options: {
     configurable: true,
     defaultValue: {},
