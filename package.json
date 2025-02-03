@@ -57,6 +57,7 @@
     "postcss": "^8.5.1",
     "rehype": "^13.0.2",
     "remark": "^15.0.1",
+    "rolldown": "^1.0.0-beta.3",
     "serve": "^14.2.4",
     "sql-parser-cst": "^0.32.0",
     "svelte": "^5.19.6",
@@ -64,6 +65,9 @@
     "typescript": "~5.7.3",
     "unplugin-replace": "^0.4.0",
     "vue-tsc": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=20.18.0"
   },
   "prettier": "@sxzz/prettier-config"
 }
