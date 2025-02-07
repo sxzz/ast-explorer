@@ -111,11 +111,7 @@ function editVersion() {
         >
           <div i-ri:tree-line />
         </button>
-        <button
-          title="Toggle Dark Mode"
-          nav-button
-          @click="toggleDark"
-        >
+        <button title="Toggle Dark Mode" nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
         <a
