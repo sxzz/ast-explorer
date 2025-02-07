@@ -78,6 +78,7 @@ function editVersion() {
           <div i-ri:edit-line />
         </button>
         <a
+          title="Open Documentation"
           :href="currentParser.link"
           target="_blank"
           flex="~ center"
@@ -110,7 +111,11 @@ function editVersion() {
         >
           <div i-ri:tree-line />
         </button>
-        <button nav-button @click="toggleDark">
+        <button
+          title="Toggle Dark Mode"
+          nav-button
+          @click="toggleDark"
+        >
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
         <a
