@@ -10,7 +10,7 @@ export const toggleSidebar = useToggle(showSidebar)
 export const toggleInputEditor = useToggle(showInputEditor)
 export const toggleOutput = useToggle(showOutput)
 
-export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, true)
+export const hideEmptyKeys = useLocalStorage(`${PREFIX}hide-empty-keys`, false)
 export const hideLocationData = useLocalStorage(
   `${PREFIX}hide-location-data`,
   false,
