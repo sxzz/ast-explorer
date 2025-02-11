@@ -3,6 +3,7 @@ import { html } from './html'
 import { javascript } from './javascript'
 import { json } from './json'
 import { markdown } from './markdown'
+import { rust } from './rust'
 import { sql } from './sql'
 import { svelte } from './svelte'
 import { vue } from './vue'
@@ -22,6 +23,7 @@ export type MonacoLanguage =
   | 'yaml'
   | 'text'
   | 'sql'
+  | 'rust'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -77,9 +79,10 @@ export const LANGUAGES = {
   css,
   html,
   json,
-  wxml,
   markdown,
   yaml,
+  rust,
   sql,
+  wxml,
 }
 export type Language = keyof typeof LANGUAGES
