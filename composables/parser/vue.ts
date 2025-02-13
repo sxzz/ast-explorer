@@ -1,3 +1,4 @@
+import { NodeTypes } from '@vue/compiler-dom'
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'
@@ -73,6 +74,10 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   version: (pkg) => fetchVersion(pkg),
   parse(code, options) {
     return this.parse(code, { ...options })
+  },
+  getAstTitle(node) {
+    const type = node?.type
+    if (typeof type === 'number') return NodeTypes[type]
   },
   getAstLocation: genGetAstLocation('locOffset'),
 }
