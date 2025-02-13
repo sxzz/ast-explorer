@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ast, error } from '~/state/parser/module'
+import { currentParser } from '~/state/parser/parser'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 

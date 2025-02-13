@@ -1,19 +1,5 @@
+import { useOptions } from '~/state/parser/options'
 import type { WritableComputedRef } from 'vue'
-
-export function useOptions<O extends object, T>(
-  read: (opt: O) => T,
-  write: (value: T, opt: O) => void,
-) {
-  return computed<T>({
-    get: () => read(parserOptions.value),
-    set(value) {
-      const newOpt: O =
-        typeof parserOptions.value === 'object' ? parserOptions.value : {}
-      write(value, newOpt)
-      parserOptions.value = { ...newOpt }
-    },
-  })
-}
 
 type KeysOfUnion<T> = T extends T ? keyof T : never
 

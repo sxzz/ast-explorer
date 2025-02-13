@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { rawOptions } from '#imports'
+import { rawOptions } from '~/state/parser/options'
+import { currentParser } from '~/state/parser/parser'
 
 defineOptions({ inheritAttrs: false })
 

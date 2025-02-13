@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { version } from '~/package.json'
+import { parseCost } from '~/state/parser/module'
+import {
+  currentParser,
+  displayVersion,
+  isUrlVersion,
+  overrideVersion,
+} from '~/state/parser/parser'
 
 const { branch } = useAppConfig()
 

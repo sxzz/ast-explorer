@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { Range } from '#imports'
+import { parserContext } from '~/state/parser/module'
+import { currentParser } from '~/state/parser/parser'
+import type { Range } from '~/composables/location'
 
 const props = defineProps<{
   id?: string | number

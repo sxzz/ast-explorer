@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { code } from '#imports'
+import { parserOptions } from '~/state/parser/options'
+import { currentParser } from '~/state/parser/parser'
 
 const language = computed(() => {
   if (typeof currentParser.value.editorLanguage === 'string') {

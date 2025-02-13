@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import {
+  currentLanguage,
+  currentParser,
+  currentParserId,
+  setParserId,
+} from '~/state/parser/parser'
+
 function changeParser(parser: string) {
   setParserId(parser)
 }

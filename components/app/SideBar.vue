@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { currentParserGui as ParserGui } from '~/state/parser'
+import {
+  currentParser,
+  currentParserGui as ParserGui,
+} from '~/state/parser/parser'
 </script>
 
 <template>

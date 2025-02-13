@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useOptions } from '~/state/parser/options'
 import type { ParserOptions, ParserPlugin } from '@babel/parser'
 
 const useOption = makeUseOption<ParserOptions>()

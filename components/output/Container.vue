@@ -6,6 +6,7 @@ import {
   outputView,
 } from '#imports'
 import ansiRegex from 'ansi-regex'
+import { ast, error, loading } from '~/state/parser/module'
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
@@ -138,7 +139,7 @@ watch(outputView, (view) => {
       </button>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
-      <div v-if="loading === 'load'">Loading parser...</div>
+      <div v-if="loading === 'module'">Loading parser...</div>
       <div v-else-if="loading === 'parse'">Parsing...</div>
       <div v-else-if="error" overflow-scroll text-sm text-red>
         <pre v-text="errorString" />
