@@ -59,7 +59,9 @@ function editVersion() {
             <span
               :class="[
                 isUrlVersion && 'text-xs text-blue',
-                overrideVersion && !isUrlVersion && 'text-red',
+                overrideVersion &&
+                  !isUrlVersion &&
+                  'text-green-700 dark:text-green',
                 'max-w50 inline-block truncate align-middle',
               ]"
               >{{ displayVersion }}</span

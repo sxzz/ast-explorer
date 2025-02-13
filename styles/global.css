@@ -22,7 +22,7 @@ option {
 }
 
 .ast-highlight {
-  --at-apply: 'bg-yellow-400/30 dark:bg-yellow-400/20';
+  --at-apply: 'bg-blue-400/30 dark:bg-blue-400/20';
 }
 
 /* Color Mode transition */

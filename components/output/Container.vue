@@ -152,7 +152,7 @@ watch(outputView, (view) => {
           w-full
           max-sm:min-h-50vh
         />
-        <OutputTree v-else w-full />
+        <OutputTree v-else />
       </div>
     </div>
   </div>

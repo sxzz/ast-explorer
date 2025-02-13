@@ -123,6 +123,7 @@ defineExpose({ isFocusing })
     v-if="show"
     ref="container"
     relative
+    w-fit
     :class="isFocusing && exactFocusing && 'ast-highlight'"
     @mouseover="handleMouseOver"
     @mouseleave="handleMouseLeave"
