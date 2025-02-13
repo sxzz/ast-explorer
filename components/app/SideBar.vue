@@ -16,12 +16,7 @@ import {
     </h2>
     <Suspense :timeout="0">
       <ParserGui v-if="ParserGui" w-full class="sidebar-gui" />
-      <template #fallback>
-        <div flex="~ center" gap1>
-          <div i-ri:loader-4-fill animate-spin />
-          <span>Loading...</span>
-        </div>
-      </template>
+      <template #fallback><Loading /></template>
     </Suspense>
   </div>
 </template>

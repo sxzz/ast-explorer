@@ -31,7 +31,7 @@ watch(language, (language) => {
 </script>
 
 <template>
-  <div flex="~ col" gap4 text-sm font-mono>
+  <div flex="~ col" gap2 text-sm font-mono>
     <label>
       <span>Language</span>
       <select v-model="language">

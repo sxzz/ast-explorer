@@ -33,9 +33,9 @@ useServerHeadSafe({
 </script>
 
 <template>
-  <Suspense>
-    <main flex="~ col" lg:h-screen>
-      <ClientOnly>
+  <ClientOnly>
+    <Suspense>
+      <main flex="~ col" lg:h-screen>
         <Navbar border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
@@ -58,14 +58,13 @@ useServerHeadSafe({
             <OutputContainer v-show="showOutput" min-w-0 flex-1 py1 />
           </div>
         </div>
-      </ClientOnly>
-    </main>
+      </main>
 
-    <template #fallback>
-      <div flex="~ center" h-screen gap1 text-3xl font-bold>
-        <div i-ri:loader-4-fill animate-spin />
-        Loading...
-      </div>
-    </template>
-  </Suspense>
+      <template #fallback>
+        <div h-screen w-screen>
+          <Loading />
+        </div>
+      </template>
+    </Suspense>
+  </ClientOnly>
 </template>

@@ -9,7 +9,7 @@ const sourceFilename = useOption('sourceFilename', '', true)
 </script>
 
 <template>
-  <div flex="~ col" gap4 text-sm font-mono>
+  <div flex="~ col" gap2 text-sm font-mono>
     <label flex="~ col" gap1>
       <span>sourceType</span>
       <select v-model="sourceType">

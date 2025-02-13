@@ -139,8 +139,9 @@ watch(outputView, (view) => {
       </button>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
-      <div v-if="loading === 'module'">Loading parser...</div>
-      <div v-else-if="loading === 'parse'">Parsing...</div>
+      <Loading v-if="loading">
+        {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
+      </Loading>
       <div v-else-if="error" overflow-scroll text-sm text-red>
         <pre v-text="errorString" />
       </div>
