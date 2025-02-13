@@ -24,12 +24,7 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   imports: {
-    dirs: [
-      './composables',
-      './composables/state',
-      './composables/parser',
-      './utils',
-    ],
+    dirs: ['./composables', './composables/parser', './state', './utils'],
   },
   umami: {
     autoTrack: false,
