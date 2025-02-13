@@ -4,7 +4,7 @@ html.dark {
 }
 
 select,
-input {
+input:not([type='checkbox']) {
   --at-apply: 'border rounded p1 accent-current';
 }
 
