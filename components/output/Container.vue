@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import ansiRegex from 'ansi-regex'
 import {
   autoFocus,
   hideEmptyKeys,
   hideLocationData,
   outputView,
 } from '#imports'
+import ansiRegex from 'ansi-regex'
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
@@ -17,7 +17,8 @@ watchEffect(() => {
   }
 })
 
-const tabClass = 'w-20 border rounded p1 hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
+const tabClass =
+  'w-20 border rounded p1 hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
 const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
 
 const errorString = computed(() => {
@@ -43,7 +44,6 @@ function toggleView(view: 'tree' | 'json') {
 }
 
 function print() {
-  // eslint-disable-next-line no-console
   console.info(ast.value)
 }
 
