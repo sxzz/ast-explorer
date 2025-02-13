@@ -1,4 +1,4 @@
 import consola from 'consola'
-import { buildTsEslint } from './build-parser'
+import { buildTsEslintParser } from './build-parser'
 
-buildTsEslint(consola, true)
+buildTsEslintParser(consola, true)

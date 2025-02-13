@@ -48,8 +48,7 @@ export const tsEslint: Parser<
     editorLanguage: 'json',
   },
   pkgName: '@typescript-eslint/parser',
-  // @ts-expect-error
-  init: () => import('/virtual/typescript-eslint/parser'),
+  init: () => import('#build/ts-eslint-parser'),
   async version() {
     return (await this).version
   },

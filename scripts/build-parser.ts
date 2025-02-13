@@ -8,7 +8,10 @@ import type { ConsolaInstance } from 'consola'
 
 const root = path.resolve(import.meta.dirname, '..')
 
-export async function buildTsEslint(logger: ConsolaInstance, noCache = false) {
+export async function buildTsEslintParser(
+  logger: ConsolaInstance,
+  noCache = false,
+) {
   const cacheDir = path.resolve(root, `.nuxt/cache`)
   await mkdir(cacheDir, { recursive: true })
   const cachePath = path.resolve(cacheDir, `ts-eslint-parser@${version}.js`)
