@@ -7,18 +7,24 @@ import {
   overrideVersion,
 } from './parser/parser'
 
+const LAST_STATE_KEY = `${STORAGE_PREFIX}last-state`
+
 export function initUrlState() {
-  const rawUrlState = atou(location.hash!.slice(1))
-  const urlState = rawUrlState && JSON.parse(rawUrlState)
-  if (urlState) {
-    currentLanguageId.value = urlState.l
-    currentParserId.value = urlState.p
-    rawOptions.value = urlState.o
-    overrideVersion.value = urlState.v
+  const serializedUrl = atou(location.hash!.slice(1))
+  let state = serializedUrl && JSON.parse(serializedUrl)
+  if (!state) {
+    const serialized = localStorage.getItem(LAST_STATE_KEY)
+    if (serialized) state = JSON.parse(serialized)
+  }
+  if (state) {
+    currentLanguageId.value = state.l
+    currentParserId.value = state.p
+    rawOptions.value = state.o
+    overrideVersion.value = state.v
   } else {
     setDefaultOptions()
   }
-  code.value = urlState?.c || currentLanguage.value.codeTemplate
+  code.value = state?.c || currentLanguage.value.codeTemplate
 
   // serialize state to url
   watchEffect(() => {
@@ -33,6 +39,7 @@ export function initUrlState() {
       v: overrideVersion.value,
     })
     location.hash = utoa(serialized)
+    localStorage.setItem(LAST_STATE_KEY, serialized)
   })
 }
 
