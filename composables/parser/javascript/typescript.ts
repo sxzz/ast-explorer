@@ -40,6 +40,8 @@ export const typescript: Parser<
         return `SyntaxKind.${getSyntaxKind(this, value)}`
       case 'flags':
         return getNodeFlags(this, value)
+      case 'scriptKind':
+        return `ScriptKind.${this.ScriptKind[value]}`
     }
   },
 }
