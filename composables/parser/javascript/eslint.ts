@@ -1,7 +1,8 @@
 import type { Parser } from '..'
 import type * as TsEslint from '@typescript-eslint/parser'
+import type * as Espree from 'espree'
 
-export const espree: Parser<any, any> = {
+export const espree: Parser<typeof Espree, Espree.Options> = {
   id: 'espree',
   label: 'espree',
   // @unocss-include
@@ -40,10 +41,7 @@ export const tsEslint: Parser<
   options: {
     configurable: true,
     defaultValue: {
-      sourceType: 'module',
       ecmaVersion: 'latest',
-      // loc: true,
-      range: true,
     },
     editorLanguage: 'json',
   },
@@ -58,4 +56,8 @@ export const tsEslint: Parser<
   },
   editorLanguage: 'typescript',
   getAstLocation: genGetAstLocation('range'),
+  gui: () =>
+    import('./EslintEspreeGui.vue').then(
+      (mod) => () => h(mod.default, { typescript: true }),
+    ),
 }

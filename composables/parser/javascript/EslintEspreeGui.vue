@@ -1,22 +1,13 @@
 <script lang="ts">
-export interface EspreeOptions {
-  range?: boolean
-  loc?: boolean
-  comment?: boolean
-  tokens?: boolean
-  ecmaVersion?: 'latest' | number
-  allowReserved?: boolean
-  sourceType?: 'script' | 'module' | 'commonjs'
-  ecmaFeatures?: {
-    jsx?: boolean
-    globalReturn?: boolean
-    impliedStrict?: boolean
-  }
-}
-const useOptions = makeUseOption<EspreeOptions>()
+import type { Options } from 'espree'
+const useOptions = makeUseOption<Options>()
 </script>
 
 <script setup lang="ts">
+defineProps<{
+  typescript?: boolean
+}>()
+
 const sourceType = useOptions('sourceType', 'script', true)
 
 const range = useOptions('range')
@@ -32,7 +23,7 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
 
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
-    <label>
+    <label v-if="!typescript">
       <span>sourceType</span>
       <select v-model="sourceType" w-full>
         <option value="script">script</option>
@@ -51,27 +42,27 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
       <span>JSX</span>
     </label>
 
-    <label>
+    <label v-if="!typescript">
       <input v-model="range" type="checkbox" switch />
       <span>range</span>
     </label>
 
-    <label>
+    <label v-if="!typescript">
       <input v-model="loc" type="checkbox" switch />
       <span>loc</span>
     </label>
 
-    <label>
+    <label v-if="!typescript">
       <input v-model="comment" type="checkbox" switch />
       <span>comment</span>
     </label>
 
-    <label>
+    <label v-if="!typescript">
       <input v-model="tokens" type="checkbox" switch />
       <span>tokens</span>
     </label>
 
-    <label>
+    <label v-if="!typescript">
       <input v-model="allowReserved" type="checkbox" switch />
       <span>allowReserved</span>
     </label>
