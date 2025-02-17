@@ -35,6 +35,11 @@ const valueHint = computed(() => {
   return valueHint.call(parserModule.value, props.id, props.data)
 })
 
+const { copy, copied } = useClipboard()
+function copyHint() {
+  valueHint.value && copy(valueHint.value)
+}
+
 const properties = useTemplateRefsList<InstanceType<typeof AstProperty>>()
 watchEffect(() => {
   const focusing = properties.value.some((p) => p.isFocusing)
@@ -54,7 +59,21 @@ watchEffect(() => {
   </template>
   <span v-else>
     <span :style="{ color: valueColor }" whitespace-pre v-text="value" />
-    <span v-if="valueHint" select-none op40> ({{ valueHint }})</span>
+    <span
+      v-if="valueHint"
+      title="Copy"
+      inline-flex
+      cursor-copy
+      select-none
+      items-center
+      gap1
+      whitespace-pre
+      op40
+      @click="copyHint"
+    >
+      <span> ({{ valueHint }})</span>
+      <div v-if="copied" class="i-ri:check-line inline-block text-green" />
+    </span>
     <span op70>,</span>
   </span>
 </template>

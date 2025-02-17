@@ -33,11 +33,14 @@ export const typescript: Parser<
     return getSyntaxKind(this, kind)
   },
   valueHint(key, value) {
-    if (key === 'kind' && typeof value === 'number')
-      return getSyntaxKind(this, value)
+    if (typeof value !== 'number') return
 
-    if (key === 'flags' && typeof value === 'number')
-      return getNodeFlags(this, value)
+    switch (key) {
+      case 'kind':
+        return `SyntaxKind.${getSyntaxKind(this, value)}`
+      case 'flags':
+        return getNodeFlags(this, value)
+    }
   },
 }
 
@@ -64,5 +67,5 @@ function getNodeFlags(ts: typeof Typescript, flags: Typescript.NodeFlags) {
   const flagNames = Object.keys(ts.NodeFlags).filter(
     (key) => flags & (ts.NodeFlags as any)[key],
   )
-  return flagNames.join(' | ')
+  return flagNames.map((name) => `NodeFlags.${name}`).join(' | ')
 }

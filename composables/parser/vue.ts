@@ -1,4 +1,9 @@
-import { NodeTypes } from '@vue/compiler-dom'
+import {
+  ConstantTypes,
+  ElementTypes,
+  Namespaces,
+  NodeTypes,
+} from '@vue/compiler-dom'
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'
@@ -78,6 +83,19 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   nodeTitle(node) {
     const type = node?.type
     if (typeof type === 'number') return NodeTypes[type]
+  },
+  valueHint(key, value) {
+    if (typeof value !== 'number') return
+    switch (key) {
+      case 'ns':
+        return `Namespaces.${Namespaces[value]}`
+      case 'type':
+        return `NodeTypes.${NodeTypes[value]}`
+      case 'constType':
+        return `ConstantTypes.${ConstantTypes[value]}`
+      case 'tagType':
+        return `ElementTypes.${ElementTypes[value]}`
+    }
   },
   getNodeLocation: genGetNodeLocation('locOffset'),
 }
