@@ -1,5 +1,6 @@
 <script lang="ts">
-import type { Options } from 'acorn'
+import type { Options } from './acorn'
+
 const useOption = makeUseOption<Options>()
 </script>
 
@@ -18,6 +19,7 @@ const checkPrivateFields = useOption('checkPrivateFields', true)
 const locations = useOption('locations')
 const ranges = useOption('ranges')
 const preserveParens = useOption('preserveParens')
+const comments = useOption('comments', false)
 </script>
 
 <template>
@@ -83,6 +85,11 @@ const preserveParens = useOption('preserveParens')
     <label>
       <input v-model="preserveParens" type="checkbox" switch />
       <span>preserveParens</span>
+    </label>
+
+    <label>
+      <input v-model="comments" type="checkbox" switch />
+      <span>comments</span>
     </label>
   </div>
 </template>
