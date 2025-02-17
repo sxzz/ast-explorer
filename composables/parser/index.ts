@@ -60,8 +60,7 @@ export interface Parser<C = unknown, O = unknown> {
     (node: JsonNode, ast: true): Range | undefined
     (object: any, ast?: false): Range | undefined
   }
-  astTitleField?: string
-  getAstTitle?: (this: C, value: any) => string | undefined
+  nodeTitle?: string | ((this: C, value: any) => string | undefined)
   ignoreFocusFields?: (string | number)[]
   gui?: AsyncComponentLoader
 }

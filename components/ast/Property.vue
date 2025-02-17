@@ -13,10 +13,10 @@ const props = defineProps<{
 const show = computed(() => !shouldHideKey(props.id, props.value))
 
 const title = computed(() => {
-  const { getAstTitle: getter, astTitleField: field = 'type' } =
-    currentParser.value
-  if (getter) return getter.call(parserModule.value, props.value)
-  const title = props.value?.[field]
+  const { nodeTitle = 'type' } = currentParser.value
+  if (typeof nodeTitle === 'function')
+    return nodeTitle.call(parserModule.value, props.value)
+  const title = props.value?.[nodeTitle]
   if (typeof title === 'string') return title
 })
 const titleColor = useHighlightColor(() => `${title.value}()`)

@@ -27,8 +27,7 @@ export const typescript: Parser<
   },
   editorLanguage: 'typescript',
   getAstLocation: genGetAstLocation('typescript'),
-  astTitleField: 'kind',
-  getAstTitle(value) {
+  nodeTitle(value) {
     const kind: Typescript.SyntaxKind | undefined = value?.kind
     if (kind == null) return
     return getSyntaxKind(this, kind)

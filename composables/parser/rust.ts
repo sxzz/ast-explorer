@@ -15,7 +15,7 @@ const syn: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'astexplorer-syn',
-  astTitleField: '_type',
+  nodeTitle: '_type',
   init: async (url) => {
     const mod = await importUrl(url)
     await mod.default()

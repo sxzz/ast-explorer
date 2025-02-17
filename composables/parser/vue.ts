@@ -75,7 +75,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getAstTitle(node) {
+  nodeTitle(node) {
     const type = node?.type
     if (typeof type === 'number') return NodeTypes[type]
   },
