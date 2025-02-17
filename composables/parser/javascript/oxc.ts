@@ -22,8 +22,9 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
       return mod
     }),
   parse(code, options) {
-    const { program, errors } = this.parseSync(code, { ...options })
-    return { program, errors }
+    // @ts-expect-error missing comments property
+    const { program, comments, errors } = this.parseSync(code, { ...options })
+    return { program, comments, errors }
   },
   editorLanguage(options) {
     return options.sourceFilename?.endsWith('.ts') ? 'typescript' : 'javascript'
