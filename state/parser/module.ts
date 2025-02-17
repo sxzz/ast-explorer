@@ -34,11 +34,7 @@ async function initParser() {
 }
 
 export const parserModulePromise = computed(() => initParser())
-const parserModule = computedAsync(() => parserModulePromise.value)
-export const parserContext = computedWithControl(parserModule, () => ({
-  ...currentParser.value,
-  module: parserModule.value,
-}))
+export const parserModule = computedAsync(() => parserModulePromise.value)
 
 export function initParserModule() {
   watch(

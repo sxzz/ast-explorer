@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { parserContext } from '~/state/parser/module'
+import { parserModule } from '~/state/parser/module'
 import { currentParser } from '~/state/parser/parser'
 import type { Range } from '~/composables/location'
 
@@ -13,13 +13,11 @@ const props = defineProps<{
 const show = computed(() => !shouldHideKey(props.id, props.value))
 
 const title = computed(() => {
-  const {
-    module,
-    getAstTitle: getter,
-    astTitleField: field = 'type',
-  } = parserContext.value
-  if (getter) return getter.call(module, props.value)
-  return props.value?.[field]
+  const { getAstTitle: getter, astTitleField: field = 'type' } =
+    currentParser.value
+  if (getter) return getter.call(parserModule.value, props.value)
+  const title = props.value?.[field]
+  if (typeof title === 'string') return title
 })
 const titleColor = useHighlightColor(() => `${title.value}()`)
 
