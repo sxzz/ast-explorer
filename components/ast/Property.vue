@@ -154,7 +154,7 @@ defineExpose({ isFocusing })
       />&nbsp;</span
     >
     <span v-if="!openable || valueCreated" v-show="!openable || open">
-      <AstValue :data="value" @update:focus="handleSubFocusingChange" />
+      <AstValue :id :data="value" @update:focus="handleSubFocusingChange" />
     </span>
     <AstSummaryValue
       v-if="openable && !open"

@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { parserModule } from '~/state/parser/module'
+import { currentParser } from '~/state/parser/parser'
 import type { AstProperty } from '#components'
-const props = defineProps<{ data: any }>()
+
+const props = defineProps<{
+  id?: string | number
+  data: any
+}>()
 const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
@@ -23,6 +29,12 @@ const value = computed<string | undefined>(() => {
 })
 const valueColor = useHighlightColor(value)
 
+const valueHint = computed(() => {
+  const { valueHint } = currentParser.value
+  if (!valueHint) return
+  return valueHint.call(parserModule.value, props.id, props.data)
+})
+
 const properties = useTemplateRefsList<InstanceType<typeof AstProperty>>()
 watchEffect(() => {
   const focusing = properties.value.some((p) => p.isFocusing)
@@ -42,6 +54,7 @@ watchEffect(() => {
   </template>
   <span v-else>
     <span :style="{ color: valueColor }" whitespace-pre v-text="value" />
+    <span v-if="valueHint" select-none op40> ({{ valueHint }})</span>
     <span op70>,</span>
   </span>
 </template>

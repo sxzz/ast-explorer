@@ -61,6 +61,11 @@ export interface Parser<C = unknown, O = unknown> {
     (object: any, ast?: false): Range | undefined
   }
   nodeTitle?: string | ((this: C, value: any) => string | undefined)
+  valueHint?: (
+    this: C,
+    key: string | number | undefined,
+    value: any,
+  ) => string | undefined
   ignoreFocusFields?: (string | number)[]
   gui?: AsyncComponentLoader
 }

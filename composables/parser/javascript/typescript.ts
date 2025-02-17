@@ -32,6 +32,13 @@ export const typescript: Parser<
     if (kind == null) return
     return getSyntaxKind(this, kind)
   },
+  valueHint(key, value) {
+    if (key === 'kind' && typeof value === 'number')
+      return getSyntaxKind(this, value)
+
+    if (key === 'flags' && typeof value === 'number')
+      return getNodeFlags(this, value)
+  },
 }
 
 const cache = new WeakMap<
@@ -51,4 +58,11 @@ function getSyntaxKind(ts: typeof Typescript, kind: Typescript.SyntaxKind) {
   }
   cache.set(ts, syntaxKinds)
   return syntaxKinds[kind]
+}
+
+function getNodeFlags(ts: typeof Typescript, flags: Typescript.NodeFlags) {
+  const flagNames = Object.keys(ts.NodeFlags).filter(
+    (key) => flags & (ts.NodeFlags as any)[key],
+  )
+  return flagNames.join(' | ')
 }
