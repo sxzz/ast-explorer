@@ -52,7 +52,25 @@ export const tsEslint: Parser<
   },
   versionOverridable: false,
   parse(code, options) {
-    return this.parse(code, { ...options })
+    // Support hashbang parsing
+    // https://github.com/typescript-eslint/typescript-eslint/issues/6500
+    // https://github.com/eslint/eslint/blob/f67d5e875324a9d899598b11807a9c7624021432/lib/languages/js/index.js#L244
+    const hasHashbang = code.startsWith('#!')
+
+    if (hasHashbang) {
+      code = `//${code.slice(2)}`
+    }
+
+    const ast = this.parse(code, { ...options })
+
+    if (hasHashbang) {
+      // https://github.com/eslint/eslint/blob/f67d5e875324a9d899598b11807a9c7624021432/lib/languages/js/source-code/source-code.js#L440
+      // ESLint uses `Shebang`
+      // @ts-expect-error -- Missing type
+      ast.comments[0].type = 'Shebang'
+    }
+
+    return ast
   },
   editorLanguage: 'typescript',
   getAstLocation: genGetAstLocation('range'),
