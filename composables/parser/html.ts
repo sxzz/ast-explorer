@@ -21,7 +21,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   parse(code, options) {
     return this.parseDocument(code, options)
   },
-  getAstLocation: genGetAstLocation('htmlparser2'),
+  getNodeLocation: genGetNodeLocation('htmlparser2'),
   ignoreFocusFields: ['parent', 'prev', 'next'],
 }
 
@@ -40,7 +40,7 @@ const rehypeAst: Parser<typeof Rehype> = {
   parse(code) {
     return this.rehype().parse(code)
   },
-  getAstLocation: genGetAstLocation('positionOffset'),
+  getNodeLocation: genGetNodeLocation('positionOffset'),
 }
 
 export const html: LanguageOption = {

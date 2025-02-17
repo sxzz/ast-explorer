@@ -20,7 +20,7 @@ const svelteCompiler: Parser<typeof Svelte, Svelte.CompileOptions> = {
   parse(code, options) {
     return this.compile(code, options)?.ast
   },
-  getAstLocation,
+  getNodeLocation,
 }
 
 export const svelte: LanguageOption = {

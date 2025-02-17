@@ -22,5 +22,5 @@ export const flow: Parser<any, any> = {
     return this.parse(code, { ...options })
   },
   editorLanguage: 'javascript',
-  getAstLocation: genGetAstLocation('range'),
+  getNodeLocation: genGetNodeLocation('range'),
 }

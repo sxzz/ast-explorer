@@ -57,6 +57,6 @@ export const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   editorLanguage(options) {
     return options?.syntax === 'typescript' ? 'typescript' : 'javascript'
   },
-  getAstLocation: genGetAstLocation('swc'),
+  getNodeLocation: genGetNodeLocation('swc'),
   gui: () => import('./SwcGui.vue'),
 }

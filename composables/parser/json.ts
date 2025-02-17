@@ -22,7 +22,7 @@ const jsonToAst: Parser<typeof parse, parse.Options> = {
   parse(code, options) {
     return this(code, { ...options })
   },
-  getAstLocation: genGetAstLocation('locOffset'),
+  getNodeLocation: genGetNodeLocation('locOffset'),
 }
 
 export const json: LanguageOption = {

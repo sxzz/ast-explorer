@@ -29,7 +29,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getAstLocation: genGetAstLocation('locOffset'),
+  getNodeLocation: genGetNodeLocation('locOffset'),
 }
 
 const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
@@ -49,7 +49,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getAstLocation: genGetAstLocation('postcss'),
+  getNodeLocation: genGetNodeLocation('postcss'),
   ignoreFocusFields: ['parent'],
 }
 

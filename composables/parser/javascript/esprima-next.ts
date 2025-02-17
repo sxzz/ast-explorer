@@ -24,5 +24,5 @@ export const esprimaNext: Parser<typeof EsprimaNext, EsprimaNext.Config> = {
     return this.parse(code, { ...options })
   },
   editorLanguage: 'javascript',
-  getAstLocation: genGetAstLocation('range'),
+  getNodeLocation: genGetNodeLocation('range'),
 }

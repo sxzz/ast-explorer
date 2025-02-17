@@ -56,7 +56,7 @@ export interface Parser<C = unknown, O = unknown> {
       }
   )
   editorLanguage: MonacoLanguage | ((options: O) => MonacoLanguage)
-  getAstLocation?: {
+  getNodeLocation?: {
     (node: JsonNode, ast: true): Range | undefined
     (object: any, ast?: false): Range | undefined
   }

@@ -26,7 +26,7 @@ export const typescript: Parser<
     return this.createSourceFile('foo.ts', code, { ...options })
   },
   editorLanguage: 'typescript',
-  getAstLocation: genGetAstLocation('typescript'),
+  getNodeLocation: genGetNodeLocation('typescript'),
   nodeTitle(value) {
     const kind: Typescript.SyntaxKind | undefined = value?.kind
     if (kind == null) return

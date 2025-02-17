@@ -79,7 +79,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
     const type = node?.type
     if (typeof type === 'number') return NodeTypes[type]
   },
-  getAstLocation: genGetAstLocation('locOffset'),
+  getNodeLocation: genGetNodeLocation('locOffset'),
 }
 
 const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.CompilerOptions> = {

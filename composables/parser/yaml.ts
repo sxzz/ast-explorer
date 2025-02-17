@@ -20,7 +20,7 @@ const yamlParser: Parser<
   parse(code, options) {
     return this.parseDocument(code, { ...options })
   },
-  getAstLocation: genGetAstLocation('range'),
+  getNodeLocation: genGetNodeLocation('range'),
 }
 
 export const yaml: LanguageOption = {

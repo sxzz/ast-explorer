@@ -2,7 +2,7 @@ import jsonToAst from 'json-to-ast'
 import { currentParser } from '~/state/parser/parser'
 import type { Parser } from '~/composables/parser'
 
-const astLocationFields = {
+const nodeLocationFields = {
   startEnd: {
     type: ['type'],
     start: ['start'],
@@ -45,23 +45,23 @@ const astLocationFields = {
   },
 } as const
 
-export function genGetAstLocation(
-  preset: keyof typeof astLocationFields,
-): NonNullable<Parser['getAstLocation']> {
+export function genGetNodeLocation(
+  preset: keyof typeof nodeLocationFields,
+): NonNullable<Parser['getNodeLocation']> {
   return (node: any, ast?: boolean) => {
     if (ast ? node.type !== 'Object' : typeof node !== 'object') return
 
     const get = ast ? getJsonValue : getValue
-    if (!get(node, astLocationFields[preset].type)) return
+    if (!get(node, nodeLocationFields[preset].type)) return
 
-    const start = get(node, astLocationFields[preset].start)
-    const end = get(node, astLocationFields[preset].end)
+    const start = get(node, nodeLocationFields[preset].start)
+    const end = get(node, nodeLocationFields[preset].end)
     if (typeof start !== 'number' || typeof end !== 'number') return
 
     return [start, end]
   }
 }
-export const getAstLocation = genGetAstLocation('startEnd')
+export const getNodeLocation = genGetNodeLocation('startEnd')
 
 export type Range = [start: number, end: number]
 export type JsonNode =
@@ -70,15 +70,15 @@ export type JsonNode =
   | jsonToAst.ValueNode
 
 export function getLocationMapping(ast: any, parser: Parser) {
-  const { getAstLocation } = parser
-  if (!getAstLocation) return
+  const { getNodeLocation } = parser
+  if (!getNodeLocation) return
 
   const astAst = jsonToAst(ast, { loc: true })
 
   // AST range -> code range
   const locationMap: Map<Range, Range> = new Map()
   traverseNode(astAst, (node) => {
-    const range = getAstLocation(node, true)
+    const range = getNodeLocation(node, true)
     if (!range) return
     locationMap.set([node.loc!.start.offset, node.loc!.end.offset], range)
   })
@@ -134,5 +134,5 @@ function getJsonValue(
 }
 
 export function getRange(ast: any) {
-  return currentParser.value.getAstLocation?.(ast)
+  return currentParser.value.getNodeLocation?.(ast)
 }

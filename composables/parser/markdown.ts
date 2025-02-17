@@ -18,7 +18,7 @@ const remarkAst: Parser<typeof Remark> = {
   parse(code) {
     return this.remark().parse(code)
   },
-  getAstLocation: genGetAstLocation('positionOffset'),
+  getNodeLocation: genGetNodeLocation('positionOffset'),
 }
 
 export const markdown: LanguageOption = {

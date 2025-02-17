@@ -17,7 +17,7 @@ export const wxmlParser: Parser<any, any> = {
     return this.parse(code)
   },
   editorLanguage: 'html',
-  getAstLocation,
+  getNodeLocation,
 }
 
 export const wxml: LanguageOption = {

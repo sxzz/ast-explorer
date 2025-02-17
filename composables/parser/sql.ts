@@ -25,7 +25,7 @@ const sqlParserCst: Parser<typeof SqlParser, SqlParser.ParserOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getAstLocation: genGetAstLocation('range'),
+  getNodeLocation: genGetNodeLocation('range'),
 }
 
 export const sql: LanguageOption = {

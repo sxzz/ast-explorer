@@ -31,6 +31,6 @@ export const babel: Parser<typeof Babel, Babel.ParserOptions> = {
     }
     return 'javascript'
   },
-  getAstLocation,
+  getNodeLocation,
   gui: () => import('./BabelGui.vue'),
 }
