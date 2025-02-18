@@ -2,7 +2,7 @@ import type { Parser } from '..'
 import type * as Acorn from 'acorn'
 
 export type Options = Omit<Acorn.Options, 'onComment'> & {
-  comments?: boolean
+  comment?: boolean
 }
 
 type ProgramWithComments = Acorn.Program & {
@@ -28,12 +28,12 @@ export const acorn: Parser<typeof Acorn, Options> = {
     return (await this).version
   },
   parse(code, options) {
-    const comments = options.comments ? [] : undefined
+    const comments = options.comment ? [] : undefined
     const ast = this.parse(code, {
       ...options,
       onComment: comments,
     }) as ProgramWithComments
-    if (options.comments) {
+    if (options.comment) {
       ast.comments = comments
     }
 

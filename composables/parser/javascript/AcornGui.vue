@@ -19,7 +19,7 @@ const checkPrivateFields = useOption('checkPrivateFields', true)
 const locations = useOption('locations')
 const ranges = useOption('ranges')
 const preserveParens = useOption('preserveParens')
-const comments = useOption('comments', false)
+const comment = useOption('comment', false)
 </script>
 
 <template>
@@ -88,8 +88,8 @@ const comments = useOption('comments', false)
     </label>
 
     <label>
-      <input v-model="comments" type="checkbox" switch />
-      <span>comments</span>
+      <input v-model="comment" type="checkbox" switch />
+      <span>comment (onComment)</span>
     </label>
   </div>
 </template>

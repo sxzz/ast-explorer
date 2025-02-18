@@ -6,6 +6,7 @@ import { espree, tsEslint } from './eslint'
 import { esprimaNext } from './esprima-next'
 import { flow } from './flow'
 import { hermes } from './hermes'
+import { meriyah } from './meriyah'
 import { oxc } from './oxc'
 import { swc } from './swc'
 import { typescript } from './typescript'
@@ -25,6 +26,7 @@ export const javascript: LanguageOption = {
     esprimaNext,
     flow,
     hermes,
+    meriyah,
   ],
   codeTemplate: javascriptTemplate,
 }
