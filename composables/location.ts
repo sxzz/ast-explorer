@@ -43,6 +43,11 @@ const nodeLocationFields = {
     start: ['source', 'start', 'offset'],
     end: ['source', 'end', 'offset'],
   },
+  jinxRust: {
+    type: ['type'],
+    start: ['loc', '0'],
+    end: ['loc', '1'],
+  },
 } as const
 
 export function genGetNodeLocation(

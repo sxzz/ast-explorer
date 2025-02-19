@@ -11,15 +11,20 @@ const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
 
+const rawValue = computed(() => {
+  const { onValue } = currentParser.value
+  return onValue ? onValue(props.data) : props.data
+})
+
 const hasChildren = computed(
   () =>
-    typeof props.data === 'object' &&
-    props.data != null &&
-    Object.keys(props.data).length > 0,
+    typeof rawValue.value === 'object' &&
+    rawValue.value != null &&
+    Object.keys(rawValue.value).length > 0,
 )
 
 const value = computed<string | undefined>(() => {
-  const data = props.data
+  const data = rawValue.value
   if (typeof data === 'object' && data !== null) return
   if (typeof data === 'bigint') return `${String(data)}n`
   if (data == null || typeof data === 'symbol') return String(data)
@@ -32,7 +37,7 @@ const valueColor = useHighlightColor(value)
 const valueHint = computed(() => {
   const { valueHint } = currentParser.value
   if (!valueHint) return
-  return valueHint.call(parserModule.value, props.id, props.data)
+  return valueHint.call(parserModule.value, props.id, rawValue.value)
 })
 
 const { copy, copied } = useClipboard()
@@ -48,10 +53,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <template v-if="typeof data === 'object' && data != null">
-    <AstBrackets :data>
+  <template v-if="typeof rawValue === 'object' && rawValue != null">
+    <AstBrackets :data="rawValue">
       <div v-if="hasChildren" ml6>
-        <template v-for="(item, key) of data" :key="key">
+        <template v-for="(item, key) of rawValue" :key="key">
           <AstProperty :id="key" :ref="properties.set" :value="item" />
         </template>
       </div>

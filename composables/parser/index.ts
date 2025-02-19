@@ -61,6 +61,7 @@ export interface Parser<C = unknown, O = unknown> {
     (object: any, ast?: false): Range | undefined
   }
   nodeTitle?: string | ((this: C, value: any) => string | undefined)
+  onValue?: (this: C, node: any) => any
   valueHint?: (
     this: C,
     key: string | number | undefined,

@@ -108,6 +108,9 @@ importers:
       htmlparser2:
         specifier: ^10.0.0
         version: 10.0.0
+      jinx-rust:
+        specifier: ^0.1.6
+        version: 0.1.6
       lightningcss-wasm:
         specifier: ^1.29.1
         version: 1.29.1
@@ -3244,6 +3247,9 @@ packages:
   jest-worker@27.5.1:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
+
+  jinx-rust@0.1.6:
+    resolution: {integrity: sha512-qP+wtQL1PrDDFwtPKhNGtjWOmijCrKdfUHWTV2G/ikxfjrh+cjdvkQTmny9RAsVF0jiui9m+F0INWu4cuRcZeQ==}
 
   jiti@1.21.7:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
@@ -8798,6 +8804,8 @@ snapshots:
       '@types/node': 22.13.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
+
+  jinx-rust@0.1.6: {}
 
   jiti@1.21.7: {}
 
