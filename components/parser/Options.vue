@@ -23,21 +23,19 @@ function handleDialogClick(evt: MouseEvent) {
     <dialog
       ref="dialog"
       h-80vh
-      border="~ base"
-      rounded
-      p0
+      border
+      rounded-2xl
+      backdrop:bg-black:30
+      backdrop:backdrop-blur-2
       @click="handleDialogClick"
     >
-      <div relative flex="~ center" gap1 py2 text-lg font-bold>
-        Parser Options
-        <button
-          class="i-ri:close-line"
-          absolute
-          right-1
-          p4
-          @click="dialog?.close()"
-        />
+      <div flex="~ center" relative gap1 py2 font-bold>
+        <span text-lg font-bold>Parser Options</span>
+        <button absolute right-2 nav-button @click="dialog?.close()">
+          <div i-ri:close-line />
+        </button>
       </div>
+
       <CodeEditor
         v-model="rawOptions"
         h-full
