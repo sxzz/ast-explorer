@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@shikijs/monaco": "^3.0.0",
-    "@typescript-eslint/parser": "^8.24.1",
+    "@typescript-eslint/parser": "^8.25.0",
     "ansi-regex": "^6.1.0",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
@@ -28,10 +28,10 @@
   "devDependencies": {
     "@babel/parser": "^7.26.9",
     "@iconify-json/ri": "^1.2.5",
-    "@iconify-json/vscode-icons": "^1.2.14",
+    "@iconify-json/vscode-icons": "^1.2.16",
     "@nuxt/kit": "^3.15.4",
-    "@oxc-parser/wasm": "^0.51.0",
-    "@swc/wasm-web": "1.10.18",
+    "@oxc-parser/wasm": "^0.52.0",
+    "@swc/wasm-web": "1.11.1",
     "@sxzz/eslint-config": "^5.1.1",
     "@sxzz/prettier-config": "^2.2.0",
     "@types/css-tree": "^2.3.10",
@@ -46,7 +46,7 @@
     "acorn": "^8.14.0",
     "bumpp": "^10.0.3",
     "esbuild": "^0.25.0",
-    "eslint": "^9.20.1",
+    "eslint": "^9.21.0",
     "esprima-next": "^6.0.3",
     "floating-vue": "5.2.2",
     "flow-parser": "^0.261.2",
@@ -62,12 +62,12 @@
     "remark": "^15.0.1",
     "rolldown": "^1.0.0-beta.3",
     "serve": "^14.2.4",
-    "sql-parser-cst": "^0.32.0",
-    "svelte": "^5.20.2",
+    "sql-parser-cst": "^0.33.0",
+    "svelte": "^5.20.4",
     "tsx": "^4.19.3",
     "typescript": "~5.7.3",
     "unplugin-replace": "^0.5.0",
-    "vue-tsc": "^2.2.2"
+    "vue-tsc": "^2.2.4"
   },
   "engines": {
     "node": ">=20.18.0"
