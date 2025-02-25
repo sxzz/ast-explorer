@@ -20,6 +20,7 @@ const locations = useOption('locations')
 const ranges = useOption('ranges')
 const preserveParens = useOption('preserveParens')
 const comment = useOption('comment', false)
+const token = useOption('token', false)
 </script>
 
 <template>
@@ -90,6 +91,11 @@ const comment = useOption('comment', false)
     <label>
       <input v-model="comment" type="checkbox" switch />
       <span>comment (onComment)</span>
+    </label>
+
+    <label>
+      <input v-model="token" type="checkbox" switch />
+      <span>token (onToken)</span>
     </label>
   </div>
 </template>

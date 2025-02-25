@@ -1,12 +1,14 @@
 import type { Parser } from '..'
 import type * as Acorn from 'acorn'
 
-export type Options = Omit<Acorn.Options, 'onComment'> & {
+export type Options = Omit<Acorn.Options, 'onComment' | 'onToken'> & {
   comment?: boolean
+  token?: boolean
 }
 
-type ProgramWithComments = Acorn.Program & {
+type ProgramWithCommentsAndTokens = Acorn.Program & {
   comments?: Acorn.Comment[]
+  tokens?: Acorn.Token[]
 }
 
 export const acorn: Parser<typeof Acorn, Options> = {
@@ -29,12 +31,17 @@ export const acorn: Parser<typeof Acorn, Options> = {
   },
   parse(code, options) {
     const comments = options.comment ? [] : undefined
+    const tokens = options.token ? [] : undefined
     const ast = this.parse(code, {
       ...options,
       onComment: comments,
-    }) as ProgramWithComments
+      onToken: tokens,
+    }) as ProgramWithCommentsAndTokens
     if (options.comment) {
       ast.comments = comments
+    }
+    if (options.token) {
+      ast.tokens = tokens
     }
 
     return ast
