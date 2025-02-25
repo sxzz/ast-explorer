@@ -1,12 +1,13 @@
 import type { Parser } from '..'
 import type * as Meriyah from 'meriyah'
 
-export type Options = Omit<Meriyah.Options, 'onComment'> & {
+export type Options = Omit<Meriyah.Options, 'onComment' | 'onToken'> & {
   comment?: boolean
 }
 
-type ProgramWithComments = Meriyah.ESTree.Program & {
+type ProgramWithCommentsAndTokens = Meriyah.ESTree.Program & {
   comments?: Meriyah.ESTree.Comment[]
+  tokens?: Meriyah.ESTree.Comment[]
 }
 
 export const meriyah: Parser<typeof Meriyah, Options> = {
@@ -29,16 +30,22 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
   },
   parse(code, options) {
     const comments = options.comment ? [] : undefined
+    const tokens = options.token ? [] : undefined
     const ast = this.parse(code, {
       ...options,
       onComment: comments,
-    }) as ProgramWithComments
+      onToken: tokens,
+    }) as ProgramWithCommentsAndTokens
     if (options.comment) {
       ast.comments = comments
+    }
+    if (options.token) {
+      ast.tokens = tokens
     }
 
     return ast
   },
   editorLanguage: 'javascript',
   getNodeLocation,
+  gui: () => import('./MeriyahGui.vue'),
 }
