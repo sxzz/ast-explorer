@@ -22,7 +22,6 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
       return mod
     }),
   parse(code, options) {
-    // @ts-expect-error missing comments property
     const { program, comments, errors } = this.parseSync(code, { ...options })
     return { program, comments, errors }
   },
