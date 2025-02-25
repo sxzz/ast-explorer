@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.26.9",
+    "@humanwhocodes/momoa": "^3.3.8",
     "@iconify-json/ri": "^1.2.5",
     "@iconify-json/vscode-icons": "^1.2.16",
     "@nuxt/kit": "^3.15.4",
