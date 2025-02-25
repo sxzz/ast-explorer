@@ -3,6 +3,7 @@ import type * as Meriyah from 'meriyah'
 
 export type Options = Omit<Meriyah.Options, 'onComment' | 'onToken'> & {
   comment?: boolean
+  token?: boolean
 }
 
 type ProgramWithCommentsAndTokens = Meriyah.ESTree.Program & {

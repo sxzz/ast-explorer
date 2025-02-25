@@ -33,6 +33,10 @@ const jsx = useOption('jsx')
       <span>webcompat</span>
     </label>
     <label>
+      <input v-model="loc" type="checkbox" switch />
+      <span>loc</span>
+    </label>
+    <label>
       <input v-model="ranges" type="checkbox" switch />
       <span>ranges</span>
     </label>
