@@ -32,7 +32,7 @@ const allowTrailingCommas = useOption('allowTrailingCommas')
       <span>tokens</span>
     </label>
 
-    <label>
+    <label v-show="mode !== 'json5'">
       <input v-model="allowTrailingCommas" type="checkbox" switch />
       <span>allowTrailingCommas</span>
     </label>
