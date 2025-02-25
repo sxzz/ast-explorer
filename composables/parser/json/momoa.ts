@@ -24,6 +24,6 @@ export const momoa: Parser<typeof Momoa, Momoa.ParseOptions> = {
   parse(code, options) {
     return this.parse(code, { ...options })
   },
-  getNodeLocation,
+  getNodeLocation: genGetNodeLocation('locOffset'),
   gui: () => import('./MomoaGui.vue'),
 }
