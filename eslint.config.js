@@ -3,6 +3,7 @@ export default sxzz([
   {
     rules: {
       'node/no-unsupported-features/es-builtins': 'off',
+      'import/first': 'off',
     },
   },
   {

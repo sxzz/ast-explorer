@@ -53,6 +53,41 @@ Feel free to add more languages and parsers via PR!
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
 
+## URL Encode Algorithm
+
+The input code and options are stored in the URL as a hash fragment,
+which is the string following the `#` symbol
+and is not transmitted to the server.
+
+#### Implementation
+
+```ts
+const code = 'code'
+const parserId = 'acorn'
+const optionsString = JSON.stringify({
+  ecmaVersion: 'latest',
+  sourceType: 'module',
+})
+const serialized = btoa(
+  // btoa, or compress() if want to compress the data
+  JSON.stringify({
+    c: code,
+    p: parserId,
+    o: optionsString,
+  }),
+)
+const url = `https://ast.sxzz.dev/#${serialized}`
+
+// compress is optional
+import { strFromU8, strToU8, unzlibSync, zlibSync } from 'fflate'
+function compress(data: string) {
+  const buffer = strToU8(data)
+  const zipped = zlibSync(buffer, { level: 9 })
+  const binary = strFromU8(zipped, true)
+  return btoa(binary)
+}
+```
+
 ## Contributing
 
 To contribute to the project, see [Contribution Guide](https://github.com/sxzz/contribute).
