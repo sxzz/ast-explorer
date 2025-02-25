@@ -36,6 +36,9 @@ importers:
       '@babel/parser':
         specifier: ^7.26.9
         version: 7.26.9
+      '@humanwhocodes/momoa':
+        specifier: ^3.3.8
+        version: 3.3.8
       '@iconify-json/ri':
         specifier: ^1.2.5
         version: 1.2.5
@@ -713,6 +716,10 @@ packages:
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
+
+  '@humanwhocodes/momoa@3.3.8':
+    resolution: {integrity: sha512-/3PZzor2imi/RLLcnHztkwA79txiVvW145Ve2cp5dxRcH5qOUNJPToasqLFHniTfw4B4lT7jGDdBOPXbXYlIMQ==}
+    engines: {node: '>=18'}
 
   '@humanwhocodes/retry@0.3.1':
     resolution: {integrity: sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==}
@@ -5631,6 +5638,8 @@ snapshots:
       '@humanwhocodes/retry': 0.3.1
 
   '@humanwhocodes/module-importer@1.0.1': {}
+
+  '@humanwhocodes/momoa@3.3.8': {}
 
   '@humanwhocodes/retry@0.3.1': {}
 
