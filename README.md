@@ -68,8 +68,8 @@ const optionsString = JSON.stringify({
   ecmaVersion: 'latest',
   sourceType: 'module',
 })
-const serialized = btoa(
-  // btoa, or compress() if want to compress the data
+const serialized = utoa(
+  // utoa, or compress() if want to compress the data
   JSON.stringify({
     c: code,
     p: parserId,
@@ -77,6 +77,11 @@ const serialized = btoa(
   }),
 )
 const url = `https://ast.sxzz.dev/#${serialized}`
+
+// no compress
+function utoa(data: string): string {
+  return btoa(unescape(encodeURIComponent(data)))
+}
 
 // compress is optional
 import { strFromU8, strToU8, unzlibSync, zlibSync } from 'fflate'
