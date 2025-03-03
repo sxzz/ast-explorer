@@ -118,7 +118,7 @@ function editVersion() {
           nav-button
           @click="toggleOutput()"
         >
-          <div i-ri:tree-line />
+          <div i-ri:node-tree />
         </button>
         <button title="Toggle Dark Mode" nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />

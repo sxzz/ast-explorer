@@ -19,7 +19,7 @@ watchEffect(() => {
 })
 
 const tabClass =
-  'w-20 border rounded p1 hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
+  'border rounded-full w-7 h-7 items-center flex justify-center hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
 const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
 
 const errorString = computed(() => {
@@ -85,13 +85,13 @@ watch(outputView, (view) => {
           :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
           @click="toggleView('tree')"
         >
-          Tree
+          <div i-ri:node-tree />
         </button>
         <button
           :class="[tabClass, outputView === 'json' && tabSelectedClass]"
           @click="toggleView('json')"
         >
-          JSON
+          <div i-ri:braces-line />
         </button>
       </div>
       <label>
@@ -115,14 +115,6 @@ watch(outputView, (view) => {
         />
         Hide location data
       </label>
-      <label>
-        Hide keys:
-        <input
-          v-model="hideKeysValue"
-          type="input"
-          placeholder="field1, field2, ..."
-        />
-      </label>
       <button
         flex="~ y-center"
         gap1
@@ -137,6 +129,14 @@ watch(outputView, (view) => {
         <div i-ri:printer-line />
         Print in Console
       </button>
+      <label>
+        Hide keys:
+        <input
+          v-model="hideKeysValue"
+          type="input"
+          placeholder="field1, field2, ..."
+        />
+      </label>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
       <Loading v-if="loading">
