@@ -2,7 +2,7 @@ import {
   defineConfig,
   presetAttributify,
   presetIcons,
-  presetUno,
+  presetWind3,
   transformerDirectives,
 } from 'unocss'
 
@@ -19,7 +19,7 @@ export default defineConfig({
       'flex flex-center rounded-md p1.5 hover:bg-gray hover:bg-opacity-20',
   },
   presets: [
-    presetUno({
+    presetWind3({
       attributifyPseudo: true,
     }),
     presetAttributify(),
