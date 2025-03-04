@@ -16,7 +16,6 @@ const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
   () => ({
     ...getSharedMonacoOptions(),
     fontSize: 14,
-    fontLigatures: true,
   }),
 )
 
