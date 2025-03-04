@@ -15,7 +15,7 @@
 <view> body </view>
 <include src="footer.wxml" />
 
-<view class="search-contianer">
+<view class="search-container">
   <view
     class="search"
     style="height:{{ navHeight }}px;padding-top:{{ navTop }}px"
