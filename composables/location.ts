@@ -48,6 +48,11 @@ const nodeLocationFields = {
     start: ['loc', '0'],
     end: ['loc', '1'],
   },
+  php: {
+    type: ['kind'],
+    start: ['loc', 'start', 'offset'],
+    end: ['loc', 'end', 'offset'],
+  },
 } as const
 
 export function genGetNodeLocation(

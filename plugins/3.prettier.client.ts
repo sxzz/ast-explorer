@@ -15,6 +15,7 @@ export default defineNuxtPlugin(() => {
         'vue',
         'markdown',
         'yaml',
+        'php',
       ] satisfies MonacoLanguage[]
     ).map((language) => ({ language, exclusive: true })),
     {
@@ -23,8 +24,9 @@ export default defineNuxtPlugin(() => {
         const language = model.getLanguageId()
         const text = model.getValue()
 
-        let pluginIds: string[]
-        let parser: BuiltInParserName
+        let pluginIds: string[] | undefined
+        let parser: BuiltInParserName | 'php'
+        let customPlugins: Promise<Plugin[]> | undefined
         switch (language) {
           case 'json':
             parser = language
@@ -58,6 +60,14 @@ export default defineNuxtPlugin(() => {
             parser = language
             pluginIds = [language]
             break
+          case 'php': {
+            parser = 'php'
+            customPlugins = Promise.all([
+              importJsdelivr('@prettier/plugin-php', '/+esm'),
+              loadPrettierPlugins(['html']),
+            ])
+            break
+          }
           default:
             return []
         }
@@ -67,7 +77,7 @@ export default defineNuxtPlugin(() => {
             `prettier`,
             `/standalone.mjs`,
           ),
-          loadPrettierPlugins(pluginIds),
+          customPlugins ? customPlugins : loadPrettierPlugins(pluginIds!),
         ])
 
         const formatted = await prettier.format(text, {

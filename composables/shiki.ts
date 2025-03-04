@@ -2,6 +2,7 @@ import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki'
 import langCss from 'shiki/langs/css.mjs'
 import langHtml from 'shiki/langs/html.mjs'
 import langJson from 'shiki/langs/json.mjs'
+import langPhp from 'shiki/langs/php.mjs'
 import langRust from 'shiki/langs/rust.mjs'
 import langSql from 'shiki/langs/sql.mjs'
 import langSvelte from 'shiki/langs/svelte.mjs'
@@ -21,6 +22,7 @@ export const shikiLangs = [
   langSql,
   langSvelte,
   langRust,
+  langPhp,
 ]
 export const highlighter = createHighlighterCoreSync({
   langs: shikiLangs,
