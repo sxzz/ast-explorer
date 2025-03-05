@@ -10,7 +10,7 @@ const props = defineProps<{
   open?: boolean
 }>()
 
-const show = computed(() => !shouldHideKey(props.id, props.value))
+const show = computed(() => !shouldHideKey(props.id, true, props.value))
 
 const title = computed(() => {
   const { nodeTitle = 'type' } = currentParser.value
@@ -33,10 +33,6 @@ function isArrayLike(n: unknown) {
 }
 
 const isFocusing = computed(() => {
-  if (currentParser.value.ignoreFocusFields?.includes(props.id as any)) {
-    return false
-  }
-
   // children of csstree is iterable but not array
   if (isArrayLike(props.value)) {
     return Array.from(props.value).some((v) => checkRange(getRange(v)))

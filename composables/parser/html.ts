@@ -22,7 +22,7 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
     return this.parseDocument(code, options)
   },
   getNodeLocation: genGetNodeLocation('htmlparser2'),
-  ignoreFocusFields: ['parent', 'prev', 'next'],
+  hideKeys: ['parent', 'prev', 'next'],
 }
 
 const rehypeAst: Parser<typeof Rehype> = {

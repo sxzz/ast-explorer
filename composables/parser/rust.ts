@@ -40,7 +40,6 @@ const jinxRust: Parser<typeof JinxRust, JinxRust.rs.ParserOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'jinx-rust',
-  ignoreFocusFields: ['loc'],
   parse(code, options) {
     return this.rs.parseFile(code, { ...options }).toJSON()
   },

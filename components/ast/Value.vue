@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { shouldHideKey } from '~/state/output'
 import { parserModule } from '~/state/parser/module'
 import { currentParser } from '~/state/parser/parser'
 import type { AstProperty } from '#components'
@@ -57,7 +58,12 @@ watchEffect(() => {
     <AstBrackets :data="rawValue">
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of rawValue" :key="key">
-          <AstProperty :id="key" :ref="properties.set" :value="item" />
+          <AstProperty
+            v-if="!shouldHideKey(key)"
+            :id="key"
+            :ref="properties.set"
+            :value="item"
+          />
         </template>
       </div>
     </AstBrackets>

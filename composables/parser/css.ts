@@ -50,7 +50,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
     return this.parse(code, { ...options })
   },
   getNodeLocation: genGetNodeLocation('postcss'),
-  ignoreFocusFields: ['parent'],
+  hideKeys: ['parent'],
 }
 
 const lightningcss: Parser<

@@ -69,7 +69,7 @@ export interface Parser<C = unknown, O = unknown> {
     key: string | number | undefined,
     value: any,
   ) => string | undefined
-  ignoreFocusFields?: (string | number)[]
+  hideKeys?: (string | number)[]
   gui?: AsyncComponentLoader
 }
 export interface LanguageOption {
