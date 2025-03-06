@@ -1,3 +1,4 @@
+import { angular } from './angular'
 import { css } from './css'
 import { html } from './html'
 import { javascript } from './javascript'
@@ -83,6 +84,7 @@ export const LANGUAGES = {
   javascript,
   vue,
   svelte,
+  angular,
   css,
   html,
   json,

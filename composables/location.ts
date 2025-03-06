@@ -33,6 +33,16 @@ const nodeLocationFields = {
     start: ['startIndex'],
     end: ['endIndex'],
   },
+  angularCompilerAst: {
+    type: ['constructor', 'name'],
+    start: ['sourceSpan', 'start'],
+    end: ['sourceSpan', 'end'],
+  },
+  angularCompilerTmpl: {
+    type: ['constructor', 'name'],
+    start: ['sourceSpan', 'start', 'offset'],
+    end: ['sourceSpan', 'end', 'offset'],
+  },
   positionOffset: {
     type: ['type'],
     start: ['position', 'start', 'offset'],

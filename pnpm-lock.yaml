@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@angular/compiler':
+        specifier: ^19.2.1
+        version: 19.2.1
       '@shikijs/monaco':
         specifier: ^3.1.0
         version: 3.1.0
@@ -192,6 +195,15 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@angular/compiler@19.2.1':
+    resolution: {integrity: sha512-yCN/lgXMvMsPtEmTChd621zV17RLn+flhcJ6mNZjyGA7zx16m5zity4/00G6phbGfG8WXOtH5vQ/k7nnO7wS4A==}
+    engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
+    peerDependencies:
+      '@angular/core': 19.2.1
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
 
   '@antfu/install-pkg@1.0.0':
     resolution: {integrity: sha512-xvX6P/lo1B3ej0OsaErAjqgFYzYVcJpamjLAFLYh9vRJngBrMoUG7aVnrGTeqM7yxbyTD5p3F2+0/QUEh8Vzhw==}
@@ -5153,6 +5165,10 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
+
+  '@angular/compiler@19.2.1':
+    dependencies:
+      tslib: 2.8.1
 
   '@antfu/install-pkg@1.0.0':
     dependencies:

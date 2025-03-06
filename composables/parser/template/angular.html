@@ -1,0 +1,23 @@
+<header>
+  <h1>{{ title }}</h1>
+  @if (isAuthenticated()) {
+    <p>Welcome back, {{ user.name }}!</p>
+  } @else {
+    <p>Please log in to access your account.</p>
+  }
+</header>
+
+<main class="container">
+  @for (post of posts; track post.id) {
+    <app-article [post]="post" (delete)="deletePost($event)">
+      <p>Published on {{ post.date | date: 'fullDate' }}</p>
+    </app-article>
+  }
+  @empty {
+    <p>No posts available.</p>
+  }
+</main>
+
+<footer *ngIf="showFooter()">
+  <p>&copy; {{ currentYear }} My Blog</p>
+</footer>
