@@ -34,8 +34,10 @@ Feel free to add more languages and parsers via PR!
   - [Esprima Next](https://github.com/node-projects/esprima-next)
   - [Flow](https://github.com/facebook/flow/tree/main/packages/flow-parser)
   - [Hermes](https://github.com/facebook/hermes)
+  - [meriyah](https://github.com/meriyah/meriyah)
 - [Vue](https://vuejs.org/)
 - [Svelte](https://svelte.dev/)
+- [Angular](https://angular.dev/)
 - CSS
   - [csstree](https://github.com/csstree/csstree)
   - [PostCSS](https://postcss.org/)
@@ -45,11 +47,19 @@ Feel free to add more languages and parsers via PR!
   - [rehype](https://github.com/rehypejs/rehype)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
+  - [moma](https://www.npmjs.com/package/@humanwhocodes/momoa)
+  - [jsonc-eslint-parser](https://www.npmjs.com/package/jsonc-eslint-parser)
 - [WXML](https://github.com/wxmlfile/wxml-parser)
 - Markdown
   - [remark](https://github.com/remarkjs/remark)
 - YAML
   - [yaml](https://eemeli.org/yaml/)
+  - [yaml-eslint-parser](https://www.npmjs.com/package/yaml-eslint-parser)
+- Rust
+  - [astexplorer-syn](https://www.npmjs.com/package/astexplorer-syn)
+  - [jinx-rust](https://www.npmjs.com/package/jinx-rust)
+- PHP
+  - [php-parser](https://www.npmjs.com/package/php-parser)
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
 
