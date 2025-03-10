@@ -1,9 +1,9 @@
+import Typescript from 'typescript'
 import type { Parser } from '..'
-import type Typescript from 'typescript'
 
 export const typescript: Parser<
   typeof Typescript,
-  Typescript.CreateSourceFileOptions
+  Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
 > = {
   id: 'typescript',
   label: 'typescript',
@@ -14,6 +14,7 @@ export const typescript: Parser<
     configurable: true,
     defaultValue: {
       languageVersion: 99,
+      scriptKind: Typescript.ScriptKind.TS,
     },
     editorLanguage: 'json',
   },
@@ -22,8 +23,8 @@ export const typescript: Parser<
   async version() {
     return (await this).version
   },
-  parse(code, options) {
-    return this.createSourceFile('foo.ts', code, { ...options })
+  parse(code, { scriptKind, ...options }) {
+    return this.createSourceFile('foo.ts', code, options, undefined, scriptKind)
   },
   editorLanguage: 'typescript',
   getNodeLocation: genGetNodeLocation('typescript'),
@@ -44,6 +45,7 @@ export const typescript: Parser<
         return `ScriptKind.${this.ScriptKind[value]}`
     }
   },
+  gui: () => import('./TypescriptGui.vue'),
 }
 
 const cache = new WeakMap<
