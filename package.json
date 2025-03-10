@@ -35,7 +35,7 @@
     "@nuxt/kit": "^3.15.4",
     "@oxc-parser/wasm": "^0.54.0",
     "@swc/wasm-web": "1.11.6",
-    "@sxzz/eslint-config": "^5.2.0",
+    "@sxzz/eslint-config": "^6.0.1",
     "@sxzz/prettier-config": "^2.2.0",
     "@types/css-tree": "^2.3.10",
     "@types/espree": "^10.1.0",
