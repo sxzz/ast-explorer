@@ -1,5 +1,5 @@
-import Typescript from 'typescript'
 import type { Parser } from '..'
+import type Typescript from 'typescript'
 
 export const typescript: Parser<
   typeof Typescript,
@@ -14,7 +14,7 @@ export const typescript: Parser<
     configurable: true,
     defaultValue: {
       languageVersion: 99,
-      scriptKind: Typescript.ScriptKind.TS,
+      scriptKind: 3 satisfies Typescript.ScriptKind.TS,
     },
     editorLanguage: 'json',
   },
