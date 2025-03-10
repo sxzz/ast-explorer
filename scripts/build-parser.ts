@@ -17,10 +17,7 @@ export async function buildTsEslintParser(
   const cachePath = path.resolve(cacheDir, `ts-eslint-parser@${version}.js`)
   if (!noCache) {
     const cache = await readFile(cachePath, 'utf8').catch(() => null)
-    if (cache) {
-      logger.info(`Using cached @typescript-eslint/parser from ${cachePath}`)
-      return cache
-    }
+    if (cache) return cache
   }
   const t = performance.now()
   logger.start('Building @typescript-eslint/parser')
