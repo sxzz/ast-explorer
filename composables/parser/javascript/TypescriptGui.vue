@@ -12,6 +12,10 @@ const languageVersion = useOption(
   Typescript.ScriptTarget.Latest,
   true,
 )
+
+const versions = Object.entries(Typescript.ScriptTarget).filter(
+  ([_, value]) => typeof value === 'number',
+)
 </script>
 
 <template>
@@ -35,9 +39,7 @@ const languageVersion = useOption(
       <span>languageVersion</span>
       <select v-model="languageVersion">
         <option
-          v-for="version in Object.entries(Typescript.ScriptTarget).filter(
-            ([_, value]) => typeof value === 'number',
-          )"
+          v-for="version of versions"
           :key="version[0]"
           :value="version[1]"
         >
