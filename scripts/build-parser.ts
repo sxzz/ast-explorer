@@ -29,13 +29,13 @@ export async function buildTsEslintParser(
     resolve: {
       /// keep-sorted
       alias: {
-        '@typescript-eslint/scope-manager': 'unenv/runtime/mock/proxy',
-        'fast-glob': 'unenv/runtime/mock/proxy',
-        'is-glob': 'unenv/runtime/mock/proxy',
-        'node:fs': 'unenv/runtime/mock/proxy',
+        '@typescript-eslint/scope-manager': 'unenv/mock/proxy',
+        'fast-glob': 'unenv/mock/proxy',
+        'is-glob': 'unenv/mock/proxy',
+        'node:fs': 'unenv/mock/proxy',
         'node:path': 'pathe',
-        'node:util': 'unenv/runtime/mock/proxy',
-        minimatch: 'unenv/runtime/mock/proxy',
+        'node:util': 'unenv/mock/proxy',
+        minimatch: 'unenv/mock/proxy',
       },
     },
     plugins: [
