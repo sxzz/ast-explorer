@@ -10,47 +10,26 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set node
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.1.0
+
+      - name: Set node LTS
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-
-      - name: Setup
-        run: npm i -g @antfu/ni
+          cache: pnpm
 
       - name: Install
-        run: nci
+        run: pnpm install
 
       - name: Lint
-        run: nr lint
+        run: pnpm run lint
 
       - name: Typecheck
-        run: nr typecheck
+        run: pnpm run typecheck
 
-  # test:
-  #   runs-on: ${{ matrix.os }}
-
-  #   strategy:
-  #     matrix:
-  #       os: [ubuntu-latest, windows-latest]
-  #       node: [18, 20]
-  #     fail-fast: false
-
-  #   steps:
-  #     - uses: actions/checkout@v3
-
-  #     - name: Set node ${{ matrix.node }}
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node }}
-
-  #     - name: Setup
-  #       run: npm i -g @antfu/ni
-
-  #     - name: Install
-  #       run: nci
-
-  #     - name: Build
-  #       run: nr build
+      - name: Build Parser
+        run: pnpm run build-parser

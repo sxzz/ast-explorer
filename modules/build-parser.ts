@@ -10,7 +10,10 @@ export default defineNuxtModule({
 
     addTemplate({
       filename: 'ts-eslint-parser',
-      getContents: () => buildTsEslintParser(logger),
+      async getContents() {
+        const { code } = await buildTsEslintParser(logger)
+        return code
+      },
     })
   },
 })

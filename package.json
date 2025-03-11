@@ -12,6 +12,7 @@
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
     "lint": "eslint --cache",
+    "build-parser": "tsx --experimental-vm-modules scripts/build-parser-test.ts",
     "release": "bumpp && tsx scripts/release.ts",
     "postinstall": "nuxt prepare"
   },
