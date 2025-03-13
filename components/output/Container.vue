@@ -78,7 +78,7 @@ watch(outputView, (view) => {
 </script>
 
 <template>
-  <div flex="~ col" gap2>
+  <div flex="~ col" gap1>
     <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
       <div flex gap1>
         <button
@@ -115,28 +115,6 @@ watch(outputView, (view) => {
         />
         Hide location data
       </label>
-      <button
-        flex="~ y-center"
-        gap1
-        border
-        rounded
-        px1
-        py0.5
-        text-sm
-        hover="bg-gray bg-opacity-20 border-white/20"
-        @click="print"
-      >
-        <div i-ri:printer-line />
-        Print in Console
-      </button>
-      <label>
-        Hide keys:
-        <input
-          v-model="hideKeysValue"
-          type="input"
-          placeholder="field1, field2, ..."
-        />
-      </label>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
       <Loading v-if="loading">
@@ -155,6 +133,30 @@ watch(outputView, (view) => {
         />
         <OutputTree v-else />
       </div>
+    </div>
+    <div flex justify-end gap2 px2 pb1 text-sm>
+      <button
+        flex="~ y-center"
+        gap1
+        border
+        rounded
+        px1
+        py0.5
+        hover="bg-gray bg-opacity-20 border-white/20"
+        @click="print"
+      >
+        <div i-ri:printer-line />
+        Print in Console
+      </button>
+
+      <label>
+        Hide keys:
+        <input
+          v-model="hideKeysValue"
+          type="input"
+          placeholder="field1, field2, ..."
+        />
+      </label>
     </div>
   </div>
 </template>

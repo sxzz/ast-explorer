@@ -43,6 +43,7 @@ function editVersion() {
       <div flex="~ center" gap3>
         <span op70>{{ +parseCost.toFixed(1) }} ms</span>
         <a
+          text-sm
           font-mono
           op80
           hover:underline
@@ -58,7 +59,7 @@ function editVersion() {
             <span>@</span>
             <span
               :class="[
-                isUrlVersion && 'text-xs text-blue',
+                isUrlVersion && 'text-blue',
                 overrideVersion &&
                   !isUrlVersion &&
                   'text-green-700 dark:text-green',
