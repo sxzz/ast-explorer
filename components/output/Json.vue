@@ -9,7 +9,6 @@ const monaco = useMonaco()!
 const options = computed(() => ({
   ...getSharedMonacoOptions(),
   readOnly: true,
-  fontSize: 13,
 }))
 
 const serialized = computed(() => {

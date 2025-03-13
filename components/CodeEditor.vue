@@ -12,11 +12,23 @@ const container = shallowRef<{
   $editor: Monaco.editor.IStandaloneCodeEditor | undefined
 }>()
 
-const options = computed<Monaco.editor.IStandaloneEditorConstructionOptions>(
-  () => ({
-    ...getSharedMonacoOptions(),
-    fontSize: 14,
-  }),
+const options = computed(() => getSharedMonacoOptions())
+
+const monaco = useMonaco()!
+watch(
+  () => container.value?.$editor,
+  (editor) => {
+    if (!editor) return
+    editor.addAction({
+      id: 'show-settings-panel',
+      label: 'Show Settings Panel',
+      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Comma],
+      run: () => {
+        showEditorSettings.value = true
+      },
+    })
+  },
+  { immediate: true },
 )
 
 if (props.input) {
@@ -28,6 +40,15 @@ if (props.input) {
       editor.onDidChangeCursorPosition((e) => {
         editorCursor.value = editor.getModel()!.getOffsetAt(e.position)
       })
+
+      editor.addAction({
+        id: 'show-settings-panel',
+        label: 'Show Settings Panel',
+        keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.Comma],
+        run: () => {
+          showEditorSettings.value = true
+        },
+      })
     },
     { immediate: true },
   )
@@ -36,7 +57,6 @@ if (props.input) {
     | Monaco.editor.IEditorDecorationsCollection
     | undefined
 
-  const monaco = useMonaco()!
   watchEffect(() => {
     const editor = container.value?.$editor
     if (!editor) return
