@@ -34,13 +34,13 @@ function closeDialog() {
 
 <template>
   <dialog
-    v-if="showEditorSettings"
     ref="dialog"
     h-100
     w-200
-    flex="~ col"
+    flex-col
     border
     rounded-2xl
+    open:flex
     backdrop:bg-black:30
     backdrop:backdrop-blur-2
     @click="handleDialogClick"
@@ -61,8 +61,6 @@ function closeDialog() {
         <div i-ri:close-line />
       </button>
     </div>
-    <div flex-1>
-      <CodeEditor v-model="raw" language="json" h-full w-full />
-    </div>
+    <CodeEditor v-model="raw" language="json" min-h-0 w-full flex-1 />
   </dialog>
 </template>

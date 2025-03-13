@@ -23,8 +23,10 @@ function handleDialogClick(evt: MouseEvent) {
     <dialog
       ref="dialog"
       h-80vh
+      flex-col
       border
       rounded-2xl
+      open:flex
       backdrop:bg-black:30
       backdrop:backdrop-blur-2
       @click="handleDialogClick"
@@ -38,8 +40,9 @@ function handleDialogClick(evt: MouseEvent) {
 
       <CodeEditor
         v-model="rawOptions"
-        h-full
+        min-h-0
         w-60vw
+        flex-1
         :language="currentParser.options.editorLanguage"
       />
     </dialog>
