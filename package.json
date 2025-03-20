@@ -34,7 +34,6 @@
     "@iconify-json/ri": "^1.2.5",
     "@iconify-json/vscode-icons": "^1.2.16",
     "@nuxt/kit": "^3.16.0",
-    "@oxc-parser/wasm": "^0.60.0",
     "@swc/wasm-web": "^1.11.9",
     "@sxzz/eslint-config": "^6.0.2",
     "@sxzz/prettier-config": "^2.2.1",

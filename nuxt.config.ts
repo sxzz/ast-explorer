@@ -12,12 +12,6 @@ export default defineNuxtConfig({
         path: 'pathe',
       },
     },
-    // server: {
-    //   headers: {
-    //     'Cross-Origin-Opener-Policy': 'same-origin',
-    //     'Cross-Origin-Embedder-Policy': 'require-corp',
-    //   }
-    // }
   },
   nitro: {
     routeRules: {
