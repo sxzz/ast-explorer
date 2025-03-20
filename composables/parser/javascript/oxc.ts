@@ -1,7 +1,7 @@
 import type { Parser } from '..'
 import type * as Oxc from 'oxc-parser'
 
-export type ParserOptions = Oxc.ParserOptions & { sourceFilename: string };
+export type ParserOptions = Oxc.ParserOptions & { sourceFilename: string }
 
 export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   id: 'oxc',
