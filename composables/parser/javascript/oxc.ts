@@ -4,7 +4,7 @@ import type * as Oxc from '@oxc-parser/wasm/web/oxc_parser_wasm'
 export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
   id: 'oxc',
   label: 'Oxc',
-  icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square-min.png',
+  icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/round.svg',
   link: 'https://oxc.rs/docs/guide/usage/parser.html',
   options: {
     configurable: true,
