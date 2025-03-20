@@ -1,10 +1,9 @@
 import type { Parser } from '..'
 import type * as Oxc from 'oxc-parser'
 
-export const oxc: Parser<
-  typeof Oxc,
-  Partial<Oxc.ParserOptions & { sourceFilename: string }>
-> = {
+export type ParserOptions = Oxc.ParserOptions & { sourceFilename: string };
+
+export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   id: 'oxc',
   label: 'Oxc',
   icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square-min.png',
