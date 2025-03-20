@@ -1,7 +1,10 @@
 import type { Parser } from '..'
-import type * as Oxc from '@oxc-parser/wasm/web/oxc_parser_wasm'
+import type * as Oxc from 'oxc-parser'
 
-export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
+export const oxc: Parser<
+  typeof Oxc,
+  Partial<Oxc.ParserOptions & { sourceFilename: string }>
+> = {
   id: 'oxc',
   label: 'Oxc',
   icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square-min.png',
@@ -14,19 +17,18 @@ export const oxc: Parser<typeof Oxc, Partial<Oxc.ParserOptions>> = {
     },
     editorLanguage: 'json',
   },
-  pkgName: '@oxc-parser/wasm',
+  pkgName: 'oxc-parser',
   // getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/web/oxc_parser_wasm.js`),
-  getModuleUrl: (pkg) => `https://cdn.jsdelivr.net/gh/oxc-project/oxc@03-20-fix_napi_parser_make_wasi_browser_usable_on_cdn/napi/parser/browser-bundle.mjs`,
-  init: (url) =>
-    importUrl(url).then(async (mod: typeof Oxc) => {
-      // await mod.default()
-      return mod
-    }),
+  getModuleUrl: () =>
+    `https://cdn.jsdelivr.net/gh/oxc-project/oxc@03-20-fix_napi_parser_make_wasi_browser_usable_on_cdn/napi/parser/browser-bundle.mjs`,
+  init: (url) => importUrl(url),
   parse(code, options) {
-    const { program, comments, errors } = (this.parseSync as any)(options.sourceFilename, code, { sourceType: options.sourceType })
+    const { program, comments, errors } = this.parseSync(
+      options.sourceFilename ?? 'test.js',
+      code,
+      { sourceType: options.sourceType },
+    )
     return { program, comments, errors }
-    // const { program, comments, errors } = this.parseSync(code, { ...options })
-    // return { program, comments, errors }
   },
   editorLanguage(options) {
     return options.sourceFilename?.endsWith('.ts') ? 'typescript' : 'javascript'
