@@ -6,7 +6,7 @@ export type ParserOptions = Oxc.ParserOptions & { sourceFilename: string }
 export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   id: 'oxc',
   label: 'Oxc',
-  icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/logo-square-min.png',
+  icon: 'https://cdn.jsdelivr.net/gh/oxc-project/oxc-assets/round.svg',
   link: 'https://oxc.rs/docs/guide/usage/parser.html',
   options: {
     configurable: true,
