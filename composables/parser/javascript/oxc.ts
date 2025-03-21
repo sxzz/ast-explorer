@@ -16,10 +16,8 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
     },
     editorLanguage: 'json',
   },
-  pkgName: 'oxc-parser',
-  // getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/web/oxc_parser_wasm.js`),
-  getModuleUrl: () =>
-    `https://cdn.jsdelivr.net/gh/oxc-project/oxc@03-20-fix_napi_parser_make_wasi_browser_usable_on_cdn/napi/parser/browser-bundle.mjs`,
+  pkgName: '@oxc-parser/binding-wasm32-wasi',
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/browser-bundle.mjs'),
   init: (url) => importUrl(url),
   parse(code, options) {
     const { program, comments, errors } = this.parseSync(
