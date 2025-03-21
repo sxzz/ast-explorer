@@ -1,19 +1,22 @@
 <script lang="ts">
-import Typescript from 'typescript'
+import { parserModulePromise } from '~/state/parser/module'
+import type Typescript from 'typescript'
+
 const useOption = makeUseOption<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
 >()
 </script>
 
 <script setup lang="ts">
-const scriptKind = useOption('scriptKind', Typescript.ScriptKind.TS, true)
+const ts = await parserModulePromise.value
+const scriptKind = useOption('scriptKind', ts.ScriptKind.TS, true)
 const languageVersion = useOption(
   'languageVersion',
-  Typescript.ScriptTarget.Latest,
+  ts.ScriptTarget.Latest,
   true,
 )
 
-const versions = Object.entries(Typescript.ScriptTarget).filter(
+const versions = Object.entries(ts.ScriptTarget).filter(
   ([_, value]) => typeof value === 'number',
 )
 </script>
@@ -24,7 +27,7 @@ const versions = Object.entries(Typescript.ScriptTarget).filter(
       <span>sourceType</span>
       <select v-model="scriptKind">
         <option
-          v-for="kind in Object.entries(Typescript.ScriptKind).filter(
+          v-for="kind in Object.entries(ts.ScriptKind).filter(
             ([_, value]) => typeof value === 'number',
           )"
           :key="kind[0]"
