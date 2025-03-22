@@ -58,8 +58,8 @@ importers:
         specifier: ^0.60.0
         version: 0.60.0
       '@swc/wasm-web':
-        specifier: 1.11.9
-        version: 1.11.9
+        specifier: 1.11.11
+        version: 1.11.11
       '@sxzz/eslint-config':
         specifier: ^6.1.0
         version: 6.1.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.27.0(@typescript-eslint/parser@8.27.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
@@ -181,7 +181,7 @@ importers:
         specifier: ~5.8.2
         version: 5.8.2
       unenv:
-        specifier: ^2.0.0-rc.14
+        specifier: ^2.0.0-rc.15
         version: 2.0.0-rc.15
       unocss:
         specifier: ^66.1.0-beta.6
@@ -1175,8 +1175,8 @@ packages:
     peerDependencies:
       acorn: ^8.9.0
 
-  '@swc/wasm-web@1.11.9':
-    resolution: {integrity: sha512-ZayR0a7xFXgqVPqLNVyBoodjjyiEVUkTuL9aFyIRx6uWAn6Tfj17gZdaM4dZGj4foi2PXgKvT02CUfXhSL8k/Q==}
+  '@swc/wasm-web@1.11.11':
+    resolution: {integrity: sha512-qBz9BfJIolrRszkLDyKXEHO8jnclZYM+EPMtn16WXqIlQwDjbEVECnBF+E5sRSfGjjVVYoUP9jAogtbC8CQrCQ==}
 
   '@sxzz/eslint-config@6.1.0':
     resolution: {integrity: sha512-XHMvfZCYYZZZgsXod2JPCIu604lC/Uw1/J440chLb5HvEhEEJS9BQSJZWYfLkAnyEVdbn8WGf3kF7cKU3bMdcg==}
@@ -6060,7 +6060,7 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  '@swc/wasm-web@1.11.9': {}
+  '@swc/wasm-web@1.11.11': {}
 
   '@sxzz/eslint-config@6.1.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.27.0(@typescript-eslint/parser@8.27.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
