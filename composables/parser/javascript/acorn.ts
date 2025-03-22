@@ -1,5 +1,6 @@
 import type { Parser } from '..'
 import type * as Acorn from 'acorn'
+import type * as AcornLoose from 'acorn-loose'
 
 export type Options = Omit<Acorn.Options, 'onComment' | 'onToken'> & {
   comment?: boolean
@@ -13,7 +14,7 @@ type ProgramWithCommentsAndTokens = Acorn.Program & {
 
 export const acorn: Parser<typeof Acorn, Options> = {
   id: 'acorn',
-  label: 'Acorn',
+  label: 'acorn',
   icon: 'https://cdn.jsdelivr.net/gh/acornjs/acorn@master/logo.svg',
   link: 'https://github.com/acornjs/acorn',
   options: {
@@ -49,4 +50,13 @@ export const acorn: Parser<typeof Acorn, Options> = {
   editorLanguage: 'javascript',
   getNodeLocation,
   gui: () => import('./AcornGui.vue'),
+}
+
+export const acornLoose: Parser<typeof AcornLoose, Options> = {
+  ...(acorn as any),
+  id: 'acorn-loose',
+  label: 'acorn-loose',
+  pkgName: 'acorn-loose',
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/+esm`),
+  version: undefined,
 }

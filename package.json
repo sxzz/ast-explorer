@@ -48,6 +48,7 @@
     "@vue/compiler-sfc": "^3.5.13",
     "@vueuse/nuxt": "^13.0.0",
     "acorn": "^8.14.1",
+    "acorn-loose": "^8.4.0",
     "bumpp": "^10.1.0",
     "consola": "^3.4.1",
     "esbuild": "^0.25.1",
