@@ -11,7 +11,7 @@ export interface RemarkOptions {
 const remarkAst: Parser<typeof Remark, RemarkOptions> = {
   id: 'remark',
   label: 'remark',
-  icon: 'https://avatars.githubusercontent.com/u/16309564',
+  icon: 'https://raw.githubusercontent.com/remarkjs/remark/refs/heads/main/logo-square.svg',
   link: 'https://github.com/remarkjs/remark',
   editorLanguage: 'markdown',
   options: {
