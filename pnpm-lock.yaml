@@ -58,8 +58,8 @@ importers:
         specifier: ^0.60.0
         version: 0.60.0
       '@swc/wasm-web':
-        specifier: 1.11.9
-        version: 1.11.9
+        specifier: 1.11.12
+        version: 1.11.12
       '@sxzz/eslint-config':
         specifier: ^6.1.0
         version: 6.1.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.27.0(@typescript-eslint/parser@8.27.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)
@@ -172,8 +172,8 @@ importers:
         specifier: ^0.33.1
         version: 0.33.1
       svelte:
-        specifier: ^5.25.2
-        version: 5.25.2
+        specifier: ^5.25.3
+        version: 5.25.3
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
@@ -181,7 +181,7 @@ importers:
         specifier: ~5.8.2
         version: 5.8.2
       unenv:
-        specifier: ^2.0.0-rc.14
+        specifier: ^2.0.0-rc.15
         version: 2.0.0-rc.15
       unocss:
         specifier: ^66.1.0-beta.6
@@ -1175,8 +1175,8 @@ packages:
     peerDependencies:
       acorn: ^8.9.0
 
-  '@swc/wasm-web@1.11.9':
-    resolution: {integrity: sha512-ZayR0a7xFXgqVPqLNVyBoodjjyiEVUkTuL9aFyIRx6uWAn6Tfj17gZdaM4dZGj4foi2PXgKvT02CUfXhSL8k/Q==}
+  '@swc/wasm-web@1.11.12':
+    resolution: {integrity: sha512-1p/8uohY/NAcJVXgxLu4a2XRJuQVHuk2sS7Lpz+YWBfWlzH+WYbnsgHrXN/jaEh+rK1IApAGQTkwnJfeHymchA==}
 
   '@sxzz/eslint-config@6.1.0':
     resolution: {integrity: sha512-XHMvfZCYYZZZgsXod2JPCIu604lC/Uw1/J440chLb5HvEhEEJS9BQSJZWYfLkAnyEVdbn8WGf3kF7cKU3bMdcg==}
@@ -4386,8 +4386,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svelte@5.25.2:
-    resolution: {integrity: sha512-IxmBz4x15+bNbowhygUlwoVgqMLfEIDtyjUFDfOwb1f+7Fe5qeLfwGJHMql7QUSJBqNtXcOCPsZDDmuieZcpfA==}
+  svelte@5.25.3:
+    resolution: {integrity: sha512-J9rcZ/xVJonAoESqVGHHZhrNdVbrCfkdB41BP6eiwHMoFShD9it3yZXApVYMHdGfCshBsZCKsajwJeBbS/M1zg==}
     engines: {node: '>=18'}
 
   svgo@3.3.2:
@@ -6060,7 +6060,7 @@ snapshots:
     dependencies:
       acorn: 8.14.1
 
-  '@swc/wasm-web@1.11.9': {}
+  '@swc/wasm-web@1.11.12': {}
 
   '@sxzz/eslint-config@6.1.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.27.0(@typescript-eslint/parser@8.27.0(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.23.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
@@ -9993,7 +9993,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svelte@5.25.2:
+  svelte@5.25.3:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
