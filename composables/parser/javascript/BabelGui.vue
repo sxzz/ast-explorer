@@ -97,6 +97,24 @@ const decoratorsLegacy = useOptions(
     }
   },
 )
+
+const optionalChainingAssign = useOptions(
+  (opt: ParserOptions) =>
+    opt.plugins?.some(
+      (n) => Array.isArray(n) && n[0] === 'optionalChainingAssign',
+    ),
+  (value, opt) => {
+    if (!Array.isArray(opt.plugins)) opt.plugins = []
+    if (value) {
+      opt.plugins.push(['optionalChainingAssign', { version: '2023-07' }])
+    } else {
+      opt.plugins = opt.plugins.filter(
+        (n) => !Array.isArray(n) || n[0] !== 'optionalChainingAssign',
+      )
+    }
+  },
+)
+
 const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', [decorators])
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
@@ -108,7 +126,6 @@ const functionSent = usePlugin('functionSent')
 const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
 const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
-const optionalChainingAssign = usePlugin('optionalChainingAssign')
 const partialApplication = usePlugin('partialApplication')
 const pipelineOperator = usePlugin('pipelineOperator')
 const recordAndTuple = usePlugin('recordAndTuple')
