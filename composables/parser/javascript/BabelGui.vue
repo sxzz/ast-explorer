@@ -123,9 +123,54 @@ const optionalChainingAssign = usePlugin('optionalChainingAssign', {
   },
 })
 
-const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
-  deps: [decorators],
-})
+const pipelineOperator = useOptions(
+  (opt: ParserOptions) =>
+    opt.plugins?.some((n) => Array.isArray(n) && n[0] === 'pipelineOperator'),
+  (value, opt) => {
+    if (!Array.isArray(opt.plugins)) opt.plugins = []
+    if (value) {
+      opt.plugins.push([
+        'pipelineOperator',
+        { proposal: 'hack', topicToken: '#' },
+      ])
+    } else {
+      opt.plugins = opt.plugins.filter(
+        (n) => !Array.isArray(n) || n[0] !== 'pipelineOperator',
+      )
+    }
+  },
+)
+
+function findPipelineOperator(optPlugins: ParserOptions['plugins']) {
+  return optPlugins?.find(
+    (n) => Array.isArray(n) && n[0] === 'pipelineOperator',
+  )
+}
+
+const pipelineOperatorProposal = useOptions(
+  (opt: ParserOptions) => findPipelineOperator(opt.plugins)?.[1].proposal,
+  (value, opt) => {
+    const pipelineOperator = findPipelineOperator(opt.plugins)
+    if (!pipelineOperator) return
+    if (value === 'fsharp') {
+      pipelineOperator[1].proposal = value
+      delete pipelineOperator[1].topicToken
+    } else if (value === 'hack') {
+      pipelineOperator[1].proposal = value
+      pipelineOperator[1].topicToken = '#'
+    }
+  },
+)
+const pipelineOperatorTopicToken = useOptions(
+  (opt: ParserOptions) => findPipelineOperator(opt.plugins)?.[1].topicToken,
+  (value, opt) => {
+    const pipelineOperator = findPipelineOperator(opt.plugins)
+    if (!pipelineOperator) return
+    pipelineOperator[1].topicToken = value
+  },
+)
+
+const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', [decorators])
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
@@ -137,7 +182,6 @@ const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
 const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
 const partialApplication = usePlugin('partialApplication')
-const pipelineOperator = usePlugin('pipelineOperator')
 const recordAndTuple = usePlugin('recordAndTuple')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
 const throwExpressions = usePlugin('throwExpressions')
@@ -296,6 +340,28 @@ const throwExpressions = usePlugin('throwExpressions')
       <!-- Stage 2 -->
       <input v-model="pipelineOperator" type="checkbox" switch />
       <span>pipelineOperator</span>
+    </label>
+
+    <label ml6>
+      <span>proposal</span>
+      <select v-model="pipelineOperatorProposal" :disabled="!pipelineOperator">
+        <option value="hack">hack</option>
+        <option value="fsharp">fsharp</option>
+      </select>
+    </label>
+
+    <label ml6>
+      <span>topicToken</span>
+      <select
+        v-model="pipelineOperatorTopicToken"
+        :disabled="!pipelineOperator || pipelineOperatorProposal !== 'hack'"
+      >
+        <option value="%">%</option>
+        <option value="#">#</option>
+        <option value="^">^</option>
+        <option value="@@">@@</option>
+        <option value="^^">^^</option>
+      </select>
     </label>
 
     <label>
