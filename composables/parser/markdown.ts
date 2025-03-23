@@ -2,23 +2,45 @@ import { markdownTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Remark from 'remark'
 
+export interface RemarkOptions {
+  mdx?: boolean
+  frontmatter?: boolean
+}
+
 // @unocss-include
-const remarkAst: Parser<typeof Remark> = {
+const remarkAst: Parser<typeof Remark, RemarkOptions> = {
   id: 'remark',
   label: 'remark',
   icon: 'https://avatars.githubusercontent.com/u/16309564',
   link: 'https://github.com/remarkjs/remark',
   editorLanguage: 'markdown',
   options: {
-    configurable: false,
-    defaultValue: {},
+    configurable: true,
+    defaultValue: {
+      mdx: false,
+      frontmatter: false,
+    },
     editorLanguage: 'json',
   },
   pkgName: 'remark',
-  parse(code) {
-    return this.remark().parse(code)
+  async parse(code, options) {
+    let processor = this.remark()
+    if (options?.mdx) {
+      const { default: remarkMdx } = await importUrl(
+        'https://esm.sh/remark-mdx',
+      )
+      processor = processor.use(remarkMdx)
+    }
+    if (options?.frontmatter) {
+      const { default: remarkFrontmatter } = await importUrl(
+        'https://esm.sh/remark-frontmatter',
+      )
+      processor = processor.use(remarkFrontmatter)
+    }
+    return processor.parse(code)
   },
   getNodeLocation: genGetNodeLocation('positionOffset'),
+  gui: () => import('./RemarkGui.vue'),
 }
 
 export const markdown: LanguageOption = {
