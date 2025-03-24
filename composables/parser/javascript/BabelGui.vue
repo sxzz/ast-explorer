@@ -122,7 +122,19 @@ const tokens = useOption('tokens')
 const estree = usePlugin('estree')
 
 // languages
-const typeScript = usePlugin('typescript')
+const typescript = usePlugin('typescript', {
+  defaultOptions: {
+    dts: false,
+  },
+})
+const typescriptEnable = computed({
+  get: () => !!typescript.value,
+  set: (value) => (typescript.value = value),
+})
+function triggerTypescript() {
+  typescript.value = { ...typescript.value }
+}
+
 const jsx = usePlugin('jsx')
 const flow = usePlugin('flow')
 const v8intrinsic = usePlugin('v8intrinsic')
@@ -293,8 +305,18 @@ const throwExpressions = usePlugin('throwExpressions')
     <h3 border-t pt1 text-center font-bold>Languages</h3>
 
     <label>
-      <input v-model="typeScript" type="checkbox" switch />
+      <input v-model="typescriptEnable" type="checkbox" switch />
       <span>TypeScript</span>
+    </label>
+
+    <label v-if="typescript" ml6>
+      <input
+        v-model="typescript.dts"
+        type="checkbox"
+        switch
+        @change="triggerTypescript"
+      />
+      <span>dts</span>
     </label>
 
     <label>
