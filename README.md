@@ -115,6 +115,14 @@ To contribute to the project, see [Contribution Guide](https://github.com/sxzz/c
 - https://astexplorer.net/
 - https://play.swc.rs/
 
+## Sponsors
+
+<p align="center">
+  <a href="https://cdn.jsdelivr.net/gh/sxzz/sponsors/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/sxzz/sponsors/sponsors.svg'/>
+  </a>
+</p>
+
 ## License
 
 [AGPL-3.0](./LICENSE) License © 2023-PRESENT [三咲智子](https://github.com/sxzz)
