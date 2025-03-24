@@ -1,19 +1,36 @@
 <script lang="ts">
 import { useOptions } from '~/state/parser/options'
-import type { ParserOptions, ParserPlugin } from '@babel/parser'
+import type {
+  ParserOptions,
+  ParserPlugin,
+  ParserPluginWithOptions,
+} from '@babel/parser'
+
+function isPluginOf(plugin: ParserPlugin, name: ParserPlugin & string) {
+  return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
+}
 
 const useOption = makeUseOption<ParserOptions>()
-function usePlugin(name: ParserPlugin, deps: Ref<boolean | undefined>[] = []) {
+function usePlugin<T extends ParserPlugin & string>(
+  name: T,
+  {
+    pluginOptions,
+    deps = [],
+  }: {
+    pluginOptions?: Extract<ParserPluginWithOptions, [T, any]>[1]
+    deps?: Ref<boolean | undefined>[]
+  } = {},
+) {
   const value = useOptions(
-    (opt: ParserOptions) => !!opt.plugins?.includes?.(name),
+    (opt?: ParserOptions) => opt?.plugins?.some((p) => isPluginOf(p, name)),
     (value, opt) => {
       if (!Array.isArray(opt.plugins)) opt.plugins = []
 
       if (value) {
         deps.forEach((dep) => !dep.value && (dep.value = true))
-        opt.plugins.push(name)
+        opt.plugins.push(pluginOptions ? ([name, pluginOptions] as any) : name)
       } else {
-        opt.plugins = del(opt.plugins, [name])
+        opt.plugins = opt.plugins.filter((p) => !isPluginOf(p, name))
       }
     },
   )
@@ -67,13 +84,14 @@ const v8intrinsic = usePlugin('v8intrinsic')
 
 // proposals
 const doExpressions = usePlugin('doExpressions')
-const asyncDoExpressions = usePlugin('asyncDoExpressions', [doExpressions])
-
+const asyncDoExpressions = usePlugin('asyncDoExpressions', {
+  deps: [doExpressions],
+})
+// 23
 const decorators = useOptions(
-  (opt: ParserOptions) =>
-    !!(
-      opt.plugins?.includes?.('decorators') ||
-      opt.plugins?.includes?.('decorators-legacy')
+  (opt?: ParserOptions) =>
+    opt?.plugins?.some(
+      (p) => isPluginOf(p, 'decorators') || isPluginOf(p, 'decorators-legacy'),
     ),
   (value, opt) => {
     if (!Array.isArray(opt.plugins)) opt.plugins = []
@@ -85,7 +103,8 @@ const decorators = useOptions(
   },
 )
 const decoratorsLegacy = useOptions(
-  (opt: ParserOptions) => opt.plugins?.includes?.('decorators-legacy'),
+  (opt?: ParserOptions) =>
+    opt?.plugins?.some((p) => isPluginOf(p, 'decorators-legacy')),
   (value, opt) => {
     if (!Array.isArray(opt.plugins)) opt.plugins = []
     if (value) {
@@ -97,7 +116,16 @@ const decoratorsLegacy = useOptions(
     }
   },
 )
-const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', [decorators])
+
+const optionalChainingAssign = usePlugin('optionalChainingAssign', {
+  pluginOptions: {
+    version: '2023-07',
+  },
+})
+
+const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
+  deps: [decorators],
+})
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
@@ -108,7 +136,6 @@ const functionSent = usePlugin('functionSent')
 const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
 const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
-const optionalChainingAssign = usePlugin('optionalChainingAssign')
 const partialApplication = usePlugin('partialApplication')
 const pipelineOperator = usePlugin('pipelineOperator')
 const recordAndTuple = usePlugin('recordAndTuple')
