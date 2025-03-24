@@ -29,7 +29,7 @@ export function setDefaultOptions() {
 }
 
 export function useOptions<O extends object, T>(
-  read: (opt: O) => T,
+  read: (opt: O | undefined) => T,
   write: (value: T, opt: O) => void,
 ) {
   return computed<T>({

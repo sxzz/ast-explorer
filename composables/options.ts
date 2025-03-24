@@ -36,7 +36,8 @@ export function makeUseOption<O extends object>() {
         : never
   > =>
     useOptions(
-      (opt: O) => getWithPath(opt, keys as any) ?? defaultValue,
+      (opt?: O) =>
+        (opt == null ? null : getWithPath(opt, keys as any)) ?? defaultValue,
       (value, opt) => {
         let obj: any = opt
         let key: string
