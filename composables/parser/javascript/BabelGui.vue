@@ -10,27 +10,75 @@ function isPluginOf(plugin: ParserPlugin, name: ParserPlugin & string) {
   return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
 }
 
+type ExtractPluginOptions<T extends ParserPlugin & string> = Extract<
+  ParserPluginWithOptions,
+  [T, any]
+>[1]
+
+function getPluginOptions<T extends ParserPlugin & string>(
+  plugins: ParserPlugin[] | undefined,
+  name: T,
+): boolean | ExtractPluginOptions<T> {
+  const plugin = plugins?.find((p) => isPluginOf(p, name))
+  if (!plugin) return false
+  return Array.isArray(plugin) ? plugin[1] : true
+}
+
 const useOption = makeUseOption<ParserOptions>()
+
+function usePlugin<T extends ParserPlugin & string>(
+  name: T,
+  options: {
+    defaultOptions: ExtractPluginOptions<T>
+    deps?: Ref<boolean | undefined>[]
+  },
+): WritableComputedRef<
+  ExtractPluginOptions<T>,
+  ExtractPluginOptions<T> | boolean
+>
+function usePlugin<T extends ParserPlugin & string>(
+  name: T,
+  options?: { deps?: Ref<boolean | undefined>[] },
+): WritableComputedRef<boolean>
 function usePlugin<T extends ParserPlugin & string>(
   name: T,
   {
-    pluginOptions,
+    defaultOptions,
     deps = [],
   }: {
-    pluginOptions?: Extract<ParserPluginWithOptions, [T, any]>[1]
+    defaultOptions?: ExtractPluginOptions<T>
     deps?: Ref<boolean | undefined>[]
   } = {},
-) {
-  const value = useOptions(
-    (opt?: ParserOptions) => opt?.plugins?.some((p) => isPluginOf(p, name)),
-    (value, opt) => {
-      if (!Array.isArray(opt.plugins)) opt.plugins = []
+): WritableComputedRef<boolean | ExtractPluginOptions<T>> {
+  const options = ref<any>({ ...defaultOptions })
+  if (defaultOptions) {
+    watch(options, () => (value.value = options.value), { deep: true })
+  }
 
-      if (value) {
-        deps.forEach((dep) => !dep.value && (dep.value = true))
-        opt.plugins.push(pluginOptions ? ([name, pluginOptions] as any) : name)
+  const value = useOptions(
+    (opt?: ParserOptions) => {
+      const pluginOptions = getPluginOptions(opt?.plugins, name)
+      if (pluginOptions && defaultOptions) {
+        options.value =
+          pluginOptions === true ? { ...defaultOptions } : pluginOptions
+        return options.value
+      } else {
+        return pluginOptions
+      }
+    },
+    (value, opt) => {
+      if (!Array.isArray(opt.plugins)) {
+        opt.plugins = []
       } else {
         opt.plugins = opt.plugins.filter((p) => !isPluginOf(p, name))
+      }
+
+      if (value !== false && value != null) {
+        deps.forEach((dep) => !dep.value && (dep.value = true))
+        if (value === true && defaultOptions) {
+          value = defaultOptions
+        }
+        opt.plugins.push(value === true ? name : ([name, value] as any))
       }
     },
   )
@@ -87,7 +135,7 @@ const doExpressions = usePlugin('doExpressions')
 const asyncDoExpressions = usePlugin('asyncDoExpressions', {
   deps: [doExpressions],
 })
-// 23
+
 const decorators = useOptions(
   (opt?: ParserOptions) =>
     opt?.plugins?.some(
@@ -118,59 +166,25 @@ const decoratorsLegacy = useOptions(
 )
 
 const optionalChainingAssign = usePlugin('optionalChainingAssign', {
-  pluginOptions: {
+  defaultOptions: {
     version: '2023-07',
   },
 })
 
-const pipelineOperator = useOptions(
-  (opt: ParserOptions) =>
-    opt.plugins?.some((n) => Array.isArray(n) && n[0] === 'pipelineOperator'),
-  (value, opt) => {
-    if (!Array.isArray(opt.plugins)) opt.plugins = []
-    if (value) {
-      opt.plugins.push([
-        'pipelineOperator',
-        { proposal: 'hack', topicToken: '#' },
-      ])
-    } else {
-      opt.plugins = opt.plugins.filter(
-        (n) => !Array.isArray(n) || n[0] !== 'pipelineOperator',
-      )
-    }
+const pipelineOperator = usePlugin('pipelineOperator', {
+  defaultOptions: {
+    proposal: 'hack',
+    topicToken: '%',
   },
-)
+})
+const pipelineOperatorEnable = computed({
+  get: () => !!pipelineOperator.value,
+  set: (value) => (pipelineOperator.value = value),
+})
 
-function findPipelineOperator(optPlugins: ParserOptions['plugins']) {
-  return optPlugins?.find(
-    (n) => Array.isArray(n) && n[0] === 'pipelineOperator',
-  )
-}
-
-const pipelineOperatorProposal = useOptions(
-  (opt: ParserOptions) => findPipelineOperator(opt.plugins)?.[1].proposal,
-  (value, opt) => {
-    const pipelineOperator = findPipelineOperator(opt.plugins)
-    if (!pipelineOperator) return
-    if (value === 'fsharp') {
-      pipelineOperator[1].proposal = value
-      delete pipelineOperator[1].topicToken
-    } else if (value === 'hack') {
-      pipelineOperator[1].proposal = value
-      pipelineOperator[1].topicToken = '#'
-    }
-  },
-)
-const pipelineOperatorTopicToken = useOptions(
-  (opt: ParserOptions) => findPipelineOperator(opt.plugins)?.[1].topicToken,
-  (value, opt) => {
-    const pipelineOperator = findPipelineOperator(opt.plugins)
-    if (!pipelineOperator) return
-    pipelineOperator[1].topicToken = value
-  },
-)
-
-const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', [decorators])
+const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
+  deps: [decorators],
+})
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
@@ -338,24 +352,21 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="pipelineOperator" type="checkbox" switch />
+      <input v-model="pipelineOperatorEnable" type="checkbox" switch />
       <span>pipelineOperator</span>
     </label>
 
-    <label ml6>
+    <label v-if="pipelineOperator" ml6>
       <span>proposal</span>
-      <select v-model="pipelineOperatorProposal" :disabled="!pipelineOperator">
+      <select v-model="pipelineOperator.proposal">
         <option value="hack">hack</option>
         <option value="fsharp">fsharp</option>
       </select>
     </label>
 
-    <label ml6>
+    <label v-if="pipelineOperator && pipelineOperator.proposal === 'hack'" ml6>
       <span>topicToken</span>
-      <select
-        v-model="pipelineOperatorTopicToken"
-        :disabled="!pipelineOperator || pipelineOperatorProposal !== 'hack'"
-      >
+      <select v-model="pipelineOperator.topicToken">
         <option value="%">%</option>
         <option value="#">#</option>
         <option value="^">^</option>
