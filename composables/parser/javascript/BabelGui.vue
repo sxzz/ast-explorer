@@ -326,12 +326,6 @@ const throwExpressions = usePlugin('throwExpressions')
     </label>
 
     <label>
-      <!-- Stage 3 -->
-      <input v-model="importReflection" type="checkbox" switch />
-      <span>importReflection</span>
-    </label>
-
-    <label>
       <!-- Stage 2 -->
       <input v-model="moduleBlocks" type="checkbox" switch />
       <span>moduleBlocks</span>
@@ -347,6 +341,14 @@ const throwExpressions = usePlugin('throwExpressions')
       <!-- Stage 1 -->
       <input v-model="exportDefaultFrom" type="checkbox" switch />
       <span>exportDefaultFrom</span>
+    </label>
+
+    <label>
+      <input v-model="importReflection" type="checkbox" switch />
+      <span>
+        <span line-through>importReflection</span>
+        (deprecated)
+      </span>
     </label>
 
     <h3 border-t pt1 text-center font-bold>Functions</h3>
@@ -463,7 +465,10 @@ const throwExpressions = usePlugin('throwExpressions')
     <label>
       <!-- Stage 1 -->
       <input v-model="decimal" type="checkbox" switch />
-      <span>decimal</span>
+      <span>
+        <span line-through>decimal</span>
+        (deprecated)
+      </span>
     </label>
   </div>
 </template>
