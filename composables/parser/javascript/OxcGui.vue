@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ParserOptions } from '@oxc-parser/wasm'
+import type { ParserOptions } from './oxc'
 const useOption = makeUseOption<ParserOptions>()
 </script>
 
