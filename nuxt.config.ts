@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     routeRules: {
       '/**': {
         headers: {
+          // cross origin isolation is required since oxc-parser uses shared array buffer
           'Cross-Origin-Embedder-Policy': 'require-corp',
           'Cross-Origin-Opener-Policy': 'same-origin',
         },
