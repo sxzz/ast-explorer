@@ -37,7 +37,7 @@ const errorString = computed(() => {
         })
         .join('\n')
   }
-  return `${str}\n\n${stack ? `${stack}\n` : ''}`
+  return `${str}\n\n${stack && str !== stack ? `${stack}\n` : ''}`
 })
 
 function toggleView(view: 'tree' | 'json') {
@@ -120,7 +120,7 @@ watch(outputView, (view) => {
       <Loading v-if="loading">
         {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
       </Loading>
-      <div v-else-if="error" overflow-scroll text-sm text-red>
+      <div v-else-if="error" overflow-scroll p1 text-sm text-red>
         <pre v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>

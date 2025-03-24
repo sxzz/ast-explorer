@@ -1,6 +1,6 @@
 import { javascriptTemplate } from '../template'
 import type { LanguageOption } from '..'
-import { acorn } from './acorn'
+import { acorn, acornLoose } from './acorn'
 import { babel } from './babel'
 import { espree, tsEslint } from './eslint'
 import { esprimaNext } from './esprima-next'
@@ -20,6 +20,7 @@ export const javascript: LanguageOption = {
     swc,
     oxc,
     acorn,
+    acornLoose,
     typescript,
     espree,
     tsEslint,
