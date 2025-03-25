@@ -28,6 +28,17 @@ export default defineNuxtConfig({
         headers: crossOriginHeaders,
       },
     },
+    vercel: {
+      config: {
+        routes: [
+          {
+            src: '^/_nuxt/(.*)$',
+            // @ts-ignore
+            headers: crossOriginHeaders,
+          },
+        ],
+      },
+    },
   },
   devtools: {
     enabled: true,
