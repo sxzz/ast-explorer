@@ -32,8 +32,8 @@ export default defineNuxtConfig({
       config: {
         routes: [
           {
-            src: '^/_nuxt/(.*)$',
-            // @ts-ignore
+            src: '.*',
+            // @ts-expect-error - type dismatch in `nitropack`
             headers: crossOriginHeaders,
           },
         ],
