@@ -1,5 +1,11 @@
 import process from 'node:process'
 
+// cross origin isolation is required since oxc-parser uses shared array buffer
+const crossOriginHeaders = {
+  'Cross-Origin-Embedder-Policy': 'require-corp',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor', 'nuxt-umami'],
@@ -12,15 +18,25 @@ export default defineNuxtConfig({
         path: 'pathe',
       },
     },
+    server: {
+      headers: crossOriginHeaders,
+    },
   },
   nitro: {
     routeRules: {
       '/**': {
-        headers: {
-          // cross origin isolation is required since oxc-parser uses shared array buffer
-          'Cross-Origin-Embedder-Policy': 'require-corp',
-          'Cross-Origin-Opener-Policy': 'same-origin',
-        },
+        headers: crossOriginHeaders,
+      },
+    },
+    vercel: {
+      config: {
+        routes: [
+          {
+            src: '.*',
+            // @ts-expect-error - type dismatch in `nitropack`
+            headers: crossOriginHeaders,
+          },
+        ],
       },
     },
   },
