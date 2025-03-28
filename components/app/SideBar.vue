@@ -12,7 +12,7 @@ import {
     </div>
     <h2 flex="~ center" gap2 text-lg font-bold>
       Parser Options
-      <ParserOptions v-if="currentParser.options.configurable" />
+      <ParserOptions v-if="currentParser.options.configurable" nav-button />
     </h2>
     <Suspense :timeout="0">
       <ParserGui v-if="ParserGui" w-full class="sidebar-gui" />
