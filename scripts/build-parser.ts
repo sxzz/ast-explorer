@@ -51,7 +51,6 @@ export async function buildTsEslintParser(
         },
       },
       Replace({
-        exclude: [],
         values: [
           {
             find: /process\.cwd\(\)/g,
