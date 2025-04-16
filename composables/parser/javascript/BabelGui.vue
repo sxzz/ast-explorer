@@ -97,6 +97,7 @@ function usePlugin<T extends ParserPlugin & string>(
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
 const allowAwaitOutsideFunction = useOption('allowAwaitOutsideFunction')
+const allowYieldOutsideFunction = useOption('allowYieldOutsideFunction')
 const allowNewTargetOutsideFunction = useOption('allowNewTargetOutsideFunction')
 const allowReturnOutsideFunction = useOption('allowReturnOutsideFunction')
 const allowSuperOutsideMethod = useOption('allowSuperOutsideMethod')
@@ -243,6 +244,11 @@ const throwExpressions = usePlugin('throwExpressions')
         <label>
           <input v-model="allowAwaitOutsideFunction" type="checkbox" />
           <span>allowAwaitOutsideFunction</span>
+        </label>
+
+        <label>
+          <input v-model="allowYieldOutsideFunction" type="checkbox" />
+          <span>allowYieldOutsideFunction</span>
         </label>
 
         <label text-xs>
