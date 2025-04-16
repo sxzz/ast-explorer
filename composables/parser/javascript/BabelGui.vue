@@ -463,7 +463,10 @@ const throwExpressions = usePlugin('throwExpressions')
     <label>
       <!-- Stage 2 -->
       <input v-model="recordAndTuple" type="checkbox" switch />
-      <span>recordAndTuple</span>
+      <span>
+        <span line-through>recordAndTuple</span>
+        (withdrawn)
+      </span>
     </label>
 
     <label>
