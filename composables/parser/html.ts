@@ -1,8 +1,8 @@
 import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
+import type * as HtmlEslintParser from '@html-eslint/parser'
 import type * as Htmlparser2 from 'htmlparser2'
 import type * as Rehype from 'rehype'
-import type * as HTMLESlintParser from '@html-eslint/parser'
 
 // @unocss-include
 
@@ -45,8 +45,8 @@ const rehypeAst: Parser<typeof Rehype> = {
 }
 
 const htmlEslintParser: Parser<
-  typeof HTMLESlintParser,
-  HTMLESlintParser.ParserOptions
+  typeof HtmlEslintParser,
+  HtmlEslintParser.ParserOptions
 > = {
   id: 'html-eslint-parser',
   label: '@html-eslint/parser',
