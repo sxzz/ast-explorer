@@ -60,11 +60,7 @@ const htmlEslintParser: Parser<
   },
   pkgName: '@html-eslint/parser',
   parse(code, options) {
-    const result = this.parseForESLint(code, { ...options })
-    if (result.ast) {
-      return result.ast
-    }
-    return null
+    return this.parseForESLint(code, { ...options }).ast
   },
   getNodeLocation: genGetNodeLocation('range'),
 }
