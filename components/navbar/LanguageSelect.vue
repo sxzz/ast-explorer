@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { currentLanguage, currentLanguageId } from '~/state/parser/parser'
-import type { Language } from '~/composables/parser'
+import type { Language } from '#imports'
 
 function changeLanguage(language: Language) {
   currentLanguageId.value = language

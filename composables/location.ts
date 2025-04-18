@@ -1,6 +1,6 @@
 import jsonToAst from 'json-to-ast'
 import { currentParser } from '~/state/parser/parser'
-import type { Parser } from '~/composables/parser'
+import type { Parser } from '#imports'
 
 const nodeLocationFields = {
   startEnd: {
