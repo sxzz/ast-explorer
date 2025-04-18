@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.27.0",
+    "@html-eslint/parser": "^0.39.0",
     "@humanwhocodes/momoa": "^3.3.8",
     "@iconify-json/ri": "^1.2.5",
     "@iconify-json/vscode-icons": "^1.2.19",
