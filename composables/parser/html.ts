@@ -66,7 +66,7 @@ const htmlEslintParser: Parser<
     }
     return null
   },
-  getNodeLocation,
+  getNodeLocation: genGetNodeLocation('range'),
 }
 
 export const html: LanguageOption = {
