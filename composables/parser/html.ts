@@ -2,6 +2,7 @@ import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Htmlparser2 from 'htmlparser2'
 import type * as Rehype from 'rehype'
+import type * as HTMLESlintParser from '@html-eslint/parser'
 
 // @unocss-include
 
@@ -43,9 +44,34 @@ const rehypeAst: Parser<typeof Rehype> = {
   getNodeLocation: genGetNodeLocation('positionOffset'),
 }
 
+const htmlEslintParser: Parser<
+  typeof HTMLESlintParser,
+  HTMLESlintParser.ParserOptions
+> = {
+  id: 'html-eslint-parser',
+  label: '@html-eslint/parser',
+  icon: 'https://raw.githubusercontent.com/yeonjuan/html-eslint/main/packages/website/src/assets/logo_180x180.png',
+  link: 'https://github.com/yeonjuan/html-eslint',
+  editorLanguage: 'html',
+  options: {
+    configurable: false,
+    defaultValue: {},
+    editorLanguage: 'json',
+  },
+  pkgName: '@html-eslint/parser',
+  parse(code, options) {
+    const result = this.parseForESLint(code, { ...options })
+    if (result.ast) {
+      return result.ast
+    }
+    return null
+  },
+  getNodeLocation,
+}
+
 export const html: LanguageOption = {
   label: 'HTML',
   icon: 'i-vscode-icons:file-type-html',
-  parsers: [htmlparser2, rehypeAst],
+  parsers: [htmlparser2, rehypeAst, htmlEslintParser],
   codeTemplate: htmlTemplate,
 }
