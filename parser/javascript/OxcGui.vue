@@ -6,21 +6,33 @@ const useOption = makeUseOption<ParserOptions>()
 <script setup lang="ts">
 const sourceType = useOption('sourceType', 'script', true)
 const sourceFilename = useOption('sourceFilename', '', true)
+const preserveParens = useOption('preserveParens', true, true)
 </script>
 
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
-    <label flex="~ col" gap1>
+    <label>
       <span>sourceType</span>
-      <select v-model="sourceType">
+      <select v-model="sourceType" w-full>
         <option value="script">script</option>
         <option value="module">module</option>
       </select>
     </label>
 
-    <label flex="~ col" gap1>
+    <label>
       <span>sourceFilename</span>
-      <input v-model="sourceFilename" />
+      <input v-model="sourceFilename" w-full />
+    </label>
+
+    <label>
+      <input v-model="preserveParens" type="checkbox" switch />
+      <span>preserveParens</span>
     </label>
   </div>
 </template>
+
+<style scoped>
+label {
+  --at-apply: 'flex flex-y-center gap2';
+}
+</style>

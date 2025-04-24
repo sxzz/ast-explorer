@@ -13,6 +13,7 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
     defaultValue: {
       sourceType: 'module',
       sourceFilename: 'foo.ts',
+      preserveParens: true,
     },
     editorLanguage: 'json',
   },
@@ -23,7 +24,10 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
     const { program, comments, errors } = this.parseSync(
       options.sourceFilename ?? 'test.js',
       code,
-      { sourceType: options.sourceType },
+      {
+        sourceType: options.sourceType,
+        preserveParens: options.preserveParens,
+      },
     )
     return { program, comments, errors }
   },
