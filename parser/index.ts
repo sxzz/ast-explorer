@@ -7,6 +7,7 @@ import { json } from './json'
 import { markdown } from './markdown'
 import { php } from './php'
 import { rust } from './rust'
+import { solidity } from './solidity'
 import { sql } from './sql'
 import { svelte } from './svelte'
 import { vue } from './vue'
@@ -28,6 +29,7 @@ export type MonacoLanguage =
   | 'sql'
   | 'rust'
   | 'php'
+  | 'solidity'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -94,6 +96,7 @@ export const LANGUAGES = {
   rust,
   sql,
   php,
+  solidity,
   wxml,
   custom,
 }

@@ -10,6 +10,7 @@ export default defineNuxtPlugin(() => {
   monaco.languages.register({ id: 'vue' })
   monaco.languages.register({ id: 'svelte' })
   monaco.languages.register({ id: 'rust' })
+  monaco.languages.register({ id: 'solidity' })
 
   const highlighter = createHighlighterCoreSync({
     themes: [themeDark, themeLight],

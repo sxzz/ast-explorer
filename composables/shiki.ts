@@ -4,6 +4,7 @@ import langHtml from 'shiki/langs/html.mjs'
 import langJson from 'shiki/langs/json.mjs'
 import langPhp from 'shiki/langs/php.mjs'
 import langRust from 'shiki/langs/rust.mjs'
+import langSolidity from 'shiki/langs/solidity.mjs'
 import langSql from 'shiki/langs/sql.mjs'
 import langSvelte from 'shiki/langs/svelte.mjs'
 import langTs from 'shiki/langs/typescript.mjs'
@@ -23,6 +24,7 @@ export const shikiLangs = [
   langSvelte,
   langRust,
   langPhp,
+  langSolidity,
 ]
 export const highlighter = createHighlighterCoreSync({
   langs: shikiLangs,
