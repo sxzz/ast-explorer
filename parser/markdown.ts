@@ -31,36 +31,22 @@ const remarkAst: Parser<typeof Remark, RemarkOptions> = {
   pkgName: 'remark',
   async parse(code, options) {
     let processor = this.remark()
-    if (options?.mdx) {
-      const { default: remarkMdx } = await importUrl(
-        'https://esm.sh/remark-mdx',
-      )
-      processor = processor.use(remarkMdx)
+
+    const plugins = await Promise.all(
+      [
+        options?.mdx && 'https://esm.sh/remark-mdx',
+        options?.frontmatter && 'https://esm.sh/remark-frontmatter',
+        options?.directive && 'https://esm.sh/remark-directive',
+        options?.gfm && 'https://esm.sh/remark-gfm',
+        options?.raw && 'https://esm.sh/rehype-raw',
+      ].map((url) => url && importUrl(url)),
+    )
+    for (const plugin of plugins) {
+      if (plugin?.default) {
+        processor = processor.use(plugin.default)
+      }
     }
-    if (options?.frontmatter) {
-      const { default: remarkFrontmatter } = await importUrl(
-        'https://esm.sh/remark-frontmatter',
-      )
-      processor = processor.use(remarkFrontmatter)
-    }
-    if (options?.directive) {
-      const { default: remarkDirective } = await importUrl(
-        'https://esm.sh/remark-directive',
-      )
-      processor = processor.use(remarkDirective)
-    }
-    if (options?.gfm) {
-      const { default: remarkGfm } = await importUrl(
-        'https://esm.sh/remark-gfm',
-      )
-      processor = processor.use(remarkGfm)
-    }
-    if (options?.raw) {
-      const { default: remarkRaw } = await importUrl(
-        'https://esm.sh/rehype-raw',
-      )
-      processor = processor.use(remarkRaw)
-    }
+
     return processor.parse(code)
   },
   getNodeLocation: genGetNodeLocation('positionOffset'),
