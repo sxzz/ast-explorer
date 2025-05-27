@@ -88,6 +88,7 @@ function editVersion() {
           <div i-ri:edit-line />
         </button>
         <a
+          v-if="currentParser.link"
           title="Open Documentation"
           :href="currentParser.link"
           target="_blank"

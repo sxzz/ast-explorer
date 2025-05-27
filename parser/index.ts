@@ -1,5 +1,6 @@
 import { angular } from './angular'
 import { css } from './css'
+import { custom } from './custom'
 import { html } from './html'
 import { javascript } from './javascript'
 import { json } from './json'
@@ -32,7 +33,7 @@ export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
   icon: string
-  link: string
+  link?: string
   pkgName: string
   version?:
     | string
@@ -94,5 +95,6 @@ export const LANGUAGES = {
   sql,
   php,
   wxml,
+  custom,
 }
 export type Language = keyof typeof LANGUAGES
