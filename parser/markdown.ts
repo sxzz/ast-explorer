@@ -5,6 +5,9 @@ import type * as Remark from 'remark'
 export interface RemarkOptions {
   mdx?: boolean
   frontmatter?: boolean
+  directive?: boolean
+  gfm?: boolean
+  raw?: boolean
 }
 
 // @unocss-include
@@ -19,6 +22,9 @@ const remarkAst: Parser<typeof Remark, RemarkOptions> = {
     defaultValue: {
       mdx: false,
       frontmatter: false,
+      directive: false,
+      gfm: false,
+      raw: false,
     },
     editorLanguage: 'json',
   },
@@ -36,6 +42,24 @@ const remarkAst: Parser<typeof Remark, RemarkOptions> = {
         'https://esm.sh/remark-frontmatter',
       )
       processor = processor.use(remarkFrontmatter)
+    }
+    if (options?.directive) {
+      const { default: remarkDirective } = await importUrl(
+        'https://esm.sh/remark-directive',
+      )
+      processor = processor.use(remarkDirective)
+    }
+    if (options?.gfm) {
+      const { default: remarkGfm } = await importUrl(
+        'https://esm.sh/remark-gfm',
+      )
+      processor = processor.use(remarkGfm)
+    }
+    if (options?.raw) {
+      const { default: remarkRaw } = await importUrl(
+        'https://esm.sh/rehype-raw',
+      )
+      processor = processor.use(remarkRaw)
     }
     return processor.parse(code)
   },
