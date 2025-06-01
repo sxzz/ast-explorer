@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   ],
   plausible: {
     domain: 'ast-explorer.dev',
-    apiHost: 'https://analytics.sxzz.dev',
+    apiHost: 'https://evt.sxzz.dev',
   },
   vite: {
     esbuild: {
