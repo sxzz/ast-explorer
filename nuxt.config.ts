@@ -8,7 +8,16 @@ const crossOriginHeaders = {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor', 'nuxt-umami'],
+  modules: [
+    '@unocss/nuxt',
+    '@vueuse/nuxt',
+    'nuxt-monaco-editor',
+    '@nuxtjs/plausible',
+  ],
+  plausible: {
+    domain: 'ast-explorer.dev',
+    apiHost: 'https://analytics.sxzz.dev',
+  },
   vite: {
     esbuild: {
       legalComments: 'external',
@@ -52,10 +61,6 @@ export default defineNuxtConfig({
   ],
   imports: {
     dirs: ['./composables', './parser', './state', './utils'],
-  },
-  umami: {
-    autoTrack: false,
-    ignoreLocalhost: true,
   },
   appConfig: {
     branch: process.env.VERCEL_GIT_COMMIT_REF,
