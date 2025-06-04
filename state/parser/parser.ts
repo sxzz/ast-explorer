@@ -12,7 +12,7 @@ export const currentParser = computed(() => {
     const parser = parsers.find((parser) => parser.id === currentParserId.value)
     if (parser) return parser
   }
-  return Object.values(parsers)[0]
+  return Object.values(parsers)[0]!
 })
 
 export const currentParserGui = computed(
@@ -46,7 +46,7 @@ export function initParserState() {
           (p) => p.id === currentParserId.value,
         )
       ) {
-        setParserId(currentLanguage.value.parsers[0].id)
+        setParserId(currentLanguage.value.parsers[0]!.id)
       }
     },
     { immediate: true, flush: 'sync' },
