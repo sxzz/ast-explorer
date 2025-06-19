@@ -1,4 +1,5 @@
 import { angular } from './angular'
+import { astro } from './astro'
 import { css } from './css'
 import { custom } from './custom'
 import { html } from './html'
@@ -30,6 +31,7 @@ export type MonacoLanguage =
   | 'rust'
   | 'php'
   | 'solidity'
+  | 'astro'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -87,6 +89,7 @@ export const LANGUAGES = {
   javascript,
   vue,
   svelte,
+  astro,
   angular,
   css,
   html,

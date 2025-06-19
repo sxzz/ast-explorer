@@ -1,4 +1,5 @@
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki'
+import langAstro from 'shiki/langs/astro.mjs'
 import langCss from 'shiki/langs/css.mjs'
 import langHtml from 'shiki/langs/html.mjs'
 import langJson from 'shiki/langs/json.mjs'
@@ -21,6 +22,7 @@ export const shikiLangs = [
   langCss,
   langYaml,
   langSql,
+  langAstro,
   langSvelte,
   langRust,
   langPhp,
