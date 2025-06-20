@@ -1,6 +1,6 @@
 {
   "name": "ast-explorer",
-  "version": "0.29.3",
+  "version": "0.29.4",
   "private": true,
   "packageManager": "pnpm@10.12.1",
   "type": "module",
