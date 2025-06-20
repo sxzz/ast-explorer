@@ -29,6 +29,7 @@
     "shiki": "^3.7.0"
   },
   "devDependencies": {
+    "@astrojs/compiler": "^2.12.2",
     "@babel/parser": "^7.27.5",
     "@html-eslint/parser": "^0.41.0",
     "@humanwhocodes/momoa": "^3.3.8",
