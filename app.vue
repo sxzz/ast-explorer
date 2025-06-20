@@ -39,24 +39,23 @@ useServerHeadSafe({
         <Navbar border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
-          <AppSideBar
-            v-show="showSidebar && sideBarAvailable"
-            overflow-auto
-            border-r
-            lg:w-75
-            lg:flex-none
-          />
+          <AppSideBar v-show="showSidebar && sideBarAvailable" overflow-auto border-r lg:w-75 lg:flex-none />
 
-          <div min-w-0 flex flex-col gap2 lg:flex-1 lg:flex-row>
-            <InputContainer v-show="showInputEditor" min-w-0 flex-1 py1 />
-            <div
-              v-show="showInputEditor && showOutput"
-              border-t
-              lg:border-l
-              lg:border-t-none
-            />
-            <OutputContainer v-show="showOutput" min-w-0 flex-1 py1 />
-          </div>
+          <SplitPane layout="vertical">
+            <template #left>
+              <InputContainer v-show="showInputEditor" min-w-0 h-full w-full py1 />
+            </template>
+            <template #right>
+              <SplitPane layout="horizontal">
+                <template #left>
+                  <OutputContainer v-show="showOutput" min-w-0 py1 />
+                </template>
+                <template #right>
+                  <OutputContainer v-show="showOutput" min-w-0 py1 />
+                </template>
+              </SplitPane>
+            </template>
+          </SplitPane>
         </div>
       </main>
 
