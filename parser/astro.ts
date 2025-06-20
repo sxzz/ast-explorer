@@ -17,9 +17,13 @@ const astroCompiler: Parser<typeof Astro, Astro.ParseOptions> = {
   },
   pkgName: '@astrojs/compiler',
   getModuleUrl: (pkg) => `https://esm.sh/${pkg}/es2022/compiler.mjs`,
-  async parse(code, options) {
+  async init(moduleUrl) {
+    const mod = await importUrl<typeof Astro>(moduleUrl)
     const wasmURL = getJsdelivrUrl('@astrojs/compiler', '/dist/astro.wasm')
-    await this.initialize({ wasmURL })
+    await mod.initialize({ wasmURL })
+    return mod
+  },
+  async parse(code, options) {
     return (await this.parse(code, options)).ast
   },
   getNodeLocation: genGetNodeLocation('positionOffset'),
