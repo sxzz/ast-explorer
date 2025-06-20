@@ -24,9 +24,9 @@ function showSettings() {
       right-5
       top-2
       z-100
+      nav-button
       cursor-pointer
       text-sm
-      nav-button
       @click="showSettings"
     >
       <div i-ri:list-settings-fill />
