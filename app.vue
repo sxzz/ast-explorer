@@ -48,10 +48,10 @@ useServerHeadSafe({
             <template #right>
               <SplitPane layout="horizontal">
                 <template #left>
-                  <OutputContainer v-show="showOutput" min-w-0 py1 />
+                  <OutputContainer v-show="showOutput" min-w-0 h-full w-full py1 />
                 </template>
                 <template #right>
-                  <OutputContainer v-show="showOutput" min-w-0 py1 />
+                  <OutputContainer v-show="showOutput" min-w-0 h-full w-full py1 />
                 </template>
               </SplitPane>
             </template>
