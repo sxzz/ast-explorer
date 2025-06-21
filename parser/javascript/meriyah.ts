@@ -21,6 +21,7 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
     defaultValue: {
       module: true,
       ranges: true,
+      raw: true,
     },
     editorLanguage: 'json',
   },
