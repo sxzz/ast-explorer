@@ -4,25 +4,29 @@ export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
 
-// parser
-export const currentParserId = ref<string | undefined>()
-export const currentParser = computed(() => {
-  const { parsers } = currentLanguage.value
-  if (currentParserId.value) {
-    const parser = parsers.find((parser) => parser.id === currentParserId.value)
-    if (parser) return parser
-  }
+const findParser = (parserId: string | undefined, parsers: Parser[]): Parser => {
+  const parser = parsers.find((parser) => parser.id === parserId)
+  if (parser) return parser
   return Object.values(parsers)[0]!
+}
+
+// parser
+export const currentParserIds = ref<string[]>([])
+export const currentParsers = computed(() => {
+  console.log('currentParsers',currentParserIds)
+  const { parsers } = currentLanguage.value
+  return [findParser(currentParserIds.value[0], parsers), findParser(currentParserIds.value[1], parsers)]
 })
 
-export const currentParserGui = computed(
+export const currentParsersGui = computed(
   () =>
-    currentParser.value.gui && defineAsyncComponent(currentParser.value.gui),
+    currentParsers.value.gui && defineAsyncComponent(currentParsers.value.gui),
 )
 
-export function setParserId(id: string) {
+export function setParserId(id: string ,idx: number) {
   overrideVersion.value = undefined
-  currentParserId.value = id
+  console.log('setParserId', idx)
+  currentParserIds.value[idx] = id
 }
 
 // parser version
@@ -31,19 +35,20 @@ export const displayVersion = ref<string>()
 export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
 export function initParserState() {
+  console.log('2.initParserState')
   // set code template when language changes
   watch(currentLanguage, (language) => {
     code.value = language.codeTemplate
   })
 
-  // ensure currentParserId is valid
+  // ensure currentParsersId is valid
   watch(
-    [currentLanguage, currentParserId],
+    [currentLanguage, currentParserIds],
     () => {
       if (
-        !currentParserId.value ||
+        !currentParserIds.value ||
         !currentLanguage.value.parsers.some(
-          (p) => p.id === currentParserId.value,
+          (p) => p.id === currentParserIds.value,
         )
       ) {
         setParserId(currentLanguage.value.parsers[0]!.id)
