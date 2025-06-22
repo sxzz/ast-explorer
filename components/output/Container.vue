@@ -80,39 +80,24 @@ watch(outputView, (view) => {
 <template>
   <div flex="~ col" gap1>
     <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
+      <ParserSelect></ParserSelect>
       <div flex gap1>
-        <button
-          :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
-          @click="toggleView('tree')"
-        >
+        <button :class="[tabClass, outputView === 'tree' && tabSelectedClass]" @click="toggleView('tree')">
           <div i-ri:node-tree />
         </button>
-        <button
-          :class="[tabClass, outputView === 'json' && tabSelectedClass]"
-          @click="toggleView('json')"
-        >
+        <button :class="[tabClass, outputView === 'json' && tabSelectedClass]" @click="toggleView('json')">
           <div i-ri:braces-line />
         </button>
       </div>
       <label>
-        <input
-          :checked="autoFocus"
-          type="checkbox"
-          switch
-          @click="toggleAutoFocus"
-        />
+        <input :checked="autoFocus" type="checkbox" switch @click="toggleAutoFocus" />
         Auto focus
       </label>
       <label>
         <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
       </label>
       <label>
-        <input
-          :checked="hideLocationData"
-          type="checkbox"
-          switch
-          @click="toggleHideLocationData"
-        />
+        <input :checked="hideLocationData" type="checkbox" switch @click="toggleHideLocationData" />
         Hide location data
       </label>
     </div>
@@ -124,38 +109,20 @@ watch(outputView, (view) => {
         <pre v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
-        <OutputJson
-          v-if="outputView === 'json'"
-          h-full
-          min-w-0
-          w-full
-          max-sm:min-h-50vh
-        />
+        <OutputJson v-if="outputView === 'json'" h-full min-w-0 w-full max-sm:min-h-50vh />
         <OutputTree v-else />
       </div>
     </div>
     <div flex justify-end gap2 px2 pb1 text-sm>
-      <button
-        flex="~ y-center"
-        gap1
-        border
-        rounded
-        px1
-        py0.5
-        hover="bg-gray bg-opacity-20 border-white/20"
-        @click="print"
-      >
+      <button flex="~ y-center" gap1 border rounded px1 py0.5 hover="bg-gray bg-opacity-20 border-white/20"
+        @click="print">
         <div i-ri:printer-line />
         Print in Console
       </button>
 
       <label>
         Hide keys:
-        <input
-          v-model="hideKeysValue"
-          type="input"
-          placeholder="field1, field2, ..."
-        />
+        <input v-model="hideKeysValue" type="input" placeholder="field1, field2, ..." />
       </label>
     </div>
   </div>
