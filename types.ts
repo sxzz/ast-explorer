@@ -1,4 +1,4 @@
-import type {InjectionKey, ToRefs } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { Parser } from 'yaml'
 
 export const injectProps: InjectionKey<{
