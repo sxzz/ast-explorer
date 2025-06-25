@@ -1,4 +1,5 @@
-import { currentParser, currentParserGui } from './parser/parser'
+import type { Layout } from '~/types'
+import { currentParsers, currentParsersGui } from './parser/parser'
 
 export const showSidebar = useLocalStorage(
   `${STORAGE_PREFIX}show-sidebar`,
@@ -18,6 +19,9 @@ export const outputView = useLocalStorage<'tree' | 'json'>(
   'tree',
 )
 
+export const expLayout = ref<Layout>('layout1')
+
 export const sideBarAvailable = computed(
-  () => currentParser.value.options.configurable && !!currentParserGui.value,
+  () => currentParsers.value.some(parser => parser.options.configurable) 
+  // () => currentParsers.value.some(parser => parser.options.configurable && !!currentParsersGui.value) 
 )

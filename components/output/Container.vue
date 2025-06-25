@@ -7,6 +7,20 @@ import {
 } from '#imports'
 import ansiRegex from 'ansi-regex'
 import { ast, error, loading } from '~/state/parser/module'
+import { currentParserIds, currentParsers, displayVersions, overrideVersion, isUrlVersion } from '~/state/parser/parser';
+import { injectProps } from '~/types';
+
+const props = defineProps<{
+  index: number
+}>()
+const currentParser = computed(() => currentParsers.value[props.index])
+const currentParserId = computed(() => currentParserIds.value[props.index])
+
+provide(injectProps, {
+  index: props.index,
+  currentParser,
+  currentParserId
+})
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
@@ -75,12 +89,54 @@ watch(outputView, (view) => {
     hideLocationData.value = false
   }
 })
+
+const displayVersion = computed(() => displayVersions.value[props.index])
+
+const disableOverrideVersion = computed(
+  () => currentParser.value.versionOverridable === false,
+)
+
+function editVersion() {
+  // eslint-disable-next-line no-alert
+  const newVersion = prompt(
+    'Enter a semver version, tag or URL (e.g. 1.0.0, ^1.2.3, next, https://example.com):',
+    displayVersion.value,
+  )
+  overrideVersion.value = newVersion || undefined
+}
 </script>
 
 <template>
   <div flex="~ col" gap1>
     <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
-      <ParserSelect></ParserSelect>
+      <ParserSelect :index="index"></ParserSelect>
+      <a text-sm font-mono op80 hover:underline :href="isUrlVersion
+        ? overrideVersion
+        : `https://www.npmjs.com/package/${currentParser.pkgName}`
+        " target="_blank">
+        <span>{{ currentParser.pkgName }}</span>
+        <template v-if="displayVersion">
+          <span>@</span>
+          <span :class="[
+            isUrlVersion && 'text-blue',
+            overrideVersion &&
+            !isUrlVersion &&
+            'text-green-700 dark:text-green',
+            'max-w50 inline-block truncate align-middle',
+          ]">{{ displayVersion }}</span>
+          <small v-if="overrideVersion && overrideVersion !== displayVersion" op50>
+            ({{ overrideVersion }})
+          </small>
+        </template>
+      </a>
+      <button :disabled="disableOverrideVersion" :class="disableOverrideVersion && 'cursor-not-allowed op30'"
+        title="Change Version" nav-button @click="editVersion">
+        <div i-ri:edit-line />
+      </button>
+      <a v-if="currentParser.link" title="Open Documentation" :href="currentParser.link" target="_blank" flex="~ center"
+        nav-button>
+        <div i-ri:book-2-line />
+      </a>
       <div flex gap1>
         <button :class="[tabClass, outputView === 'tree' && tabSelectedClass]" @click="toggleView('tree')">
           <div i-ri:node-tree />

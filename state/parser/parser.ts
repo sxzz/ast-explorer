@@ -31,7 +31,7 @@ export function setParserId(id: string ,idx: number) {
 
 // parser version
 export const overrideVersion = ref<string>()
-export const displayVersion = ref<string>()
+export const displayVersions = ref<string[]>([])
 export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
 export function initParserState() {

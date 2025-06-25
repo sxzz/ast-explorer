@@ -1,5 +1,5 @@
 import { initParserModule } from '~/state/parser/module'
-import { initParserOptionsState } from '~/state/parser/options'
+// import { initParserOptionsState } from '~/state/parser/options'
 import { initParserState } from '~/state/parser/parser'
 
 export default defineNuxtPlugin({
@@ -7,7 +7,7 @@ export default defineNuxtPlugin({
     'app:beforeMount': () => {
       initUrlState()
       initParserState()
-      initParserOptionsState()
+      // initParserOptionsState()
       initParserModule()
     },
   },

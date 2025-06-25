@@ -15,7 +15,9 @@
 <script setup lang="ts">
 import { computed, reactive, useTemplateRef } from 'vue'
 
-const props = defineProps<{ layout?: 'horizontal' | 'vertical' }>()
+const props = withDefaults(defineProps<{ layout?: 'horizontal' | 'vertical' }>(), {
+  layout: 'horizontal'
+})
 const isVertical = computed(() => props.layout === 'vertical')
 
 const containerRef = useTemplateRef('container')

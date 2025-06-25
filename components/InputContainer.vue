@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { code } from '#imports'
-import { parserOptions } from '~/state/parser/options'
-import { currentParser } from '~/state/parser/parser'
+// import { parserOptions } from '~/state/parser/options'
+import { currentParsers } from '~/state/parser/parser'
 
-const language = computed(() => {
-  if (typeof currentParser.value.editorLanguage === 'string') {
-    return currentParser.value.editorLanguage
-  }
-  return currentParser.value.editorLanguage(parserOptions.value)
-})
+// const language = computed(() => {
+//   if (typeof currentParsers.value[0].editorLanguage === 'string') {
+//     return currentParsers.value[0].editorLanguage
+//   }
+//   return currentParsers.value[0].editorLanguage(parserOptions.value)
+// })
 
 function showSettings() {
   showEditorSettings.value = true
@@ -21,7 +21,8 @@ function showSettings() {
       @click="showSettings">
       <div i-ri:list-settings-fill />
     </div>
-    <CodeEditor v-model="code" :language input h-full w-full />
+    <!-- <CodeEditor v-model="code" :language input h-full w-full /> -->
+    <CodeEditor v-model="code" input h-full w-full /> -->
     <EditorSettings />
   </div>
 </template>

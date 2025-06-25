@@ -6,3 +6,5 @@ export const injectProps: InjectionKey<{
   'currentParser': ComputedRef<Parser>
   'currentParserId': ComputedRef<string>
 }> = Symbol('props')
+
+export type Layout = 'layout1' | 'layout2'

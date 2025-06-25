@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { shouldHideKey } from '~/state/output'
 import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
 import type { AstProperty } from '#components'
+import { injectProps } from '~/types';
 
 const props = defineProps<{
   id?: string | number
@@ -11,6 +11,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
+
+const { currentParser } = inject(injectProps)
 
 const rawValue = computed(() => {
   const { onValue } = currentParser.value
@@ -58,30 +60,15 @@ watchEffect(() => {
     <AstBrackets :data="rawValue">
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of rawValue" :key="key">
-          <AstProperty
-            v-if="!shouldHideKey(key)"
-            :id="key"
-            :ref="properties.set"
-            :value="item"
-          />
+          <AstProperty v-if="!shouldHideKey(key)" :id="key" :ref="properties.set" :value="item" />
         </template>
       </div>
     </AstBrackets>
   </template>
   <span v-else>
     <span :style="{ color: valueColor }" whitespace-pre v-text="value" />
-    <span
-      v-if="valueHint"
-      title="Copy"
-      inline-flex
-      cursor-copy
-      select-none
-      items-center
-      gap1
-      whitespace-pre
-      op40
-      @click="copyHint"
-    >
+    <span v-if="valueHint" title="Copy" inline-flex cursor-copy select-none items-center gap1 whitespace-pre op40
+      @click="copyHint">
       <span> ({{ valueHint }})</span>
       <div v-if="copied" class="i-ri:check-line inline-block text-green" />
     </span>

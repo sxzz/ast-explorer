@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { rawOptions } from '~/state/parser/options'
-import { currentParser } from '~/state/parser/parser'
-
+import { currentParsers } from '~/state/parser/parser'
 defineOptions({ inheritAttrs: false })
+
+// const { currentParser } = inject(injectProps)
 
 const dialog = ref<HTMLDialogElement>()
 
@@ -20,17 +21,8 @@ function handleDialogClick(evt: MouseEvent) {
     <button v-bind="$attrs" @click="openDialog">
       <div i-ri:settings-line />
     </button>
-    <dialog
-      ref="dialog"
-      h-80vh
-      flex-col
-      border
-      rounded-2xl
-      open:flex
-      backdrop:bg-black:30
-      backdrop:backdrop-blur-2
-      @click="handleDialogClick"
-    >
+    <dialog ref="dialog" h-80vh flex-col border rounded-2xl open:flex backdrop:bg-black:30 backdrop:backdrop-blur-2
+      @click="handleDialogClick">
       <div flex="~ center" relative gap1 py2 font-bold>
         <span text-lg font-bold>Parser Options</span>
         <button absolute right-2 nav-button @click="dialog?.close()">
@@ -38,13 +30,7 @@ function handleDialogClick(evt: MouseEvent) {
         </button>
       </div>
 
-      <CodeEditor
-        v-model="rawOptions"
-        min-h-0
-        w-60vw
-        flex-1
-        :language="currentParser.options.editorLanguage"
-      />
+      <CodeEditor v-model="rawOptions" min-h-0 w-60vw flex-1 :language="currentParser.options.editorLanguage" />
     </dialog>
   </div>
 </template>

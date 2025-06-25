@@ -30,30 +30,40 @@ useServerHeadSafe({
     { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg', sizes: 'any' },
   ],
 })
+
 </script>
 
 <template>
   <ClientOnly>
     <Suspense>
       <main flex="~ col" lg:h-screen>
-        <Navbar border-b />
+        <Navbar v-model:layout="expLayout" border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
           <AppSideBar v-show="showSidebar && sideBarAvailable" overflow-auto border-r lg:w-75 lg:flex-none />
 
-          <SplitPane layout="vertical">
+          <SplitPane v-show="expLayout === 'layout1'" layout="vertical">
             <template #left>
               <InputContainer v-show="showInputEditor" min-w-0 h-full w-full py1 />
             </template>
             <template #right>
-              <SplitPane layout="horizontal">
+              <SplitPane>
                 <template #left>
-                  <OutputContainer v-show="showOutput" min-w-0 h-full w-full py1 />
+                  <OutputContainer :index="0" v-show="showOutput" min-w-0 h-full w-full py1 />
                 </template>
                 <template #right>
-                  <OutputContainer v-show="showOutput" min-w-0 h-full w-full py1 />
+                  <OutputContainer :index="1" v-show="showOutput" min-w-0 h-full w-full py1 />
                 </template>
               </SplitPane>
+            </template>
+          </SplitPane>
+
+          <SplitPane v-show="expLayout === 'layout2'">
+            <template #left>
+              <InputContainer v-show="showInputEditor" min-w-0 h-full w-full py1 />
+            </template>
+            <template #right>
+              <OutputContainer :index="0" v-show="showOutput" min-w-0 h-full w-full py1 />
             </template>
           </SplitPane>
         </div>

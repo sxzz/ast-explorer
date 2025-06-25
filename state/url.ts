@@ -1,15 +1,16 @@
-import { rawOptions, setDefaultOptions } from './parser/options'
+// import { rawOptions, setDefaultOptions } from './parser/options'
 import {
   currentLanguage,
   currentLanguageId,
-  currentParser,
-  currentParserId,
+  currentParsers,
+  currentParserIds,
   overrideVersion,
 } from './parser/parser'
 
 const LAST_STATE_KEY = `${STORAGE_PREFIX}last-state`
 
 export function initUrlState() {
+  console.log('1.initUrlState')
   const serializedUrl = atou(location.hash!.slice(1))
   let state = serializedUrl && JSON.parse(serializedUrl)
   if (!state) {
@@ -18,28 +19,29 @@ export function initUrlState() {
   }
   if (state) {
     currentLanguageId.value = state.l
-    currentParserId.value = state.p
-    rawOptions.value = state.o
+    currentParserIds.value = state.p
+    // rawOptions.value = state.o
     overrideVersion.value = state.v
   } else {
-    setDefaultOptions()
+    // setDefaultOptions()
   }
   code.value = state?.c || currentLanguage.value.codeTemplate
 
   // serialize state to url
   watchEffect(() => {
+    console.log(currentParsers.value)
     // code
     const c =
       code.value === currentLanguage.value.codeTemplate ? '' : code.value
     const serialized = JSON.stringify({
       l: currentLanguageId.value,
-      p: currentParser.value.id,
+      p: currentParsers.value.map(parser => parser?.id),
       c,
-      o: rawOptions.value,
+      // o: rawOptions.value,
       v: overrideVersion.value,
     })
     location.hash = utoa(serialized)
-    localStorage.setItem(LAST_STATE_KEY, serialized)
+    // localStorage.setItem(LAST_STATE_KEY, serialized)
   })
 }
 
