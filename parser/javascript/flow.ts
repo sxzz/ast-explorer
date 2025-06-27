@@ -1,7 +1,7 @@
 import type { Parser } from '..'
 
 // https://github.com/facebook/flow/tree/main/packages/flow-parser#options
-type Options = {
+export interface Options {
   all_comments?: boolean
   comments?: boolean
   enums: boolean
