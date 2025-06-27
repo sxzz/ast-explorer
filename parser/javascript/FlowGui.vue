@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Options } from './hermes'
+import type { Options } from './flow'
 
 const useOption = makeUseOption<Options>()
 </script>
