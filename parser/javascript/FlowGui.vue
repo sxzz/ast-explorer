@@ -44,6 +44,10 @@ const pattern_matching = useOption('pattern_matching')
       <span>tokens</span>
     </label>
     <label>
+      <input v-model="types" type="checkbox" switch />
+      <span>types</span>
+    </label>
+    <label>
       <input v-model="use_strict" type="checkbox" switch />
       <span>use_strict</span>
     </label>
