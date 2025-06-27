@@ -5,13 +5,13 @@ const useOption = makeUseOption<Options>()
 </script>
 
 <script setup lang="ts">
-const sourceType = useOption('sourceType')
+const sourceType = useOption('sourceType', 'unambiguous')
 const allowReturnOutsideFunction = useOption(
   'allowReturnOutsideFunction',
   true,
   true,
 )
-const flow = useOption('flow')
+const flow = useOption('flow', 'detect')
 const enableExperimentalComponentSyntax = useOption(
   'enableExperimentalComponentSyntax',
   true,
