@@ -1,6 +1,6 @@
 <script lang="ts">
+import { espree } from './eslint'
 import type { Options } from 'espree'
-import { espree } from './eslint';
 const useOptions = makeUseOption<Options>(espree.id)
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { parserModules } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { Range } from '~/composables/location'
-import { injectProps } from '~/types';
 
 const props = defineProps<{
   id?: string | number
@@ -11,7 +11,7 @@ const props = defineProps<{
 }>()
 const { currentParser, index } = inject(injectProps)!
 const parserModule = computedAsync(async () => await parserModules.value[index])
-const show = computed(() => !shouldHideKey(props.id, true, props.value))
+const show = computed(() => !shouldHideKey(index, props.id, true, props.value))
 
 const title = computed(() => {
   const { nodeTitle = 'type' } = currentParser.value
@@ -114,19 +114,49 @@ defineExpose({ isFocusing })
 </script>
 
 <template>
-  <div v-if="show" ref="container" relative w-fit :class="isFocusing && exactFocusing && 'ast-highlight'"
-    @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
-    <span v-if="openable" left="-3.5" :text="open ? 'red-400' : 'green-400'" absolute select-none font-semibold op70>{{
-      open ? '-' : '+' }}</span>
+  <div
+    v-if="show"
+    ref="container"
+    relative
+    w-fit
+    :class="isFocusing && exactFocusing && 'ast-highlight'"
+    @mouseover="handleMouseOver"
+    @mouseleave="handleMouseLeave"
+  >
+    <span
+      v-if="openable"
+      left="-3.5"
+      :text="open ? 'red-400' : 'green-400'"
+      absolute
+      select-none
+      font-semibold
+      op70
+      >{{ open ? '-' : '+' }}</span
+    >
     <span v-if="key">
-      <span :class="keyClass" :style="{ color: keyColor }" @click="toggleOpen" v-text="key" />
+      <span
+        :class="keyClass"
+        :style="{ color: keyColor }"
+        @click="toggleOpen"
+        v-text="key"
+      />
       <span op70>:&nbsp;</span>
     </span>
     <span v-if="title">
-      <span :class="keyClass" :style="{ color: titleColor }" @click="toggleOpen" v-text="title" />&nbsp;</span>
+      <span
+        :class="keyClass"
+        :style="{ color: titleColor }"
+        @click="toggleOpen"
+        v-text="title"
+      />&nbsp;</span
+    >
     <span v-if="!openable || valueCreated" v-show="!openable || open">
       <AstValue :id :data="value" @update:focus="handleSubFocusingChange" />
     </span>
-    <AstSummaryValue v-if="openable && !open" :data="value" @toggle="toggleOpen" />
+    <AstSummaryValue
+      v-if="openable && !open"
+      :data="value"
+      @toggle="toggleOpen"
+    />
   </div>
 </template>

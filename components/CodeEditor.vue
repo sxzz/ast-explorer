@@ -84,7 +84,12 @@ if (props.input) {
 </script>
 
 <template>
-  <MonacoEditor ref="container" v-model="code" :lang="language" :options="options">
+  <MonacoEditor
+    ref="container"
+    v-model="code"
+    :lang="language"
+    :options="options"
+  >
     <Loading />
   </MonacoEditor>
 </template>

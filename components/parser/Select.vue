@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {
-  currentLanguage,
-  setParserId,
-} from '~/state/parser/parser'
-import { injectProps } from '~/types';
+import { currentLanguage, setParserId } from '~/state/parser/parser'
+import { injectProps } from '~/types'
 
 const { currentParser, currentParserId, index } = inject(injectProps)!
 function changeParser(parserId: string) {
@@ -19,8 +16,15 @@ function changeParser(parserId: string) {
     </button>
     <template #popper>
       <div h-200px overflow-y-auto>
-        <DropdownItem v-for="parser of currentLanguage.parsers" :key="parser.id" :icon="parser.icon"
-          :text="parser.label" :checked="currentParserId === parser.id" font-mono @click="changeParser(parser.id)" />
+        <DropdownItem
+          v-for="parser of currentLanguage.parsers"
+          :key="parser.id"
+          :icon="parser.icon"
+          :text="parser.label"
+          :checked="currentParserId === parser.id"
+          font-mono
+          @click="changeParser(parser.id)"
+        />
       </div>
     </template>
   </VMenu>

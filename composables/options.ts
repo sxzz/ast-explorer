@@ -55,6 +55,6 @@ export function makeUseOption<O extends object>(parserId: string) {
         if (!keep && value === defaultValue) delete obj[key]
         else obj[key] = value
       },
-      parserId
+      parserId,
     ) as any
 }

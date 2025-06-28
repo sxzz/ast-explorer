@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ast, errors } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
-import { injectProps } from '~/types'
 
 const { currentParser, index } = inject(injectProps)!
 
@@ -108,5 +108,10 @@ watch([highlightRange, () => container.value?.$editor], () => highlight(), {
 </script>
 
 <template>
-  <MonacoEditor ref="container" lang="json" :model-value="serialized" :options />
+  <MonacoEditor
+    ref="container"
+    lang="json"
+    :model-value="serialized"
+    :options
+  />
 </template>

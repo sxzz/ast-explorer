@@ -1,7 +1,7 @@
 <script lang="ts">
 import { parserModulePromise } from '~/state/parser/module'
+import { typescript } from './typescript'
 import type Typescript from 'typescript'
-import { typescript } from './typescript';
 
 const useOption = makeUseOption<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }

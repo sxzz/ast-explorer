@@ -20,9 +20,14 @@ export const autoFocus = useLocalStorage<boolean>(
   true,
 )
 
-export function shouldHideKey(key: any, checkValue = false, value?: any) {
+export function shouldHideKey(
+  index: number,
+  key: any,
+  checkValue = false,
+  value?: any,
+) {
   if (checkValue && hideEmptyKeys.value && value == null) return true
   if (hideLocationData.value && locationKeyList.includes(key)) return true
   if (hideKeys.value.includes(key)) return true
-  return currentParsers.value.hideKeys?.includes(key)
+  return currentParsers.value[index]!.hideKeys?.includes(key)
 }

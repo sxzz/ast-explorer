@@ -5,11 +5,13 @@ import { currentParsers } from '~/state/parser/parser'
 import { activeTab } from '~/state/ui.js'
 
 const language = computed(() => {
-  const currentParser = currentParsers.value.find(parser => parser.id === activeTab.value)!
+  const currentParser = currentParsers.value.find(
+    (parser) => parser.id === activeTab.value,
+  )!
 
   if (typeof currentParser.editorLanguage === 'string') {
-      return currentParser.editorLanguage
-    }
+    return currentParser.editorLanguage
+  }
   return currentParser.editorLanguage(parsersOptions.value[currentParser.id])
 })
 
@@ -20,8 +22,18 @@ function showSettings() {
 
 <template>
   <div relative>
-    <div p="0.8" title="Editor Settings" absolute right-5 top-2 z-100 cursor-pointer text-sm nav-button
-      @click="showSettings">
+    <div
+      p="0.8"
+      title="Editor Settings"
+      absolute
+      right-5
+      top-2
+      z-100
+      nav-button
+      cursor-pointer
+      text-sm
+      @click="showSettings"
+    >
       <div i-ri:list-settings-fill />
     </div>
     <CodeEditor v-model="code" :language input h-full w-full />

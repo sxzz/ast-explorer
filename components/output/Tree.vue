@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ast } from '~/state/parser/module'
-import { injectProps } from '~/types';
+import { injectProps } from '~/types'
 
 const { index } = inject(injectProps)!
 const currentAST = computed(() => ast.value[index])

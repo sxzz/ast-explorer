@@ -1,11 +1,11 @@
 <script lang="ts">
 import { useOptions } from '~/state/parser/options'
+import { babel } from './babel'
 import type {
   ParserOptions,
   ParserPlugin,
   ParserPluginWithOptions,
 } from '@babel/parser'
-import { babel } from './babel'
 
 function isPluginOf(plugin: ParserPlugin, name: ParserPlugin & string) {
   return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
@@ -77,7 +77,7 @@ function usePlugin<T extends ParserPlugin & string>(
         opt.plugins.push(value === true ? name : ([name, value] as any))
       }
     },
-    babel.id
+    babel.id,
   )
 
   watch(
@@ -160,7 +160,7 @@ const decorators = useOptions(
       opt.plugins = del(opt.plugins, ['decorators', 'decorators-legacy'])
     }
   },
-  babel.id
+  babel.id,
 )
 const decoratorsLegacy = useOptions(
   (opt?: ParserOptions) =>
@@ -175,7 +175,7 @@ const decoratorsLegacy = useOptions(
       opt.plugins = del(opt.plugins, ['decorators-legacy'])
     }
   },
-  babel.id
+  babel.id,
 )
 
 const optionalChainingAssign = usePlugin('optionalChainingAssign', {
@@ -319,7 +319,12 @@ const throwExpressions = usePlugin('throwExpressions')
     </label>
 
     <label v-if="typescript" ml6>
-      <input v-model="typescript.dts" type="checkbox" switch @change="triggerTypescript" />
+      <input
+        v-model="typescript.dts"
+        type="checkbox"
+        switch
+        @change="triggerTypescript"
+      />
       <span>dts</span>
     </label>
 
@@ -387,7 +392,10 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <label v-if="pipelineOperator" ml6>
       <span>proposal</span>
-      <select v-model="pipelineOperator.proposal" @change="triggerPipelineOperator">
+      <select
+        v-model="pipelineOperator.proposal"
+        @change="triggerPipelineOperator"
+      >
         <option value="hack">hack</option>
         <option value="fsharp">fsharp</option>
       </select>
@@ -395,7 +403,10 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <label v-if="pipelineOperator && pipelineOperator.proposal === 'hack'" ml6>
       <span>topicToken</span>
-      <select v-model="pipelineOperator.topicToken" @change="triggerPipelineOperator">
+      <select
+        v-model="pipelineOperator.topicToken"
+        @change="triggerPipelineOperator"
+      >
         <option value="%">%</option>
         <option value="#">#</option>
         <option value="^">^</option>

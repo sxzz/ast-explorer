@@ -7,7 +7,6 @@ const useOption = makeUseOption<ParserOptions>(oxc.id)
 const sourceType = useOption('sourceType', 'script', true)
 const sourceFilename = useOption('sourceFilename', '', true)
 const preserveParens = useOption('preserveParens', true, true)
-console.log('useOption', sourceType, sourceFilename, preserveParens)
 </script>
 
 <template>

@@ -32,7 +32,6 @@ useHeadSafe({
     { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg', sizes: 'any' },
   ],
 })
-
 </script>
 
 <template>
@@ -42,9 +41,15 @@ useHeadSafe({
         <Navbar v-model:layout="expLayout" border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
-          <AppSideBar v-show="showSidebar && sideBarAvailable" overflow-auto border-r lg:w-75 lg:flex-none />
+          <AppSideBar
+            v-show="showSidebar && sideBarAvailable"
+            overflow-auto
+            border-r
+            lg:w-75
+            lg:flex-none
+          />
 
-          <Layout></Layout>
+          <Layout />
         </div>
       </main>
 

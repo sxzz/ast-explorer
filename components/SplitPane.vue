@@ -1,23 +1,12 @@
-<template>
-  <div ref="container" class="split-pane"
-    :class="{ dragging: state.dragging, [isVertical ? 'vertical' : 'horizontal']: true }" @mousemove="dragMove"
-    @mouseup="dragEnd" @mouseleave="dragEnd">
-    <div class="left" :style="{ [isVertical ? 'height' : 'width']: boundSplit + '%' }">
-      <slot name="left" />
-      <div class="dragger" @mousedown.prevent="dragStart" />
-    </div>
-    <div class="right" :style="{ [isVertical ? 'height' : 'width']: 100 - boundSplit + '%' }">
-      <slot name="right" />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed, reactive, useTemplateRef } from 'vue'
 
-const props = withDefaults(defineProps<{ layout?: 'horizontal' | 'vertical' }>(), {
-  layout: 'horizontal'
-})
+const props = withDefaults(
+  defineProps<{ layout?: 'horizontal' | 'vertical' }>(),
+  {
+    layout: 'horizontal',
+  },
+)
 const isVertical = computed(() => props.layout === 'vertical')
 
 const containerRef = useTemplateRef('container')
@@ -30,7 +19,7 @@ const state = reactive({
 
 const boundSplit = computed(() => {
   const { split } = state
-  return split < 20 ? 20 : split > 80 ? 80 : split
+  return split < 20 ? 20 : Math.min(split, 80)
 })
 
 let startPosition = 0
@@ -58,6 +47,34 @@ function dragEnd() {
 }
 </script>
 
+<template>
+  <div
+    ref="container"
+    class="split-pane"
+    :class="{
+      dragging: state.dragging,
+      [isVertical ? 'vertical' : 'horizontal']: true,
+    }"
+    @mousemove="dragMove"
+    @mouseup="dragEnd"
+    @mouseleave="dragEnd"
+  >
+    <div
+      class="left"
+      :style="{ [isVertical ? 'height' : 'width']: `${boundSplit}%` }"
+    >
+      <slot name="left" />
+      <div class="dragger" @mousedown.prevent="dragStart" />
+    </div>
+    <div
+      class="right"
+      :style="{ [isVertical ? 'height' : 'width']: `${100 - boundSplit}%` }"
+    >
+      <slot name="right" />
+    </div>
+  </div>
+</template>
+
 <style scoped>
 .split-pane {
   display: flex;
@@ -75,17 +92,17 @@ function dragEnd() {
   pointer-events: none;
 }
 
-.horizontal>.left,
-.horizontal>.right {
+.horizontal > .left,
+.horizontal > .right {
   position: relative;
   height: 100%;
 }
 
-.horizontal>.left {
+.horizontal > .left {
   border-right: 1px solid var(--c-border);
 }
 
-.horizontal>.left>.dragger {
+.horizontal > .left > .dragger {
   position: absolute;
   z-index: 3;
   top: 0;
@@ -113,7 +130,6 @@ function dragEnd() {
   background-color: var(--c-bg-base);
 }
 
-
 .split-pane.vertical {
   display: block;
 }
@@ -122,7 +138,7 @@ function dragEnd() {
   cursor: ns-resize;
 }
 
-.vertical>.left>.dragger {
+.vertical > .left > .dragger {
   position: absolute;
   top: auto;
   height: 10px;
@@ -133,13 +149,13 @@ function dragEnd() {
   cursor: ns-resize;
 }
 
-.vertical>.left,
-.vertical>.right {
+.vertical > .left,
+.vertical > .right {
   position: relative;
   width: 100%;
 }
 
-.vertical>.left {
+.vertical > .left {
   border-right: none;
   border-bottom: 1px solid var(--c-border);
 }

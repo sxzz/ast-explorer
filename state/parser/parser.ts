@@ -1,12 +1,15 @@
-import { getIntersection } from "~/utils"
-import { expLayout } from "../ui"
+import { getIntersection } from '~/utils'
+import { expLayout } from '../ui'
 
 // language
 export const currentLanguageId = ref<Language>('javascript')
 export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
-const findParser = (parserId: string | undefined, parsers: Parser[]): Parser => {
+const findParser = (
+  parserId: string | undefined,
+  parsers: Parser[],
+): Parser => {
   const parser = parsers.find((parser) => parser.id === parserId)
   if (parser) return parser
 
@@ -17,29 +20,35 @@ const findParser = (parserId: string | undefined, parsers: Parser[]): Parser => 
 export const currentParserIds = ref<string[]>([])
 export const currentParsers = computed(() => {
   const { parsers } = currentLanguage.value
-  return [findParser(currentParserIds.value[0], parsers), findParser(currentParserIds.value[1], parsers)]
+  return [
+    findParser(currentParserIds.value[0], parsers),
+    findParser(currentParserIds.value[1], parsers),
+  ]
 })
 
-export const currentParsersGuis = computed(
-  () => currentParsers.value.map(parser => parser.gui && defineAsyncComponent(parser.gui))
+export const currentParsersGuis = computed(() =>
+  currentParsers.value.map(
+    (parser) => parser.gui && defineAsyncComponent(parser.gui),
+  ),
 )
 
-export function setParserId(id: string ,idx?: number) {
-  overrideVersion.value = undefined
-  if(idx !== undefined) {
+export function setParserId(id: string, idx?: number) {
+  overrideVersions.value = []
+  if (idx !== undefined) {
     currentParserIds.value[idx] = id
-  }else {
-    currentParsers.value.forEach((_,idx) => currentParserIds.value[idx] = id)
+  } else {
+    currentParsers.value.forEach((_, idx) => (currentParserIds.value[idx] = id))
   }
 }
 
 // parser version
-export const overrideVersion = ref<string>()
-export const displayVersions = ref<string[]>([])
-export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
+export const overrideVersions = ref<Array<string | undefined>>([])
+export const displayVersions = ref<Array<string | undefined>>([])
+export const isUrlVersions = computed(() =>
+  overrideVersions.value.map((overrideVersion) => isUrl(overrideVersion || '')),
+)
 
 export function initParserState() {
-  console.log('2.initParserState')
   // set code template when language changes
   watch(currentLanguage, (language) => {
     code.value = language.codeTemplate
@@ -47,7 +56,7 @@ export function initParserState() {
 
   watch(expLayout, () => {
     switch (expLayout.value) {
-      case 'layout2': 
+      case 'layout2':
         currentParserIds.value.pop()
     }
   })
@@ -56,10 +65,13 @@ export function initParserState() {
   watch(
     [currentLanguage, currentParserIds],
     () => {
-      const currentLanguageParserIds = currentLanguage.value.parsers.map((p) => p.id)
+      const currentLanguageParserIds = currentLanguage.value.parsers.map(
+        (p) => p.id,
+      )
       if (
         !currentParserIds.value.length ||
-        getIntersection(currentParserIds.value, currentLanguageParserIds).length === 0
+        getIntersection(currentParserIds.value, currentLanguageParserIds)
+          .length === 0
       ) {
         setParserId(currentLanguageParserIds[0]!)
       }
@@ -67,4 +79,3 @@ export function initParserState() {
     { immediate: true, flush: 'sync' },
   )
 }
-

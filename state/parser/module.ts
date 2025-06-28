@@ -1,11 +1,10 @@
-
 import { parsersOptions, rawOptions } from './options'
 import {
-  currentParsers,
   currentParserIds,
+  currentParsers,
   displayVersions,
-  isUrlVersion,
-  overrideVersion,
+  isUrlVersions,
+  overrideVersions,
 } from './parser'
 
 export const loading = ref<'module' | 'parse' | false>(false)
@@ -15,7 +14,7 @@ export const parseCost = ref<[number, number]>([0, 0])
 
 const parserModuleCache: Record<string, unknown> = Object.create(null)
 
-async function initParser(currentParser: Parser) {
+async function initParser(currentParser: Parser, idx: number) {
   const defaultModuleUrl = (pkg: string) => getJsdelivrUrl(pkg)
   const defaultInit = (url: string) => importUrl(url)
   const {
@@ -24,45 +23,45 @@ async function initParser(currentParser: Parser) {
     init = defaultInit,
   } = currentParser
 
-  const pkgId = isUrlVersion.value
-    ? overrideVersion.value!
-    : `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : ''}`
+  const pkgId = isUrlVersions.value[idx]
+    ? overrideVersions.value[idx]!
+    : `${pkgName}${overrideVersions.value[idx] ? `@${overrideVersions.value[idx]!}` : ''}`
   if (parserModuleCache[pkgId]) return parserModuleCache[pkgId]
 
-  const moduleUrl = isUrlVersion.value
+  const moduleUrl = isUrlVersions.value[idx]
     ? pkgId
-    : getModuleUrl(pkgId, overrideVersion.value)
+    : getModuleUrl(pkgId, overrideVersions.value[idx])
   return (parserModuleCache[pkgId] = await init(moduleUrl, pkgId))
 }
 
 export const parserModulePromise = computed(() => {
-  return currentParsers.value.map((parser) => initParser(parser))
+  return currentParsers.value.map((parser, idx) => initParser(parser, idx))
 })
 export const parserModules = computed(() => parserModulePromise.value)
 
 export function initParserModule() {
-  console.log('4.initParserState')
   watch(
     [parserModulePromise, code, rawOptions],
     () => {
       errors.value = null
       currentParsers.value.forEach(async (parser, idx) => {
-        try{
+        try {
           loading.value = 'module'
           loading.value = 'parse'
           const ctx = await parserModulePromise.value[idx]
           const t = window.performance.now()
-          ast.value[idx] = await parser.parse.call(ctx, code.value, parsersOptions.value[parser.id])
-          console.log('ast', ast.value[idx], idx)
+          ast.value[idx] = await parser.parse.call(
+            ctx,
+            code.value,
+            parsersOptions.value[parser.id],
+          )
           parseCost.value[idx] = window.performance.now() - t
-        }      
-        // eslint-disable-next-line unicorn/catch-error-name
-        catch (err: any) {
-          console.error(err)
-          if(errors.value === null) {
+        } catch (error: any) {
+          console.error(error)
+          if (errors.value === null) {
             errors.value = []
           }
-          errors.value![idx] = err
+          errors.value![idx] = error
         } finally {
           loading.value = false
         }
@@ -73,18 +72,20 @@ export function initParserModule() {
 
   // fetch display version
   watch(
-    [currentParserIds, overrideVersion],
-    async () => {
-      // if (overrideVersion.value) {
-      //   displayVersion.value = overrideVersion.value
-      //   if (!isUrl(overrideVersion.value)) {
-      //     displayVersion.value = await fetchVersion(
-      //       `${currentParsers.value.pkgName}@${displayVersion.value}`,
-      //     )
-      //   }
-      //   return
-      // }
+    [currentParserIds, overrideVersions],
+    () => {
+      if (overrideVersions.value.length > 0) {
+        overrideVersions.value.forEach(async (overrideVersion, index) => {
+          displayVersions.value[index] = overrideVersion
+          if (!overrideVersion || !isUrl(overrideVersion)) {
+            displayVersions.value[index] = await fetchVersion(
+              `${currentParsers.value[index]!.pkgName}@${displayVersions.value[index]}`,
+            )
+          }
+        })
 
+        return
+      }
       currentParsers.value.forEach(async (parser, index) => {
         if (typeof parser.version === 'string') {
           displayVersions.value[index] = parser.version
@@ -92,18 +93,15 @@ export function initParserModule() {
           displayVersions.value[index] = ''
           const res = await Promise.resolve(
             (parser.version || (fetchVersion as never)).call(
-              parserModulePromise.value,
+              parserModulePromise.value[index],
               parser.pkgName,
-              overrideVersion.value,
+              overrideVersions.value![index],
             ),
           )
-          if (parser.id === parser.id) {
-            displayVersions.value[index] = res
-          }
+          displayVersions.value[index] = res
         }
       })
-      
     },
-    { immediate: true },
+    { immediate: true, deep: true },
   )
 }

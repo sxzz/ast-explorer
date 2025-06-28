@@ -1,5 +1,5 @@
 <script lang="ts">
-import  { type RemarkOptions, remarkAst } from './markdown'
+import { remarkAst, type RemarkOptions } from './markdown'
 
 const useOption = makeUseOption<RemarkOptions>(remarkAst.id)
 </script>

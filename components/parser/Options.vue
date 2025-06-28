@@ -23,15 +23,30 @@ function handleDialogClick(evt: MouseEvent) {
     <button v-bind="$attrs" @click="openDialog">
       <div i-ri:settings-line />
     </button>
-    <dialog ref="dialog" h-80vh flex-col border rounded-2xl open:flex backdrop:bg-black:30 backdrop:backdrop-blur-2
-      @click="handleDialogClick">
+    <dialog
+      ref="dialog"
+      h-80vh
+      flex-col
+      border
+      rounded-2xl
+      open:flex
+      backdrop:bg-black:30
+      backdrop:backdrop-blur-2
+      @click="handleDialogClick"
+    >
       <div flex="~ center" relative gap1 py2 font-bold>
         <span text-lg font-bold>Parser Options</span>
         <button absolute right-2 nav-button @click="dialog?.close()">
           <div i-ri:close-line />
         </button>
       </div>
-      <CodeEditor v-model="rawOptions[parserId]" min-h-0 w-60vw flex-1 :language="currentParsers[index]!.options.editorLanguage" />
+      <CodeEditor
+        v-model="rawOptions[parserId]"
+        min-h-0
+        w-60vw
+        flex-1
+        :language="currentParsers[index]!.options.editorLanguage"
+      />
     </dialog>
   </div>
 </template>

@@ -30,33 +30,64 @@ const onLayoutChange = (layout: 'layout1' | 'layout2') => {
         </button> -->
         <VMenu>
           <span nav-button>
-            <Layout1 v-show="layoutValue === 'layout1'"></Layout1>
-            <Layout2 v-show="layoutValue === 'layout2'"></Layout2>
+            <Layout1 v-show="layoutValue === 'layout1'" />
+            <Layout2 v-show="layoutValue === 'layout2'" />
           </span>
           <template #popper>
-            <div flex size-fit cursor-pointer p-10px>
-              <Layout1 :class="{ 'text-emerald-400': layoutValue === 'layout1' }" mr-5px
-                @click="() => onLayoutChange('layout1')" />
-              <Layout2 :class="{ 'text-emerald-400': layoutValue === 'layout2' }"
-                @click="() => onLayoutChange('layout2')" />
+            <div size-fit flex cursor-pointer p-10px>
+              <Layout1
+                :class="{ 'text-emerald-400': layoutValue === 'layout1' }"
+                mr-5px
+                @click="() => onLayoutChange('layout1')"
+              />
+              <Layout2
+                :class="{ 'text-emerald-400': layoutValue === 'layout2' }"
+                @click="() => onLayoutChange('layout2')"
+              />
             </div>
           </template>
         </VMenu>
-        <button title="Toggle Input Editor" :class="!showInputEditor && 'op-40'" nav-button
-          @click="toggleInputEditor()">
+        <button
+          title="Toggle Input Editor"
+          :class="!showInputEditor && 'op-40'"
+          nav-button
+          @click="toggleInputEditor()"
+        >
           <div i-ri:code-block />
         </button>
-        <button title="Toggle Output Result" :class="!showOutput && 'op-40'" nav-button @click="toggleOutput()">
+        <button
+          title="Toggle Output Result"
+          :class="!showOutput && 'op-40'"
+          nav-button
+          @click="toggleOutput()"
+        >
           <div i-ri:node-tree />
         </button>
         <button title="Toggle Dark Mode" nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
-        <a href="https://github.com/sxzz/ast-explorer" target="_blank" title="GitHub" nav-button>
+        <a
+          href="https://github.com/sxzz/ast-explorer"
+          target="_blank"
+          title="GitHub"
+          nav-button
+        >
           <div i-ri:github-line />
         </a>
-        <a href="https://github.com/sponsors/sxzz" target="_blank" flex="~ center" title="Sponsor" group nav-button>
-          <div i-ri:heart-3-line group-hover:i-ri:heart-3-fill text-pink-400 group-hover:text-pink-400 />
+        <a
+          href="https://github.com/sponsors/sxzz"
+          target="_blank"
+          flex="~ center"
+          title="Sponsor"
+          group
+          nav-button
+        >
+          <div
+            i-ri:heart-3-line
+            group-hover:i-ri:heart-3-fill
+            text-pink-400
+            group-hover:text-pink-400
+          />
         </a>
       </div>
     </div>
