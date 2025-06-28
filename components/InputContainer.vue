@@ -2,20 +2,15 @@
 import { code } from '#imports'
 import { parsersOptions } from '~/state/parser/options'
 import { currentParsers } from '~/state/parser/parser'
-import { allEqual } from '~/utils'
+import { activeTab } from '~/state/ui.js'
 
 const language = computed(() => {
-  const editorLanguages = currentParsers.value.map(parser => {
-    if (typeof parser.editorLanguage === 'string') {
-      return parser.editorLanguage
-    }
-    return parser.editorLanguage(parsersOptions.value[parser.id])
-  })
+  const currentParser = currentParsers.value.find(parser => parser.id === activeTab.value)!
 
-  const isSameLang = allEqual(editorLanguages)
-  if(isSameLang) return editorLanguages[0]
-  
-  return editorLanguages[0]
+  if (typeof currentParser.editorLanguage === 'string') {
+      return currentParser.editorLanguage
+    }
+  return currentParser.editorLanguage(parsersOptions.value[currentParser.id])
 })
 
 function showSettings() {

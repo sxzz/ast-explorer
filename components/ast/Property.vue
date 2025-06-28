@@ -9,7 +9,7 @@ const props = defineProps<{
   root?: boolean
   open?: boolean
 }>()
-const { currentParser, index } = inject(injectProps)
+const { currentParser, index } = inject(injectProps)!
 const parserModule = computedAsync(async () => await parserModules.value[index])
 const show = computed(() => !shouldHideKey(props.id, true, props.value))
 
@@ -79,7 +79,7 @@ function handleMouseOver(event: MouseEvent) {
     event.stopPropagation()
     outputHoverRange.value = undefined
   } else if (props.value) {
-    const range = getRange(props.value)
+    const range = getRange(props.value, index)
     if (!range) return
 
     event.stopPropagation()

@@ -7,10 +7,12 @@ export const parsersOptions = ref<Record<string, any>>({})
 export function setDefaultOptions(parserId?: string) {
   if(parserId) {
     const parser = currentParsers.value.find((p) => p.id === parserId)
-    rawOptions.value[parserId] =
+    if(parser) {
+      rawOptions.value[parserId] =
       parser.options.defaultValueType === 'javascript'
         ? parser.options.defaultValue
         : JSON.stringify(parser.options.defaultValue, null, 2)
+    }
   }else {
     currentParsers.value.forEach(parser => {
       rawOptions.value[parser.id] =

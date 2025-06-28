@@ -25,3 +25,5 @@ export const expLayout = ref<Layout>('layout1')
 export const sideBarAvailable = computed(
   () => currentParsers.value.some((parser, idx) => parser.options.configurable && !!currentParsersGuis.value[idx]) 
 )
+
+export const activeTab = ref<string>()

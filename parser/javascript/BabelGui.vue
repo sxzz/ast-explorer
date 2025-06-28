@@ -160,6 +160,7 @@ const decorators = useOptions(
       opt.plugins = del(opt.plugins, ['decorators', 'decorators-legacy'])
     }
   },
+  babel.id
 )
 const decoratorsLegacy = useOptions(
   (opt?: ParserOptions) =>
@@ -174,6 +175,7 @@ const decoratorsLegacy = useOptions(
       opt.plugins = del(opt.plugins, ['decorators-legacy'])
     }
   },
+  babel.id
 )
 
 const optionalChainingAssign = usePlugin('optionalChainingAssign', {

@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { Options } from './hermes'
+import { hermes, type Options } from './hermes'
 
-const useOption = makeUseOption<Options>()
+const useOption = makeUseOption<Options>(hermes.id)
 </script>
 
 <script setup lang="ts">

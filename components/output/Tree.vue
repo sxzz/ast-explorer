@@ -2,7 +2,7 @@
 import { ast } from '~/state/parser/module'
 import { injectProps } from '~/types';
 
-const { index } = inject(injectProps)
+const { index } = inject(injectProps)!
 const currentAST = computed(() => ast.value[index])
 </script>
 

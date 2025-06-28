@@ -5,7 +5,7 @@ import {
 } from '~/state/parser/parser'
 import { injectProps } from '~/types';
 
-const { currentParser, currentParserId, index } = inject(injectProps)
+const { currentParser, currentParserId, index } = inject(injectProps)!
 function changeParser(parserId: string) {
   setParserId(parserId, index)
 }

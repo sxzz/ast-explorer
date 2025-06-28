@@ -3,19 +3,14 @@ import {
   currentParsers,
   currentParsersGuis,
 } from '~/state/parser/parser'
+import { activeTab } from '~/state/ui.js'
 
 const tabs = computed(() => {
   const tabIds = new Set(currentParsers.value.map((p) => p.id))
   return Array.from(tabIds).map((id) => ({ label: id, value: id }))
 })
 
-const activeTab = ref()
-
-watch([tabs], () => {
-  activeTab.value = tabs.value[0].value
-}, {
-  immediate: true
-})
+activeTab.value = tabs.value[0]!.value
 </script>
 
 <template>
@@ -23,11 +18,11 @@ watch([tabs], () => {
     <TabsTab v-model="activeTab" :tabs="tabs" v-show="sideBarAvailable">
       <TabsTabPane v-for="(tab, idx) in tabs" :key="tab.label" :label="tab.label" :value="tab.value">
         <div flex justify-center items-center>
-          <IconPreview :value="currentParsers[idx].icon" size="5em" />
+          <IconPreview :value="currentParsers[idx]!.icon" size="5em" />
         </div>
         <h2 flex="~ center" gap2 text-lg font-bold>
           Parser Options
-          <ParserOptions v-if="currentParsers[idx].options.configurable" nav-button />
+          <ParserOptions v-if="currentParsers[idx]!.options.configurable" :parser-id="currentParsers[idx]!.id" :index="idx" nav-button />
         </h2>
         <Suspense :timeout="0">
           <Component :is="currentParsersGuis[idx]" v-if="currentParsersGuis[idx]" w-full class="sidebar-gui" />

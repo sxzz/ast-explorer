@@ -13,8 +13,8 @@ import { injectProps } from '~/types';
 const props = defineProps<{
   index: number
 }>()
-const currentParser = computed(() => currentParsers.value[props.index])
-const currentParserId = computed(() => currentParserIds.value[props.index])
+const currentParser = computed(() => currentParsers.value[props.index]!)
+const currentParserId = computed(() => currentParserIds.value[props.index]!)
 
 provide(injectProps, {
   index: props.index,

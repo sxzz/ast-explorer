@@ -12,7 +12,7 @@ const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
 
-const { currentParser, index } = inject(injectProps)
+const { currentParser, index } = inject(injectProps)!
 const parserModule = computedAsync(async () => {
   return await parserModules.value[index]
 })

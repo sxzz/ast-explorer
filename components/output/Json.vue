@@ -4,7 +4,7 @@ import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 import { injectProps } from '~/types'
 
-const { currentParser, index } = inject(injectProps)
+const { currentParser, index } = inject(injectProps)!
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
@@ -52,7 +52,7 @@ const serialized = computed(() => {
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
     console.error(err)
-    errors.value[index] = err
+    errors.value![index] = err as Error
   }
 })
 

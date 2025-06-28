@@ -1,9 +1,9 @@
 <template>
-  <div v-show="expLayout === 'layout2' && !showInputEditor">
+  <div v-show="expLayout === 'layout2' && !showInputEditor" h-full w-full>
     <OutputContainer :index="0" v-show="showOutput" min-w-0 h-full w-full py1 />
   </div>
 
-  <div v-show="!showOutput && showInputEditor">
+  <div v-show="!showOutput && showInputEditor" h-full w-full>
     <InputContainer min-w-0 h-full w-full py1 />
   </div>
 
