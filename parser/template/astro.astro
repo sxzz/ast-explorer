@@ -1,0 +1,36 @@
+---
+const title = 'Astro Basics'
+const content = 'This is a simple blog site built with Astro.'
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
+
+const skillColor = 'navy'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <style define:vars={{ skillColor }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>{title}</h1>
+      <p>{content}</p>
+      <p>My skills are:</p>
+      <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+      </ul>
+    </div>
+  </body>
+</html>

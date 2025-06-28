@@ -10,12 +10,14 @@ const next = useOption('next')
 const webcompat = useOption('webcompat')
 const ranges = useOption('ranges')
 const loc = useOption('loc')
+const raw = useOption('raw')
 const globalReturn = useOption('globalReturn')
 const impliedStrict = useOption('impliedStrict')
 const comment = useOption('comment')
 const token = useOption('token')
 const preserveParens = useOption('preserveParens')
 const jsx = useOption('jsx')
+const lexical = useOption('lexical')
 </script>
 
 <template>
@@ -41,6 +43,10 @@ const jsx = useOption('jsx')
       <span>ranges</span>
     </label>
     <label>
+      <input v-model="raw" type="checkbox" switch />
+      <span>raw</span>
+    </label>
+    <label>
       <input v-model="globalReturn" type="checkbox" switch />
       <span>globalReturn</span>
     </label>
@@ -63,6 +69,10 @@ const jsx = useOption('jsx')
     <label>
       <input v-model="jsx" type="checkbox" switch />
       <span>JSX</span>
+    </label>
+    <label>
+      <input v-model="lexical" type="checkbox" switch />
+      <span>lexical</span>
     </label>
   </div>
 </template>
