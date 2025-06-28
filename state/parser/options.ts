@@ -13,7 +13,7 @@ export function setDefaultOptions(parserId?: string) {
         : JSON.stringify(parser.options.defaultValue, null, 2)
   }else {
     currentParsers.value.forEach(parser => {
-      rawOptions.value[parser?.id] =
+      rawOptions.value[parser.id] =
       parser.options.defaultValueType === 'javascript'
         ? parser.options.defaultValue
         : JSON.stringify(parser.options.defaultValue, null, 2)

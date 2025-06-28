@@ -29,8 +29,7 @@ function showSettings() {
       @click="showSettings">
       <div i-ri:list-settings-fill />
     </div>
-    <!-- <CodeEditor v-model="code" :language input h-full w-full /> -->
-    <CodeEditor v-model="code" input h-full w-full /> -->
+    <CodeEditor v-model="code" :language input h-full w-full />
     <EditorSettings />
   </div>
 </template>

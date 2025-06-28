@@ -6,7 +6,7 @@ const props = defineProps<{
   language: MonacoLanguage
   input?: boolean
 }>()
-// console.log('code editor', props.input)
+
 const code = defineModel<string>()
 
 const container = shallowRef<{

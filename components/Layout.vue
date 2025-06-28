@@ -32,10 +32,10 @@
     <template #right>
       <SplitPane>
         <template #left>
-          <OutputContainer :index="0" v-show="showOutput" h-full py1 />
+          <OutputContainer :index="0" v-show="showOutput" h-full w-full py1 />
         </template>
         <template #right>
-          <OutputContainer :index="1" v-show="showOutput" h-full py1 />
+          <OutputContainer :index="1" v-show="showOutput" h-full w-full py1 />
         </template>
       </SplitPane>
     </template>
