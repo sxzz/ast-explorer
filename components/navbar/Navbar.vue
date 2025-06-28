@@ -24,10 +24,10 @@ const onLayoutChange = (layout: 'layout1' | 'layout2') => {
 
     <div flex gap3 max-sm="flex-col w-full">
       <div flex="~ center" gap1>
-        <!-- <button title="Toggle Side Bar" :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
+        <button title="Toggle Side Bar" :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
           :disabled="!sideBarAvailable" nav-button @click="toggleSidebar()">
           <div i-ri:list-settings-line />
-        </button> -->
+        </button>
         <VMenu>
           <span nav-button>
             <Layout1 v-show="layoutValue === 'layout1'" />
