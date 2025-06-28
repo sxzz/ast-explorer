@@ -153,6 +153,6 @@ function getJsonValue(
   return current
 }
 
-export function getRange(ast: any) {
-  return currentParsers.value.getNodeLocation?.(ast)
+export function getRange(ast: any, parserIdx: number) {
+  return currentParsers.value[parserIdx].getNodeLocation?.(ast)
 }

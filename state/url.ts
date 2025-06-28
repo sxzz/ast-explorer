@@ -1,4 +1,5 @@
 // import { rawOptions, setDefaultOptions } from './parser/options'
+import { rawOptions, setDefaultOptions } from './parser/options'
 import {
   currentLanguage,
   currentLanguageId,
@@ -6,6 +7,7 @@ import {
   currentParserIds,
   overrideVersion,
 } from './parser/parser'
+import { expLayout } from './ui'
 
 const LAST_STATE_KEY = `${STORAGE_PREFIX}last-state`
 
@@ -13,17 +15,19 @@ export function initUrlState() {
   console.log('1.initUrlState')
   const serializedUrl = atou(location.hash!.slice(1))
   let state = serializedUrl && JSON.parse(serializedUrl)
-  if (!state) {
-    const serialized = localStorage.getItem(LAST_STATE_KEY)
-    if (serialized) state = JSON.parse(serialized)
-  }
+  // if (!state) {
+  //   const serialized = localStorage.getItem(LAST_STATE_KEY)
+  //   if (serialized) state = JSON.parse(serialized)
+  // }
+  console.log('state', state)
   if (state) {
     currentLanguageId.value = state.l
     currentParserIds.value = state.p
-    // rawOptions.value = state.o
+    rawOptions.value = state.o
     overrideVersion.value = state.v
+    expLayout.value = state.s
   } else {
-    // setDefaultOptions()
+    setDefaultOptions()
   }
   code.value = state?.c || currentLanguage.value.codeTemplate
 
@@ -37,8 +41,9 @@ export function initUrlState() {
       l: currentLanguageId.value,
       p: currentParsers.value.map(parser => parser?.id),
       c,
-      // o: rawOptions.value,
+      o: rawOptions.value,
       v: overrideVersion.value,
+      s: expLayout.value
     })
     location.hash = utoa(serialized)
     // localStorage.setItem(LAST_STATE_KEY, serialized)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { parserModule } from '~/state/parser/module'
+import { parserModules } from '~/state/parser/module'
 import type { Range } from '~/composables/location'
 import { injectProps } from '~/types';
 
@@ -9,9 +9,8 @@ const props = defineProps<{
   root?: boolean
   open?: boolean
 }>()
-
-const { currentParser } = inject(injectProps)
-
+const { currentParser, index } = inject(injectProps)
+const parserModule = computedAsync(async () => await parserModules.value[index])
 const show = computed(() => !shouldHideKey(props.id, true, props.value))
 
 const title = computed(() => {
@@ -37,9 +36,9 @@ function isArrayLike(n: unknown) {
 const isFocusing = computed(() => {
   // children of csstree is iterable but not array
   if (isArrayLike(props.value)) {
-    return Array.from(props.value).some((v) => checkRange(getRange(v)))
+    return Array.from(props.value).some((v) => checkRange(getRange(v, index)))
   }
-  return checkRange(getRange(props.value))
+  return checkRange(getRange(props.value, index))
 })
 function checkRange(range?: Range) {
   if (!range) return false

@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { Options } from './meriyah'
+import { meriyah, type Options } from './meriyah'
 
-const useOption = makeUseOption<Options>()
+const useOption = makeUseOption<Options>(meriyah.id)
 </script>
 
 <script setup lang="ts">

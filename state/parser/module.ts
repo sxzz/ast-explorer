@@ -1,4 +1,5 @@
-// import { parserOptions, rawOptions } from './options'
+
+import { parsersOptions, rawOptions } from './options'
 import {
   currentParsers,
   currentParserIds,
@@ -8,9 +9,9 @@ import {
 } from './parser'
 
 export const loading = ref<'module' | 'parse' | false>(false)
-export const ast = shallowRef<unknown>([])
-export const error = shallowRef<unknown>()
-export const parseCost = ref(0)
+export const ast = ref<any[]>([])
+export const errors = ref<Error[] | null>()
+export const parseCost = ref<[number, number]>([0, 0])
 
 const parserModuleCache: Record<string, unknown> = Object.create(null)
 
@@ -37,43 +38,37 @@ async function initParser(currentParser: Parser) {
 export const parserModulePromise = computed(() => {
   return currentParsers.value.map((parser) => initParser(parser))
 })
-export const parserModule = computedAsync(() => parserModulePromise.value)
+export const parserModules = computed(() => parserModulePromise.value)
 
 export function initParserModule() {
   console.log('4.initParserState')
   watch(
-    // [parserModulePromise, code, rawOptions],
-    [parserModulePromise, code],
-    async () => {
-      // const id = currentParsers.value.id
-      try {
-        loading.value = 'module'
-
-        // if (currentParsers.value.id !== id) return
-        loading.value = 'parse'
-        const t = window.performance.now()
-        console.log('currentParsers', currentParsers)
-        const results = await Promise.all(
-          currentParsers.value.map(async (parser, idx) => {
-            const ctx = await parserModulePromise.value[idx]
-            return await parser.parse.call(ctx, code.value)
-          })
-        )
-        console.log('result', results)
-        ast.value = results
-        parseCost.value = window.performance.now() - t
-        error.value = null
+    [parserModulePromise, code, rawOptions],
+    () => {
+      errors.value = null
+      currentParsers.value.forEach(async (parser, idx) => {
+        try{
+          loading.value = 'module'
+          loading.value = 'parse'
+          const ctx = await parserModulePromise.value[idx]
+          const t = window.performance.now()
+          ast.value[idx] = await parser.parse.call(ctx, code.value, parsersOptions.value[parser.id])
+          console.log('ast', ast.value[idx], idx)
+          parseCost.value[idx] = window.performance.now() - t
+        }      
         // eslint-disable-next-line unicorn/catch-error-name
-      } catch (err: any) {
-        // console.error(err)
-        // if (currentParsers.value.id === id) {
-        //   error.value = err
-        // }
-      } finally {
-        loading.value = false
-      }
+        catch (err: any) {
+          console.error(err)
+          if(errors.value === null) {
+            errors.value = []
+          }
+          errors.value![idx] = err
+        } finally {
+          loading.value = false
+        }
+      })
     },
-    { immediate: true },
+    { immediate: true, deep: true },
   )
 
   // fetch display version

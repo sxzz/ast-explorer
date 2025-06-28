@@ -6,7 +6,7 @@ import {
   outputView,
 } from '#imports'
 import ansiRegex from 'ansi-regex'
-import { ast, error, loading } from '~/state/parser/module'
+import { ast, errors, loading, parseCost } from '~/state/parser/module'
 import { currentParserIds, currentParsers, displayVersions, overrideVersion, isUrlVersion } from '~/state/parser/parser';
 import { injectProps } from '~/types';
 
@@ -35,6 +35,8 @@ watchEffect(() => {
 const tabClass =
   'border rounded-full w-7 h-7 items-center flex justify-center hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
 const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
+
+const error = computed(() => errors.value && errors.value[props.index])
 
 const errorString = computed(() => {
   if (!error.value) return ''
@@ -133,6 +135,9 @@ function editVersion() {
         title="Change Version" nav-button @click="editVersion">
         <div i-ri:edit-line />
       </button>
+      <div flex="~ center" gap3>
+        <span op70>{{ +parseCost[index]!.toFixed(1) }} ms</span>
+      </div>
       <a v-if="currentParser.link" title="Open Documentation" :href="currentParser.link" target="_blank" flex="~ center"
         nav-button>
         <div i-ri:book-2-line />
@@ -161,8 +166,8 @@ function editVersion() {
       <Loading v-if="loading">
         {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
       </Loading>
-      <div v-else-if="error" overflow-scroll p1 text-sm text-red>
-        <pre v-text="errorString" />
+      <div v-else-if="error" overflow-x-auto overflow-y-auto p1 text-sm text-red>
+        <span v-text="errorString" whitespace-pre/>
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson v-if="outputView === 'json'" h-full min-w-0 w-full max-sm:min-h-50vh />

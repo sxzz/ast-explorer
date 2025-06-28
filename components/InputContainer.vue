@@ -1,14 +1,22 @@
 <script setup lang="ts">
 import { code } from '#imports'
-// import { parserOptions } from '~/state/parser/options'
+import { parsersOptions } from '~/state/parser/options'
 import { currentParsers } from '~/state/parser/parser'
+import { allEqual } from '~/utils'
 
-// const language = computed(() => {
-//   if (typeof currentParsers.value[0].editorLanguage === 'string') {
-//     return currentParsers.value[0].editorLanguage
-//   }
-//   return currentParsers.value[0].editorLanguage(parserOptions.value)
-// })
+const language = computed(() => {
+  const editorLanguages = currentParsers.value.map(parser => {
+    if (typeof parser.editorLanguage === 'string') {
+      return parser.editorLanguage
+    }
+    return parser.editorLanguage(parsersOptions.value[parser.id])
+  })
+
+  const isSameLang = allEqual(editorLanguages)
+  if(isSameLang) return editorLanguages[0]
+  
+  return editorLanguages[0]
+})
 
 function showSettings() {
   showEditorSettings.value = true

@@ -1,12 +1,13 @@
 <script lang="ts">
-import type { ParserOptions } from './oxc'
-const useOption = makeUseOption<ParserOptions>()
+import { oxc, type ParserOptions } from './oxc'
+const useOption = makeUseOption<ParserOptions>(oxc.id)
 </script>
 
 <script setup lang="ts">
 const sourceType = useOption('sourceType', 'script', true)
 const sourceFilename = useOption('sourceFilename', '', true)
 const preserveParens = useOption('preserveParens', true, true)
+console.log('useOption', sourceType, sourceFilename, preserveParens)
 </script>
 
 <template>

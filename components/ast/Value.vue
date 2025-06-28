@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { shouldHideKey } from '~/state/output'
-import { parserModule } from '~/state/parser/module'
+import { parserModules } from '~/state/parser/module'
 import type { AstProperty } from '#components'
 import { injectProps } from '~/types';
 
@@ -12,7 +12,10 @@ const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
 
-const { currentParser } = inject(injectProps)
+const { currentParser, index } = inject(injectProps)
+const parserModule = computedAsync(async () => {
+  return await parserModules.value[index]
+})
 
 const rawValue = computed(() => {
   const { onValue } = currentParser.value

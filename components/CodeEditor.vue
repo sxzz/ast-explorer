@@ -6,6 +6,7 @@ const props = defineProps<{
   language: MonacoLanguage
   input?: boolean
 }>()
+// console.log('code editor', props.input)
 const code = defineModel<string>()
 
 const container = shallowRef<{
@@ -83,12 +84,7 @@ if (props.input) {
 </script>
 
 <template>
-  <MonacoEditor
-    ref="container"
-    v-model="code"
-    :lang="language"
-    :options="options"
-  >
+  <MonacoEditor ref="container" v-model="code" :lang="language" :options="options">
     <Loading />
   </MonacoEditor>
 </template>

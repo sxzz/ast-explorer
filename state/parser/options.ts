@@ -1,50 +1,85 @@
-// import json5 from 'json5'
-// import { currentParsers, currentParserIds } from './parser'
+import { currentParsers, currentParserIds } from './parser'
+import json5 from 'json5'
 
-// export const rawOptions = ref('')
+export const rawOptions = ref<Record<string, any>>({})
+export const parsersOptions = ref<Record<string, any>>({})  
 
-// export const parserOptions = computed({
-//   get() {
-//     try {
-//       return currentParsers.value.options.defaultValueType === 'javascript'
-//         ? // TODO: use a better way to eval
-//           new Function(rawOptions.value)()
-//         : json5.parse(rawOptions.value)
-//     } catch {
-//       console.error(
-//         `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
-//       )
-//     }
-//   },
-//   set(value) {
-//     rawOptions.value = JSON.stringify(value, undefined, 2)
-//   },
-// })
+export function setDefaultOptions(parserId?: string) {
+  if(parserId) {
+    const parser = currentParsers.value.find((p) => p.id === parserId)
+    rawOptions.value[parserId] =
+      parser.options.defaultValueType === 'javascript'
+        ? parser.options.defaultValue
+        : JSON.stringify(parser.options.defaultValue, null, 2)
+  }else {
+    currentParsers.value.forEach(parser => {
+      rawOptions.value[parser?.id] =
+      parser.options.defaultValueType === 'javascript'
+        ? parser.options.defaultValue
+        : JSON.stringify(parser.options.defaultValue, null, 2)
+    })
+  }
+}
 
-// export function setDefaultOptions() {
-//   rawOptions.value =
-//     currentParsers.value.options.defaultValueType === 'javascript'
-//       ? currentParsers.value.options.defaultValue
-//       : JSON.stringify(currentParsers.value.options.defaultValue, null, 2)
-// }
+export function useOptions<O extends object, T>(
+  read: (opt: O | undefined) => T,
+  write: (value: T, opt: O) => void,
+  parserId: string,
+) {
+  return computed<T>({
+    get: () => {
+      const parserOptions = parsersOptions.value[parserId]
+      return read(parserOptions)
+    } ,
+    set(value) {
+      const parserOptions = parsersOptions.value[parserId]
+      const newOpt: O =
+        typeof parserOptions === 'object' ? parserOptions : {}
+      write(value, newOpt)
+      parsersOptions.value[parserId] = { ...newOpt }
+      console.log('setOptions', parsersOptions.value)
+    },
+  })
+}
 
-// export function useOptions<O extends object, T>(
-//   read: (opt: O | undefined) => T,
-//   write: (value: T, opt: O) => void,
-// ) {
-//   return computed<T>({
-//     get: () => read(parserOptions.value),
-//     set(value) {
-//       const newOpt: O =
-//         typeof parserOptions.value === 'object' ? parserOptions.value : {}
-//       write(value, newOpt)
-//       parserOptions.value = { ...newOpt }
-//     },
-//   })
-// }
+export function initParserOptionsState() {
+  // set default options
+  watch(currentParserIds, () => {
+    console.log('setrawOptions')
+    currentParserIds.value.forEach((id) => {
+      setDefaultOptions(id)
+    })
+  }, {
+    deep: true,
+    flush: 'sync'
+  })
 
-// export function initParserOptionsState() {
-//   console.log('5.initParserOptionsState')
-//   // set default options
-//   watch(currentParsersId, setDefaultOptions, { flush: 'sync' })
-// }
+  // generate parsersOptions
+  watch([currentParsers, rawOptions],() => {
+    console.log('set parsersOptions', rawOptions.value)
+    currentParsers.value.forEach(parser => {
+      try{
+        const parserId = parser.id
+        parsersOptions.value[parser.id] = parser.options.defaultValueType === 'javascript'
+        ? // TODO: use a better way to eval
+          new Function(rawOptions.value[parserId])()
+        : json5.parse(rawOptions.value[parserId])
+      }catch {
+        console.error(
+          `Failed to parse options: ${JSON.stringify(rawOptions.value[parser.id], null, 2)}`,
+        )
+      }
+    })
+  }, {
+    immediate: true
+  })
+
+  // change rawOptions
+  watch(parsersOptions, (newVal) => {
+    for(const [parserId, parserOptions] of Object.entries(newVal)) {
+      rawOptions.value[parserId] = JSON.stringify(parserOptions, null, 2)
+    }
+  }, {
+    deep: true
+  })
+}

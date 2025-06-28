@@ -2,12 +2,6 @@
 import Layout1 from '~/icons/layout1.vue'
 import Layout2 from '~/icons/layout2.vue'
 import { version } from '~/package.json'
-import { parseCost } from '~/state/parser/module'
-import {
-  // currentParsers,
-  isUrlVersion,
-  overrideVersion,
-} from '~/state/parser/parser'
 
 const { branch } = useAppConfig()
 
@@ -29,10 +23,6 @@ const onLayoutChange = (layout: 'layout1' | 'layout2') => {
     </div>
 
     <div flex gap3 max-sm="flex-col w-full">
-      <div flex="~ center" gap3>
-        <span op70>{{ +parseCost.toFixed(1) }} ms</span>
-      </div>
-
       <div flex="~ center" gap1>
         <!-- <button title="Toggle Side Bar" :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
           :disabled="!sideBarAvailable" nav-button @click="toggleSidebar()">
@@ -40,7 +30,8 @@ const onLayoutChange = (layout: 'layout1' | 'layout2') => {
         </button> -->
         <VMenu>
           <span nav-button>
-            <Layout1></Layout1>
+            <Layout1 v-show="layoutValue === 'layout1'"></Layout1>
+            <Layout2 v-show="layoutValue === 'layout2'"></Layout2>
           </span>
           <template #popper>
             <div flex size-fit cursor-pointer p-10px>
