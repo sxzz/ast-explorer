@@ -2,7 +2,7 @@
 import { code } from '#imports'
 import { parsersOptions } from '~/state/parser/options'
 import { currentParsers } from '~/state/parser/parser'
-import { activeTab } from '~/state/ui.js'
+import { activeTab } from '~/state/ui'
 
 const language = computed(() => {
   const currentParser = currentParsers.value.find(
@@ -22,18 +22,8 @@ function showSettings() {
 
 <template>
   <div relative>
-    <div
-      p="0.8"
-      title="Editor Settings"
-      absolute
-      right-5
-      top-2
-      z-100
-      nav-button
-      cursor-pointer
-      text-sm
-      @click="showSettings"
-    >
+    <div p="0.8" title="Editor Settings" absolute right-5 top-2 z-100 nav-button cursor-pointer text-sm
+      @click="showSettings">
       <div i-ri:list-settings-fill />
     </div>
     <CodeEditor v-model="code" :language input h-full w-full />

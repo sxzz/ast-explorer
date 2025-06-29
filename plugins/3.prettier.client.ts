@@ -1,5 +1,5 @@
 import { currentParsers } from '~/state/parser/parser'
-import { activeTab } from '~/state/ui.js'
+import { activeTab } from '~/state/ui'
 import type { BuiltInParserName, Plugin } from 'prettier'
 
 export default defineNuxtPlugin(() => {

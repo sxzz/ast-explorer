@@ -1,5 +1,5 @@
 import { getIntersection } from '~/utils'
-import { expLayout } from '../ui'
+import { editorLayout } from '../ui'
 
 // language
 export const currentLanguageId = ref<Language>('javascript')
@@ -54,9 +54,12 @@ export function initParserState() {
     code.value = language.codeTemplate
   })
 
-  watch(expLayout, () => {
-    switch (expLayout.value) {
-      case 'layout2':
+  // bug: The pop-up will be incorrect when switching, think about the correct execution logic
+  // This will result in two internal parsers when there is only one, resulting in redundant execution
+  // How to clear data when switching
+  watch(editorLayout, () => {
+    switch (editorLayout.value) {
+      case 'left-right':
         currentParserIds.value.pop()
     }
   })

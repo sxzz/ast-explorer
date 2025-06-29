@@ -1,4 +1,3 @@
-// import { rawOptions, setDefaultOptions } from './parser/options'
 import { rawOptions, setDefaultOptions } from './parser/options'
 import {
   currentLanguage,
@@ -7,7 +6,7 @@ import {
   currentParsers,
   overrideVersions,
 } from './parser/parser'
-import { expLayout } from './ui'
+import { editorLayout } from './ui'
 
 const LAST_STATE_KEY = `${STORAGE_PREFIX}last-state`
 
@@ -23,7 +22,7 @@ export function initUrlState() {
     currentParserIds.value = state.p
     rawOptions.value = state.o
     overrideVersions.value = state.v
-    expLayout.value = state.s
+    editorLayout.value = state.s
   } else {
     setDefaultOptions()
   }
@@ -40,7 +39,7 @@ export function initUrlState() {
       c,
       o: rawOptions.value,
       v: overrideVersions.value,
-      s: expLayout.value,
+      s: editorLayout.value,
     })
     location.hash = utoa(serialized)
     localStorage.setItem(LAST_STATE_KEY, serialized)

@@ -2,6 +2,7 @@
 import { parserModulePromise } from '~/state/parser/module'
 import { typescript } from './typescript'
 import type Typescript from 'typescript'
+import { currentParserIds } from '~/state/parser/parser'
 
 const useOption = makeUseOption<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
@@ -9,7 +10,8 @@ const useOption = makeUseOption<
 </script>
 
 <script setup lang="ts">
-const ts = await parserModulePromise.value
+const currentParserModulePromiseIdx = currentParserIds.value.findIndex(parserId => parserId === typescript.id)
+const ts = await parserModulePromise.value[currentParserModulePromiseIdx] as typeof Typescript
 const scriptKind = useOption('scriptKind', ts.ScriptKind.TS, true)
 const languageVersion = useOption(
   'languageVersion',
@@ -27,13 +29,9 @@ const versions = Object.entries(ts.ScriptTarget).filter(
     <label flex="~ col" gap1>
       <span>sourceType</span>
       <select v-model="scriptKind">
-        <option
-          v-for="kind in Object.entries(ts.ScriptKind).filter(
-            ([_, value]) => typeof value === 'number',
-          )"
-          :key="kind[0]"
-          :value="kind[1]"
-        >
+        <option v-for="kind in Object.entries(ts.ScriptKind).filter(
+          ([_, value]) => typeof value === 'number',
+        )" :key="kind[0]" :value="kind[1]">
           {{ kind[0] }}
         </option>
       </select>
@@ -42,11 +40,7 @@ const versions = Object.entries(ts.ScriptTarget).filter(
     <label flex="~ col" gap1>
       <span>languageVersion</span>
       <select v-model="languageVersion">
-        <option
-          v-for="version of versions"
-          :key="version[0]"
-          :value="version[1]"
-        >
+        <option v-for="version of versions" :key="version[0]" :value="version[1]">
           {{ version[0] }}
         </option>
       </select>

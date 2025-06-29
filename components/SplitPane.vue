@@ -48,28 +48,15 @@ function dragEnd() {
 </script>
 
 <template>
-  <div
-    ref="container"
-    class="split-pane"
-    :class="{
-      dragging: state.dragging,
-      [isVertical ? 'vertical' : 'horizontal']: true,
-    }"
-    @mousemove="dragMove"
-    @mouseup="dragEnd"
-    @mouseleave="dragEnd"
-  >
-    <div
-      class="left"
-      :style="{ [isVertical ? 'height' : 'width']: `${boundSplit}%` }"
-    >
+  <div ref="container" class="split-pane" :class="{
+    dragging: state.dragging,
+    [isVertical ? 'vertical' : 'horizontal']: true,
+  }" @mousemove="dragMove" @mouseup="dragEnd" @mouseleave="dragEnd">
+    <div class="left" :style="{ [isVertical ? 'height' : 'width']: `${boundSplit}%` }">
       <slot name="left" />
       <div class="dragger" @mousedown.prevent="dragStart" />
     </div>
-    <div
-      class="right"
-      :style="{ [isVertical ? 'height' : 'width']: `${100 - boundSplit}%` }"
-    >
+    <div class="right" :style="{ [isVertical ? 'height' : 'width']: `${100 - boundSplit}%` }">
       <slot name="right" />
     </div>
   </div>
@@ -92,17 +79,17 @@ function dragEnd() {
   pointer-events: none;
 }
 
-.horizontal > .left,
-.horizontal > .right {
+.horizontal>.left,
+.horizontal>.right {
   position: relative;
   height: 100%;
 }
 
-.horizontal > .left {
+.horizontal>.left {
   border-right: 1px solid var(--c-border);
 }
 
-.horizontal > .left > .dragger {
+.horizontal>.left>.dragger {
   position: absolute;
   z-index: 3;
   top: 0;
@@ -138,7 +125,7 @@ function dragEnd() {
   cursor: ns-resize;
 }
 
-.vertical > .left > .dragger {
+.vertical>.left>.dragger {
   position: absolute;
   top: auto;
   height: 10px;
@@ -149,13 +136,13 @@ function dragEnd() {
   cursor: ns-resize;
 }
 
-.vertical > .left,
-.vertical > .right {
+.vertical>.left,
+.vertical>.right {
   position: relative;
   width: 100%;
 }
 
-.vertical > .left {
+.vertical>.left {
   border-right: none;
   border-bottom: 1px solid var(--c-border);
 }

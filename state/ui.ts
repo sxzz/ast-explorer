@@ -19,7 +19,7 @@ export const outputView = useLocalStorage<'tree' | 'json'>(
   'tree',
 )
 
-export const expLayout = ref<Layout>('layout1')
+export const editorLayout = ref<Layout>('left-right')
 
 export const sideBarAvailable = computed(() =>
   currentParsers.value.some(
