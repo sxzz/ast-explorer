@@ -319,7 +319,12 @@ const throwExpressions = usePlugin('throwExpressions')
     </label>
 
     <label v-if="typescript" ml6>
-      <input v-model="typescript.dts" type="checkbox" switch @change="triggerTypescript" />
+      <input
+        v-model="typescript.dts"
+        type="checkbox"
+        switch
+        @change="triggerTypescript"
+      />
       <span>dts</span>
     </label>
 
@@ -387,7 +392,10 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <label v-if="pipelineOperator" ml6>
       <span>proposal</span>
-      <select v-model="pipelineOperator.proposal" @change="triggerPipelineOperator">
+      <select
+        v-model="pipelineOperator.proposal"
+        @change="triggerPipelineOperator"
+      >
         <option value="hack">hack</option>
         <option value="fsharp">fsharp</option>
       </select>
@@ -395,7 +403,10 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <label v-if="pipelineOperator && pipelineOperator.proposal === 'hack'" ml6>
       <span>topicToken</span>
-      <select v-model="pipelineOperator.topicToken" @change="triggerPipelineOperator">
+      <select
+        v-model="pipelineOperator.topicToken"
+        @change="triggerPipelineOperator"
+      >
         <option value="%">%</option>
         <option value="#">#</option>
         <option value="^">^</option>

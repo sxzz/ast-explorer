@@ -7,4 +7,4 @@ export const injectProps: InjectionKey<{
   currentParserId: ComputedRef<string>
 }> = Symbol('props')
 
-export type Layout = 'left-right' | 'top-bottom-split';
+export type Layout = 'left-right' | 'top-bottom-split'

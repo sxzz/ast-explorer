@@ -22,8 +22,18 @@ function showSettings() {
 
 <template>
   <div relative>
-    <div p="0.8" title="Editor Settings" absolute right-5 top-2 z-100 nav-button cursor-pointer text-sm
-      @click="showSettings">
+    <div
+      p="0.8"
+      title="Editor Settings"
+      absolute
+      right-5
+      top-2
+      z-100
+      nav-button
+      cursor-pointer
+      text-sm
+      @click="showSettings"
+    >
       <div i-ri:list-settings-fill />
     </div>
     <CodeEditor v-model="code" :language input h-full w-full />

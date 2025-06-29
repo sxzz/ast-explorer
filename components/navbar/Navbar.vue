@@ -5,7 +5,10 @@ import { version } from '~/package.json'
 
 const { branch } = useAppConfig()
 
-const layoutValue = defineModel('layout', { type: String, default: 'left-right' })
+const layoutValue = defineModel('layout', {
+  type: String,
+  default: 'left-right',
+})
 const onLayoutChange = (layout: 'left-right' | 'top-bottom-split') => {
   layoutValue.value = layout
 }
@@ -24,8 +27,13 @@ const onLayoutChange = (layout: 'left-right' | 'top-bottom-split') => {
 
     <div flex gap3 max-sm="flex-col w-full">
       <div flex="~ center" gap1>
-        <button title="Toggle Side Bar" :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
-          :disabled="!sideBarAvailable" nav-button @click="toggleSidebar()">
+        <button
+          title="Toggle Side Bar"
+          :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
+          :disabled="!sideBarAvailable"
+          nav-button
+          @click="toggleSidebar()"
+        >
           <div i-ri:list-settings-line />
         </button>
         <VMenu>
@@ -35,28 +43,63 @@ const onLayoutChange = (layout: 'left-right' | 'top-bottom-split') => {
           </span>
           <template #popper>
             <div size-fit flex cursor-pointer p-10px>
-              <div :class="{ 'text-emerald-400': layoutValue === 'top-bottom-split' }" mr-5px
-                @click="() => onLayoutChange('top-bottom-split')" i-ri:layout-6-line />
-              <div :class="{ 'text-emerald-400': layoutValue === 'left-right' }"
-                @click="() => onLayoutChange('left-right')" i-ri:layout-column-line />
+              <div
+                :class="{
+                  'text-emerald-400': layoutValue === 'top-bottom-split',
+                }"
+                i-ri:layout-6-line
+                mr-5px
+                @click="() => onLayoutChange('top-bottom-split')"
+              />
+              <div
+                :class="{ 'text-emerald-400': layoutValue === 'left-right' }"
+                i-ri:layout-column-line
+                @click="() => onLayoutChange('left-right')"
+              />
             </div>
           </template>
         </VMenu>
-        <button title="Toggle Input Editor" :class="!showInputEditor && 'op-40'" nav-button
-          @click="toggleInputEditor()">
+        <button
+          title="Toggle Input Editor"
+          :class="!showInputEditor && 'op-40'"
+          nav-button
+          @click="toggleInputEditor()"
+        >
           <div i-ri:code-block />
         </button>
-        <button title="Toggle Output Result" :class="!showOutput && 'op-40'" nav-button @click="toggleOutput()">
+        <button
+          title="Toggle Output Result"
+          :class="!showOutput && 'op-40'"
+          nav-button
+          @click="toggleOutput()"
+        >
           <div i-ri:node-tree />
         </button>
         <button title="Toggle Dark Mode" nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
-        <a href="https://github.com/sxzz/ast-explorer" target="_blank" title="GitHub" nav-button>
+        <a
+          href="https://github.com/sxzz/ast-explorer"
+          target="_blank"
+          title="GitHub"
+          nav-button
+        >
           <div i-ri:github-line />
         </a>
-        <a href="https://github.com/sponsors/sxzz" target="_blank" flex="~ center" title="Sponsor" group nav-button>
-          <div i-ri:heart-3-line group-hover:i-ri:heart-3-fill text-pink-400 group-hover:text-pink-400 />
+        <a
+          href="https://github.com/sponsors/sxzz"
+          target="_blank"
+          flex="~ center"
+          title="Sponsor"
+          group
+          nav-button
+        >
+          <div
+            i-ri:heart-3-line
+            group-hover:i-ri:heart-3-fill
+            text-pink-400
+            group-hover:text-pink-400
+          />
         </a>
       </div>
     </div>
