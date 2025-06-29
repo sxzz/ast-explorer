@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { code } from '#imports'
-import { parserOptions } from '~/state/parser/options'
-import { currentParser } from '~/state/parser/parser'
+import { parsersOptions } from '~/state/parser/options'
+import { currentParsers } from '~/state/parser/parser'
+import { activeTab } from '~/state/ui'
 
 const language = computed(() => {
-  if (typeof currentParser.value.editorLanguage === 'string') {
-    return currentParser.value.editorLanguage
+  const currentParser = currentParsers.value.find(
+    (parser) => parser.id === activeTab.value,
+  )!
+
+  if (typeof currentParser.editorLanguage === 'string') {
+    return currentParser.editorLanguage
   }
-  return currentParser.value.editorLanguage(parserOptions.value)
+  return currentParser.editorLanguage(parsersOptions.value[currentParser.id])
 })
 
 function showSettings() {

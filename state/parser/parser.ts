@@ -1,34 +1,52 @@
+import { getIntersection } from '~/utils'
+import { editorLayout } from '../ui'
+
 // language
 export const currentLanguageId = ref<Language>('javascript')
 export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
+const findParser = (
+  parserId: string | undefined,
+  parsers: Parser[],
+): Parser => {
+  const parser = parsers.find((parser) => parser.id === parserId)
+  if (parser) return parser
+
+  return Object.values(parsers)[0]!
+}
 
 // parser
-export const currentParserId = ref<string | undefined>()
-export const currentParser = computed(() => {
+export const currentParserIds = ref<string[]>([])
+export const currentParsers = computed(() => {
   const { parsers } = currentLanguage.value
-  if (currentParserId.value) {
-    const parser = parsers.find((parser) => parser.id === currentParserId.value)
-    if (parser) return parser
-  }
-  return Object.values(parsers)[0]!
+  return [
+    findParser(currentParserIds.value[0], parsers),
+    findParser(currentParserIds.value[1], parsers),
+  ]
 })
 
-export const currentParserGui = computed(
-  () =>
-    currentParser.value.gui && defineAsyncComponent(currentParser.value.gui),
+export const currentParsersGuis = computed(() =>
+  currentParsers.value.map(
+    (parser) => parser.gui && defineAsyncComponent(parser.gui),
+  ),
 )
 
-export function setParserId(id: string) {
-  overrideVersion.value = undefined
-  currentParserId.value = id
+export function setParserId(id: string, idx?: number) {
+  overrideVersions.value = []
+  if (idx !== undefined) {
+    currentParserIds.value[idx] = id
+  } else {
+    currentParsers.value.forEach((_, idx) => (currentParserIds.value[idx] = id))
+  }
 }
 
 // parser version
-export const overrideVersion = ref<string>()
-export const displayVersion = ref<string>()
-export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
+export const overrideVersions = ref<Array<string | undefined>>([])
+export const displayVersions = ref<Array<string | undefined>>([])
+export const isUrlVersions = computed(() =>
+  overrideVersions.value.map((overrideVersion) => isUrl(overrideVersion || '')),
+)
 
 export function initParserState() {
   // set code template when language changes
@@ -36,17 +54,29 @@ export function initParserState() {
     code.value = language.codeTemplate
   })
 
-  // ensure currentParserId is valid
+  // bug: The pop-up will be incorrect when switching, think about the correct execution logic
+  // This will result in two internal parsers when there is only one, resulting in redundant execution
+  // How to clear data when switching
+  watch(editorLayout, () => {
+    switch (editorLayout.value) {
+      case 'left-right':
+        currentParserIds.value.pop()
+    }
+  })
+
+  // ensure currentParsersId is valid
   watch(
-    [currentLanguage, currentParserId],
+    [currentLanguage, currentParserIds],
     () => {
+      const currentLanguageParserIds = currentLanguage.value.parsers.map(
+        (p) => p.id,
+      )
       if (
-        !currentParserId.value ||
-        !currentLanguage.value.parsers.some(
-          (p) => p.id === currentParserId.value,
-        )
+        !currentParserIds.value.length ||
+        getIntersection(currentParserIds.value, currentLanguageParserIds)
+          .length === 0
       ) {
-        setParserId(currentLanguage.value.parsers[0]!.id)
+        setParserId(currentLanguageParserIds[0]!)
       }
     },
     { immediate: true, flush: 'sync' },

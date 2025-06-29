@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { rawOptions } from '~/state/parser/options'
-import { currentParser } from '~/state/parser/parser'
-
+import { currentParsers } from '~/state/parser/parser.js'
 defineOptions({ inheritAttrs: false })
+defineProps<{
+  parserId: string
+  index: number
+}>()
 
 const dialog = ref<HTMLDialogElement>()
 
@@ -37,13 +40,12 @@ function handleDialogClick(evt: MouseEvent) {
           <div i-ri:close-line />
         </button>
       </div>
-
       <CodeEditor
-        v-model="rawOptions"
+        v-model="rawOptions[parserId]"
         min-h-0
         w-60vw
         flex-1
-        :language="currentParser.options.editorLanguage"
+        :language="currentParsers[index]!.options.editorLanguage"
       />
     </dialog>
   </div>

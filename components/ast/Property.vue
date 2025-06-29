@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { parserModules } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { Range } from '~/composables/location'
 
 const props = defineProps<{
@@ -9,8 +9,9 @@ const props = defineProps<{
   root?: boolean
   open?: boolean
 }>()
-
-const show = computed(() => !shouldHideKey(props.id, true, props.value))
+const { currentParser, index } = inject(injectProps)!
+const parserModule = computedAsync(async () => await parserModules.value[index])
+const show = computed(() => !shouldHideKey(index, props.id, true, props.value))
 
 const title = computed(() => {
   const { nodeTitle = 'type' } = currentParser.value
@@ -35,9 +36,9 @@ function isArrayLike(n: unknown) {
 const isFocusing = computed(() => {
   // children of csstree is iterable but not array
   if (isArrayLike(props.value)) {
-    return Array.from(props.value).some((v) => checkRange(getRange(v)))
+    return Array.from(props.value).some((v) => checkRange(getRange(v, index)))
   }
-  return checkRange(getRange(props.value))
+  return checkRange(getRange(props.value, index))
 })
 function checkRange(range?: Range) {
   if (!range) return false
@@ -78,7 +79,7 @@ function handleMouseOver(event: MouseEvent) {
     event.stopPropagation()
     outputHoverRange.value = undefined
   } else if (props.value) {
-    const range = getRange(props.value)
+    const range = getRange(props.value, index)
     if (!range) return
 
     event.stopPropagation()

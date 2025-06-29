@@ -11,7 +11,7 @@ export interface RemarkOptions {
 }
 
 // @unocss-include
-const remarkAst: Parser<typeof Remark, RemarkOptions> = {
+export const remarkAst: Parser<typeof Remark, RemarkOptions> = {
   id: 'remark',
   label: 'remark',
   icon: 'https://raw.githubusercontent.com/remarkjs/remark/refs/heads/main/logo-square.svg',

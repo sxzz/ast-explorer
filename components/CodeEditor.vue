@@ -6,6 +6,7 @@ const props = defineProps<{
   language: MonacoLanguage
   input?: boolean
 }>()
+
 const code = defineModel<string>()
 
 const container = shallowRef<{
