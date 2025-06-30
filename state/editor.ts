@@ -7,6 +7,7 @@ export const code = ref('')
 export const editorCursor = ref<number>(0)
 export const outputHoverRange = ref<Range | undefined>()
 export const showEditorSettings = ref(false)
+export const showAstViewSettings = ref(false)
 
 export type EditorSettings = monaco.editor.IEditorOptions &
   monaco.editor.IGlobalEditorOptions
@@ -19,6 +20,16 @@ export const editorSettings = useLocalStorage<EditorSettings>(
     tabSize: 2,
     wordWrap: 'off',
     minimap: { enabled: false },
+  },
+)
+
+export const astViewSettings = useLocalStorage<EditorSettings>(
+  `${STORAGE_PREFIX}ast-view-settings`,
+  {
+    fontFamily:
+      '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
+    fontSize: 13,
+    lineHeight: 1.4,
   },
 )
 

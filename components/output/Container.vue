@@ -70,6 +70,10 @@ function toggleHideLocationData() {
   }
 }
 
+function showAstSettings() {
+  showAstViewSettings.value = true
+}
+
 watch(outputView, (view) => {
   if (view === 'json' && autoFocus.value) {
     hideLocationData.value = false
@@ -79,42 +83,58 @@ watch(outputView, (view) => {
 
 <template>
   <div flex="~ col" gap1>
-    <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
-      <div flex gap1>
-        <button
-          :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
-          @click="toggleView('tree')"
-        >
-          <div i-ri:node-tree />
-        </button>
-        <button
-          :class="[tabClass, outputView === 'json' && tabSelectedClass]"
-          @click="toggleView('json')"
-        >
-          <div i-ri:braces-line />
-        </button>
+    <div
+      flex="~ y-center wrap justify-between"
+      class="output-form"
+      gap2
+      text-sm
+    >
+      <div flex="~ y-center wrap" gap2>
+        <div flex gap1>
+          <button
+            :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
+            @click="toggleView('tree')"
+          >
+            <div i-ri:node-tree />
+          </button>
+          <button
+            :class="[tabClass, outputView === 'json' && tabSelectedClass]"
+            @click="toggleView('json')"
+          >
+            <div i-ri:braces-line />
+          </button>
+        </div>
+        <label>
+          <input
+            :checked="autoFocus"
+            type="checkbox"
+            switch
+            @click="toggleAutoFocus"
+          />
+          Auto focus
+        </label>
+        <label>
+          <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty
+          keys
+        </label>
+        <label>
+          <input
+            :checked="hideLocationData"
+            type="checkbox"
+            switch
+            @click="toggleHideLocationData"
+          />
+          Hide location data
+        </label>
       </div>
-      <label>
-        <input
-          :checked="autoFocus"
-          type="checkbox"
-          switch
-          @click="toggleAutoFocus"
-        />
-        Auto focus
-      </label>
-      <label>
-        <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
-      </label>
-      <label>
-        <input
-          :checked="hideLocationData"
-          type="checkbox"
-          switch
-          @click="toggleHideLocationData"
-        />
-        Hide location data
-      </label>
+      <button
+        v-if="outputView === 'tree'"
+        title="AST View Settings"
+        nav-button
+        @click="showAstSettings"
+      >
+        <div i-ri:settings-line />
+      </button>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
       <Loading v-if="loading">
@@ -158,6 +178,7 @@ watch(outputView, (view) => {
         />
       </label>
     </div>
+    <AstViewSettings />
   </div>
 </template>
 
