@@ -5,7 +5,7 @@ const raw = ref(JSON.stringify(astViewSettings.value, null, 2))
 const dialog = useTemplateRef('dialog')
 
 watchEffect(() => {
-  let parsed: AstViewSettings
+  let parsed: EditorSettings
   try {
     parsed = json5.parse(raw.value)
   } catch {
