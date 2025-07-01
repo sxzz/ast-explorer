@@ -7,8 +7,17 @@ function showDialog() {
 </script>
 
 <template>
-  <div relative w-full :style="astTreeStyles">
-    <div h-full w-full overflow-auto pl4 text-sm leading-relaxed font-mono>
+  <div relative w-full>
+    <div
+      h-full
+      w-full
+      overflow-auto
+      pl4
+      text-sm
+      leading-relaxed
+      font-mono
+      :style="astTreeStyles"
+    >
       <AstProperty :value="ast" root open />
     </div>
     <button
