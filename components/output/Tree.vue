@@ -4,7 +4,6 @@ import { ast } from '~/state/parser/module'
 const astStyles = computed(() => ({
   fontFamily: astViewSettings.value.fontFamily,
   fontSize: `${astViewSettings.value.fontSize}px`,
-  lineHeight: astViewSettings.value.lineHeight,
 }))
 </script>
 

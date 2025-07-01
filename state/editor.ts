@@ -23,13 +23,12 @@ export const editorSettings = useLocalStorage<EditorSettings>(
   },
 )
 
-export const astViewSettings = useLocalStorage<EditorSettings>(
-  `${STORAGE_PREFIX}ast-view-settings`,
+export const astViewSettings = useLocalStorage<Record<string, any>>(
+  `${STORAGE_PREFIX}ast-tree-settings`,
   {
     fontFamily:
       '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
     fontSize: 13,
-    lineHeight: 1.4,
   },
 )
 
