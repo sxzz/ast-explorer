@@ -7,7 +7,7 @@ export const code = ref('')
 export const editorCursor = ref<number>(0)
 export const outputHoverRange = ref<Range | undefined>()
 export const showEditorSettings = ref(false)
-export const showAstViewSettings = ref(false)
+export const showAstTreeStyles = ref(false)
 
 export type EditorSettings = monaco.editor.IEditorOptions &
   monaco.editor.IGlobalEditorOptions
@@ -23,13 +23,9 @@ export const editorSettings = useLocalStorage<EditorSettings>(
   },
 )
 
-export const astViewSettings = useLocalStorage<Record<string, any>>(
-  `${STORAGE_PREFIX}ast-tree-settings`,
-  {
-    fontFamily:
-      '"Cascadia Code", "Jetbrains Mono", "Fira Code", "Menlo", "Consolas", monospace',
-    fontSize: 13,
-  },
+export const astTreeStyles = useLocalStorage<Record<string, any>>(
+  `${STORAGE_PREFIX}ast-tree-styles`,
+  {},
 )
 
 export function getSharedMonacoOptions(): EditorSettings {

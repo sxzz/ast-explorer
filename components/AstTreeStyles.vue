@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import json5 from 'json5'
 
-const raw = ref(JSON.stringify(astViewSettings.value, null, 2))
+const raw = ref(JSON.stringify(astTreeStyles.value, null, 2))
 const dialog = useTemplateRef('dialog')
 
 watchEffect(() => {
@@ -11,11 +11,11 @@ watchEffect(() => {
   } catch {
     return
   }
-  astViewSettings.value = parsed
+  astTreeStyles.value = parsed
 })
 
 watchEffect(() => {
-  if (showAstViewSettings.value) openDialog()
+  if (showAstTreeStyles.value) openDialog()
 })
 
 function openDialog() {
@@ -28,7 +28,7 @@ function handleDialogClick(evt: MouseEvent) {
 
 function closeDialog() {
   dialog.value?.close()
-  showAstViewSettings.value = false
+  showAstTreeStyles.value = false
 }
 </script>
 
@@ -47,7 +47,15 @@ function closeDialog() {
     @close="closeDialog"
   >
     <div flex="~ center" relative gap2 py2 font-bold>
-      <span text-lg font-bold>AST View Settings</span>
+      <span text-lg font-bold>AST Tree Styles</span>
+      <a
+        title="Reference Documentation"
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index"
+        target="_blank"
+        nav-button
+      >
+        <div i-ri:book-2-line />
+      </a>
       <button absolute right-2 nav-button @click="dialog?.close()">
         <div i-ri:close-line />
       </button>
