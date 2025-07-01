@@ -7,17 +7,10 @@ function showDialog() {
 </script>
 
 <template>
-  <div
-    relative
-    w-full
-    overflow-auto
-    pl4
-    text-sm
-    leading-relaxed
-    font-mono
-    :style="astTreeStyles"
-  >
-    <AstProperty :value="ast" root open />
+  <div relative w-full :style="astTreeStyles">
+    <div h-full w-full overflow-auto pl4 text-sm leading-relaxed font-mono>
+      <AstProperty :value="ast" root open />
+    </div>
     <button
       absolute
       right-2
@@ -29,6 +22,6 @@ function showDialog() {
     >
       <div i-ri:magic-line />
     </button>
-    <AstTreeStyles />
+    <OutputTreeStyles />
   </div>
 </template>

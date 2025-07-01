@@ -1,42 +1,32 @@
 <script setup lang="ts">
-import json5 from 'json5'
-
-const raw = ref(JSON.stringify(astTreeStyles.value, null, 2))
 const dialog = useTemplateRef('dialog')
 
+defineProps<{
+  title: string
+  docs?: string
+}>()
+const open = defineModel<boolean>()
+
 watchEffect(() => {
-  let parsed: EditorSettings
-  try {
-    parsed = json5.parse(raw.value)
-  } catch {
-    return
+  if (open.value) {
+    dialog.value?.showModal()
+  } else {
+    dialog.value?.close()
   }
-  astTreeStyles.value = parsed
 })
-
-watchEffect(() => {
-  if (showAstTreeStyles.value) openDialog()
-})
-
-function openDialog() {
-  dialog.value?.showModal()
-}
 
 function handleDialogClick(evt: MouseEvent) {
   if (evt.target === evt.currentTarget) closeDialog()
 }
 
 function closeDialog() {
-  dialog.value?.close()
-  showAstTreeStyles.value = false
+  open.value = false
 }
 </script>
 
 <template>
   <dialog
     ref="dialog"
-    h-100
-    w-200
     flex-col
     border
     rounded-2xl
@@ -47,19 +37,21 @@ function closeDialog() {
     @close="closeDialog"
   >
     <div flex="~ center" relative gap2 py2 font-bold>
-      <span text-lg font-bold>AST Tree Styles</span>
+      <span text-lg font-bold>{{ title }}</span>
       <a
+        v-if="docs"
         title="Reference Documentation"
-        href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index"
+        :href="docs"
         target="_blank"
         nav-button
       >
         <div i-ri:book-2-line />
       </a>
-      <button absolute right-2 nav-button @click="dialog?.close()">
+      <button absolute right-2 nav-button @click="closeDialog">
         <div i-ri:close-line />
       </button>
     </div>
-    <CodeEditor v-model="raw" language="json" min-h-0 w-full flex-1 />
+
+    <slot />
   </dialog>
 </template>
