@@ -31,8 +31,8 @@ const onLayoutChange = (layout: 'left-right' | 'top-bottom-split') => {
         </button>
         <VMenu>
           <span nav-button>
-            <Layout1 v-show="layoutValue === 'top-bottom-split'" />
-            <Layout2 v-show="layoutValue === 'left-right'" />
+            <div v-if="layoutValue === 'top-bottom-split'" i-ri:layout-6-line></div>
+            <div v-else-if="layoutValue === 'left-right'" i-ri:layout-column-line></div>
           </span>
           <template #popper>
             <div size-fit flex cursor-pointer p-10px>
