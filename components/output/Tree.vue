@@ -12,10 +12,27 @@ function showDialog() {
 
 <template>
   <div relative w-full>
-    <div h-full w-full overflow-auto pl4 text-sm leading-relaxed font-mono :style="astTreeStyles">
+    <div
+      h-full
+      w-full
+      overflow-auto
+      pl4
+      text-sm
+      leading-relaxed
+      font-mono
+      :style="astTreeStyles"
+    >
       <AstProperty :value="currentAST" root open />
     </div>
-    <button absolute right-2 top-2 p="0.8" title="AST Tree Styles" nav-button @click="showDialog">
+    <button
+      absolute
+      right-2
+      top-2
+      p="0.8"
+      title="AST Tree Styles"
+      nav-button
+      @click="showDialog"
+    >
       <div i-ri:magic-line />
     </button>
     <OutputTreeStyles />
