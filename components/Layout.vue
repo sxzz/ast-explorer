@@ -1,10 +1,10 @@
+<script setup lang="ts">
+import { editorLayout } from '~/state/parser/parser'
+</script>
+
 <template>
-  <div style="height: calc(100vh - 50px)">
-    <div
-      v-show="editorLayout === 'left-right' && !showInputEditor"
-      h-full
-      w-full
-    >
+  <div style="height: calc(100vh - 50px)" w-full>
+    <div v-if="editorLayout === 'left-right' && !showInputEditor" h-full w-full>
       <OutputContainer
         v-show="showOutput"
         :index="0"
@@ -15,12 +15,12 @@
       />
     </div>
 
-    <div v-show="!showOutput && showInputEditor" h-full w-full>
+    <div v-else-if="!showOutput && showInputEditor" h-full w-full>
       <InputContainer h-full min-w-0 w-full py1 />
     </div>
 
     <SplitPane
-      v-show="editorLayout === 'left-right' && showInputEditor && showOutput"
+      v-else-if="editorLayout === 'left-right' && showInputEditor && showOutput"
     >
       <template #left>
         <InputContainer h-full min-w-0 w-full py1 />
@@ -38,7 +38,7 @@
     </SplitPane>
 
     <SplitPane
-      v-show="
+      v-else-if="
         editorLayout === 'top-bottom-split' && !showInputEditor && showOutput
       "
     >
@@ -65,7 +65,7 @@
     </SplitPane>
 
     <SplitPane
-      v-show="
+      v-else-if="
         editorLayout === 'top-bottom-split' && showInputEditor && showOutput
       "
       layout="vertical"

@@ -1,5 +1,7 @@
 import { getIntersection } from '~/utils'
-import { editorLayout } from '../ui'
+import type { Layout } from '~/types'
+
+export const editorLayout = ref<Layout>('left-right')
 
 // language
 export const currentLanguageId = ref<Language>('javascript')
@@ -20,10 +22,15 @@ const findParser = (
 export const currentParserIds = ref<string[]>([])
 export const currentParsers = computed(() => {
   const { parsers } = currentLanguage.value
-  return [
-    findParser(currentParserIds.value[0], parsers),
-    findParser(currentParserIds.value[1], parsers),
-  ]
+
+  if (editorLayout.value === 'top-bottom-split') {
+    return [
+      findParser(currentParserIds.value[0], parsers),
+      findParser(currentParserIds.value[1], parsers),
+    ]
+  }
+
+  return [findParser(currentParserIds.value[0], parsers)]
 })
 
 export const currentParsersGuis = computed(() =>
@@ -54,9 +61,6 @@ export function initParserState() {
     code.value = language.codeTemplate
   })
 
-  // bug: The pop-up will be incorrect when switching, think about the correct execution logic
-  // This will result in two internal parsers when there is only one, resulting in redundant execution
-  // How to clear data when switching
   watch(editorLayout, () => {
     switch (editorLayout.value) {
       case 'left-right':

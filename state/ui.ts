@@ -1,4 +1,3 @@
-import type { Layout } from '~/types'
 import { currentParsers, currentParsersGuis } from './parser/parser'
 
 export const showSidebar = useLocalStorage(
@@ -18,8 +17,6 @@ export const outputView = useLocalStorage<'tree' | 'json'>(
   `${STORAGE_PREFIX}output-view`,
   'tree',
 )
-
-export const editorLayout = ref<Layout>('left-right')
 
 export const sideBarAvailable = computed(() =>
   currentParsers.value.some(

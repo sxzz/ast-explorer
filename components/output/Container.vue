@@ -217,6 +217,7 @@ function editVersion() {
       </Loading>
       <div
         v-else-if="error"
+        w-full
         overflow-x-auto
         overflow-y-auto
         p1

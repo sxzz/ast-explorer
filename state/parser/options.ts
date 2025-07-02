@@ -7,7 +7,7 @@ export const parsersOptions = ref<Record<string, any>>({})
 export function setDefaultOptions(parserId?: string) {
   if (parserId) {
     const parser = currentParsers.value.find((p) => p.id === parserId)
-    if (parser) {
+    if (parser && !rawOptions.value[parserId]) {
       rawOptions.value[parserId] =
         parser.options.defaultValueType === 'javascript'
           ? parser.options.defaultValue
@@ -15,10 +15,12 @@ export function setDefaultOptions(parserId?: string) {
     }
   } else {
     currentParsers.value.forEach((parser) => {
-      rawOptions.value[parser.id] =
-        parser.options.defaultValueType === 'javascript'
-          ? parser.options.defaultValue
-          : JSON.stringify(parser.options.defaultValue, null, 2)
+      if (!rawOptions.value[parser.id]) {
+        rawOptions.value[parser.id] =
+          parser.options.defaultValueType === 'javascript'
+            ? parser.options.defaultValue
+            : JSON.stringify(parser.options.defaultValue, null, 2)
+      }
     })
   }
 }

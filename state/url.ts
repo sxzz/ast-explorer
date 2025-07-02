@@ -4,9 +4,9 @@ import {
   currentLanguageId,
   currentParserIds,
   currentParsers,
+  editorLayout,
   overrideVersions,
 } from './parser/parser'
-import { editorLayout } from './ui'
 
 const LAST_STATE_KEY = `${STORAGE_PREFIX}last-state`
 
