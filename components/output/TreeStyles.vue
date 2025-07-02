@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { showEditorSettings } from '#imports'
+import { showAstTreeStyles } from '#imports'
 import json5 from 'json5'
 
-const raw = ref(JSON.stringify(editorSettings.value, null, 2))
+const raw = ref(JSON.stringify(astTreeStyles.value, null, 2))
 
 watchEffect(() => {
   let parsed: EditorSettings
@@ -11,17 +11,17 @@ watchEffect(() => {
   } catch {
     return
   }
-  editorSettings.value = parsed
+  astTreeStyles.value = parsed
 })
 </script>
 
 <template>
   <AppDialog
-    v-model="showEditorSettings"
+    v-model="showAstTreeStyles"
     h-100
     w-200
-    title="Editor Settings"
-    docs="https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html"
+    title="AST Tree Styles"
+    docs="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index"
   >
     <CodeEditor v-model="raw" language="json" min-h-0 w-full flex-1 />
   </AppDialog>

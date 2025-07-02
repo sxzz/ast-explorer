@@ -7,46 +7,16 @@ defineProps<{
   index: number
 }>()
 
-const dialog = ref<HTMLDialogElement>()
-
-function openDialog() {
-  dialog.value?.showModal()
-}
-
-function handleDialogClick(evt: MouseEvent) {
-  if (evt.target === evt.currentTarget) dialog.value?.close()
-}
+const open = ref(false)
 </script>
 
 <template>
-  <div flex="~ center">
-    <button v-bind="$attrs" @click="openDialog">
-      <div i-ri:settings-line />
-    </button>
-    <dialog
-      ref="dialog"
-      h-80vh
-      flex-col
-      border
-      rounded-2xl
-      open:flex
-      backdrop:bg-black:30
-      backdrop:backdrop-blur-2
-      @click="handleDialogClick"
-    >
-      <div flex="~ center" relative gap1 py2 font-bold>
-        <span text-lg font-bold>Parser Options</span>
-        <button absolute right-2 nav-button @click="dialog?.close()">
-          <div i-ri:close-line />
-        </button>
-      </div>
-      <CodeEditor
-        v-model="rawOptions[parserId]"
-        min-h-0
-        w-60vw
-        flex-1
-        :language="currentParsers[index]!.options.editorLanguage"
-      />
-    </dialog>
-  </div>
+  <button v-bind="$attrs" @click="open = true">
+    <div i-ri:settings-line />
+  </button>
+
+  <AppDialog v-model="open" h-80vh title="Parser Options">
+    <CodeEditor v-model="rawOptions[parserId]" min-h-0 w-60vw flex-1
+      :language="currentParsers[index]!.options.editorLanguage" />
+  </AppDialog>
 </template>

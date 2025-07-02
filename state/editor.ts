@@ -7,6 +7,7 @@ export const code = ref('')
 export const editorCursor = ref<number>(0)
 export const outputHoverRange = ref<Range | undefined>()
 export const showEditorSettings = ref(false)
+export const showAstTreeStyles = ref(false)
 
 export type EditorSettings = monaco.editor.IEditorOptions &
   monaco.editor.IGlobalEditorOptions
@@ -20,6 +21,11 @@ export const editorSettings = useLocalStorage<EditorSettings>(
     wordWrap: 'off',
     minimap: { enabled: false },
   },
+)
+
+export const astTreeStyles = useLocalStorage<Record<string, any>>(
+  `${STORAGE_PREFIX}ast-tree-styles`,
+  {},
 )
 
 export function getSharedMonacoOptions(): EditorSettings {

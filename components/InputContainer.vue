@@ -34,7 +34,7 @@ function showSettings() {
       text-sm
       @click="showSettings"
     >
-      <div i-ri:list-settings-fill />
+      <div i-ri:settings-line />
     </div>
     <CodeEditor v-model="code" :language input h-full w-full />
     <EditorSettings />
