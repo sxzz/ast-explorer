@@ -6,7 +6,29 @@ import {
   outputView,
 } from '#imports'
 import ansiRegex from 'ansi-regex'
-import { ast, error, loading } from '~/state/parser/module'
+import { ast, errors, loading, parseCost } from '~/state/parser/module'
+import {
+  currentParserIds,
+  currentParsers,
+  displayVersions,
+  isUrlVersions,
+  overrideVersions,
+} from '~/state/parser/parser'
+import { injectProps } from '~/types'
+
+const props = defineProps<{
+  index: number
+}>()
+
+const isUrlVersion = computed(() => isUrlVersions.value[props.index])
+const currentParser = computed(() => currentParsers.value[props.index]!)
+const currentParserId = computed(() => currentParserIds.value[props.index]!)
+
+provide(injectProps, {
+  index: props.index,
+  currentParser,
+  currentParserId,
+})
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
@@ -21,6 +43,8 @@ watchEffect(() => {
 const tabClass =
   'border rounded-full w-7 h-7 items-center flex justify-center hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
 const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
+
+const error = computed(() => errors.value && errors.value[props.index])
 
 const errorString = computed(() => {
   if (!error.value) return ''
@@ -75,11 +99,82 @@ watch(outputView, (view) => {
     hideLocationData.value = false
   }
 })
+
+const displayVersion = computed(() => displayVersions.value[props.index])
+const overrideVersion = computed(() => overrideVersions.value[props.index])
+const disableOverrideVersion = computed(
+  () => currentParser.value.versionOverridable === false,
+)
+
+function editVersion() {
+  // eslint-disable-next-line no-alert
+  const newVersion = prompt(
+    'Enter a semver version, tag or URL (e.g. 1.0.0, ^1.2.3, next, https://example.com):',
+    displayVersion.value,
+  )
+  overrideVersions.value[props.index] = newVersion || undefined
+}
 </script>
 
 <template>
   <div flex="~ col" gap1>
     <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
+      <ParserSelect :index="index" />
+      <a
+        text-sm
+        font-mono
+        op80
+        hover:underline
+        :href="
+          isUrlVersion
+            ? overrideVersion
+            : `https://www.npmjs.com/package/${currentParser.pkgName}`
+        "
+        target="_blank"
+      >
+        <span>{{ currentParser.pkgName }}</span>
+        <template v-if="displayVersion">
+          <span>@</span>
+          <span
+            :class="[
+              isUrlVersion && 'text-blue',
+              overrideVersion &&
+                !isUrlVersion &&
+                'text-green-700 dark:text-green',
+              'max-w50 inline-block truncate align-middle',
+            ]"
+            >{{ displayVersion }}</span
+          >
+          <small
+            v-if="overrideVersion && overrideVersion !== displayVersion"
+            op50
+          >
+            ({{ overrideVersion }})
+          </small>
+        </template>
+      </a>
+      <button
+        :disabled="disableOverrideVersion"
+        :class="disableOverrideVersion && 'cursor-not-allowed op30'"
+        title="Change Version"
+        nav-button
+        @click="editVersion"
+      >
+        <div i-ri:edit-line />
+      </button>
+      <div flex="~ center" gap3>
+        <span op70>{{ +parseCost[index]!.toFixed(1) }} ms</span>
+      </div>
+      <a
+        v-if="currentParser.link"
+        title="Open Documentation"
+        :href="currentParser.link"
+        target="_blank"
+        flex="~ center"
+        nav-button
+      >
+        <div i-ri:book-2-line />
+      </a>
       <div flex gap1>
         <button
           :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
@@ -120,8 +215,16 @@ watch(outputView, (view) => {
       <Loading v-if="loading">
         {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
       </Loading>
-      <div v-else-if="error" overflow-scroll p1 text-sm text-red>
-        <pre v-text="errorString" />
+      <div
+        v-else-if="error"
+        w-full
+        overflow-x-auto
+        overflow-y-auto
+        p1
+        text-sm
+        text-red
+      >
+        <span whitespace-pre v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson

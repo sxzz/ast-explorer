@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { ParserOptions } from './oxc'
-const useOption = makeUseOption<ParserOptions>()
+import { oxc, type ParserOptions } from './oxc'
+const useOption = makeUseOption<ParserOptions>(oxc.id)
 </script>
 
 <script setup lang="ts">

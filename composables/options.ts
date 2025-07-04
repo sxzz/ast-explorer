@@ -19,7 +19,7 @@ function getWithPath(object: any, keys: string | string[]): any {
   return keys.reduce((acc, key) => acc?.[key], object)
 }
 
-export function makeUseOption<O extends object>() {
+export function makeUseOption<O extends object>(parserId: string) {
   return <const K extends string | string[]>(
     keys: K,
     defaultValue: K extends KeysOfUnion<O>
@@ -55,5 +55,6 @@ export function makeUseOption<O extends object>() {
         if (!keep && value === defaultValue) delete obj[key]
         else obj[key] = value
       },
+      parserId,
     ) as any
 }

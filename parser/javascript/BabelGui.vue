@@ -1,5 +1,6 @@
 <script lang="ts">
 import { useOptions } from '~/state/parser/options'
+import { babel } from './babel'
 import type {
   ParserOptions,
   ParserPlugin,
@@ -23,8 +24,6 @@ function getPluginOptions<T extends ParserPlugin & string>(
   if (!plugin) return false
   return Array.isArray(plugin) ? plugin[1] : true
 }
-
-const useOption = makeUseOption<ParserOptions>()
 
 function usePlugin<T extends ParserPlugin & string>(
   name: T,
@@ -78,6 +77,7 @@ function usePlugin<T extends ParserPlugin & string>(
         opt.plugins.push(value === true ? name : ([name, value] as any))
       }
     },
+    babel.id,
   )
 
   watch(
@@ -94,6 +94,7 @@ function usePlugin<T extends ParserPlugin & string>(
 </script>
 
 <script setup lang="ts">
+const useOption = makeUseOption<ParserOptions>(babel.id)
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
 const allowAwaitOutsideFunction = useOption('allowAwaitOutsideFunction')
@@ -159,6 +160,7 @@ const decorators = useOptions(
       opt.plugins = del(opt.plugins, ['decorators', 'decorators-legacy'])
     }
   },
+  babel.id,
 )
 const decoratorsLegacy = useOptions(
   (opt?: ParserOptions) =>
@@ -173,6 +175,7 @@ const decoratorsLegacy = useOptions(
       opt.plugins = del(opt.plugins, ['decorators-legacy'])
     }
   },
+  babel.id,
 )
 
 const optionalChainingAssign = usePlugin('optionalChainingAssign', {

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { ast } from '~/state/parser/module'
+import { injectProps } from '~/types'
+
+const { index } = inject(injectProps)!
+const currentAST = computed(() => ast.value[index])
 
 function showDialog() {
   showAstTreeStyles.value = true
@@ -18,7 +22,7 @@ function showDialog() {
       font-mono
       :style="astTreeStyles"
     >
-      <AstProperty :value="ast" root open />
+      <AstProperty :value="currentAST" root open />
     </div>
     <button
       absolute

@@ -1,4 +1,4 @@
-import { currentParser, currentParserGui } from './parser/parser'
+import { currentParsers, currentParsersGuis } from './parser/parser'
 
 export const showSidebar = useLocalStorage(
   `${STORAGE_PREFIX}show-sidebar`,
@@ -18,6 +18,11 @@ export const outputView = useLocalStorage<'tree' | 'json'>(
   'tree',
 )
 
-export const sideBarAvailable = computed(
-  () => currentParser.value.options.configurable && !!currentParserGui.value,
+export const sideBarAvailable = computed(() =>
+  currentParsers.value.some(
+    (parser, idx) =>
+      parser.options.configurable && !!currentParsersGuis.value[idx],
+  ),
 )
+
+export const activeTab = ref<string>('')
