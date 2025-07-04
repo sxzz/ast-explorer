@@ -202,7 +202,6 @@ const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
-const explicitResourceManagement = usePlugin('explicitResourceManagement')
 const exportDefaultFrom = usePlugin('exportDefaultFrom')
 const functionBind = usePlugin('functionBind')
 const functionSent = usePlugin('functionSent')
@@ -431,12 +430,6 @@ const throwExpressions = usePlugin('throwExpressions')
     </label>
 
     <h3 border-t pt1 text-center font-bold>Syntaxes</h3>
-
-    <label>
-      <!-- Stage 3 -->
-      <input v-model="explicitResourceManagement" type="checkbox" switch />
-      <span>explicitResourceManagement</span>
-    </label>
 
     <label>
       <!-- Stage 3 -->
