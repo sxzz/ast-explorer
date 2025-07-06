@@ -7,16 +7,17 @@ import type {
   ParserPluginWithOptions,
 } from '@babel/parser'
 
-function isPluginOf(plugin: ParserPlugin, name: ParserPlugin & string) {
-  return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
-}
-
-type ExtractPluginOptions<T extends ParserPlugin & string> = Extract<
+type PluginName = ParserPlugin & string
+type ExtractPluginOptions<T extends PluginName> = Extract<
   ParserPluginWithOptions,
   [T, any]
 >[1]
 
-function getPluginOptions<T extends ParserPlugin & string>(
+function isPluginOf(plugin: ParserPlugin, name: PluginName) {
+  return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
+}
+
+function getPluginOptions<T extends PluginName>(
   plugins: ParserPlugin[] | undefined,
   name: T,
 ): boolean | ExtractPluginOptions<T> {
@@ -25,7 +26,9 @@ function getPluginOptions<T extends ParserPlugin & string>(
   return Array.isArray(plugin) ? plugin[1] : true
 }
 
-function usePlugin<T extends ParserPlugin & string>(
+const useOption = makeUseOption<ParserOptions>(babel.id)
+
+function usePlugin<T extends PluginName>(
   name: T,
   options: {
     defaultOptions: ExtractPluginOptions<T>
@@ -35,11 +38,11 @@ function usePlugin<T extends ParserPlugin & string>(
   ExtractPluginOptions<T>,
   ExtractPluginOptions<T> | boolean
 >
-function usePlugin<T extends ParserPlugin & string>(
+function usePlugin<T extends PluginName>(
   name: T,
   options?: { deps?: Ref<boolean | undefined>[] },
 ): WritableComputedRef<boolean>
-function usePlugin<T extends ParserPlugin & string>(
+function usePlugin<T extends PluginName>(
   name: T,
   {
     defaultOptions,
@@ -91,10 +94,32 @@ function usePlugin<T extends ParserPlugin & string>(
 
   return value
 }
+
+function usePluginWithOptions<T extends PluginName>(
+  name: T,
+  options: {
+    defaultOptions: ExtractPluginOptions<T>
+    deps?: Ref<boolean | undefined>[]
+  },
+): [
+  ref: WritableComputedRef<
+    ExtractPluginOptions<T>,
+    boolean | ExtractPluginOptions<T>
+  >,
+  enabled: WritableComputedRef<boolean>,
+  trigger: () => void,
+] {
+  const plugin = usePlugin(name, options)
+  const enable = computed({
+    get: () => !!plugin.value,
+    set: (value) => (plugin.value = value),
+  })
+  const trigger = () => (plugin.value = { ...plugin.value })
+  return [plugin, enable, trigger]
+}
 </script>
 
 <script setup lang="ts">
-const useOption = makeUseOption<ParserOptions>(babel.id)
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
 const allowAwaitOutsideFunction = useOption('allowAwaitOutsideFunction')
@@ -124,18 +149,14 @@ const tokens = useOption('tokens')
 const estree = usePlugin('estree')
 
 // languages
-const typescript = usePlugin('typescript', {
-  defaultOptions: {
-    dts: false,
+const [typescript, typescriptEnable, triggerTypescript] = usePluginWithOptions(
+  'typescript',
+  {
+    defaultOptions: {
+      dts: false,
+    },
   },
-})
-const typescriptEnable = computed({
-  get: () => !!typescript.value,
-  set: (value) => (typescript.value = value),
-})
-function triggerTypescript() {
-  typescript.value = { ...typescript.value }
-}
+)
 
 const jsx = usePlugin('jsx')
 const flow = usePlugin('flow')
@@ -178,26 +199,22 @@ const decoratorsLegacy = useOptions(
   babel.id,
 )
 
-const optionalChainingAssign = usePlugin('optionalChainingAssign', {
-  defaultOptions: {
-    version: '2023-07',
+const [, optionalChainingAssign] = usePluginWithOptions(
+  'optionalChainingAssign',
+  {
+    defaultOptions: {
+      version: '2023-07',
+    },
   },
-})
+)
 
-const pipelineOperator = usePlugin('pipelineOperator', {
-  defaultOptions: {
-    proposal: 'hack',
-    topicToken: '%',
-  },
-})
-const pipelineOperatorEnable = computed({
-  get: () => !!pipelineOperator.value,
-  set: (value) => (pipelineOperator.value = value),
-})
-
-function triggerPipelineOperator() {
-  pipelineOperator.value = { ...pipelineOperator.value }
-}
+const [pipelineOperator, pipelineOperatorEnable, triggerPipelineOperator] =
+  usePluginWithOptions('pipelineOperator', {
+    defaultOptions: {
+      proposal: 'hack',
+      topicToken: '%',
+    },
+  })
 
 const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
   deps: [decorators],
@@ -205,7 +222,6 @@ const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
 const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
-const explicitResourceManagement = usePlugin('explicitResourceManagement')
 const exportDefaultFrom = usePlugin('exportDefaultFrom')
 const functionBind = usePlugin('functionBind')
 const functionSent = usePlugin('functionSent')
@@ -216,6 +232,11 @@ const partialApplication = usePlugin('partialApplication')
 const recordAndTuple = usePlugin('recordAndTuple')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
 const throwExpressions = usePlugin('throwExpressions')
+const [, discardBinding] = usePluginWithOptions('discardBinding', {
+  defaultOptions: {
+    syntaxType: 'void',
+  },
+})
 </script>
 
 <template>
@@ -435,10 +456,10 @@ const throwExpressions = usePlugin('throwExpressions')
 
     <h3 border-t pt1 text-center font-bold>Syntaxes</h3>
 
+    <!-- Stage 2 -->
     <label>
-      <!-- Stage 3 -->
-      <input v-model="explicitResourceManagement" type="checkbox" switch />
-      <span>explicitResourceManagement</span>
+      <input v-model="discardBinding" type="checkbox" />
+      <span>discardBinding</span>
     </label>
 
     <label>
