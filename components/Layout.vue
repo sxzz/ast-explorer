@@ -3,7 +3,7 @@ import { editorLayout } from '~/state/parser/parser'
 </script>
 
 <template>
-  <div style="height: calc(100vh - 50px)" w-full>
+  <div style="height: calc(100vh - 50px); width: calc(100vw - 70px)" w-full>
     <div v-if="editorLayout === 'left-right' && !showInputEditor" h-full w-full>
       <OutputContainer
         v-show="showOutput"
