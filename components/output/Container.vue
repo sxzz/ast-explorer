@@ -215,15 +215,7 @@ function editVersion() {
       <Loading v-if="loading">
         {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
       </Loading>
-      <div
-        v-else-if="error"
-        w-full
-        overflow-x-auto
-        overflow-y-auto
-        p1
-        text-sm
-        text-red
-      >
+      <div v-else-if="error" w-full overflow-auto p1 text-sm text-red>
         <span whitespace-pre v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>

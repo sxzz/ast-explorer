@@ -37,7 +37,7 @@ useHeadSafe({
 <template>
   <ClientOnly>
     <Suspense>
-      <main flex="~ col" lg:h-screen>
+      <main flex="~ col" lg:h-screen lg:w-screen>
         <Navbar v-model:layout="editorLayout" border-b />
 
         <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
@@ -49,7 +49,7 @@ useHeadSafe({
             lg:flex-none
           />
 
-          <Layout />
+          <Layout min-w-0 flex-1 />
         </div>
       </main>
 

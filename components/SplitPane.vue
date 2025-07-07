@@ -95,7 +95,6 @@ function dragEnd() {
 .horizontal > .left,
 .horizontal > .right {
   position: relative;
-  height: 100%;
 }
 
 .horizontal > .left {
