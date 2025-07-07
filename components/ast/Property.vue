@@ -10,7 +10,7 @@ const props = defineProps<{
   open?: boolean
 }>()
 const { currentParser, index } = inject(injectProps)!
-const parserModule = computedAsync(async () => await parserModules.value[index])
+const parserModule = computed(() => parserModules.value[index])
 const show = computed(() => !shouldHideKey(index, props.id, true, props.value))
 
 const title = computed(() => {

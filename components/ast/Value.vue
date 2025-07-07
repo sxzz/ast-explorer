@@ -13,9 +13,7 @@ const emit = defineEmits<{
 }>()
 
 const { currentParser, index } = inject(injectProps)!
-const parserModule = computedAsync(async () => {
-  return await parserModules.value[index]
-})
+const parserModule = computed(() => parserModules.value[index])
 
 const rawValue = computed(() => {
   const { onValue } = currentParser.value
@@ -38,6 +36,7 @@ const value = computed<string | undefined>(() => {
     return `function ${(data as Function).name}(...)`
   return JSON.stringify(data)
 })
+
 const valueColor = useHighlightColor(value)
 
 const valueHint = computed(() => {
