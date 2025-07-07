@@ -69,7 +69,7 @@ function toggleView(view: 'tree' | 'json') {
 }
 
 function print() {
-  console.info(ast.value)
+  console.info(toRaw(ast.value[props.index]))
 }
 
 function toggleAutoFocus() {
