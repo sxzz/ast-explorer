@@ -47,9 +47,9 @@ export function initParserModule() {
       currentParsers.value.forEach(async (parser, idx) => {
         try {
           loading.value = 'module'
-          loading.value = 'parse'
           const ctx = await parserModulePromise.value[idx]
           const t = window.performance.now()
+          loading.value = 'parse'
           ast.value[idx] = await parser.parse.call(
             ctx,
             code.value,
