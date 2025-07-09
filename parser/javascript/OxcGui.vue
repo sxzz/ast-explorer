@@ -7,6 +7,8 @@ const useOption = makeUseOption<ParserOptions>()
 const sourceType = useOption('sourceType', 'script', true)
 const sourceFilename = useOption('sourceFilename', '', true)
 const preserveParens = useOption('preserveParens', true, true)
+const range = useOption('range', false, true)
+const showSemanticErrors = useOption('showSemanticErrors', false, true)
 </script>
 
 <template>
@@ -27,6 +29,16 @@ const preserveParens = useOption('preserveParens', true, true)
     <label>
       <input v-model="preserveParens" type="checkbox" switch />
       <span>preserveParens</span>
+    </label>
+
+    <label>
+      <input v-model="range" type="checkbox" switch />
+      <span>range</span>
+    </label>
+
+    <label>
+      <input v-model="showSemanticErrors" type="checkbox" switch />
+      <span>showSemanticErrors</span>
     </label>
   </div>
 </template>
