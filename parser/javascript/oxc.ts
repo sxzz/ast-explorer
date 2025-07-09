@@ -14,6 +14,8 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
       sourceType: 'module',
       sourceFilename: 'foo.ts',
       preserveParens: true,
+      range: false,
+      showSemanticErrors: false,
     },
     editorLanguage: 'json',
   },
@@ -27,6 +29,8 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
       {
         sourceType: options.sourceType,
         preserveParens: options.preserveParens,
+        range: options.range,
+        showSemanticErrors: options.showSemanticErrors,
       },
     )
     return { program, comments, errors }
