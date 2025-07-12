@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { shouldHideKey } from '~/state/output'
-import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { parserModules } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { AstProperty } from '#components'
 
 const props = defineProps<{
@@ -11,6 +11,9 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:focus': [value: boolean]
 }>()
+
+const { currentParser, index } = inject(injectProps)!
+const parserModule = computed(() => parserModules.value[index])
 
 const rawValue = computed(() => {
   const { onValue } = currentParser.value
@@ -33,6 +36,7 @@ const value = computed<string | undefined>(() => {
     return `function ${(data as Function).name}(...)`
   return JSON.stringify(data)
 })
+
 const valueColor = useHighlightColor(value)
 
 const valueHint = computed(() => {
@@ -59,7 +63,7 @@ watchEffect(() => {
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of rawValue" :key="key">
           <AstProperty
-            v-if="!shouldHideKey(key)"
+            v-if="!shouldHideKey(index, key)"
             :id="key"
             :ref="properties.set"
             :value="item"

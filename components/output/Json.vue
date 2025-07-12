@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import { ast, error } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { ast, errors } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
+
+const {
+  currentParser,
+  index,
+  currentAutoFocus,
+  currentHideLocationData,
+  currentHideEmptyKeys,
+} = inject(injectProps)!
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
@@ -15,12 +23,12 @@ const serialized = computed(() => {
   try {
     const seen = new WeakMap<any, unknown>()
     return JSON.stringify(
-      ast.value,
+      ast.value[index],
       (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return
+        if (currentHideEmptyKeys.value && value == null) return
         if (
           [
-            ...(hideLocationData.value ? locationKeyList : []),
+            ...(currentHideLocationData.value ? locationKeyList : []),
             ...hideKeys.value.filter((v) => !!v),
           ].includes(key)
         )
@@ -50,7 +58,7 @@ const serialized = computed(() => {
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
     console.error(err)
-    error.value = err
+    errors.value![index] = err as Error
   }
 })
 
@@ -95,7 +103,7 @@ function highlight() {
       },
     },
   ])
-  if (autoFocus.value) editor.revealPositionNearTop(start)
+  if (currentAutoFocus.value) editor.revealPositionNearTop(start)
 }
 
 onMounted(() => highlight())

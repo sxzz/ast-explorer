@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { parserModules } from '~/state/parser/module'
+import { injectProps } from '~/types'
 import type { Range } from '~/composables/location'
 
 const props = defineProps<{
@@ -9,8 +9,9 @@ const props = defineProps<{
   root?: boolean
   open?: boolean
 }>()
-
-const show = computed(() => !shouldHideKey(props.id, true, props.value))
+const { currentParser, index, currentAutoFocus } = inject(injectProps)!
+const parserModule = computed(() => parserModules.value[index])
+const show = computed(() => !shouldHideKey(index, props.id, true, props.value))
 
 const title = computed(() => {
   const { nodeTitle = 'type' } = currentParser.value
@@ -35,9 +36,9 @@ function isArrayLike(n: unknown) {
 const isFocusing = computed(() => {
   // children of csstree is iterable but not array
   if (isArrayLike(props.value)) {
-    return Array.from(props.value).some((v) => checkRange(getRange(v)))
+    return Array.from(props.value).some((v) => checkRange(getRange(v, index)))
   }
-  return checkRange(getRange(props.value))
+  return checkRange(getRange(props.value, index))
 })
 function checkRange(range?: Range) {
   if (!range) return false
@@ -48,7 +49,8 @@ const openManual = ref<boolean>()
 const open = computed(
   () =>
     openable.value &&
-    (openManual.value ?? (props.open || (autoFocus.value && isFocusing.value))),
+    (openManual.value ??
+      (props.open || (currentAutoFocus.value && isFocusing.value))),
 )
 
 const valueCreated = ref(false)
@@ -78,7 +80,7 @@ function handleMouseOver(event: MouseEvent) {
     event.stopPropagation()
     outputHoverRange.value = undefined
   } else if (props.value) {
-    const range = getRange(props.value)
+    const range = getRange(props.value, index)
     if (!range) return
 
     event.stopPropagation()
@@ -100,9 +102,9 @@ function handleSubFocusingChange(subFocusing: boolean) {
 }
 
 watch(
-  [autoFocus, exactFocusing, isFocusing, container],
-  ([autoFocus, exactFocusing, isFocusing, container]) => {
-    if (autoFocus && exactFocusing && isFocusing && container) {
+  [currentAutoFocus, exactFocusing, isFocusing, container],
+  ([currentAutoFocus, exactFocusing, isFocusing, container]) => {
+    if (currentAutoFocus && exactFocusing && isFocusing && container) {
       requestAnimationFrame(() => container.scrollIntoView({ block: 'center' }))
     }
   },
