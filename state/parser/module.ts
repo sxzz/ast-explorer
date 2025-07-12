@@ -37,9 +37,10 @@ async function initParser(currentParser: Parser, idx: number) {
 export const parserModulePromise = computed(() => {
   return currentParsers.value.map((parser, idx) => initParser(parser, idx))
 })
-export const parserModules = computedAsync(
-  async () => await Promise.all(parserModulePromise.value),
-) as ComputedRef<unknown[]>
+export const parserModules = computedAsync(async () => {
+  const promises = parserModulePromise.value
+  return await Promise.all(promises)
+}) as ComputedRef<unknown[]>
 
 export function initParserModule() {
   watch(
