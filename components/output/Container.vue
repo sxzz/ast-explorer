@@ -24,12 +24,16 @@ const isUrlVersion = computed(() => isUrlVersions.value[props.index])
 const currentParser = computed(() => currentParsers.value[props.index]!)
 const currentParserId = computed(() => currentParserIds.value[props.index]!)
 const currentAutoFocus = computed(() => autoFocus.value[props.index]!)
+const currentHideLocationData = computed(
+  () => hideLocationData.value[props.index]!,
+)
 
 provide(injectProps, {
   index: props.index,
   currentParser,
   currentParserId,
   currentAutoFocus,
+  currentHideLocationData,
 })
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
@@ -78,19 +82,19 @@ function toggleAutoFocus() {
   autoFocus.value[props.index] = !currentAutoFocus.value
   if (
     outputView.value === 'json' &&
-    hideLocationData.value &&
+    currentHideLocationData.value &&
     autoFocus.value[props.index]
   ) {
-    hideLocationData.value = false
+    hideLocationData.value[props.index] = false
   }
 }
 
 function toggleHideLocationData() {
-  hideLocationData.value = !hideLocationData.value
+  hideLocationData.value[props.index] = !currentHideLocationData.value
   if (
     outputView.value === 'json' &&
     autoFocus.value[props.index] &&
-    hideLocationData.value
+    hideLocationData.value[props.index]
   ) {
     autoFocus.value[props.index] = false
   }
@@ -98,7 +102,7 @@ function toggleHideLocationData() {
 
 watch(outputView, (view) => {
   if (view === 'json' && currentAutoFocus.value) {
-    hideLocationData.value = false
+    hideLocationData.value[props.index] = false
   }
 })
 
@@ -205,7 +209,7 @@ function editVersion() {
       </label>
       <label>
         <input
-          :checked="hideLocationData"
+          :checked="currentHideLocationData"
           type="checkbox"
           switch
           @click="toggleHideLocationData"

@@ -5,9 +5,9 @@ export const hideEmptyKeys = useLocalStorage(
   false,
 )
 
-export const hideLocationData = useLocalStorage(
+export const hideLocationData = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}hide-location-data`,
-  false,
+  [false, false],
 )
 
 export const hideKeys = useLocalStorage<string[]>(
@@ -27,7 +27,8 @@ export function shouldHideKey(
   value?: any,
 ) {
   if (checkValue && hideEmptyKeys.value && value == null) return true
-  if (hideLocationData.value && locationKeyList.includes(key)) return true
+  if (hideLocationData.value[index] && locationKeyList.includes(key))
+    return true
   if (hideKeys.value.includes(key)) return true
   return currentParsers.value[index]!.hideKeys?.includes(key)
 }
