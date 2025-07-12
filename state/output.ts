@@ -1,8 +1,9 @@
 import { currentParsers } from './parser/parser'
 
-export const hideEmptyKeys = useLocalStorage(
+// Do we need editorLayout to control whether to initialize one or multiple?
+export const hideEmptyKeys = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}hide-empty-keys`,
-  false,
+  [false, false],
 )
 
 export const hideLocationData = useLocalStorage<boolean[]>(
@@ -26,7 +27,7 @@ export function shouldHideKey(
   checkValue = false,
   value?: any,
 ) {
-  if (checkValue && hideEmptyKeys.value && value == null) return true
+  if (checkValue && hideEmptyKeys.value[index] && value == null) return true
   if (hideLocationData.value[index] && locationKeyList.includes(key))
     return true
   if (hideKeys.value.includes(key)) return true

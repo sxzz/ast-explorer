@@ -13,9 +13,9 @@ export const toggleSidebar = useToggle(showSidebar)
 export const toggleInputEditor = useToggle(showInputEditor)
 export const toggleOutput = useToggle(showOutput)
 
-export const outputView = useLocalStorage<'tree' | 'json'>(
+export const outputViews = useLocalStorage<['tree' | 'json', 'tree' | 'json']>(
   `${STORAGE_PREFIX}output-view`,
-  'tree',
+  ['tree', 'tree'],
 )
 
 export const sideBarAvailable = computed(() =>

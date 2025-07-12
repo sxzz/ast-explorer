@@ -3,7 +3,7 @@ import {
   autoFocus,
   hideEmptyKeys,
   hideLocationData,
-  outputView,
+  outputViews,
 } from '#imports'
 import ansiRegex from 'ansi-regex'
 import { ast, errors, loading, parseCost } from '~/state/parser/module'
@@ -27,6 +27,8 @@ const currentAutoFocus = computed(() => autoFocus.value[props.index]!)
 const currentHideLocationData = computed(
   () => hideLocationData.value[props.index]!,
 )
+const currentHideEmptyKeys = computed(() => hideEmptyKeys.value[props.index]!)
+const currentOutputView = computed(() => outputViews.value[props.index]!)
 
 provide(injectProps, {
   index: props.index,
@@ -34,6 +36,7 @@ provide(injectProps, {
   currentParserId,
   currentAutoFocus,
   currentHideLocationData,
+  currentHideEmptyKeys,
 })
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
@@ -71,7 +74,7 @@ const errorString = computed(() => {
 })
 
 function toggleView(view: 'tree' | 'json') {
-  outputView.value = view
+  outputViews.value[props.index] = view
 }
 
 function print() {
@@ -81,7 +84,7 @@ function print() {
 function toggleAutoFocus() {
   autoFocus.value[props.index] = !currentAutoFocus.value
   if (
-    outputView.value === 'json' &&
+    currentOutputView.value === 'json' &&
     currentHideLocationData.value &&
     autoFocus.value[props.index]
   ) {
@@ -92,7 +95,7 @@ function toggleAutoFocus() {
 function toggleHideLocationData() {
   hideLocationData.value[props.index] = !currentHideLocationData.value
   if (
-    outputView.value === 'json' &&
+    currentOutputView.value === 'json' &&
     autoFocus.value[props.index] &&
     hideLocationData.value[props.index]
   ) {
@@ -100,7 +103,11 @@ function toggleHideLocationData() {
   }
 }
 
-watch(outputView, (view) => {
+function toggleHideEmptyKeys() {
+  hideEmptyKeys.value[props.index] = !currentHideEmptyKeys.value
+}
+
+watch(currentOutputView, (view) => {
   if (view === 'json' && currentAutoFocus.value) {
     hideLocationData.value[props.index] = false
   }
@@ -183,13 +190,13 @@ function editVersion() {
       </a>
       <div flex gap1>
         <button
-          :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
+          :class="[tabClass, currentOutputView === 'tree' && tabSelectedClass]"
           @click="toggleView('tree')"
         >
           <div i-ri:node-tree />
         </button>
         <button
-          :class="[tabClass, outputView === 'json' && tabSelectedClass]"
+          :class="[tabClass, currentOutputView === 'json' && tabSelectedClass]"
           @click="toggleView('json')"
         >
           <div i-ri:braces-line />
@@ -205,7 +212,13 @@ function editVersion() {
         Auto focus
       </label>
       <label>
-        <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
+        <input
+          v-model="currentHideEmptyKeys"
+          type="checkbox"
+          switch
+          @click="toggleHideEmptyKeys"
+        />
+        Hide empty keys
       </label>
       <label>
         <input
@@ -226,7 +239,7 @@ function editVersion() {
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson
-          v-if="outputView === 'json'"
+          v-if="currentOutputView === 'json'"
           h-full
           min-w-0
           w-full

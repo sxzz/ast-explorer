@@ -4,8 +4,13 @@ import { injectProps } from '~/types'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
-const { currentParser, index, currentAutoFocus, currentHideLocationData } =
-  inject(injectProps)!
+const {
+  currentParser,
+  index,
+  currentAutoFocus,
+  currentHideLocationData,
+  currentHideEmptyKeys,
+} = inject(injectProps)!
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
@@ -20,7 +25,7 @@ const serialized = computed(() => {
     return JSON.stringify(
       ast.value[index],
       (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return
+        if (currentHideEmptyKeys.value && value == null) return
         if (
           [
             ...(currentHideLocationData.value ? locationKeyList : []),
