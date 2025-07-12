@@ -23,11 +23,13 @@ const props = defineProps<{
 const isUrlVersion = computed(() => isUrlVersions.value[props.index])
 const currentParser = computed(() => currentParsers.value[props.index]!)
 const currentParserId = computed(() => currentParserIds.value[props.index]!)
+const currentAutoFocus = computed(() => autoFocus.value[props.index]!)
 
 provide(injectProps, {
   index: props.index,
   currentParser,
   currentParserId,
+  currentAutoFocus,
 })
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
@@ -73,11 +75,11 @@ function print() {
 }
 
 function toggleAutoFocus() {
-  autoFocus.value = !autoFocus.value
+  autoFocus.value[props.index] = !currentAutoFocus.value
   if (
     outputView.value === 'json' &&
     hideLocationData.value &&
-    autoFocus.value
+    autoFocus.value[props.index]
   ) {
     hideLocationData.value = false
   }
@@ -87,15 +89,15 @@ function toggleHideLocationData() {
   hideLocationData.value = !hideLocationData.value
   if (
     outputView.value === 'json' &&
-    autoFocus.value &&
+    autoFocus.value[props.index] &&
     hideLocationData.value
   ) {
-    autoFocus.value = false
+    autoFocus.value[props.index] = false
   }
 }
 
 watch(outputView, (view) => {
-  if (view === 'json' && autoFocus.value) {
+  if (view === 'json' && currentAutoFocus.value) {
     hideLocationData.value = false
   }
 })
@@ -191,7 +193,7 @@ function editVersion() {
       </div>
       <label>
         <input
-          :checked="autoFocus"
+          :checked="currentAutoFocus"
           type="checkbox"
           switch
           @click="toggleAutoFocus"

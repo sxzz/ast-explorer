@@ -15,9 +15,9 @@ export const hideKeys = useLocalStorage<string[]>(
   [],
 )
 
-export const autoFocus = useLocalStorage<boolean>(
+export const autoFocus = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}auto-focus`,
-  true,
+  [true, true],
 )
 
 export function shouldHideKey(

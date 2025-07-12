@@ -4,7 +4,7 @@ import { injectProps } from '~/types'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
-const { currentParser, index } = inject(injectProps)!
+const { currentParser, index, currentAutoFocus } = inject(injectProps)!
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
 const monaco = useMonaco()!
@@ -97,7 +97,7 @@ function highlight() {
       },
     },
   ])
-  if (autoFocus.value) editor.revealPositionNearTop(start)
+  if (currentAutoFocus.value) editor.revealPositionNearTop(start)
 }
 
 onMounted(() => highlight())

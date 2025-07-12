@@ -9,7 +9,7 @@ const props = defineProps<{
   root?: boolean
   open?: boolean
 }>()
-const { currentParser, index } = inject(injectProps)!
+const { currentParser, index, currentAutoFocus } = inject(injectProps)!
 const parserModule = computed(() => parserModules.value[index])
 const show = computed(() => !shouldHideKey(index, props.id, true, props.value))
 
@@ -49,7 +49,8 @@ const openManual = ref<boolean>()
 const open = computed(
   () =>
     openable.value &&
-    (openManual.value ?? (props.open || (autoFocus.value && isFocusing.value))),
+    (openManual.value ??
+      (props.open || (currentAutoFocus.value && isFocusing.value))),
 )
 
 const valueCreated = ref(false)
@@ -101,9 +102,9 @@ function handleSubFocusingChange(subFocusing: boolean) {
 }
 
 watch(
-  [autoFocus, exactFocusing, isFocusing, container],
-  ([autoFocus, exactFocusing, isFocusing, container]) => {
-    if (autoFocus && exactFocusing && isFocusing && container) {
+  [currentAutoFocus, exactFocusing, isFocusing, container],
+  ([currentAutoFocus, exactFocusing, isFocusing, container]) => {
+    if (currentAutoFocus && exactFocusing && isFocusing && container) {
       requestAnimationFrame(() => container.scrollIntoView({ block: 'center' }))
     }
   },

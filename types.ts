@@ -5,6 +5,7 @@ export const injectProps: InjectionKey<{
   index: number
   currentParser: ComputedRef<Parser<unknown, unknown>>
   currentParserId: ComputedRef<string>
+  currentAutoFocus: ComputedRef<boolean>
 }> = Symbol('props')
 
 export type Layout = 'left-right' | 'top-bottom-split'
