@@ -49,7 +49,7 @@ useHeadSafe({
             lg:flex-none
           />
 
-          <Layout min-w-0 flex-1 />
+          <Layout min-w-0 />
         </div>
       </main>
 
