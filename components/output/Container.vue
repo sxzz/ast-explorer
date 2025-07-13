@@ -23,12 +23,38 @@ const props = defineProps<{
 const isUrlVersion = computed(() => isUrlVersions.value[props.index])
 const currentParser = computed(() => currentParsers.value[props.index]!)
 const currentParserId = computed(() => currentParserIds.value[props.index]!)
-const currentAutoFocus = computed(() => autoFocus.value[props.index]!)
-const currentHideLocationData = computed(
-  () => hideLocationData.value[props.index]!,
-)
-const currentHideEmptyKeys = computed(() => hideEmptyKeys.value[props.index]!)
-const currentOutputView = computed(() => outputViews.value[props.index]!)
+const currentAutoFocus = computed({
+  get() {
+    return autoFocus.value[props.index]!
+  },
+  set(newVal) {
+    autoFocus.value[props.index] = newVal
+  },
+})
+const currentHideLocationData = computed({
+  get() {
+    return hideLocationData.value[props.index]!
+  },
+  set(newVal) {
+    hideLocationData.value[props.index] = newVal
+  },
+})
+const currentHideEmptyKeys = computed({
+  get() {
+    return hideEmptyKeys.value[props.index]!
+  },
+  set(newVal) {
+    hideEmptyKeys.value[props.index] = newVal
+  },
+})
+const currentOutputView = computed({
+  get() {
+    return outputViews.value[props.index]!
+  },
+  set(newVal) {
+    outputViews.value[props.index] = newVal
+  },
+})
 
 provide(injectProps, {
   index: props.index,
@@ -74,7 +100,7 @@ const errorString = computed(() => {
 })
 
 function toggleView(view: 'tree' | 'json') {
-  outputViews.value[props.index] = view
+  currentOutputView.value = view
 }
 
 function print() {
@@ -82,34 +108,34 @@ function print() {
 }
 
 function toggleAutoFocus() {
-  autoFocus.value[props.index] = !currentAutoFocus.value
+  currentAutoFocus.value = !currentAutoFocus.value
   if (
     currentOutputView.value === 'json' &&
     currentHideLocationData.value &&
-    autoFocus.value[props.index]
+    currentAutoFocus
   ) {
-    hideLocationData.value[props.index] = false
+    currentHideLocationData.value = false
   }
 }
 
 function toggleHideLocationData() {
-  hideLocationData.value[props.index] = !currentHideLocationData.value
+  currentHideLocationData.value = !currentHideLocationData.value
   if (
     currentOutputView.value === 'json' &&
-    autoFocus.value[props.index] &&
-    hideLocationData.value[props.index]
+    currentAutoFocus.value &&
+    currentHideLocationData.value
   ) {
-    autoFocus.value[props.index] = false
+    currentAutoFocus.value = false
   }
 }
 
 function toggleHideEmptyKeys() {
-  hideEmptyKeys.value[props.index] = !currentHideEmptyKeys.value
+  currentHideEmptyKeys.value = !currentHideEmptyKeys.value
 }
 
 watch(currentOutputView, (view) => {
   if (view === 'json' && currentAutoFocus.value) {
-    hideLocationData.value[props.index] = false
+    currentHideLocationData.value = false
   }
 })
 
