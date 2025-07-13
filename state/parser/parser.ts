@@ -64,7 +64,7 @@ export function initParserState() {
   watch(editorLayout, () => {
     switch (editorLayout.value) {
       case 'left-right':
-        currentParserIds.value.pop()
+        currentParserIds.value = [currentParserIds.value[0]!]
     }
   })
 

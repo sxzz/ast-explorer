@@ -59,7 +59,7 @@ const serialized = computed(() => {
     // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
     console.error(err)
-    errors.value![index] = err as Error
+    errors.value[index] = err as Error
   }
 })
 

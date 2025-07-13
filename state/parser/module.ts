@@ -9,7 +9,7 @@ import {
 
 export const loading = ref<'module' | 'parse' | false>(false)
 export const ast = ref<any[]>([])
-export const errors = ref<Error[] | null>()
+export const errors = ref<(Error | null)[]>([])
 export const parseCost = ref<[number, number]>([0, 0])
 
 const parserModuleCache: Record<string, unknown> = Object.create(null)
@@ -43,32 +43,45 @@ export const parserModules = computedAsync(async () => {
 }) as ComputedRef<unknown[]>
 
 export function initParserModule() {
+  async function runParseModule(parser: Parser, idx: number) {
+    try {
+      errors.value[idx] = null
+      loading.value = 'module'
+      const ctx = await parserModulePromise.value[idx]
+      const t = window.performance.now()
+      loading.value = 'parse'
+      ast.value[idx] = await parser.parse.call(
+        ctx,
+        code.value,
+        parsersOptions.value[parser.id],
+      )
+      parseCost.value[idx] = window.performance.now() - t
+    } catch (error: any) {
+      console.error(error)
+      errors.value![idx] = error
+    } finally {
+      loading.value = false
+    }
+  }
   watch(
     [parserModulePromise, code, rawOptions],
-    () => {
-      errors.value = null
-      currentParsers.value.forEach(async (parser, idx) => {
-        try {
-          loading.value = 'module'
-          const ctx = await parserModulePromise.value[idx]
-          const t = window.performance.now()
-          loading.value = 'parse'
-          ast.value[idx] = await parser.parse.call(
-            ctx,
-            code.value,
-            parsersOptions.value[parser.id],
-          )
-          parseCost.value[idx] = window.performance.now() - t
-        } catch (error: any) {
-          console.error(error)
-          if (errors.value === null) {
-            errors.value = []
-          }
-          errors.value![idx] = error
-        } finally {
-          loading.value = false
+    async () => {
+      const isSameParser = currentParserIds.value.every(
+        (id) => id === currentParserIds.value[0],
+      )
+
+      if (isSameParser) {
+        await runParseModule(currentParsers.value[0]!, 0)
+        for (let i = 1; i <= currentParserIds.value.length; i++) {
+          ast.value[i] = ast.value[0]
+          parseCost.value[i] = parseCost.value[0]
+          errors.value[i] = errors.value[0]!
         }
-      })
+      } else {
+        currentParsers.value.forEach((parser, idx) => {
+          runParseModule(parser, idx)
+        })
+      }
     },
     { immediate: true, deep: true },
   )
