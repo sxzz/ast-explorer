@@ -55,6 +55,14 @@ const currentOutputView = computed({
     outputViews.value[props.index] = newVal
   },
 })
+const currentHideKeys = computed({
+  get() {
+    return hideKeys.value[props.index]!
+  },
+  set(newVal) {
+    hideKeys.value[props.index] = newVal
+  },
+})
 
 provide(injectProps, {
   index: props.index,
@@ -63,15 +71,16 @@ provide(injectProps, {
   currentAutoFocus,
   currentHideLocationData,
   currentHideEmptyKeys,
+  currentHideKeys,
 })
 
-const hideKeysValue = ref(hideKeys.value.join(', '))
+const hideKeysValue = ref(currentHideKeys.value.join(', '))
 watchEffect(() => {
   try {
-    hideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
+    currentHideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
   } catch (error) {
     console.error(error)
-    hideKeys.value = []
+    currentHideKeys.value = []
   }
 })
 

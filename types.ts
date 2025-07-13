@@ -8,6 +8,7 @@ export const injectProps: InjectionKey<{
   currentAutoFocus: ComputedRef<boolean>
   currentHideLocationData: ComputedRef<boolean>
   currentHideEmptyKeys: ComputedRef<boolean>
+  currentHideKeys: ComputedRef<string[]>
 }> = Symbol('props')
 
 export type Layout = 'left-right' | 'top-bottom-split'

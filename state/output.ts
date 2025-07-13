@@ -11,9 +11,9 @@ export const hideLocationData = useLocalStorage<boolean[]>(
   [false, false],
 )
 
-export const hideKeys = useLocalStorage<string[]>(
+export const hideKeys = useLocalStorage<string[][]>(
   `${STORAGE_PREFIX}hide-keys`,
-  [],
+  [[], []],
 )
 
 export const autoFocus = useLocalStorage<boolean[]>(
@@ -30,6 +30,6 @@ export function shouldHideKey(
   if (checkValue && hideEmptyKeys.value[index] && value == null) return true
   if (hideLocationData.value[index] && locationKeyList.includes(key))
     return true
-  if (hideKeys.value.includes(key)) return true
+  if (hideKeys.value[index]!.includes(key)) return true
   return currentParsers.value[index]!.hideKeys?.includes(key)
 }

@@ -10,6 +10,7 @@ const {
   currentAutoFocus,
   currentHideLocationData,
   currentHideEmptyKeys,
+  currentHideKeys,
 } = inject(injectProps)!
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
@@ -29,7 +30,7 @@ const serialized = computed(() => {
         if (
           [
             ...(currentHideLocationData.value ? locationKeyList : []),
-            ...hideKeys.value.filter((v) => !!v),
+            ...currentHideKeys.value.filter((v) => !!v),
           ].includes(key)
         )
           return
