@@ -1,26 +1,14 @@
 <script setup lang="ts">
 import { version } from '~/package.json'
-import { parseCost } from '~/state/parser/module'
-import {
-  currentParser,
-  displayVersion,
-  isUrlVersion,
-  overrideVersion,
-} from '~/state/parser/parser'
 
 const { branch } = useAppConfig()
 
-const disableOverrideVersion = computed(
-  () => currentParser.value.versionOverridable === false,
-)
-
-function editVersion() {
-  // eslint-disable-next-line no-alert
-  const newVersion = prompt(
-    'Enter a semver version, tag or URL (e.g. 1.0.0, ^1.2.3, next, https://example.com):',
-    displayVersion.value,
-  )
-  overrideVersion.value = newVersion || undefined
+const layoutValue = defineModel('layout', {
+  type: String,
+  default: 'left-right',
+})
+const onLayoutChange = (layout: 'left-right' | 'top-bottom-split') => {
+  layoutValue.value = layout
 }
 </script>
 
@@ -33,70 +21,10 @@ function editVersion() {
         <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
       </div>
       <NavbarLanguageSelect />
-      <div flex gap2>
-        <ParserSelect />
-        <ParserOptions v-if="currentParser.options.configurable" nav-button />
-      </div>
     </div>
 
     <div flex gap3 max-sm="flex-col w-full">
-      <div flex="~ center" gap3>
-        <span op70>{{ +parseCost.toFixed(1) }} ms</span>
-        <a
-          text-sm
-          font-mono
-          op80
-          hover:underline
-          :href="
-            isUrlVersion
-              ? overrideVersion
-              : `https://www.npmjs.com/package/${currentParser.pkgName}`
-          "
-          target="_blank"
-        >
-          <span>{{ currentParser.pkgName }}</span>
-          <template v-if="displayVersion">
-            <span>@</span>
-            <span
-              :class="[
-                isUrlVersion && 'text-blue',
-                overrideVersion &&
-                  !isUrlVersion &&
-                  'text-green-700 dark:text-green',
-                'max-w50 inline-block truncate align-middle',
-              ]"
-              >{{ displayVersion }}</span
-            >
-            <small
-              v-if="overrideVersion && overrideVersion !== displayVersion"
-              op50
-            >
-              ({{ overrideVersion }})
-            </small>
-          </template>
-        </a>
-      </div>
-
       <div flex="~ center" gap1>
-        <button
-          :disabled="disableOverrideVersion"
-          :class="disableOverrideVersion && 'cursor-not-allowed op30'"
-          title="Change Version"
-          nav-button
-          @click="editVersion"
-        >
-          <div i-ri:edit-line />
-        </button>
-        <a
-          v-if="currentParser.link"
-          title="Open Documentation"
-          :href="currentParser.link"
-          target="_blank"
-          flex="~ center"
-          nav-button
-        >
-          <div i-ri:book-2-line />
-        </a>
         <button
           title="Toggle Side Bar"
           :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
@@ -106,6 +34,32 @@ function editVersion() {
         >
           <div i-ri:list-settings-line />
         </button>
+        <VMenu>
+          <span nav-button>
+            <div v-if="layoutValue === 'top-bottom-split'" i-ri:layout-6-line />
+            <div
+              v-else-if="layoutValue === 'left-right'"
+              i-ri:layout-column-line
+            />
+          </span>
+          <template #popper>
+            <div size-fit flex cursor-pointer p-10px>
+              <div
+                :class="{
+                  'text-emerald-400': layoutValue === 'top-bottom-split',
+                }"
+                i-ri:layout-6-line
+                mr-5px
+                @click="() => onLayoutChange('top-bottom-split')"
+              />
+              <div
+                :class="{ 'text-emerald-400': layoutValue === 'left-right' }"
+                i-ri:layout-column-line
+                @click="() => onLayoutChange('left-right')"
+              />
+            </div>
+          </template>
+        </VMenu>
         <button
           title="Toggle Input Editor"
           :class="!showInputEditor && 'op-40'"

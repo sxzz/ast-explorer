@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { rawOptions } from '~/state/parser/options'
-import { currentParser } from '~/state/parser/parser'
-
+import { currentParsers } from '~/state/parser/parser'
 defineOptions({ inheritAttrs: false })
+defineProps<{
+  parserId: string
+  index: number
+}>()
 
 const open = ref(false)
 </script>
@@ -14,11 +17,11 @@ const open = ref(false)
 
   <AppDialog v-model="open" h-80vh title="Parser Options">
     <CodeEditor
-      v-model="rawOptions"
+      v-model="rawOptions[parserId]"
       min-h-0
       w-60vw
       flex-1
-      :language="currentParser.options.editorLanguage"
+      :language="currentParsers[index]!.options.editorLanguage"
     />
   </AppDialog>
 </template>

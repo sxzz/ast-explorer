@@ -1,7 +1,8 @@
 <script lang="ts">
+import { momoa } from './momoa'
 import type * as Momoa from '@humanwhocodes/momoa'
 
-const useOption = makeUseOption<Momoa.ParseOptions>()
+const useOption = makeUseOption<Momoa.ParseOptions>(momoa.id)
 </script>
 
 <script setup lang="ts">

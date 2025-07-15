@@ -1,5 +1,6 @@
 <script lang="ts">
 import { useOptions } from '~/state/parser/options'
+import { babel } from './babel'
 import type {
   ParserOptions,
   ParserPlugin,
@@ -25,7 +26,7 @@ function getPluginOptions<T extends PluginName>(
   return Array.isArray(plugin) ? plugin[1] : true
 }
 
-const useOption = makeUseOption<ParserOptions>()
+const useOption = makeUseOption<ParserOptions>(babel.id)
 
 function usePlugin<T extends PluginName>(
   name: T,
@@ -79,6 +80,7 @@ function usePlugin<T extends PluginName>(
         opt.plugins.push(value === true ? name : ([name, value] as any))
       }
     },
+    babel.id,
   )
 
   watch(
@@ -179,6 +181,7 @@ const decorators = useOptions(
       opt.plugins = del(opt.plugins, ['decorators', 'decorators-legacy'])
     }
   },
+  babel.id,
 )
 const decoratorsLegacy = useOptions(
   (opt?: ParserOptions) =>
@@ -193,6 +196,7 @@ const decoratorsLegacy = useOptions(
       opt.plugins = del(opt.plugins, ['decorators-legacy'])
     }
   },
+  babel.id,
 )
 
 const [, optionalChainingAssign] = usePluginWithOptions(

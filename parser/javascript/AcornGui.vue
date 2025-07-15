@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { Options } from './acorn'
+import { acorn, type Options } from './acorn'
 
-const useOption = makeUseOption<Options>()
+const useOption = makeUseOption<Options>(acorn.id)
 </script>
 
 <script setup lang="ts">

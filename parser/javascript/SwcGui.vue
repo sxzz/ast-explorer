@@ -1,6 +1,7 @@
 <script lang="ts">
+import { swc } from './swc'
 import type { ParserConfig } from '@swc/wasm-web'
-const useOption = makeUseOption<ParserConfig>()
+const useOption = makeUseOption<ParserConfig>(swc.id)
 </script>
 
 <script setup lang="ts">

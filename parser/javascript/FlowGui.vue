@@ -1,7 +1,7 @@
 <script lang="ts">
-import type { Options } from './flow'
+import { flow, type Options } from './flow'
 
-const useOption = makeUseOption<Options>()
+const useOption = makeUseOption<Options>(flow.id)
 </script>
 
 <script setup lang="ts">

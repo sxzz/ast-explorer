@@ -1,4 +1,5 @@
-import { currentParser } from '~/state/parser/parser'
+import { currentParsers } from '~/state/parser/parser'
+import { activeTab } from '~/state/ui'
 import type { BuiltInParserName, Plugin } from 'prettier'
 
 export default defineNuxtPlugin(() => {
@@ -33,7 +34,13 @@ export default defineNuxtPlugin(() => {
           // break omitted
           case 'javascript':
             pluginIds = ['estree']
-            if (['flow', 'hermes'].includes(currentParser.value.id)) {
+            if (
+              ['flow', 'hermes'].includes(
+                currentParsers.value.find(
+                  (parser) => parser.id === activeTab.value,
+                )!.id,
+              )
+            ) {
               pluginIds.push((parser = 'flow'))
             } else {
               pluginIds.push('babel')

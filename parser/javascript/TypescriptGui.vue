@@ -1,14 +1,21 @@
 <script lang="ts">
 import { parserModulePromise } from '~/state/parser/module'
+import { currentParserIds } from '~/state/parser/parser'
+import { typescript } from './typescript'
 import type Typescript from 'typescript'
 
 const useOption = makeUseOption<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
->()
+>(typescript.id)
 </script>
 
 <script setup lang="ts">
-const ts = await parserModulePromise.value
+const currentParserModulePromiseIdx = currentParserIds.value.indexOf(
+  typescript.id,
+)
+const ts = (await parserModulePromise.value[
+  currentParserModulePromiseIdx
+]) as typeof Typescript
 const scriptKind = useOption('scriptKind', ts.ScriptKind.TS, true)
 const languageVersion = useOption(
   'languageVersion',

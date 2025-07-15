@@ -1,5 +1,5 @@
 import jsonToAst from 'json-to-ast'
-import { currentParser } from '~/state/parser/parser'
+import { currentParsers } from '~/state/parser/parser'
 import type { Parser } from '#imports'
 
 const nodeLocationFields = {
@@ -153,6 +153,6 @@ function getJsonValue(
   return current
 }
 
-export function getRange(ast: any) {
-  return currentParser.value.getNodeLocation?.(ast)
+export function getRange(ast: any, parserIdx: number) {
+  return currentParsers.value[parserIdx]!.getNodeLocation?.(ast)
 }

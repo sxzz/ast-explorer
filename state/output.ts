@@ -1,28 +1,35 @@
-import { currentParser } from './parser/parser'
+import { currentParsers } from './parser/parser'
 
-export const hideEmptyKeys = useLocalStorage(
+// Do we need editorLayout to control whether to initialize one or multiple?
+export const hideEmptyKeys = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}hide-empty-keys`,
-  false,
+  [false, false],
 )
 
-export const hideLocationData = useLocalStorage(
+export const hideLocationData = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}hide-location-data`,
-  false,
+  [false, false],
 )
 
-export const hideKeys = useLocalStorage<string[]>(
+export const hideKeys = useLocalStorage<string[][]>(
   `${STORAGE_PREFIX}hide-keys`,
-  [],
+  [[], []],
 )
 
-export const autoFocus = useLocalStorage<boolean>(
+export const autoFocus = useLocalStorage<boolean[]>(
   `${STORAGE_PREFIX}auto-focus`,
-  true,
+  [true, true],
 )
 
-export function shouldHideKey(key: any, checkValue = false, value?: any) {
-  if (checkValue && hideEmptyKeys.value && value == null) return true
-  if (hideLocationData.value && locationKeyList.includes(key)) return true
-  if (hideKeys.value.includes(key)) return true
-  return currentParser.value.hideKeys?.includes(key)
+export function shouldHideKey(
+  index: number,
+  key: any,
+  checkValue = false,
+  value?: any,
+) {
+  if (checkValue && hideEmptyKeys.value[index] && value == null) return true
+  if (hideLocationData.value[index] && locationKeyList.includes(key))
+    return true
+  if (hideKeys.value[index]!.includes(key)) return true
+  return currentParsers.value[index]!.hideKeys?.includes(key)
 }
