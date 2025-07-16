@@ -38,6 +38,9 @@ importers:
       shiki:
         specifier: ^3.8.0
         version: 3.8.0
+      vue:
+        specifier: ^3.5.17
+        version: 3.5.17(typescript@5.8.3)
     devDependencies:
       '@astrojs/compiler':
         specifier: ^2.12.2
