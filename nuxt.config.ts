@@ -8,13 +8,6 @@ const crossOriginHeaders = {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  future: {
-    compatibilityVersion: 4,
-  },
-  srcDir: '.',
-  dir: {
-    app: 'app',
-  },
   modules: [
     '@unocss/nuxt',
     '@vueuse/nuxt',
