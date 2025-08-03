@@ -3,6 +3,7 @@ import type { LanguageOption, Parser } from './index'
 import type * as HtmlEslintParser from '@html-eslint/parser'
 import type * as Htmlparser2 from 'htmlparser2'
 import type * as Rehype from 'rehype'
+import type * as Ultrahtml from 'ultrahtml'
 
 // @unocss-include
 
@@ -65,9 +66,44 @@ const htmlEslintParser: Parser<
   getNodeLocation: genGetNodeLocation('range'),
 }
 
+const ultrahtmlParser: Parser<typeof Ultrahtml> = {
+  id: 'ultrahtml-parser',
+  label: 'ultrahtml',
+  icon: 'i-vscode-icons:file-type-html',
+  link: 'https://github.com/natemoo-re/ultrahtml/',
+  editorLanguage: 'html',
+  options: {
+    configurable: false,
+    defaultValue: '{}',
+    editorLanguage: 'javascript',
+  },
+  pkgName: 'ultrahtml',
+  parse(code) {
+    return this.parse(code)
+  },
+  valueHint(key, value) {
+    if (key !== 'type') return
+    if (value === this.DOCUMENT_NODE) {
+      return 'DOCUMENT_NODE'
+    } else if (value === this.ELEMENT_NODE) {
+      return 'ELEMENT_NODE'
+    } else if (value === this.TEXT_NODE) {
+      return 'TEXT_NODE'
+    } else if (value === this.COMMENT_NODE) {
+      return 'COMMENT_NODE'
+    } else if (value === this.DOCTYPE_NODE) {
+      return 'DOCTYPE_NODE'
+    } else {
+      return `NodeType.${value}`
+    }
+  },
+  getNodeLocation: genGetNodeLocation('ultrahtml'),
+  hideKeys: ['parent'],
+}
+
 export const html: LanguageOption = {
   label: 'HTML',
   icon: 'i-vscode-icons:file-type-html',
-  parsers: [htmlparser2, rehypeAst, htmlEslintParser],
+  parsers: [htmlparser2, rehypeAst, htmlEslintParser, ultrahtmlParser],
   codeTemplate: htmlTemplate,
 }

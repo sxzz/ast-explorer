@@ -63,6 +63,11 @@ const nodeLocationFields = {
     start: ['loc', 'start', 'offset'],
     end: ['loc', 'end', 'offset'],
   },
+  ultrahtml: {
+    type: ['type'],
+    start: ['loc', '0', 'start'],
+    end: ['loc', '1', 'end'],
+  },
 } as const
 
 export function genGetNodeLocation(

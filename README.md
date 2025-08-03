@@ -48,6 +48,7 @@ Feel free to add more languages and parsers via PR!
 - HTML
   - [htmlparser2](https://feedic.com/htmlparser2/)
   - [rehype](https://github.com/rehypejs/rehype)
+  - [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
   - [moma](https://www.npmjs.com/package/@humanwhocodes/momoa)
