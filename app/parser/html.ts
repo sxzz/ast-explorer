@@ -1,10 +1,3 @@
-import {
-  COMMENT_NODE,
-  DOCTYPE_NODE,
-  DOCUMENT_NODE,
-  ELEMENT_NODE,
-  TEXT_NODE,
-} from 'ultrahtml'
 import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as HtmlEslintParser from '@html-eslint/parser'
@@ -90,15 +83,15 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
   },
   valueHint(key, value) {
     if (key !== 'type') return
-    if (value === DOCUMENT_NODE) {
+    if (value === this.DOCUMENT_NODE) {
       return 'DOCUMENT_NODE'
-    } else if (value === ELEMENT_NODE) {
+    } else if (value === this.ELEMENT_NODE) {
       return 'ELEMENT_NODE'
-    } else if (value === TEXT_NODE) {
+    } else if (value === this.TEXT_NODE) {
       return 'TEXT_NODE'
-    } else if (value === COMMENT_NODE) {
+    } else if (value === this.COMMENT_NODE) {
       return 'COMMENT_NODE'
-    } else if (value === DOCTYPE_NODE) {
+    } else if (value === this.DOCTYPE_NODE) {
       return 'DOCTYPE_NODE'
     } else {
       return `NodeType.${value}`
