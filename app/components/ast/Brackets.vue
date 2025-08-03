@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const props = defineProps<{ data: any; open?: boolean }>()
+const props = defineProps<{
+  data: any
+  open?: boolean
+}>()
 const start = computed(() => (Array.isArray(props.data) ? '[' : '{'))
 const end = computed(() => (Array.isArray(props.data) ? ']' : '}'))
 </script>
