@@ -80,6 +80,7 @@
     "svelte": "^5.37.0",
     "tsx": "^4.20.3",
     "typescript": "~5.8.3",
+    "ultrahtml": "^1.6.0",
     "unenv": "^2.0.0-rc.19",
     "unocss": "^66.3.3",
     "unplugin-replace": "^0.6.0",
