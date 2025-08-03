@@ -18,7 +18,7 @@ function showDialog() {
       font-mono
       :style="astTreeStyles"
     >
-      <AstProperty :value="ast" root open />
+      <AstProperty :value="ast" open root />
     </div>
     <button
       absolute
