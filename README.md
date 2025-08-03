@@ -40,6 +40,7 @@ Feel free to add more languages and parsers via PR!
   - [meriyah](https://github.com/meriyah/meriyah)
 - [Vue](https://vuejs.org/)
 - [Svelte](https://svelte.dev/)
+- [Astro](https://astro.build/)
 - [Angular](https://angular.dev/)
 - CSS
   - [csstree](https://github.com/csstree/csstree)
@@ -48,6 +49,7 @@ Feel free to add more languages and parsers via PR!
 - HTML
   - [htmlparser2](https://feedic.com/htmlparser2/)
   - [rehype](https://github.com/rehypejs/rehype)
+  - [@html-eslint/parser](https://github.com/yeonjuan/html-eslint)
   - [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
@@ -64,6 +66,7 @@ Feel free to add more languages and parsers via PR!
   - [jinx-rust](https://www.npmjs.com/package/jinx-rust)
 - PHP
   - [php-parser](https://www.npmjs.com/package/php-parser)
+- [Solidity](https://soliditylang.org/)
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
 
