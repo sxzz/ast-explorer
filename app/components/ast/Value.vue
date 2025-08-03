@@ -55,7 +55,7 @@ watchEffect(() => {
 
 <template>
   <template v-if="typeof rawValue === 'object' && rawValue != null">
-    <AstBrackets :data="rawValue">
+    <AstBrackets :data="rawValue" open>
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of rawValue" :key="key">
           <AstProperty
