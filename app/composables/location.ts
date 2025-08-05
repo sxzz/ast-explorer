@@ -23,11 +23,6 @@ const nodeLocationFields = {
     start: ['loc', 'start', 'offset'],
     end: ['loc', 'end', 'offset'],
   },
-  typescript: {
-    type: ['kind'],
-    start: ['pos'],
-    end: ['end'],
-  },
   htmlparser2: {
     type: ['type'],
     start: ['startIndex'],

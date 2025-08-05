@@ -41,7 +41,7 @@ const isFocusing = computed(() => {
 })
 function checkRange(range?: Range) {
   if (!range) return false
-  return range[0] <= editorCursor.value && range[1] > editorCursor.value
+  return range[0] <= editorCursor.value && range[1] >= editorCursor.value
 }
 
 const openManual = ref<boolean>()
