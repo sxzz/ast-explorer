@@ -24,10 +24,23 @@ export const typescript: Parser<
     return (await this).version
   },
   parse(code, { scriptKind, ...options }) {
-    return this.createSourceFile('foo.ts', code, options, undefined, scriptKind)
+    return this.createSourceFile('foo.ts', code, options, true, scriptKind)
   },
   editorLanguage: 'typescript',
-  getNodeLocation: genGetNodeLocation('typescript'),
+  getNodeLocation(node) {
+    if (!node || typeof node !== 'object') return
+    if (
+      typeof node.getStart === 'function' &&
+      typeof node.getEnd === 'function'
+    ) {
+      return [node.getStart(), node.getEnd()]
+    } else if (
+      typeof node.pos !== 'undefined' &&
+      typeof node.end !== 'undefined'
+    ) {
+      return [node.pos, node.end]
+    }
+  },
   nodeTitle(value) {
     const kind: Typescript.SyntaxKind | undefined = value?.kind
     if (kind == null) return
@@ -45,6 +58,7 @@ export const typescript: Parser<
         return `ScriptKind.${this.ScriptKind[value]}`
     }
   },
+  hideKeys: ['parent'],
   gui: () => import('./TypescriptGui.vue'),
 }
 
