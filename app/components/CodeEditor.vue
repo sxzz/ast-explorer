@@ -14,7 +14,7 @@ const container = shallowRef<{
 
 const options = computed(() => getSharedMonacoOptions())
 
-const monaco = useMonaco()!
+const monaco = await useMonaco()
 watch(
   () => container.value?.$editor,
   (editor) => {

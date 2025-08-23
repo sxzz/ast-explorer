@@ -1,5 +1,5 @@
-export default defineNuxtPlugin(() => {
-  const monaco = useMonaco()!
+export default defineNuxtPlugin(async () => {
+  const monaco = await useMonaco()
 
   monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
     allowComments: true,

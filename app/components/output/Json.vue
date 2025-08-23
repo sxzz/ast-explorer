@@ -5,7 +5,7 @@ import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
-const monaco = useMonaco()!
+const monaco = await useMonaco()
 const options = computed(() => ({
   ...getSharedMonacoOptions(),
   readOnly: true,

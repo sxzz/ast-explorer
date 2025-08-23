@@ -5,8 +5,8 @@ import themeDark from 'shiki/themes/dark-plus.mjs'
 import themeLight from 'shiki/themes/light-plus.mjs'
 import { shikiLangs } from '~/composables/shiki'
 
-export default defineNuxtPlugin(() => {
-  const monaco = useMonaco()!
+export default defineNuxtPlugin(async () => {
+  const monaco = await useMonaco()
   monaco.languages.register({ id: 'vue' })
   monaco.languages.register({ id: 'svelte' })
   monaco.languages.register({ id: 'rust' })
