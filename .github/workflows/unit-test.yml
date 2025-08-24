@@ -6,30 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+permissions: {}
+
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.1.0
-
-      - name: Set node LTS
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: pnpm
-
-      - name: Install
-        run: pnpm install
-
-      - name: Lint
-        run: pnpm run lint
-
-      - name: Typecheck
-        run: pnpm run typecheck
-
-      - name: Build Parser
-        run: pnpm run build-parser
+  unit-test:
+    uses: sxzz/workflows/.github/workflows/unit-test.yml@v1
+    with:
+      skip-test: true
+      lint: pnpm run lint && pnpm run build-parser
