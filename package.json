@@ -37,7 +37,7 @@
     "@iconify-json/ri": "^1.2.5",
     "@iconify-json/vscode-icons": "^1.2.30",
     "@nuxt/kit": "^4.0.3",
-    "@nuxtjs/plausible": "1.2.0",
+    "@nuxtjs/plausible": "2.0.1",
     "@solidity-parser/parser": "^0.20.2",
     "@swc/wasm-web": "^1.13.5",
     "@sxzz/eslint-config": "^7.1.4",
