@@ -9,7 +9,7 @@ await mod.link((specifier) => {
 })
 await mod.evaluate()
 const { parse } = mod.namespace as typeof import('@typescript-eslint/parser')
-const ast = parse('const a = 1')
+const ast = parse('const foo: number = 1')
 if (ast) {
   consola.success('Parser built successfully')
 } else {
