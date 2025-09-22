@@ -1,12 +1,12 @@
 :root {
-  --c-border: #eee;
+  --c-border: #ddd;
   --c-bg-base: #fff;
   --c-text-base: #232323;
   --un-default-border-color: var(--c-border);
 }
 
 .dark {
-  --c-border: #333;
+  --c-border: #444;
   --c-bg-base: #1e1e1e;
   --c-text-base: #fff;
 }

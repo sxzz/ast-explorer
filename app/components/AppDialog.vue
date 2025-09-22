@@ -29,10 +29,10 @@ function closeDialog() {
     ref="dialog"
     flex-col
     border
-    rounded-2xl
+    rounded-3xl
     open:flex
-    backdrop:bg-black:30
-    backdrop:backdrop-blur-2
+    backdrop:bg-gray:40
+    backdrop:backdrop-blur-md
     @click="handleDialogClick"
     @close="closeDialog"
   >

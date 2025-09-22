@@ -5,7 +5,7 @@ html.dark {
 
 select,
 input:not([type='checkbox']) {
-  --at-apply: 'border rounded p0.5 accent-current';
+  --at-apply: 'border rounded-full px1 py0.5 accent-current';
 }
 
 select {

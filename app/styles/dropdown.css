@@ -1,6 +1,8 @@
+.v-popper--theme-dropdown.v-popper__popper {
+  --at-apply: 'bg-transparent backdrop-blur-md rounded-3xl border border-base shadow';
+}
 .v-popper--theme-dropdown .v-popper__inner {
-  --at-apply: 'bg-base text-base rounded border border-base shadow';
-  box-shadow: 0 6px 30px #0000001a;
+  --at-apply: 'bg-transparent text-base shadow border-none';
 }
 .v-popper--theme-dropdown .v-popper__arrow-inner {
   visibility: visible;
