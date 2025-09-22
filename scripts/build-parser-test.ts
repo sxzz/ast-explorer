@@ -1,6 +1,6 @@
 import { createContext, SourceTextModule } from 'node:vm'
 import consola from 'consola'
-import { buildTsEslintParser } from './build-parser'
+import { buildTsEslintParser } from './build-parser.ts'
 
 const { code } = await buildTsEslintParser(consola, true)
 const mod = new SourceTextModule(code, { context: createContext() })

@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { version } from '@typescript-eslint/parser/package.json'
+import pkg from '@typescript-eslint/parser/package.json' with { type: 'json' }
 import { build } from 'rolldown'
 import Replace from 'unplugin-replace/rolldown'
 import type { ConsolaInstance } from 'consola'
@@ -15,7 +15,7 @@ export async function buildTsEslintParser(
 ): Promise<{ path: string; code: string }> {
   const cacheDir = path.resolve(root, `.nuxt/cache`)
   await mkdir(cacheDir, { recursive: true })
-  const cachePath = path.resolve(cacheDir, `ts-eslint-parser@${version}.js`)
+  const cachePath = path.resolve(cacheDir, `ts-eslint-parser@${pkg.version}.js`)
   if (!noCache) {
     const cache = await readFile(cachePath, 'utf8').catch(() => null)
     if (cache) return { path: cachePath, code: cache }
