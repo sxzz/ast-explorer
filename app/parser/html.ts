@@ -83,18 +83,25 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
   },
   valueHint(key, value) {
     if (key !== 'type') return
-    if (value === this.DOCUMENT_NODE) {
-      return 'DOCUMENT_NODE'
-    } else if (value === this.ELEMENT_NODE) {
-      return 'ELEMENT_NODE'
-    } else if (value === this.TEXT_NODE) {
-      return 'TEXT_NODE'
-    } else if (value === this.COMMENT_NODE) {
-      return 'COMMENT_NODE'
-    } else if (value === this.DOCTYPE_NODE) {
-      return 'DOCTYPE_NODE'
-    } else {
-      return `NodeType.${value}`
+    switch (value) {
+      case this.DOCUMENT_NODE: {
+        return 'DOCUMENT_NODE'
+      }
+      case this.ELEMENT_NODE: {
+        return 'ELEMENT_NODE'
+      }
+      case this.TEXT_NODE: {
+        return 'TEXT_NODE'
+      }
+      case this.COMMENT_NODE: {
+        return 'COMMENT_NODE'
+      }
+      case this.DOCTYPE_NODE: {
+        return 'DOCTYPE_NODE'
+      }
+      default: {
+        return `NodeType.${value}`
+      }
     }
   },
   getNodeLocation: genGetNodeLocation('ultrahtml'),

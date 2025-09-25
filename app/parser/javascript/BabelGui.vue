@@ -65,10 +65,10 @@ function usePlugin<T extends PluginName>(
       }
     },
     (value, opt) => {
-      if (!Array.isArray(opt.plugins)) {
-        opt.plugins = []
-      } else {
+      if (Array.isArray(opt.plugins)) {
         opt.plugins = opt.plugins.filter((p) => !isPluginOf(p, name))
+      } else {
+        opt.plugins = []
       }
 
       if (value !== false && value != null) {

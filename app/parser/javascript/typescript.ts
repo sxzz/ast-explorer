@@ -34,10 +34,7 @@ export const typescript: Parser<
       typeof node.getEnd === 'function'
     ) {
       return [node.getStart(), node.getEnd()]
-    } else if (
-      typeof node.pos !== 'undefined' &&
-      typeof node.end !== 'undefined'
-    ) {
+    } else if (node.pos !== undefined && node.end !== undefined) {
       return [node.pos, node.end]
     }
   },

@@ -77,7 +77,7 @@ export default defineNuxtPlugin(async () => {
             `prettier`,
             `/standalone.mjs`,
           ),
-          customPlugins ? customPlugins : loadPrettierPlugins(pluginIds!),
+          customPlugins || loadPrettierPlugins(pluginIds!),
         ])
 
         const formatted = await prettier.format(text, {

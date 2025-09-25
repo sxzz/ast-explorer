@@ -46,13 +46,13 @@ export function initParserModule() {
         const ctx = await parserModulePromise.value
         if (currentParser.value.id !== id) return
         loading.value = 'parse'
-        const t = window.performance.now()
+        const t = performance.now()
         ast.value = await currentParser.value.parse.call(
           ctx,
           code.value,
           parserOptions.value,
         )
-        parseCost.value = window.performance.now() - t
+        parseCost.value = performance.now() - t
         error.value = null
         // eslint-disable-next-line unicorn/catch-error-name
       } catch (err: any) {
