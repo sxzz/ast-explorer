@@ -49,9 +49,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  devtools: {
-    enabled: true,
-  },
+  devtools: { enabled: false },
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',

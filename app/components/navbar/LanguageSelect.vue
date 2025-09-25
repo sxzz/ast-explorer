@@ -8,13 +8,7 @@ function changeLanguage(language: Language) {
 </script>
 
 <template>
-  <VMenu
-    :class="{ dark: isDark }"
-    placement="bottom-start"
-    :delay="0"
-    :distance="8"
-    flex
-  >
+  <VMenu :class="{ dark: isDark }" placement="bottom-start" :delay="0" flex>
     <button flex="~ center" gap1>
       <div :class="currentLanguage.icon" />
       {{ currentLanguage.label }}

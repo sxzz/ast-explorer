@@ -28,15 +28,19 @@ function closeDialog() {
   <dialog
     ref="dialog"
     flex-col
+    gap="0.5"
     border
+    border-base
     rounded-3xl
+    shadow-2xl
     open:flex
     backdrop:bg-gray:40
     backdrop:backdrop-blur-md
+    dark-bg="#1E1E1E"
     @click="handleDialogClick"
     @close="closeDialog"
   >
-    <div flex="~ center" relative gap2 py2 font-bold>
+    <div flex="~ center" relative gap2 border-b py2 font-bold>
       <span text-lg font-bold>{{ title }}</span>
       <a
         v-if="docs"

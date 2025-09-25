@@ -90,9 +90,7 @@ function highlight() {
   decorationsCollection = editor.createDecorationsCollection([
     {
       range: monaco.Range.fromPositions(start, end),
-      options: {
-        className: `important-bg-yellow-400 important-bg-opacity-30`,
-      },
+      options: { className: 'ast-highlight' },
     },
   ])
   if (autoFocus.value) editor.revealPositionNearTop(start)

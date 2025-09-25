@@ -12,13 +12,7 @@ function changeParser(parser: string) {
 </script>
 
 <template>
-  <VMenu
-    :class="{ dark: isDark }"
-    placement="bottom-start"
-    :delay="0"
-    :distance="8"
-    flex
-  >
+  <VMenu :class="{ dark: isDark }" placement="bottom-start" :delay="0" flex>
     <button flex="~ center" gap1>
       <IconPreview :value="currentParser.icon" />
       <span font-mono>{{ currentParser.label }}</span>
