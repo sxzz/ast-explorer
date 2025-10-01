@@ -19,9 +19,6 @@ export default defineNuxtConfig({
     apiHost: 'https://evt.sxzz.dev',
   },
   vite: {
-    esbuild: {
-      legalComments: 'external',
-    },
     resolve: {
       alias: {
         path: 'pathe',
@@ -29,6 +26,19 @@ export default defineNuxtConfig({
     },
     server: {
       headers: crossOriginHeaders,
+    },
+    build: {
+      rolldownOptions: {
+        output: {
+          advancedChunks: {
+            groups: [
+              { name: 'monaco-editor', test: /monaco-editor/ },
+              { name: 'shiki', test: /shiki/ },
+              { name: 'vendor', test: /node_modules/ },
+            ],
+          },
+        },
+      },
     },
   },
   nitro: {
