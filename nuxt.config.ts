@@ -73,5 +73,5 @@ export default defineNuxtConfig({
   appConfig: {
     branch: process.env.VERCEL_GIT_COMMIT_REF,
   },
-  compatibilityDate: '2024-10-10',
+  compatibilityDate: 'latest',
 })
