@@ -113,6 +113,7 @@ export function getLocationMapping(ast: any, parser: Parser) {
         node.children.forEach((n) => traverseNode(n, cb))
         break
       case 'Property':
+        if (node.key.value === 'tokens' /* TODO custom */) return
         cb(node.key)
         traverseNode(node.value, cb)
         break
