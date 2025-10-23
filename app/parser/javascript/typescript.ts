@@ -48,6 +48,7 @@ export const typescript: Parser<
 
     switch (key) {
       case 'kind':
+      case 'phaseModifier':
         return `SyntaxKind.${getSyntaxKind(this, value)}`
       case 'flags':
         return getNodeFlags(this, value)
