@@ -10,6 +10,7 @@ import { meriyah } from './meriyah'
 import { oxc } from './oxc'
 import { swc } from './swc'
 import { typescript } from './typescript'
+import { arkts } from './arkts'
 
 export const javascript: LanguageOption = {
   label: 'JavaScript',
@@ -22,6 +23,7 @@ export const javascript: LanguageOption = {
     acorn,
     acornLoose,
     typescript,
+    arkts,
     espree,
     tsEslint,
     esprimaNext,
