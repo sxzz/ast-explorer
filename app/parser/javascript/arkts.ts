@@ -24,7 +24,13 @@ export const arkts: Parser<
     return (await this).version
   },
   parse(code, { scriptKind, ...options }) {
-    return this.createSourceFile('foo.ts', code, options, true, scriptKind)
+    // ArkTS's ts.createSourceFile allow 6 options, the last one is a compiler options settings
+    // ArkTS have some special compiler options, like etsAnnotationsEnable: true will enable
+    // the Java like annotations support, which is not supported by TypeScript.
+    // @ts-expect-error
+    return this.createSourceFile('foo.ts', code, options, true, scriptKind, {
+      etsAnnotationsEnable: true,
+    })
   },
   editorLanguage: 'typescript',
   getNodeLocation(node) {
