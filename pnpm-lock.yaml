@@ -156,6 +156,9 @@ importers:
       nuxt-monaco-editor:
         specifier: ^1.4.0
         version: 1.4.0(magicast@0.3.5)(monaco-editor@0.54.0)(rolldown-vite@7.1.19(@types/node@24.8.1)(esbuild@0.25.11)(jiti@2.6.1)(terser@5.44.0)(tsx@4.20.5)(yaml@2.8.1))
+      ohos-typescript:
+        specifier: 4.9.5-r10
+        version: 4.9.5-r10
       oxc-parser:
         specifier: ^0.95.0
         version: 0.95.0
@@ -4344,6 +4347,11 @@ packages:
 
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
+
+  ohos-typescript@4.9.5-r10:
+    resolution: {integrity: sha512-UyLXhBnUe5H4HGugf1ocYPawod0Q4ituiUATYoHIR5y4uxnH4+8ddD39aeLgcQah1YMv2DRKRaL9W1jgtnbEtQ==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
 
   on-change@6.0.0:
     resolution: {integrity: sha512-J7kocOS+ZNyjmW6tUUTtA7jLt8GjQlrOdz9z3yLNTvdsswO+b5lYSdMVzDczWnooyFAkkQiKyap5g/Zba+cFRA==}
@@ -10685,6 +10693,8 @@ snapshots:
       ufo: 1.6.1
 
   ohash@2.0.11: {}
+
+  ohos-typescript@4.9.5-r10: {}
 
   on-change@6.0.0: {}
 
