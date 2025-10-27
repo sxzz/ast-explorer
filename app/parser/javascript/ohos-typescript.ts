@@ -1,20 +1,20 @@
 import type { Parser } from '..'
-import type Typescript from 'typescript'
+import type Typescript from 'ohos-typescript'
 
-export const arkts: Parser<
+export const ohosTypescript: Parser<
   typeof Typescript,
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
 > = {
-  id: 'arkts',
-  label: 'arkts',
+  id: 'ohos-typescript',
+  label: 'ohos-typescript',
   // @unocss-include
   icon: 'https://cdn.jsdelivr.net/gh/groupguanfang/ohos-typescript-browserify/logo.png',
-  link: 'https://gitcode.com/openharmony/third_party_typescript/',
+  link: 'https://gitcode.com/openharmony/third_party_typescript',
   options: {
     configurable: true,
     defaultValue: {
       languageVersion: 99,
-      scriptKind: 8 as any,
+      scriptKind: 8,
     },
     editorLanguage: 'json',
   },
@@ -24,10 +24,6 @@ export const arkts: Parser<
     return (await this).version
   },
   parse(code, { scriptKind, ...options }) {
-    // ArkTS's ts.createSourceFile allow 6 options, the last one is a compiler options settings
-    // ArkTS have some special compiler options, like etsAnnotationsEnable: true will enable
-    // the Java like annotations support, which is not supported by TypeScript.
-    // @ts-expect-error
     return this.createSourceFile('foo.ts', code, options, true, scriptKind, {
       etsAnnotationsEnable: true,
     })
