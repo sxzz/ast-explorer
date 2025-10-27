@@ -19,7 +19,7 @@
   "dependencies": {
     "@shikijs/monaco": "^3.14.0",
     "@typescript-eslint/parser": "^8.46.2",
-    "@vueuse/core": "^13.9.0",
+    "@vueuse/core": "^14.0.0",
     "ansi-regex": "^6.2.2",
     "fflate": "^0.8.2",
     "json-to-ast": "^2.1.0",
@@ -50,7 +50,7 @@
     "@vue-vapor/compiler-vapor": "latest",
     "@vue/compiler-dom": "^3.5.22",
     "@vue/compiler-sfc": "^3.5.22",
-    "@vueuse/nuxt": "^13.9.0",
+    "@vueuse/nuxt": "^14.0.0",
     "acorn": "^8.15.0",
     "acorn-loose": "^8.5.2",
     "bumpp": "^10.3.1",
