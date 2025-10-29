@@ -59,6 +59,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  experimental: {
+    typescriptPlugin: true,
+  },
   devtools: { enabled: false },
   css: [
     '@unocss/reset/tailwind.css',

@@ -65,7 +65,7 @@
     "jsonc-eslint-parser": "^2.4.1",
     "lightningcss-wasm": "^1.30.2",
     "meriyah": "^6.1.4",
-    "nuxt": "4.2.0",
+    "nuxt": "^4.2.0",
     "nuxt-monaco-editor": "^1.4.0",
     "ohos-typescript": "4.9.5-r10",
     "oxc-parser": "^0.95.0",
