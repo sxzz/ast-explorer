@@ -2,6 +2,7 @@ import { angular } from './angular'
 import { astro } from './astro'
 import { css } from './css'
 import { custom } from './custom'
+import { graphql } from './graphql'
 import { html } from './html'
 import { javascript } from './javascript'
 import { json } from './json'
@@ -32,6 +33,7 @@ export type MonacoLanguage =
   | 'php'
   | 'solidity'
   | 'astro'
+  | 'graphql'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -101,6 +103,7 @@ export const LANGUAGES = {
   php,
   solidity,
   wxml,
+  graphql,
   custom,
 }
 export type Language = keyof typeof LANGUAGES

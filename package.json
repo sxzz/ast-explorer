@@ -60,6 +60,7 @@
     "esprima-next": "^6.0.3",
     "floating-vue": "^5.2.2",
     "flow-parser": "^0.289.0",
+    "graphql": "^16.11.0",
     "htmlparser2": "^10.0.0",
     "jinx-rust": "^0.1.6",
     "jsonc-eslint-parser": "^2.4.1",
