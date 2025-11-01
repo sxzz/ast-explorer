@@ -63,6 +63,11 @@ const nodeLocationFields = {
     start: ['loc', '0', 'start'],
     end: ['loc', '1', 'end'],
   },
+  graphql: {
+    type: ['kind'],
+    start: ['loc', 'start'],
+    end: ['loc', 'end'],
+  },
 } as const
 
 export function genGetNodeLocation(
