@@ -28,17 +28,17 @@ export default defineNuxtConfig({
       headers: crossOriginHeaders,
     },
     build: {
-      rolldownOptions: {
-        output: {
-          advancedChunks: {
-            groups: [
-              { name: 'monaco-editor', test: /monaco-editor/ },
-              { name: 'shiki', test: /shiki/ },
-              { name: 'vendor', test: /node_modules/ },
-            ],
-          },
-        },
-      },
+      // rolldownOptions: {
+      //   output: {
+      //     advancedChunks: {
+      //       groups: [
+      //         { name: 'monaco-editor', test: /monaco-editor/ },
+      //         { name: 'shiki', test: /shiki/ },
+      //         { name: 'vendor', test: /node_modules/ },
+      //       ],
+      //     },
+      //   },
+      // },
     },
   },
   nitro: {
