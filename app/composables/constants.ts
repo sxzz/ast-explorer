@@ -5,5 +5,6 @@ export const locationKeyList = [
   'span',
   'range',
   'position',
+  'pos',
 ]
 export const isSafari = globalThis.navigator?.vendor.includes('Apple Computer')
