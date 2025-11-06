@@ -70,6 +70,17 @@ const nodeLocationFields = {
   },
 } as const
 
+export const locationKeyList = [
+  'loc',
+  'location',
+  'start',
+  'end',
+  'span',
+  'range',
+  'position',
+  'pos',
+]
+
 export function genGetNodeLocation(
   preset: keyof typeof nodeLocationFields,
 ): NonNullable<Parser['getNodeLocation']> {
@@ -77,7 +88,8 @@ export function genGetNodeLocation(
     if (ast ? node.type !== 'Object' : typeof node !== 'object') return
 
     const get = ast ? getJsonValue : getValue
-    if (!get(node, nodeLocationFields[preset].type)) return
+    const type = get(node, nodeLocationFields[preset].type)
+    if (!type) return
 
     const start = get(node, nodeLocationFields[preset].start)
     const end = get(node, nodeLocationFields[preset].end)

@@ -22,6 +22,7 @@ const serialized = computed(() => {
           [
             ...(hideLocationData.value ? locationKeyList : []),
             ...hideKeys.value.filter((v) => !!v),
+            ...(currentParser.value?.hideKeys || []),
           ].includes(key)
         )
           return

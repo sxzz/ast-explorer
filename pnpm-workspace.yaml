@@ -59,6 +59,7 @@ catalogs:
     flow-parser: ^0.290.0
     graphql: ^16.12.0
     htmlparser2: ^10.0.0
+    java-parser: ^3.0.1
     jinx-rust: ^0.1.6
     json-to-ast: ^2.1.0
     jsonc-eslint-parser: ^2.4.1

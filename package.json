@@ -62,6 +62,7 @@
     "flow-parser": "catalog:parser",
     "graphql": "catalog:parser",
     "htmlparser2": "catalog:parser",
+    "java-parser": "catalog:parser",
     "jinx-rust": "catalog:parser",
     "jsonc-eslint-parser": "catalog:parser",
     "lightningcss-wasm": "catalog:parser",

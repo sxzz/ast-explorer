@@ -4,6 +4,7 @@ import { css } from './css'
 import { custom } from './custom'
 import { graphql } from './graphql'
 import { html } from './html'
+import { java } from './java'
 import { javascript } from './javascript'
 import { json } from './json'
 import { markdown } from './markdown'
@@ -34,6 +35,7 @@ export type MonacoLanguage =
   | 'solidity'
   | 'astro'
   | 'graphql'
+  | 'java'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -101,6 +103,7 @@ export const LANGUAGES = {
   rust,
   sql,
   php,
+  java,
   solidity,
   wxml,
   graphql,
