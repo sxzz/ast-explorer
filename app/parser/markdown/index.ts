@@ -1,5 +1,5 @@
-import { markdownTemplate } from './template'
-import type { LanguageOption, Parser } from './index'
+import { markdownTemplate } from '../template'
+import type { LanguageOption, Parser } from '../index'
 import type * as Remark from 'remark'
 
 export interface RemarkOptions {
@@ -11,7 +11,7 @@ export interface RemarkOptions {
 }
 
 // @unocss-include
-const remarkAst: Parser<typeof Remark, RemarkOptions> = {
+const remark: Parser<typeof Remark, RemarkOptions> = {
   id: 'remark',
   label: 'remark',
   icon: 'https://raw.githubusercontent.com/remarkjs/remark/refs/heads/main/logo-square.svg',
@@ -56,6 +56,6 @@ const remarkAst: Parser<typeof Remark, RemarkOptions> = {
 export const markdown: LanguageOption = {
   label: 'Markdown',
   icon: 'i-vscode-icons:file-type-markdown',
-  parsers: [remarkAst],
+  parsers: [remark],
   codeTemplate: markdownTemplate,
 }
