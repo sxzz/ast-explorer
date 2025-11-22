@@ -19,7 +19,7 @@ const yamlParser: Parser<
   },
   pkgName: 'yaml',
   parse(code, options) {
-    return this.parseDocument(code, { ...options })
+    return this.parseAllDocuments(code, { ...options })
   },
   getNodeLocation: genGetNodeLocation('range'),
 }
