@@ -19,5 +19,6 @@ export function atou(base64: string): string {
 
   // old unicode hacks for backward compatibility
   // https://base64.guru/developers/javascript/examples/unicode-strings
+  // eslint-disable-next-line baseline-js/use-baseline
   return decodeURIComponent(escape(binary))
 }

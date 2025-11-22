@@ -22,8 +22,8 @@ catalogs:
       specifier: ^3.15.0
       version: 3.15.0
     '@sxzz/eslint-config':
-      specifier: ^7.3.0
-      version: 7.3.0
+      specifier: ^7.3.2
+      version: 7.3.2
     '@sxzz/prettier-config':
       specifier: ^2.2.5
       version: 2.2.5
@@ -291,7 +291,7 @@ importers:
         version: 1.15.3
       '@sxzz/eslint-config':
         specifier: 'catalog:'
-        version: 7.3.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@unocss/eslint-plugin@66.5.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
+        version: 7.3.2(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@unocss/eslint-plugin@66.5.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
       '@sxzz/prettier-config':
         specifier: 'catalog:'
         version: 2.2.5
@@ -2093,8 +2093,8 @@ packages:
   '@swc/wasm-web@1.15.3':
     resolution: {integrity: sha512-y/WEAdDCI+qPH0fupcoT1tZPjyV/1pHSmPt9PxFzopZ6WM5uM8QRv2g0fHkDh4QalopJ9dDHFTlQAq+7SEsjuQ==}
 
-  '@sxzz/eslint-config@7.3.0':
-    resolution: {integrity: sha512-Uhaoq2PF7surRqTKk7znO+AZZPk/SgRlK9q1TBL5yTi6M0w6FO/0L9q90q/FyEHq8OqyGIpg74oBa4Ut1g9U7A==}
+  '@sxzz/eslint-config@7.3.2':
+    resolution: {integrity: sha512-TSz7di7RnIQ6bkkSgCKnyP8GHaOn9g6F38q/aPQsNZABbzNLQWhTYk1dfXhtvPUhEtoQbB/WKBVeKuzKdz/dpQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@unocss/eslint-plugin': '>=65.0.0'
@@ -7839,7 +7839,7 @@ snapshots:
 
   '@swc/wasm-web@1.15.3': {}
 
-  '@sxzz/eslint-config@7.3.0(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@unocss/eslint-plugin@66.5.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
+  '@sxzz/eslint-config@7.3.2(@types/eslint@9.6.1)(@typescript-eslint/eslint-plugin@8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/parser@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(@unocss/eslint-plugin@66.5.9(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.39.1(jiti@2.6.1))
       '@eslint/js': 9.39.1
