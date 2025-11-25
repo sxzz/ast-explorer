@@ -3,7 +3,7 @@ import type * as EsprimaNext from 'esprima-next'
 
 export const esprimaNext: Parser<typeof EsprimaNext, EsprimaNext.Config> = {
   id: 'esprima-next',
-  label: 'Esprima Next',
+  label: 'esprima-next',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-js-official',
   link: 'https://github.com/node-projects/esprima-next',
