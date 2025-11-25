@@ -1,4 +1,5 @@
 overrides:
+  '@nuxt/vite-builder': 'https://pkg.pr.new/@nuxt/vite-builder@33682'
   vite: 'catalog:'
 
 catalog:
