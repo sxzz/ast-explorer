@@ -44,11 +44,11 @@ export const swc: Parser<typeof Swc, Swc.ParseOptions> = {
   },
   pkgName: '@swc/wasm-web',
   getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/wasm-web.js`),
-  init: (url) =>
-    importUrl(url).then(async (mod: typeof Swc) => {
-      await mod.default()
-      return mod
-    }),
+  async init(url) {
+    const mod = await importUrl(url)
+    await mod.default()
+    return mod
+  },
   async parse(code, options) {
     const result = await this.parse(code, { ...(options as any) })
     adjustSwcOffsetOfAst(result, result.span.start)

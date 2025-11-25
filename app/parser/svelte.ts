@@ -16,7 +16,7 @@ const svelteCompiler: Parser<typeof Svelte, Svelte.CompileOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'svelte',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}/src/compiler/index.js`,
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/compiler/index.js/+esm'),
   parse(code, options) {
     return this.compile(code, options)?.ast
   },

@@ -17,7 +17,7 @@ export const jsonToAst: Parser<typeof parse, parse.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'json-to-ast',
-  init: (url) => resolveDefault(importUrl(url)),
+  interopDefault: true,
   parse(code, options) {
     return this(code, { ...options })
   },

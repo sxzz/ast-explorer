@@ -2,11 +2,6 @@ import { angularTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as AngularCompiler from '@angular/compiler'
 
-// @unocss-include
-
-// Node's title rely on the constructor name but because of minification, we need to rematch with exported names
-let angularCompilerKeys: Array<keyof typeof AngularCompiler> | undefined
-
 const getTplNodeLocation = genGetNodeLocation('angularCompilerTmpl')
 const getAstNodeLocation = genGetNodeLocation('angularCompilerAst')
 
@@ -16,6 +11,7 @@ const angularCompiler: Parser<
 > = {
   id: 'angular-compiler',
   label: '@angular/compiler',
+  // @unocss-include
   icon: 'i-vscode-icons:file-type-angular',
   link: 'https://angular.dev',
   editorLanguage: 'html',
@@ -30,23 +26,16 @@ const angularCompiler: Parser<
     editorLanguage: 'json',
   },
   pkgName: '@angular/compiler',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}/es2022/compiler.mjs`,
   parse(code, options) {
     return this.parseTemplate(code, 'template.html', options)
-  },
-  init: async (url) => {
-    const mod = await importUrl(url)
-    angularCompilerKeys ??= Object.keys(mod).filter(
-      (k) => typeof mod[k] === 'function',
-    ) as Array<keyof typeof AngularCompiler>
-    return mod
   },
   getNodeLocation(node: any) {
     return getTplNodeLocation(node) ?? getAstNodeLocation(node)
   },
   nodeTitle(value) {
-    if (!value || !angularCompilerKeys) return
+    if (!value) return
 
+    const angularCompilerKeys = getCompilerKeys(this)
     const matchingKeys = angularCompilerKeys.filter(
       (k) => value instanceof (this[k] as Function),
     )
@@ -54,6 +43,24 @@ const angularCompiler: Parser<
     // Many keys can match because of abstract classes. Generic classes are declared before concrete classes. We can take the last one.
     return matchingKeys.at(-1)
   },
+}
+
+const cache = new WeakMap<
+  typeof AngularCompiler,
+  Array<keyof typeof AngularCompiler>
+>()
+
+// Node's title rely on the constructor name but because of minification,
+// we need to rematch with exported names
+function getCompilerKeys(compiler: typeof AngularCompiler) {
+  const cached = cache.get(compiler)
+  if (cached) return cached
+
+  const keys = Object.entries(compiler)
+    .filter(([, v]) => typeof v === 'function')
+    .map(([k]) => k) as Array<keyof typeof AngularCompiler>
+  cache.set(compiler, keys)
+  return keys
 }
 
 export const angular: LanguageOption = {

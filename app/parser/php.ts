@@ -2,10 +2,8 @@ import { phpTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as PhpParser from 'php-parser'
 
-// @unocss-include
-
 const phpParser: Parser<
-  { default: typeof PhpParser.Engine },
+  typeof PhpParser.Engine,
   {
     lexer?: Partial<PhpParser.Lexer>
     ast?: Partial<PhpParser.AST>
@@ -14,6 +12,7 @@ const phpParser: Parser<
 > = {
   id: 'php-parser',
   label: 'php-parser',
+  // @unocss-include
   icon: 'i-vscode-icons:file-type-php',
   link: 'https://github.com/glayzzle/php-parser',
   editorLanguage: 'php',
@@ -26,8 +25,9 @@ const phpParser: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'php-parser',
+  interopDefault: true,
   parse(code, options) {
-    const parser = new this.default({ ...options })
+    const parser = new this({ ...options })
     return parser.parseCode(code, 'foo.php')
   },
   getNodeLocation: genGetNodeLocation('php'),

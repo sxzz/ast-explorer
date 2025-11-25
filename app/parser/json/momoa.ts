@@ -20,7 +20,7 @@ export const momoa: Parser<typeof Momoa, Momoa.ParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@humanwhocodes/momoa',
-  init: (url) => importUrl(url),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/momoa.min.js`),
   parse(code, options) {
     return this.parse(code, { ...options })
   },

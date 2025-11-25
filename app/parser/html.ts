@@ -78,30 +78,25 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
     editorLanguage: 'javascript',
   },
   pkgName: 'ultrahtml',
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/index.js`),
   parse(code) {
     return this.parse(code)
   },
   valueHint(key, value) {
     if (key !== 'type') return
     switch (value) {
-      case this.DOCUMENT_NODE: {
+      case this.DOCUMENT_NODE:
         return 'DOCUMENT_NODE'
-      }
-      case this.ELEMENT_NODE: {
+      case this.ELEMENT_NODE:
         return 'ELEMENT_NODE'
-      }
-      case this.TEXT_NODE: {
+      case this.TEXT_NODE:
         return 'TEXT_NODE'
-      }
-      case this.COMMENT_NODE: {
+      case this.COMMENT_NODE:
         return 'COMMENT_NODE'
-      }
-      case this.DOCTYPE_NODE: {
+      case this.DOCTYPE_NODE:
         return 'DOCTYPE_NODE'
-      }
-      default: {
+      default:
         return `NodeType.${value}`
-      }
     }
   },
   getNodeLocation: genGetNodeLocation('ultrahtml'),

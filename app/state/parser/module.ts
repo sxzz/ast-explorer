@@ -20,6 +20,7 @@ async function initParser() {
     pkgName,
     getModuleUrl = defaultModuleUrl,
     init = defaultInit,
+    interopDefault,
   } = currentParser.value
 
   const pkgId = isUrlVersion.value
@@ -30,7 +31,12 @@ async function initParser() {
   const moduleUrl = isUrlVersion.value
     ? pkgId
     : getModuleUrl(pkgId, overrideVersion.value)
-  return (parserModuleCache[pkgId] = await init(moduleUrl, pkgId))
+
+  let module = await init(moduleUrl, pkgId)
+  if (interopDefault && module && 'default' in module) {
+    module = (module as any).default
+  }
+  return (parserModuleCache[pkgId] = module)
 }
 
 export const parserModulePromise = computed(() => initParser())

@@ -53,6 +53,7 @@ export interface Parser<C = unknown, O = unknown> {
   versionOverridable?: boolean
   getModuleUrl?: (pkgName: string, version?: string) => string
   init?: (moduleUrl: string, pkgId: string) => C | Promise<C>
+  interopDefault?: boolean
   parse: (this: C, code: string, options: O) => unknown
   options: {
     configurable: boolean

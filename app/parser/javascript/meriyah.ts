@@ -26,7 +26,7 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'meriyah',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/meriyah.mjs`),
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/meriyah.min.mjs`),
   async version() {
     return (await this).version
   },

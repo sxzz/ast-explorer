@@ -16,7 +16,6 @@ const astroCompiler: Parser<typeof Astro, Astro.ParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@astrojs/compiler',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}/es2022/compiler.mjs`,
   async init(moduleUrl) {
     const mod = await importUrl<typeof Astro>(moduleUrl)
     const wasmURL = getJsdelivrUrl('@astrojs/compiler', '/dist/astro.wasm')

@@ -18,8 +18,8 @@ export const javascript: LanguageOption = {
   icon: 'i-vscode-icons:file-type-js-official',
   parsers: [
     babel,
-    swc,
     oxc,
+    swc,
     acorn,
     acornLoose,
     typescript,
