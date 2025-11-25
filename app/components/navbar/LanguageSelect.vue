@@ -8,20 +8,22 @@ function changeLanguage(language: Language) {
 </script>
 
 <template>
-  <VMenu :class="{ dark: isDark }" placement="bottom-start" :delay="0" flex>
+  <VMenu :class="{ dark: isDark }" placement="bottom-start" :delay="0">
     <button flex="~ center" gap1>
       <div :class="currentLanguage.icon" />
       {{ currentLanguage.label }}
     </button>
     <template #popper>
-      <DropdownItem
-        v-for="(lang, id) in LANGUAGES"
-        :key="id"
-        :icon="lang.icon"
-        :text="lang.label"
-        :checked="currentLanguageId === id"
-        @click="changeLanguage(id)"
-      />
+      <div max-h-80vh flex flex-col overflow-y-auto>
+        <DropdownItem
+          v-for="(lang, id) in LANGUAGES"
+          :key="id"
+          :icon="lang.icon"
+          :text="lang.label"
+          :checked="currentLanguageId === id"
+          @click="changeLanguage(id)"
+        />
+      </div>
     </template>
   </VMenu>
 </template>

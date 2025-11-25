@@ -18,15 +18,17 @@ function changeParser(parser: string) {
       <span font-mono>{{ currentParser.label }}</span>
     </button>
     <template #popper>
-      <DropdownItem
-        v-for="parser of currentLanguage.parsers"
-        :key="parser.id"
-        :icon="parser.icon"
-        :text="parser.label"
-        :checked="currentParserId === parser.id"
-        font-mono
-        @click="changeParser(parser.id)"
-      />
+      <div max-h-80vh flex flex-col overflow-y-auto>
+        <DropdownItem
+          v-for="parser of currentLanguage.parsers"
+          :key="parser.id"
+          :icon="parser.icon"
+          :text="parser.label"
+          :checked="currentParserId === parser.id"
+          font-mono
+          @click="changeParser(parser.id)"
+        />
+      </div>
     </template>
   </VMenu>
 </template>
