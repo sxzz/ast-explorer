@@ -31,12 +31,10 @@ export async function buildTsEslintParser(
     resolve: {
       /// keep-sorted
       alias: {
-        'fast-glob': mockPath,
-        'is-glob': mockPath,
         'node:fs': mockPath,
         'node:path': 'pathe',
         'node:util': mockPath,
-        minimatch: mockPath,
+        tinyglobby: mockPath,
       },
     },
     plugins: [
