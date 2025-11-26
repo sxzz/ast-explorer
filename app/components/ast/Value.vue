@@ -29,7 +29,7 @@ const value = computed<string | undefined>(() => {
   if (typeof data === 'object' && data !== null) return
   if (typeof data === 'bigint') return `${String(data)}n`
   if (Object.prototype.toString.call(value) === '[object RegExp]')
-    return `${String(data)}n`
+    return `RegExp ${String(data)}`
   if (data == null || typeof data === 'symbol') return String(data)
   if (typeof data === 'function')
     return `function ${(data as Function).name}(...)`
