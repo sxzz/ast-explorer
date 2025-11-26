@@ -24,11 +24,20 @@ const hasChildren = computed(
     Object.keys(rawValue.value).length > 0,
 )
 
+const isLiteral = computed(
+  () =>
+    typeof rawValue.value !== 'object' ||
+    rawValue.value == null ||
+    isRegExp(rawValue.value),
+)
+
 const value = computed<string | undefined>(() => {
+  if (!isLiteral.value) return
+
   const data = rawValue.value
-  if (typeof data === 'object' && data !== null) return
   if (typeof data === 'bigint') return `${String(data)}n`
-  if (data == null || typeof data === 'symbol') return String(data)
+  if (data == null || typeof data === 'symbol' || isRegExp(data))
+    return String(data)
   if (typeof data === 'function')
     return `function ${(data as Function).name}(...)`
   return JSON.stringify(data)
@@ -54,7 +63,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <template v-if="typeof rawValue === 'object' && rawValue != null">
+  <template v-if="!isLiteral">
     <AstBrackets :data="rawValue" open>
       <div v-if="hasChildren" ml6>
         <template v-for="(item, key) of rawValue" :key="key">

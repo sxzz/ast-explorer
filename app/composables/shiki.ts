@@ -50,7 +50,7 @@ export function useHighlightColor(
     const theme = `vitesse-${isDark.value ? 'dark' : 'light'}`
     const result = highlight(code, theme)
     const token = result.tokens[0]!
-    const idx = code.startsWith('"') && token.length > 1 ? 1 : 0
+    const idx = (code[0] === '"' || code[0] === '/') && token.length > 1 ? 1 : 0
     return token[idx]!.color
   })
 }

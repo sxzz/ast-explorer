@@ -174,3 +174,7 @@ function getJsonValue(
 export function getRange(ast: any) {
   return currentParser.value.getNodeLocation?.(ast)
 }
+
+export function isRegExp(value: any): boolean {
+  return Object.prototype.toString.call(value) === '[object RegExp]'
+}

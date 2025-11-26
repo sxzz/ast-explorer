@@ -28,6 +28,7 @@ const serialized = computed(() => {
           return
         if (typeof value === 'function') return `function ${value.name}(...)`
         if (typeof value === 'bigint') return `(BigInt) ${value}n`
+        if (isRegExp(value)) return `(RegExp) ${value}`
 
         if (seen.has(value)) {
           return seen.get(value)
