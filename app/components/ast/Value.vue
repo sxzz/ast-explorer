@@ -26,13 +26,16 @@ const hasChildren = computed(
 
 const value = computed<string | undefined>(() => {
   const data = rawValue.value
-  if (Object.prototype.toString.call(value) === '[object RegExp]')
-    return String(data)
-  if (typeof data === 'object' && data !== null) return
   if (typeof data === 'bigint') return `${String(data)}n`
-  if (data == null || typeof data === 'symbol') return String(data)
+  if (
+    data == null ||
+    typeof data === 'symbol' ||
+    Object.prototype.toString.call(value) === '[object RegExp]'
+  )
+    return String(data)
   if (typeof data === 'function')
     return `function ${(data as Function).name}(...)`
+  if (typeof data === 'object') return
   return JSON.stringify(data)
 })
 const valueColor = useHighlightColor(value)
