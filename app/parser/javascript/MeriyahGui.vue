@@ -5,8 +5,8 @@ const useOption = makeUseOption<Options>()
 </script>
 
 <script setup lang="ts">
-const module = useOption('module')
-const next = useOption('next')
+const sourceType = useOption('sourceType', 'module', true)
+const next = useOption('next', true)
 const webcompat = useOption('webcompat')
 const ranges = useOption('ranges')
 const loc = useOption('loc')
@@ -18,13 +18,18 @@ const token = useOption('token')
 const preserveParens = useOption('preserveParens')
 const jsx = useOption('jsx')
 const lexical = useOption('lexical')
+const validateRegex = useOption('validateRegex', true)
 </script>
 
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
-      <input v-model="module" type="checkbox" switch />
-      <span>module</span>
+      <span>sourceType</span>
+      <select v-model="sourceType" w-full>
+        <option value="module">module</option>
+        <option value="commonjs">commonjs</option>
+        <option value="script">script</option>
+      </select>
     </label>
     <label>
       <input v-model="next" type="checkbox" switch />
@@ -73,6 +78,10 @@ const lexical = useOption('lexical')
     <label>
       <input v-model="lexical" type="checkbox" switch />
       <span>lexical</span>
+    </label>
+    <label>
+      <input v-model="validateRegex" type="checkbox" switch />
+      <span>validateRegex</span>
     </label>
   </div>
 </template>
