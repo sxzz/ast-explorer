@@ -19,7 +19,8 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
   options: {
     configurable: true,
     defaultValue: {
-      module: true,
+      sourceType: "module",
+      next: true,
       ranges: true,
       raw: true,
     },
