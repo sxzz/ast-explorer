@@ -11,7 +11,6 @@ const webcompat = useOption('webcompat')
 const ranges = useOption('ranges')
 const loc = useOption('loc')
 const raw = useOption('raw')
-const globalReturn = useOption('globalReturn')
 const impliedStrict = useOption('impliedStrict')
 const comment = useOption('comment')
 const token = useOption('token')
@@ -50,10 +49,6 @@ const validateRegex = useOption('validateRegex', true)
     <label>
       <input v-model="raw" type="checkbox" switch />
       <span>raw</span>
-    </label>
-    <label>
-      <input v-model="globalReturn" type="checkbox" switch />
-      <span>globalReturn</span>
     </label>
     <label>
       <input v-model="impliedStrict" type="checkbox" switch />
