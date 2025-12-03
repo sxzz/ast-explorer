@@ -1,10 +1,13 @@
 {
   "name": "ast-explorer",
+  "type": "module",
   "version": "0.35.2",
   "private": true,
   "packageManager": "pnpm@10.24.0",
-  "type": "module",
   "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -90,9 +93,6 @@
     "vue-tsc": "catalog:",
     "yaml": "catalog:parser",
     "yaml-eslint-parser": "catalog:parser"
-  },
-  "engines": {
-    "node": ">=20.19.0"
   },
   "prettier": "@sxzz/prettier-config"
 }
