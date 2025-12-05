@@ -79,7 +79,7 @@ const angularHtmlParser: Parser<
   label: 'angular-html-parser (Angular)',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-angular',
-  link: 'https://github.com/prettier/angular-html-parser/',
+  link: 'https://github.com/prettier/angular-html-parser',
   editorLanguage: 'html',
   options: {
     configurable: false,
