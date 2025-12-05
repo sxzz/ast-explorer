@@ -1,6 +1,7 @@
 import { angularTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as AngularCompiler from '@angular/compiler'
+import type * as AngularHtmlParser from 'angular-html-parser'
 
 const getTplNodeLocation = genGetNodeLocation('angularCompilerTmpl')
 const getAstNodeLocation = genGetNodeLocation('angularCompilerAst')
@@ -63,9 +64,39 @@ function getCompilerKeys(compiler: typeof AngularCompiler) {
   return keys
 }
 
+const angularHtmlParserOptionsForAngular: AngularHtmlParser.ParseOptions = {
+  canSelfClose: true,
+  allowHtmComponentClosingTags: false,
+  isTagNameCaseSensitive: false,
+  tokenizeAngularBlocks: true,
+  tokenizeAngularLetDeclaration: true,
+}
+const angularHtmlParser: Parser<
+  typeof AngularHtmlParser,
+  AngularHtmlParser.ParseOptions
+> = {
+  id: 'angular-html-parser/angular',
+  label: 'angular-html-parser (Angular)',
+  // @unocss-include
+  icon: 'i-vscode-icons:file-type-angular',
+  link: 'https://github.com/prettier/angular-html-parser',
+  editorLanguage: 'html',
+  options: {
+    configurable: false,
+    defaultValue: {},
+    editorLanguage: 'json',
+  },
+  pkgName: 'angular-html-parser',
+  parse(code) {
+    return this.parse(code, angularHtmlParserOptionsForAngular)
+  },
+  getNodeLocation: genGetNodeLocation('angularHtmlParser'),
+  hideKeys: ['file', 'tokens'],
+}
+
 export const angular: LanguageOption = {
   label: 'Angular',
   icon: 'i-vscode-icons:file-type-angular',
-  parsers: [angularCompiler],
+  parsers: [angularCompiler, angularHtmlParser],
   codeTemplate: angularTemplate,
 }
