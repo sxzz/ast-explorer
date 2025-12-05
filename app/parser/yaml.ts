@@ -66,7 +66,7 @@ const yamlUnistParser: Parser<
   parse(code, options) {
     return this.parse(code, options)
   },
-  getNodeLocation: genGetNodeLocation('range'),
+  getNodeLocation: genGetNodeLocation('positionOffset'),
   hideKeys: ['parent'],
 }
 
