@@ -116,7 +116,6 @@ const angularHtmlParser: Parser<typeof AngularHtmlParser> = {
     editorLanguage: 'javascript',
   },
   pkgName: 'angular-html-parser',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
   parse(code) {
     return this.parse(code)
   },
