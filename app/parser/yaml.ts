@@ -62,7 +62,6 @@ const yamlUnistParser: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'yaml-unist-parser',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
   parse(code, options) {
     return this.parse(code, options)
   },
