@@ -1,5 +1,5 @@
 overrides:
-  '@nuxt/vite-builder': 'npm:@nuxt/vite-builder-nightly'
+  '@nuxt/vite-builder': npm:@nuxt/vite-builder-nightly
   vite: 'catalog:'
 
 catalog:
@@ -56,6 +56,7 @@ catalogs:
     '@vue/compiler-sfc': ^3.5.25
     acorn: ^8.15.0
     acorn-loose: ^8.5.2
+    angular-html-parser: ^10.1.1
     esprima-next: ^6.0.3
     flow-parser: ^0.292.0
     graphql: ^16.12.0
