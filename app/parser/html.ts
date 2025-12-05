@@ -1,6 +1,7 @@
 import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as HtmlEslintParser from '@html-eslint/parser'
+import type * as AngularHtmlParser from 'angular-html-parser'
 import type * as Htmlparser2 from 'htmlparser2'
 import type * as Rehype from 'rehype'
 import type * as Ultrahtml from 'ultrahtml'
@@ -103,9 +104,35 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
   hideKeys: ['parent'],
 }
 
+const angularHtmlParser: Parser<typeof AngularHtmlParser> = {
+  id: 'angular-html-parser',
+  label: 'angular-html-parser',
+  icon: 'i-vscode-icons:file-type-html',
+  link: 'https://github.com/prettier/angular-html-parser/',
+  editorLanguage: 'html',
+  options: {
+    configurable: false,
+    defaultValue: '{}',
+    editorLanguage: 'javascript',
+  },
+  pkgName: 'angular-html-parser',
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg),
+  parse(code) {
+    return this.parse(code)
+  },
+  getNodeLocation: genGetNodeLocation('angularHtmlParser'),
+  hideKeys: ['file'],
+}
+
 export const html: LanguageOption = {
   label: 'HTML',
   icon: 'i-vscode-icons:file-type-html',
-  parsers: [htmlparser2, rehypeAst, htmlEslintParser, ultrahtmlParser],
+  parsers: [
+    htmlparser2,
+    rehypeAst,
+    htmlEslintParser,
+    ultrahtmlParser,
+    angularHtmlParser,
+  ],
   codeTemplate: htmlTemplate,
 }

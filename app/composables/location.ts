@@ -68,6 +68,11 @@ const nodeLocationFields = {
     start: ['loc', 'start'],
     end: ['loc', 'end'],
   },
+  angularHtmlParser: {
+    type: ['kind'],
+    start: ['sourceSpan', 'start', 'offset'],
+    end: ['sourceSpan', 'end', 'offset'],
+  },
 } as const
 
 export const locationKeyList = [
