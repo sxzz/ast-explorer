@@ -220,6 +220,9 @@ catalogs:
     yaml-eslint-parser:
       specifier: ^1.3.1
       version: 1.3.1
+    yaml-unist-parser:
+      specifier: ^3.1.0
+      version: 3.1.0
 
 overrides:
   '@nuxt/vite-builder': npm:@nuxt/vite-builder-nightly
@@ -446,6 +449,9 @@ importers:
       yaml-eslint-parser:
         specifier: catalog:parser
         version: 1.3.1
+      yaml-unist-parser:
+        specifier: catalog:parser
+        version: 3.1.0
 
 packages:
 
@@ -6035,6 +6041,10 @@ packages:
   yaml-eslint-parser@1.3.1:
     resolution: {integrity: sha512-MdSgP9YA9QjtAO2+lt4O7V2bnH22LPnfeVLiQqjY3cOyn8dy/Ief8otjIe6SPPTK03nM7O3Yl0LTfWuF7l+9yw==}
     engines: {node: ^14.17.0 || >=16.0.0}
+
+  yaml-unist-parser@3.1.0:
+    resolution: {integrity: sha512-hkwsdPLFBV6Vs40Mw5A11gzN9f9AiN8g72D8fXxfqnrW/AYY8/d7Yphx780UMzREcH7aRuHYAyQj9AwrI4E4xg==}
+    engines: {node: '>= 14'}
 
   yaml@2.8.2:
     resolution: {integrity: sha512-mplynKqc1C2hTVYxd0PU2xQAc22TI1vShAYGksCCfxbn/dFwnHTNi1bvYsBTkhdUNtGIf5xNOg938rrSSYvS9A==}
@@ -12374,6 +12384,10 @@ snapshots:
   yaml-eslint-parser@1.3.1:
     dependencies:
       eslint-visitor-keys: 3.4.3
+      yaml: 2.8.2
+
+  yaml-unist-parser@3.1.0:
+    dependencies:
       yaml: 2.8.2
 
   yaml@2.8.2: {}
