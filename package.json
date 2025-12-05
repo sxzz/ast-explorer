@@ -92,7 +92,8 @@
     "vite": "catalog:",
     "vue-tsc": "catalog:",
     "yaml": "catalog:parser",
-    "yaml-eslint-parser": "catalog:parser"
+    "yaml-eslint-parser": "catalog:parser",
+    "yaml-unist-parser": "catalog:parser"
   },
   "prettier": "@sxzz/prettier-config"
 }
