@@ -104,23 +104,31 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
   hideKeys: ['parent'],
 }
 
-const angularHtmlParser: Parser<typeof AngularHtmlParser> = {
-  id: 'angular-html-parser',
-  label: 'angular-html-parser',
+const angularHtmlParserOptionsForHtml: AngularHtmlParser.ParseOptions = {
+  canSelfClose: true,
+  allowHtmComponentClosingTags: true,
+  isTagNameCaseSensitive: false,
+}
+const angularHtmlParser: Parser<
+  typeof AngularHtmlParser,
+  AngularHtmlParser.ParseOptions
+> = {
+  id: 'angular-html-parser/html',
+  label: 'angular-html-parser (HTML)',
   icon: 'i-vscode-icons:file-type-html',
   link: 'https://github.com/prettier/angular-html-parser/',
   editorLanguage: 'html',
   options: {
     configurable: false,
-    defaultValue: '{}',
+    defaultValue: {},
     editorLanguage: 'javascript',
   },
   pkgName: 'angular-html-parser',
   parse(code) {
-    return this.parse(code)
+    return this.parse(code, angularHtmlParserOptionsForHtml)
   },
   getNodeLocation: genGetNodeLocation('angularHtmlParser'),
-  hideKeys: ['file'],
+  hideKeys: ['file', 'i18n', 'tokens'],
 }
 
 export const html: LanguageOption = {
