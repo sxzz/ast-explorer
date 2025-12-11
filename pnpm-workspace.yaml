@@ -5,7 +5,7 @@ overrides:
 catalog:
   '@iconify-json/ri': ^1.2.6
   '@iconify-json/vscode-icons': ^1.2.37
-  '@nuxt/kit': ^4.2.1
+  '@nuxt/kit': ^4.2.2
   '@nuxtjs/plausible': 2.0.1
   '@shikijs/monaco': ^3.19.0
   '@sxzz/eslint-config': ^7.4.1
@@ -23,10 +23,10 @@ catalog:
   floating-vue: ^5.2.2
   json5: ^2.2.3
   monaco-editor: ^0.55.1
-  nuxt: ^4.2.1
+  nuxt: ^4.2.2
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.7.4
-  rolldown: ^1.0.0-beta.53
+  rolldown: ^1.0.0-beta.54
   serve: ^14.2.5
   shiki: ^3.19.0
   simple-git: ^3.30.0
@@ -40,7 +40,7 @@ catalog:
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.0.3
+    '@angular/compiler': ^21.0.4
     '@astrojs/compiler': ^2.13.0
     '@babel/parser': ^7.28.5
     '@html-eslint/parser': ^0.50.0
