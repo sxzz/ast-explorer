@@ -45,6 +45,7 @@ catalogs:
     '@babel/parser': ^7.28.5
     '@html-eslint/parser': ^0.50.0
     '@humanwhocodes/momoa': ^3.3.10
+    '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
     '@swc/wasm-web': ^1.15.3
     '@types/css-tree': ^2.3.11

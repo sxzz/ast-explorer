@@ -39,6 +39,7 @@
     "@humanwhocodes/momoa": "catalog:parser",
     "@iconify-json/ri": "catalog:",
     "@iconify-json/vscode-icons": "catalog:",
+    "@joekav/go-fast": "catalog:parser",
     "@nuxt/kit": "catalog:",
     "@nuxtjs/plausible": "catalog:",
     "@solidity-parser/parser": "catalog:parser",

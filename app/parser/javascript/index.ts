@@ -5,6 +5,7 @@ import { babel } from './babel'
 import { espree, tsEslint } from './eslint'
 import { esprimaNext } from './esprima-next'
 import { flow } from './flow'
+import { gofast } from './gofast'
 import { hermes } from './hermes'
 import { meriyah } from './meriyah'
 import { ohosTypescript } from './ohos-typescript'
@@ -20,6 +21,7 @@ export const javascript: LanguageOption = {
     babel,
     oxc,
     swc,
+    gofast,
     acorn,
     acornLoose,
     typescript,
