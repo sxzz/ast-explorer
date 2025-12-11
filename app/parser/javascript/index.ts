@@ -21,7 +21,6 @@ export const javascript: LanguageOption = {
     babel,
     oxc,
     swc,
-    gofast,
     acorn,
     acornLoose,
     typescript,
@@ -32,6 +31,7 @@ export const javascript: LanguageOption = {
     hermes,
     meriyah,
     ohosTypescript,
+    gofast,
   ],
   codeTemplate: javascriptTemplate,
 }
