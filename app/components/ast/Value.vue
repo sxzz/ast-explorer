@@ -14,7 +14,7 @@ const emit = defineEmits<{
 
 const rawValue = computed(() => {
   const { onValue } = currentParser.value
-  return onValue ? onValue(props.data) : props.data
+  return onValue ? onValue.call(parserModule.value, props.data) : props.data
 })
 
 const hasChildren = computed(
