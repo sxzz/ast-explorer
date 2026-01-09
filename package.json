@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@angular/compiler": "catalog:parser",
+    "@astral-sh/ruff-wasm-web": "catalog:",
     "@astrojs/compiler": "catalog:parser",
     "@babel/parser": "catalog:parser",
     "@html-eslint/parser": "catalog:parser",
@@ -79,6 +80,7 @@
     "php-parser": "catalog:parser",
     "postcss": "catalog:parser",
     "prettier": "catalog:",
+    "pyodide": "catalog:parser",
     "rehype": "catalog:parser",
     "remark": "catalog:parser",
     "rolldown": "catalog:",

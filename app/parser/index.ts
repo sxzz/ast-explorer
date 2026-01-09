@@ -36,6 +36,7 @@ export type MonacoLanguage =
   | 'astro'
   | 'graphql'
   | 'java'
+  | 'python'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -105,6 +106,7 @@ export const LANGUAGES = {
   sql,
   php,
   java,
+  python,
   solidity,
   wxml,
   graphql,

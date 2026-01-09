@@ -2,6 +2,7 @@ overrides:
   vite: ^8.0.0-beta.6
 
 catalog:
+  '@astral-sh/ruff-wasm-web': ^0.14.11
   '@iconify-json/ri': ^1.2.7
   '@iconify-json/vscode-icons': ^1.2.37
   '@nuxt/kit': ^4.2.2
@@ -71,6 +72,7 @@ catalogs:
     oxc-parser: ^0.107.0
     php-parser: ^3.2.5
     postcss: ^8.5.6
+    pyodide: ^0.29.1
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.38.1

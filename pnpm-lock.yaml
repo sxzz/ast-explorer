@@ -202,6 +202,9 @@ catalogs:
     postcss:
       specifier: ^8.5.6
       version: 8.5.6
+    pyodide:
+      specifier: ^0.29.1
+      version: 0.29.1
     rehype:
       specifier: ^13.0.2
       version: 13.0.2
@@ -268,6 +271,9 @@ importers:
       '@angular/compiler':
         specifier: catalog:parser
         version: 21.0.6
+      '@astral-sh/ruff-wasm-web':
+        specifier: ^0.14.11
+        version: 0.14.11
       '@astrojs/compiler':
         specifier: catalog:parser
         version: 2.13.0
@@ -406,6 +412,9 @@ importers:
       prettier:
         specifier: 'catalog:'
         version: 3.7.4
+      pyodide:
+        specifier: catalog:parser
+        version: 0.29.1
       rehype:
         specifier: catalog:parser
         version: 13.0.2
@@ -466,6 +475,9 @@ packages:
 
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
+
+  '@astral-sh/ruff-wasm-web@0.14.11':
+    resolution: {integrity: sha512-o3V0qBzkyyL4/IP0BYjwGJpnV8LdsYxCtb2OXCIlk5NqgVO0T82IccgOiLCCSgE0QuUvKD/eNYF6eHofQfvt4A==}
 
   '@astrojs/compiler@2.13.0':
     resolution: {integrity: sha512-mqVORhUJViA28fwHYaWmsXSzLO9osbdZ5ImUfxBarqsYdMlPbqAqGJCxsNzvppp1BEzc1mJNjOVvQqeDN8Vspw==}
@@ -2223,6 +2235,9 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/emscripten@1.41.5':
+    resolution: {integrity: sha512-cMQm7pxu6BxtHyqJ7mQZ2kXWV5SLmugybFdHCBbJ5eHzOo6VhBckEgAT3//rP5FwPHNPeEiq4SmQ5ucBwsOo4Q==}
 
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -5067,6 +5082,10 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
+  pyodide@0.29.1:
+    resolution: {integrity: sha512-mpk9jtkiM7Ugh1r9P9dbR8vKrmf0lED32hBZq+Fn1kkkBiUoOjSsJEWcyprugICpiFpIXpUOf80ZrvFXkQMk2g==}
+    engines: {node: '>=18.0.0'}
+
   quansync@0.2.11:
     resolution: {integrity: sha512-AifT7QEbW9Nri4tAwR5M/uzpBuqfZf+zwaEM/QkzEjj7NBuFD2rBuy0K3dE+8wltbezDV7JMA0WfnCPYRSYbXA==}
 
@@ -6096,6 +6115,8 @@ snapshots:
     dependencies:
       package-manager-detector: 1.6.0
       tinyexec: 1.0.2
+
+  '@astral-sh/ruff-wasm-web@0.14.11': {}
 
   '@astrojs/compiler@2.13.0': {}
 
@@ -7696,6 +7717,8 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 2.1.0
+
+  '@types/emscripten@1.41.5': {}
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -11210,6 +11233,14 @@ snapshots:
   protocols@2.0.2: {}
 
   punycode@2.3.1: {}
+
+  pyodide@0.29.1:
+    dependencies:
+      '@types/emscripten': 1.41.5
+      ws: 8.19.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   quansync@0.2.11: {}
 

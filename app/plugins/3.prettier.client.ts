@@ -17,6 +17,7 @@ export default defineNuxtPlugin(async () => {
         'markdown',
         'yaml',
         'php',
+        'python',
       ] satisfies MonacoLanguage[]
     ).map((language) => ({ language, exclusive: true })),
     {
@@ -24,6 +25,10 @@ export default defineNuxtPlugin(async () => {
       async provideDocumentFormattingEdits(model, options) {
         const language = model.getLanguageId()
         const text = model.getValue()
+        if (language === 'python') {
+          const formatted = await formatWithRuff(text)
+          return [{ range: model.getFullModelRange(), text: formatted }]
+        }
 
         let pluginIds: string[] | undefined
         let parser: BuiltInParserName | 'php'
@@ -102,4 +107,18 @@ function loadPrettierPlugins(plugins: string[]): Promise<Plugin[]> {
       resolveDefault(importJsdelivr(`prettier`, `/plugins/${plugin}.mjs`)),
     ),
   )
+}
+
+async function formatWithRuff(code: string) {
+  const {
+    default: init,
+    Workspace,
+    PositionEncoding,
+  } = await importJsdelivr<typeof import('@astral-sh/ruff-wasm-web')>(
+    '@astral-sh/ruff-wasm-web',
+  )
+  await init()
+
+  const workspace = new Workspace({}, PositionEncoding.Utf16)
+  return workspace.format(code)
 }
