@@ -1,5 +1,4 @@
 import { javascriptTemplate } from '../template'
-import type { LanguageOption } from '..'
 import { acorn, acornLoose } from './acorn'
 import { babel } from './babel'
 import { espree, tsEslint } from './eslint'
@@ -12,6 +11,7 @@ import { ohosTypescript } from './ohos-typescript'
 import { oxc } from './oxc'
 import { swc } from './swc'
 import { typescript } from './typescript'
+import type { LanguageOption } from '..'
 
 export const javascript: LanguageOption = {
   label: 'JavaScript',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { showAstTreeStyles } from '#imports'
 import json5 from 'json5'
+import { showAstTreeStyles } from '#imports'
 
 const raw = ref(JSON.stringify(astTreeStyles.value, null, 2))
 

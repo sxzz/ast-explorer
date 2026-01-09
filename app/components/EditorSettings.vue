@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { showEditorSettings } from '#imports'
 import json5 from 'json5'
+import { showEditorSettings } from '#imports'
 
 const raw = ref(JSON.stringify(editorSettings.value, null, 2))
 

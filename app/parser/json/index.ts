@@ -1,9 +1,9 @@
 import { jsonTemplate } from '../template'
-import type { LanguageOption } from '..'
 import { jsonToAst } from './json-to-ast'
 import { jsoncEslintParser } from './jsonc-eslint-parser'
 import { momoa } from './momoa'
 import { typescript } from './typescript'
+import type { LanguageOption } from '..'
 
 export const json: LanguageOption = {
   label: 'JSON',

@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import ansiRegex from 'ansi-regex'
+import { ast, error, loading } from '~/state/parser/module'
 import {
   autoFocus,
   hideEmptyKeys,
   hideLocationData,
   outputView,
 } from '#imports'
-import ansiRegex from 'ansi-regex'
-import { ast, error, loading } from '~/state/parser/module'
 
 const hideKeysValue = ref(hideKeys.value.join(', '))
 watchEffect(() => {
