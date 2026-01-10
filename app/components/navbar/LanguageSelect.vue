@@ -8,7 +8,12 @@ function changeLanguage(language: Language) {
 </script>
 
 <template>
-  <VMenu :class="{ dark: isDark }" placement="bottom-start" :delay="0">
+  <VMenu
+    :class="{ dark: isDark }"
+    :triggers="['hover', 'click']"
+    placement="bottom-start"
+    :delay="0"
+  >
     <button flex="~ center" gap1>
       <div :class="currentLanguage.icon" />
       {{ currentLanguage.label }}
