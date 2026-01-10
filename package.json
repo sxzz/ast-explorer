@@ -80,6 +80,7 @@
     "php-parser": "catalog:parser",
     "postcss": "catalog:parser",
     "prettier": "catalog:",
+    "protobufjs": "catalog:parser",
     "pyodide": "catalog:parser",
     "rehype": "catalog:parser",
     "remark": "catalog:parser",
