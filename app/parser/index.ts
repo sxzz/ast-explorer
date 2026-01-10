@@ -9,6 +9,7 @@ import { javascript } from './javascript'
 import { json } from './json'
 import { markdown } from './markdown'
 import { php } from './php'
+import { protobuf } from './protobuf'
 import { rust } from './rust'
 import { solidity } from './solidity'
 import { sql } from './sql'
@@ -37,6 +38,7 @@ export type MonacoLanguage =
   | 'graphql'
   | 'java'
   | 'python'
+  | 'protobuf'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -110,6 +112,7 @@ export const LANGUAGES = {
   solidity,
   wxml,
   graphql,
+  protobuf,
   custom,
 }
 export type Language = keyof typeof LANGUAGES
