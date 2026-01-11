@@ -2,7 +2,15 @@ import { pythonTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Pyodide from 'pyodide'
 
-const pyodide: Parser<Pyodide.PyodideAPI> = {
+interface Options {
+  filename?: string
+  mode?: string
+  type_comments?: boolean
+  feature_version?: number
+  optimize?: number
+}
+
+const pyodide: Parser<Pyodide.PyodideAPI, Options> = {
   id: 'pyodide',
   label: 'pyodide',
   // @unocss-include
@@ -11,7 +19,9 @@ const pyodide: Parser<Pyodide.PyodideAPI> = {
   editorLanguage: 'python',
   options: {
     configurable: false,
-    defaultValue: {},
+    defaultValue: {
+      type_comments: true,
+    },
     editorLanguage: 'json',
   },
   pkgName: 'pyodide',
@@ -43,18 +53,21 @@ def ast_to_dict(node):
   else:
     return node
 
-def parse_code(code):
-  dict = ast_to_dict(ast.parse(code))
+def parse_code(code, options):
+  dict = ast_to_dict(ast.parse(code, **options))
   return json.dumps(dict)
 `)
 
     return pyodide
   },
 
-  async parse(code) {
-    const result = await this.runPythonAsync(
-      `parse_code(${JSON.stringify(code)})`,
-    )
+  async parse(code, options) {
+    const result = await this.runPythonAsync(`parse_code(code, options)`, {
+      locals: this.toPy({
+        code,
+        options: this.toPy(options),
+      }),
+    })
     return JSON.parse(result)
   },
 }
