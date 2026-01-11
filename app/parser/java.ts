@@ -19,6 +19,7 @@ const javaParser: Parser<typeof JavaParser> = {
     return this.parse(code)
   },
   hideKeys: ['tokenType'],
+  getNodeLocation: genGetNodeLocation('java'),
 }
 
 export const java: LanguageOption = {

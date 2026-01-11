@@ -73,6 +73,11 @@ const nodeLocationFields = {
     start: ['sourceSpan', 'start', 'offset'],
     end: ['sourceSpan', 'end', 'offset'],
   },
+  java: {
+    type: ['name'],
+    start: ['location', 'startOffset'],
+    end: ['location', 'endOffset'],
+  },
 } as const
 
 export const locationKeyList = [
