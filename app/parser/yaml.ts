@@ -23,7 +23,7 @@ const yamlParser: Parser<
     const documents = this.parseAllDocuments(code, { ...options })
     return 'empty' in documents && documents.empty
       ? { ...documents }
-      : documents
+      : documents.map((doc) => ({ ...doc }))
   },
   getNodeLocation: genGetNodeLocation('range'),
 }
