@@ -86,6 +86,7 @@ catalogs:
 allowBuilds:
   '@parcel/watcher': false
   esbuild: false
+  protobufjs: false
 
 trustPolicy: no-downgrade
 trustPolicyExclude:

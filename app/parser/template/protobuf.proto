@@ -1,10 +1,13 @@
 syntax = "proto3";
+package tutorial;
 
-package example;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/protocolbuffers/protobuf/examples/go/tutorialpb";
 
 message Person {
   string name = 1;
-  int32 id = 2;
+  int32 id = 2;  // Unique ID number for this person.
   string email = 3;
 
   enum PhoneType {
@@ -19,8 +22,11 @@ message Person {
   }
 
   repeated PhoneNumber phones = 4;
+
+  google.protobuf.Timestamp last_updated = 5;
 }
 
-service AddressBook {
-  rpc GetPerson(Person) returns (Person);
+// Our address book file is just one of these.
+message AddressBook {
+  repeated Person people = 1;
 }

@@ -2,15 +2,10 @@ import { protobufTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Protobuf from 'protobufjs'
 
-// @unocss-include
-
-interface ProtobufOptions {
-  keepCase?: boolean
-}
-
-const protobufjs: Parser<typeof Protobuf, ProtobufOptions> = {
+const protobufjs: Parser<typeof Protobuf, Protobuf.IParseOptions> = {
   id: 'protobufjs',
   label: 'protobufjs',
+  // @unocss-include
   icon: 'i-vscode-icons:file-type-protobuf',
   link: 'https://github.com/protobufjs/protobuf.js',
   editorLanguage: 'protobuf',
