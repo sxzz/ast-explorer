@@ -4,7 +4,7 @@ overrides:
 catalog:
   '@astral-sh/ruff-wasm-web': ^0.14.11
   '@iconify-json/ri': ^1.2.7
-  '@iconify-json/vscode-icons': ^1.2.37
+  '@iconify-json/vscode-icons': ^1.2.38
   '@nuxt/kit': ^4.2.2
   '@nuxtjs/plausible': 2.0.1
   '@shikijs/monaco': ^3.21.0
@@ -26,7 +26,7 @@ catalog:
   nuxt: ^4.2.2
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.7.4
-  rolldown: ^1.0.0-beta.58
+  rolldown: ^1.0.0-beta.59
   serve: ^14.2.5
   shiki: ^3.21.0
   simple-git: ^3.30.0
@@ -40,7 +40,7 @@ catalog:
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.0.6
+    '@angular/compiler': ^21.0.8
     '@astrojs/compiler': ^2.13.0
     '@babel/parser': ^7.28.5
     '@html-eslint/parser': ^0.52.0
@@ -57,9 +57,9 @@ catalogs:
     '@vue/compiler-sfc': ^3.5.26
     acorn: ^8.15.0
     acorn-loose: ^8.5.2
-    angular-html-parser: ^10.2.1
+    angular-html-parser: ^10.3.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.295.0
+    flow-parser: ^0.296.1
     graphql: ^16.12.0
     htmlparser2: ^10.0.0
     java-parser: ^3.0.1
@@ -72,11 +72,11 @@ catalogs:
     oxc-parser: ^0.107.0
     php-parser: ^3.2.5
     postcss: ^8.5.6
-    protobufjs: ^7.5.0
+    protobufjs: ^8.0.0
     pyodide: ^0.29.1
     rehype: ^13.0.2
     remark: ^15.0.1
-    sql-parser-cst: ^0.38.1
+    sql-parser-cst: ^0.38.2
     svelte: ^5.46.1
     ultrahtml: ^1.6.0
     yaml: ^2.8.2
