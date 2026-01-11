@@ -70,6 +70,30 @@ def parse_code(code, options):
     })
     return JSON.parse(result)
   },
+
+  getNodeLocation(node, ast) {
+    if (ast ? node.type !== 'Object' : typeof node !== 'object') return
+
+    const get = ast ? getJsonValue : getValue
+    const type = get(node, ['type'])
+    if (!type) return
+
+    const lineno = get(node, ['lineno'])
+    const col_offset = get(node, ['col_offset'])
+    const end_lineno = get(node, ['end_lineno'])
+    const end_col_offset = get(node, ['end_col_offset'])
+    if (
+      typeof lineno !== 'number' ||
+      typeof col_offset !== 'number' ||
+      typeof end_lineno !== 'number' ||
+      typeof end_col_offset !== 'number'
+    )
+      return
+
+    const start = getOffset(code.value, lineno, col_offset)
+    const end = getOffset(code.value, end_lineno, end_col_offset)
+    return [start, end]
+  },
 }
 
 export const python: LanguageOption = {

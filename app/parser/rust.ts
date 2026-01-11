@@ -26,6 +26,30 @@ const syn: Parser<any, any> = {
   parse(code, options) {
     return this.parseFile(code, { ...options })
   },
+
+  getNodeLocation(node, ast) {
+    if (ast ? node.type !== 'Object' : typeof node !== 'object') return
+
+    const get = ast ? getJsonValue : getValue
+    const type = get(node, ['_type'])
+    if (!type) return
+
+    const startLine = get(node, ['span', 'start', 'line'])
+    const startColumn = get(node, ['span', 'start', 'column'])
+    const endLine = get(node, ['span', 'end', 'line'])
+    const endColumn = get(node, ['span', 'end', 'column'])
+    if (
+      typeof startLine !== 'number' ||
+      typeof startColumn !== 'number' ||
+      typeof endLine !== 'number' ||
+      typeof endColumn !== 'number'
+    )
+      return
+
+    const start = getOffset(code.value, startLine, startColumn)
+    const end = getOffset(code.value, endLine, endColumn)
+    return [start, end]
+  },
 }
 
 // jinx-rust

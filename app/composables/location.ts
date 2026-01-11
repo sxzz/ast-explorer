@@ -145,7 +145,7 @@ export function getLocationMapping(ast: any, parser: Parser) {
   }
 }
 
-function getValue(object: object, path: Readonly<(string | number)[]>) {
+export function getValue(object: object, path: Readonly<(string | number)[]>) {
   let current: any = object
   for (const sub of path) {
     if (!current) return
@@ -154,7 +154,7 @@ function getValue(object: object, path: Readonly<(string | number)[]>) {
   return current
 }
 
-function getJsonValue(
+export function getJsonValue(
   node: jsonToAst.ValueNode,
   path: Readonly<(string | number)[]>,
 ) {
@@ -182,4 +182,24 @@ export function getRange(ast: any) {
 
 export function isRegExp(value: any): boolean {
   return Object.prototype.toString.call(value) === '[object RegExp]'
+}
+
+export function getOffset(text: string, line: number, column: number): number {
+  let currentLine = 1
+  let currentOffset = 0
+
+  while (currentLine < line && currentOffset < text.length) {
+    const char = text[currentOffset]
+    if (char === '\n') {
+      currentLine++
+    } else if (char === '\r') {
+      currentLine++
+      if (text[currentOffset + 1] === '\n') {
+        currentOffset++
+      }
+    }
+    currentOffset++
+  }
+
+  return currentOffset + column
 }
