@@ -2,18 +2,23 @@ import type { Parser } from '..'
 
 // https://github.com/facebook/flow/tree/main/packages/flow-parser#options
 export interface Options {
-  all_comments?: boolean
-  comments?: boolean
-  enums: boolean
-  esproposal_decorators: boolean
-  esproposal_export_star_as: boolean
-  tokens?: boolean
-  types: boolean
+  // Basic options
+  types?: boolean
   use_strict?: boolean
-  // Undocumented
+  comments?: boolean
+  all_comments?: boolean
+  tokens?: boolean
+
+  // Language features
+  enums: boolean
+  match: boolean
   components: boolean
-  // Undocumented
+  assert_operator: boolean
+  esproposal_decorators: boolean
+  // Undocumented, it seems the correct one for `match` option
   pattern_matching: boolean
+  // Undocumented
+  records: boolean
 }
 
 export const flow: Parser<any, Options> = {
@@ -25,12 +30,14 @@ export const flow: Parser<any, Options> = {
   options: {
     configurable: true,
     defaultValue: {
-      enums: true,
-      esproposal_decorators: true,
-      esproposal_export_star_as: true,
       types: true,
+      enums: true,
+      match: true,
       components: true,
+      assert_operator: true,
+      esproposal_decorators: true,
       pattern_matching: true,
+      records: true,
     },
     editorLanguage: 'json',
   },
