@@ -52,6 +52,9 @@ const valueHint = computed(() => {
 
 // Use `Object.keys()` for array, so that extra properties on array can display
 // Not using `Array#keys()` on array, so the holes can be skipped
+// Eg:
+// - `NodeArray` in typescript https://github.com/sxzz/ast-explorer/pull/225
+// - Empty docs in yaml https://github.com/sxzz/ast-explorer/pull/216
 const rawValueKeys = computed(() => Object.keys(rawValue.value))
 
 const { copy, copied } = useClipboard()
