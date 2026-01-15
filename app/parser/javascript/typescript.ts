@@ -38,9 +38,6 @@ export const typescript: Parser<
     }
   },
   nodeTitle(value) {
-    if (isNodeArray(this, value)) {
-      return 'NodeArray'
-    }
     const kind: Typescript.SyntaxKind | undefined = value?.kind
     if (kind == null) return
     return getSyntaxKind(this, kind)
@@ -57,12 +54,6 @@ export const typescript: Parser<
       case 'scriptKind':
         return `ScriptKind.${this.ScriptKind[value]}`
     }
-  },
-  onValue(value) {
-    if (isNodeArray(this, value)) {
-      return { ...value }
-    }
-    return value
   },
   hideKeys: ['parent'],
   gui: () => import('./TypescriptGui.vue'),
@@ -92,12 +83,4 @@ function getNodeFlags(ts: typeof Typescript, flags: Typescript.NodeFlags) {
     (key) => flags & (ts.NodeFlags as any)[key],
   )
   return flagNames.map((name) => `NodeFlags.${name}`).join(' | ')
-}
-
-function isNodeArray(
-  ts: typeof Typescript,
-  value: unknown,
-): value is Typescript.NodeArray<any> {
-  // @ts-expect-error -- ts.isNodeArray is not defined
-  return value && Array.isArray(value) && ts.isNodeArray(value)
 }

@@ -20,10 +20,7 @@ const yamlParser: Parser<
   },
   pkgName: 'yaml',
   parse(code, options) {
-    const documents = this.parseAllDocuments(code, { ...options })
-    return 'empty' in documents && documents.empty
-      ? { ...documents }
-      : documents.map((doc) => ({ ...doc }))
+    return this.parseAllDocuments(code, { ...options })
   },
   getNodeLocation: genGetNodeLocation('range'),
 }
