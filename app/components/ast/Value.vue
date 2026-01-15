@@ -50,6 +50,13 @@ const valueHint = computed(() => {
   return valueHint.call(parserModule.value, props.id, rawValue.value)
 })
 
+// Use `Object.keys()` for array, so that extra properties on array can display
+// Not using `Array#keys()` on array, so the holes can be skipped
+// Eg:
+// - `NodeArray` in typescript https://github.com/sxzz/ast-explorer/pull/225
+// - Empty docs in yaml https://github.com/sxzz/ast-explorer/pull/216
+const rawValueKeys = computed(() => Object.keys(rawValue.value))
+
 const { copy, copied } = useClipboard()
 function copyHint() {
   valueHint.value && copy(valueHint.value)
@@ -66,12 +73,12 @@ watchEffect(() => {
   <template v-if="!isLiteral">
     <AstBrackets :data="rawValue" open>
       <div v-if="hasChildren" ml6>
-        <template v-for="(item, key) of rawValue" :key="key">
+        <template v-for="key of rawValueKeys" :key="key">
           <AstProperty
             v-if="!shouldHideKey(key)"
             :id="key"
             :ref="properties.set"
-            :value="item"
+            :value="rawValue[key]"
           />
         </template>
       </div>
