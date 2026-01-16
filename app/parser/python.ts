@@ -99,6 +99,6 @@ def parse_code(code, options):
 export const python: LanguageOption = {
   label: 'Python',
   icon: 'i-vscode-icons:file-type-python',
-  parsers: [pyodide],
+  parsers: [pyodide, treeSitterPython],
   codeTemplate: pythonTemplate,
 }

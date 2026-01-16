@@ -89,6 +89,6 @@ const jinxRust: Parser<typeof JinxRust, JinxRust.rs.ParserOptions> = {
 export const rust: LanguageOption = {
   label: 'Rust',
   icon: 'i-vscode-icons:file-type-rust',
-  parsers: [syn, jinxRust],
+  parsers: [syn, jinxRust, treeSitterRust],
   codeTemplate: rustTemplate,
 }

@@ -1,12 +1,11 @@
 import json5 from 'json5'
 import type { LanguageOption, Parser } from './index'
 
-// @unocss-include
-
-const customParser: Parser = {
-  id: 'custom-parser',
-  label: 'custom',
-  icon: 'i-ri:magic-fill',
+const jsonAst: Parser = {
+  id: 'json-ast',
+  label: 'JSON AST',
+  // @unocss-include
+  icon: 'i-ri:braces-line',
   editorLanguage: 'json',
   options: {
     configurable: false,
@@ -20,15 +19,14 @@ const customParser: Parser = {
   },
 }
 
-export const custom: LanguageOption = {
-  label: 'JSON AST',
-  icon: 'i-ri:magic-line',
-  parsers: [customParser],
+export const general: LanguageOption = {
+  label: 'General',
+  icon: 'i-ri:code-line',
+  parsers: [jsonAst, treeSitter],
   codeTemplate: JSON.stringify(
     {
       type: 'Program',
-      body: [],
-      sourceType: 'module',
+      body: [{ type: 'ExpressionStatement' }],
     },
     undefined,
     2,

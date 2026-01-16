@@ -2,7 +2,7 @@ import { angular } from './angular'
 import { astro } from './astro'
 import { csharp } from './csharp'
 import { css } from './css'
-import { custom } from './custom'
+import { general } from './general'
 import { graphql } from './graphql'
 import { html } from './html'
 import { java } from './java'
@@ -116,6 +116,6 @@ export const LANGUAGES = {
   wxml,
   graphql,
   protobuf,
-  custom,
+  general,
 }
 export type Language = keyof typeof LANGUAGES
