@@ -28,6 +28,7 @@ export async function buildTsEslintParser(
     input: [ENTRY],
     write: false,
     platform: 'browser',
+    tsconfig: false,
     resolve: {
       /// keep-sorted
       alias: {
@@ -43,7 +44,7 @@ export async function buildTsEslintParser(
         resolveId(id) {
           if (id === ENTRY) return id
         },
-        load: (id) => {
+        load(id) {
           if (id === ENTRY)
             return `export { parse, version } from '@typescript-eslint/parser'`
         },
