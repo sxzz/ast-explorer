@@ -78,6 +78,11 @@ const nodeLocationFields = {
     start: ['location', 'startOffset'],
     end: ['location', 'endOffset'],
   },
+  treeSitter: {
+    type: ['type'],
+    start: ['startIndex'],
+    end: ['endIndex'],
+  },
 } as const
 
 export const locationKeyList = [

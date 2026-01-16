@@ -1,6 +1,7 @@
 import { createHighlighterCoreSync, createJavaScriptRegexEngine } from 'shiki'
 import langAngularHtml from 'shiki/langs/angular-html.mjs'
 import langAstro from 'shiki/langs/astro.mjs'
+import langCsharp from 'shiki/langs/csharp.mjs'
 import langCss from 'shiki/langs/css.mjs'
 import langGraphql from 'shiki/langs/graphql.mjs'
 import langHtml from 'shiki/langs/html.mjs'
@@ -24,6 +25,7 @@ import vitesseLight from 'shiki/themes/vitesse-light.mjs'
 export const shikiLangs = [
   langAngularHtml,
   langAstro,
+  langCsharp,
   langCss,
   langGraphql,
   langHtml,
