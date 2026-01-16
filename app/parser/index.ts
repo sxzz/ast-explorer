@@ -1,5 +1,6 @@
 import { angular } from './angular'
 import { astro } from './astro'
+import { csharp } from './csharp'
 import { css } from './css'
 import { custom } from './custom'
 import { graphql } from './graphql'
@@ -39,6 +40,7 @@ export type MonacoLanguage =
   | 'java'
   | 'python'
   | 'protobuf'
+  | 'csharp'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -109,6 +111,7 @@ export const LANGUAGES = {
   php,
   java,
   python,
+  csharp,
   solidity,
   wxml,
   graphql,

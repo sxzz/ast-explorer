@@ -96,6 +96,7 @@
     "unplugin-replace": "catalog:",
     "vite": "catalog:",
     "vue-tsc": "catalog:",
+    "web-tree-sitter": "catalog:parser",
     "yaml": "catalog:parser",
     "yaml-eslint-parser": "catalog:parser",
     "yaml-unist-parser": "catalog:parser"

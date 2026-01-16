@@ -226,6 +226,9 @@ catalogs:
     ultrahtml:
       specifier: ^1.6.0
       version: 1.6.0
+    web-tree-sitter:
+      specifier: ^0.26.3
+      version: 0.26.3
     yaml:
       specifier: ^2.8.2
       version: 2.8.2
@@ -466,6 +469,9 @@ importers:
       vue-tsc:
         specifier: 'catalog:'
         version: 3.2.2(typescript@5.9.3)
+      web-tree-sitter:
+        specifier: catalog:parser
+        version: 0.26.3
       yaml:
         specifier: catalog:parser
         version: 2.8.2
@@ -5890,6 +5896,9 @@ packages:
 
   web-namespaces@2.0.1:
     resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
+
+  web-tree-sitter@0.26.3:
+    resolution: {integrity: sha512-JIVgIKFS1w6lejxSntCtsS/QsE/ecTS00en809cMxMPxaor6MvUnQ+ovG8uTTTvQCFosSh4MeDdI5bSGw5SoBw==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -12112,6 +12121,8 @@ snapshots:
       graceful-fs: 4.2.11
 
   web-namespaces@2.0.1: {}
+
+  web-tree-sitter@0.26.3: {}
 
   webidl-conversions@3.0.1: {}
 

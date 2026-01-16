@@ -69,6 +69,8 @@ Feel free to add more languages and parsers via PR!
 - [Solidity](https://soliditylang.org/)
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
+- C#
+  - [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp) (via [web-tree-sitter](https://github.com/tree-sitter/tree-sitter))
 
 ## URL Encode Algorithm
 
