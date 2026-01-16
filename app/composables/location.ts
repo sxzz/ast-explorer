@@ -94,6 +94,10 @@ export const locationKeyList = [
   'range',
   'position',
   'pos',
+  'startIndex',
+  'endIndex',
+  'startPosition',
+  'endPosition',
 ]
 
 export function genGetNodeLocation(
