@@ -38,6 +38,8 @@ Feel free to add more languages and parsers via PR!
   - [Flow](https://github.com/facebook/flow/tree/main/packages/flow-parser)
   - [Hermes](https://github.com/facebook/hermes)
   - [meriyah](https://github.com/meriyah/meriyah)
+  - [ohos-typescript](https://gitcode.com/openharmony/third_party_typescript)
+  - [go-fAST](https://github.com/t14raptor/go-fast)
 - [Vue](https://vuejs.org/)
 - [Svelte](https://svelte.dev/)
 - [Astro](https://astro.build/)
@@ -51,26 +53,41 @@ Feel free to add more languages and parsers via PR!
   - [rehype](https://github.com/rehypejs/rehype)
   - [@html-eslint/parser](https://github.com/yeonjuan/html-eslint)
   - [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
+  - [angular-html-parser](https://github.com/prettier/angular-html-parser)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
   - [moma](https://www.npmjs.com/package/@humanwhocodes/momoa)
   - [jsonc-eslint-parser](https://www.npmjs.com/package/jsonc-eslint-parser)
-- [WXML](https://github.com/wxmlfile/wxml-parser)
+  - [TypeScript](https://www.typescriptlang.org/)
 - Markdown
   - [remark](https://github.com/remarkjs/remark)
 - YAML
   - [yaml](https://eemeli.org/yaml/)
   - [yaml-eslint-parser](https://www.npmjs.com/package/yaml-eslint-parser)
+  - [yaml-unist-parser](https://github.com/prettier/yaml-unist-parser)
 - Rust
   - [astexplorer-syn](https://www.npmjs.com/package/astexplorer-syn)
   - [jinx-rust](https://www.npmjs.com/package/jinx-rust)
-- PHP
-  - [php-parser](https://www.npmjs.com/package/php-parser)
-- [Solidity](https://soliditylang.org/)
+  - [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
+- PHP
+  - [php-parser](https://www.npmjs.com/package/php-parser)
+- Java
+  - [java-parser](https://github.com/jhipster/prettier-java/tree/main/packages/java-parser)
+- Python
+  - [pyodide](https://pyodide.org/)
 - C#
-  - [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp) (via [web-tree-sitter](https://github.com/tree-sitter/tree-sitter))
+  - [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp)
+- [Solidity](https://soliditylang.org/)
+  - [@solidity-parser/parser](https://github.com/solidity-parser/parser)
+- [WXML](https://github.com/wxmlfile/wxml-parser)
+- [GraphQL](https://graphql.org/)
+  - [graphql](https://www.graphql-js.org/docs/)
+- [Protocol Buffers](https://protobuf.dev/)
+  - [protobufjs](https://github.com/protobufjs/protobuf.js)
+
+More parsers via [web-tree-sitter](https://github.com/tree-sitter/tree-sitter), see [tree-sitter parsers](https://github.com/tree-sitter/tree-sitter/wiki/List-of-parsers).
 
 ## URL Encode Algorithm
 

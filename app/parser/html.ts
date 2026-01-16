@@ -116,7 +116,7 @@ const angularHtmlParser: Parser<
   id: 'angular-html-parser/html',
   label: 'angular-html-parser (HTML)',
   icon: 'i-vscode-icons:file-type-html',
-  link: 'https://github.com/prettier/angular-html-parser/',
+  link: 'https://github.com/prettier/angular-html-parser',
   editorLanguage: 'html',
   options: {
     configurable: false,

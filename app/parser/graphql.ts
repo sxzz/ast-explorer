@@ -8,7 +8,7 @@ const graphqlParser: Parser<typeof GraphQL, GraphQL.ParseOptions> = {
   id: 'graphql',
   label: 'graphql',
   icon: 'i-vscode-icons:file-type-graphql',
-  link: 'https://graphql.org/graphql-js/',
+  link: 'https://www.graphql-js.org/docs/',
   editorLanguage: 'graphql',
   options: {
     configurable: true,
