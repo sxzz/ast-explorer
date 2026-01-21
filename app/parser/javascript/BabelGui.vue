@@ -308,6 +308,33 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       </div>
     </details>
 
+    <details>
+      <summary cursor-pointer>deprecated...</summary>
+      <div flex="~ col gap2 wrap" ml3 mt1 text-xs>
+        <label>
+          <input v-model="deprecatedImportAssert" type="checkbox" switch />
+          <span>deprecatedImportAssert</span>
+        </label>
+
+        <label>
+          <input v-model="importReflection" type="checkbox" switch />
+          <span>importReflection</span>
+        </label>
+
+        <label>
+          <!-- Stage 1 -->
+          <input v-model="decimal" type="checkbox" switch />
+          <span>decimal</span>
+        </label>
+
+        <label>
+          <!-- Withdrawn -->
+          <input v-model="recordAndTuple" type="checkbox" switch />
+          <span>recordAndTuple</span>
+        </label>
+      </div>
+    </details>
+
     <label>
       <input v-model="errorRecovery" type="checkbox" switch />
       <span>errorRecovery</span>
@@ -363,11 +390,6 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
     <h3 border-t pt1 text-center font-bold>ES Modules</h3>
 
     <label>
-      <input v-model="deprecatedImportAssert" type="checkbox" switch />
-      <span>deprecatedImportAssert</span>
-    </label>
-
-    <label>
       <!-- Stage 3 -->
       <input v-model="sourcePhaseImports" type="checkbox" switch />
       <span>sourcePhaseImports</span>
@@ -389,14 +411,6 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <!-- Stage 1 -->
       <input v-model="exportDefaultFrom" type="checkbox" switch />
       <span>exportDefaultFrom</span>
-    </label>
-
-    <label>
-      <input v-model="importReflection" type="checkbox" switch />
-      <span>
-        <span line-through>importReflection</span>
-        (deprecated)
-      </span>
     </label>
 
     <h3 border-t pt1 text-center font-bold>Functions</h3>
@@ -488,15 +502,6 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="recordAndTuple" type="checkbox" switch />
-      <span>
-        <span line-through>recordAndTuple</span>
-        (withdrawn)
-      </span>
-    </label>
-
-    <label>
-      <!-- Stage 2 -->
       <input v-model="throwExpressions" type="checkbox" switch />
       <span>throwExpressions</span>
     </label>
@@ -511,15 +516,6 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <!-- Stage 1 -->
       <input v-model="optionalChainingAssign" type="checkbox" switch />
       <span>optionalChainingAssign</span>
-    </label>
-
-    <label>
-      <!-- Stage 1 -->
-      <input v-model="decimal" type="checkbox" switch />
-      <span>
-        <span line-through>decimal</span>
-        (deprecated)
-      </span>
     </label>
   </div>
 </template>
