@@ -204,6 +204,13 @@ const [, optionalChainingAssign] = usePluginWithOptions(
   },
 )
 
+const [, partialApplication] = usePluginWithOptions('partialApplication', {
+  // @ts-expect-error Babel 8 feature
+  defaultOptions: {
+    version: '2018-07',
+  },
+})
+
 const [pipelineOperator, pipelineOperatorEnable, triggerPipelineOperator] =
   usePluginWithOptions('pipelineOperator', {
     defaultOptions: {
@@ -224,7 +231,6 @@ const functionSent = usePlugin('functionSent')
 const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
 const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
-const partialApplication = usePlugin('partialApplication')
 const recordAndTuple = usePlugin('recordAndTuple')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
 const throwExpressions = usePlugin('throwExpressions')
