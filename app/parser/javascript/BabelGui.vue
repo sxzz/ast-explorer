@@ -204,14 +204,12 @@ const [, optionalChainingAssign] = usePluginWithOptions(
   },
 )
 
-const [, partialApplication] = usePluginWithOptions(
-  'partialApplication',
-  {
-    defaultOptions: {
-      version: '2018-07',
-    },
+const [, partialApplication] = usePluginWithOptions('partialApplication', {
+  // @ts-expect-error Babel 8 feature
+  defaultOptions: {
+    version: '2018-07',
   },
-)
+})
 
 const [pipelineOperator, pipelineOperatorEnable, triggerPipelineOperator] =
   usePluginWithOptions('pipelineOperator', {
