@@ -49,7 +49,7 @@ catalogs:
     '@solidity-parser/parser': ^0.20.2
     '@swc/wasm-web': ^1.15.11
     '@types/css-tree': ^2.3.11
-    '@types/espree': ^10.1.0
+    '@types/espree': ^11.1.0
     '@types/json-to-ast': ^2.1.4
     '@typescript-eslint/parser': ^8.56.0
     '@vue-vapor/compiler-vapor': latest
