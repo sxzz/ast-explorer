@@ -2,13 +2,13 @@ overrides:
   vite: ^8.0.0-beta.6
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.1
+  '@astral-sh/ruff-wasm-web': ^0.15.2
   '@iconify-json/ri': ^1.2.10
-  '@iconify-json/vscode-icons': ^1.2.42
+  '@iconify-json/vscode-icons': ^1.2.43
   '@nuxt/kit': ^4.3.1
-  '@nuxtjs/plausible': ^3.0.0
+  '@nuxtjs/plausible': ^3.0.1
   '@shikijs/monaco': ^3.22.0
-  '@sxzz/eslint-config': ^7.7.2
+  '@sxzz/eslint-config': ^7.8.0
   '@sxzz/prettier-config': ^2.3.1
   '@unocss/eslint-plugin': ^66.6.0
   '@unocss/nuxt': ^66.6.0
@@ -26,24 +26,24 @@ catalog:
   nuxt: ^4.3.1
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.8.1
-  rolldown: ^1.0.0-rc.4
+  rolldown: ^1.0.0-rc.5
   serve: ^14.2.5
   shiki: ^3.22.0
-  simple-git: ^3.31.1
+  simple-git: ^3.32.2
   typescript: ~5.9.3
   unenv: ^2.0.0-rc.24
   unocss: ^66.6.0
   unplugin-replace: ^0.6.3
-  vite: ^8.0.0-beta.14
+  vite: ^8.0.0-beta.15
   vue: ^3.5.28
-  vue-tsc: ^3.2.4
+  vue-tsc: ^3.2.5
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.1.4
+    '@angular/compiler': ^21.1.5
     '@astrojs/compiler': ^2.13.1
     '@babel/parser': ^7.29.0
-    '@html-eslint/parser': ^0.55.0
+    '@html-eslint/parser': ^0.56.0
     '@humanwhocodes/momoa': ^3.3.10
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
@@ -51,15 +51,15 @@ catalogs:
     '@types/css-tree': ^2.3.11
     '@types/espree': ^10.1.0
     '@types/json-to-ast': ^2.1.4
-    '@typescript-eslint/parser': ^8.55.0
+    '@typescript-eslint/parser': ^8.56.0
     '@vue-vapor/compiler-vapor': latest
     '@vue/compiler-dom': ^3.5.28
     '@vue/compiler-sfc': ^3.5.28
-    acorn: ^8.15.0
+    acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.4.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.301.0
+    flow-parser: ^0.302.0
     graphql: ^16.12.0
     htmlparser2: ^10.1.0
     java-parser: ^3.0.1
@@ -69,15 +69,15 @@ catalogs:
     lightningcss-wasm: ^1.31.1
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.112.0
-    php-parser: ^3.2.5
+    oxc-parser: ^0.114.0
+    php-parser: ^3.4.0
     postcss: ^8.5.6
     protobufjs: ^8.0.0
     pyodide: ^0.29.3
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.38.2
-    svelte: ^5.51.2
+    svelte: ^5.53.2
     ultrahtml: ^1.6.0
     web-tree-sitter: ^0.26.5
     yaml: ^2.8.2
