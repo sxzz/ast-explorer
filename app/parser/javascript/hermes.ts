@@ -1,6 +1,6 @@
 import type { Parser } from '..'
 
-// https://www.npmjs.com/package/hermes-parser#API
+// https://npmx.dev/package/hermes-parser#user-content-api
 export type Options = {
   babel: boolean
   allowReturnOutsideFunction: boolean

@@ -50,7 +50,7 @@ function editVersion() {
           :href="
             isUrlVersion
               ? overrideVersion
-              : `https://www.npmjs.com/package/${currentParser.pkgName}`
+              : `https://npmx.dev/package/${currentParser.pkgName}`
           "
           target="_blank"
         >

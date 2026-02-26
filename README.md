@@ -56,23 +56,23 @@ Feel free to add more languages and parsers via PR!
   - [angular-html-parser](https://github.com/prettier/angular-html-parser)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
-  - [moma](https://www.npmjs.com/package/@humanwhocodes/momoa)
-  - [jsonc-eslint-parser](https://www.npmjs.com/package/jsonc-eslint-parser)
+  - [moma](https://npmx.dev/package/@humanwhocodes/momoa)
+  - [jsonc-eslint-parser](https://npmx.dev/package/jsonc-eslint-parser)
   - [TypeScript](https://www.typescriptlang.org/)
 - Markdown
   - [remark](https://github.com/remarkjs/remark)
 - YAML
   - [yaml](https://eemeli.org/yaml/)
-  - [yaml-eslint-parser](https://www.npmjs.com/package/yaml-eslint-parser)
+  - [yaml-eslint-parser](https://npmx.dev/package/yaml-eslint-parser)
   - [yaml-unist-parser](https://github.com/prettier/yaml-unist-parser)
 - Rust
-  - [astexplorer-syn](https://www.npmjs.com/package/astexplorer-syn)
-  - [jinx-rust](https://www.npmjs.com/package/jinx-rust)
+  - [astexplorer-syn](https://npmx.dev/package/astexplorer-syn)
+  - [jinx-rust](https://npmx.dev/package/jinx-rust)
   - [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
 - SQL
   - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
 - PHP
-  - [php-parser](https://www.npmjs.com/package/php-parser)
+  - [php-parser](https://npmx.dev/package/php-parser)
 - Java
   - [java-parser](https://github.com/jhipster/prettier-java/tree/main/packages/java-parser)
 - Python
