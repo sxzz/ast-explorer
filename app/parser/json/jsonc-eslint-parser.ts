@@ -1,5 +1,5 @@
 import type { Parser } from '../index'
-import type JsoncEslintParser from 'jsonc-eslint-parser'
+import type * as JsoncEslintParser from 'jsonc-eslint-parser'
 
 // @unocss-include
 

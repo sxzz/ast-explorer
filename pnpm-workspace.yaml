@@ -1,24 +1,24 @@
 overrides:
-  vite: ^8.0.0-beta.6
+  vite: ^8.0.0-beta.15
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.2
+  '@astral-sh/ruff-wasm-web': ^0.15.3
   '@iconify-json/ri': ^1.2.10
-  '@iconify-json/vscode-icons': ^1.2.43
+  '@iconify-json/vscode-icons': ^1.2.44
   '@nuxt/kit': ^4.3.1
-  '@nuxtjs/plausible': ^3.0.1
-  '@shikijs/monaco': ^3.22.0
-  '@sxzz/eslint-config': ^7.8.0
+  '@nuxtjs/plausible': ^3.0.2
+  '@shikijs/monaco': ^3.23.0
+  '@sxzz/eslint-config': ^7.8.1
   '@sxzz/prettier-config': ^2.3.1
-  '@unocss/eslint-plugin': ^66.6.0
-  '@unocss/nuxt': ^66.6.0
+  '@unocss/eslint-plugin': ^66.6.2
+  '@unocss/nuxt': ^66.6.2
   '@vueuse/core': ^14.2.1
   '@vueuse/nuxt': ^14.2.1
   ansi-regex: ^6.2.2
   bumpp: ^10.4.1
   consola: ^3.4.2
   esbuild: ^0.27.3
-  eslint: ^9.39.2
+  eslint: ^10.0.2
   fflate: ^0.8.2
   floating-vue: ^5.2.2
   json5: ^2.2.3
@@ -26,50 +26,50 @@ catalog:
   nuxt: ^4.3.1
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.8.1
-  rolldown: ^1.0.0-rc.5
+  rolldown: ^1.0.0-rc.6
   serve: ^14.2.5
-  shiki: ^3.22.0
-  simple-git: ^3.32.2
+  shiki: ^3.23.0
+  simple-git: ^3.32.3
   typescript: ~5.9.3
   unenv: ^2.0.0-rc.24
-  unocss: ^66.6.0
+  unocss: ^66.6.2
   unplugin-replace: ^0.6.3
   vite: ^8.0.0-beta.15
-  vue: ^3.5.28
+  vue: ^3.5.29
   vue-tsc: ^3.2.5
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.1.5
+    '@angular/compiler': ^21.2.0
     '@astrojs/compiler': ^2.13.1
     '@babel/parser': ^7.29.0
-    '@html-eslint/parser': ^0.56.0
+    '@html-eslint/parser': ^0.57.1
     '@humanwhocodes/momoa': ^3.3.10
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
-    '@swc/wasm-web': ^1.15.11
+    '@swc/wasm-web': ^1.15.13
     '@types/css-tree': ^2.3.11
-    '@types/espree': ^10.1.0
     '@types/json-to-ast': ^2.1.4
-    '@typescript-eslint/parser': ^8.56.0
+    '@typescript-eslint/parser': ^8.56.1
     '@vue-vapor/compiler-vapor': latest
-    '@vue/compiler-dom': ^3.5.28
-    '@vue/compiler-sfc': ^3.5.28
+    '@vue/compiler-dom': ^3.5.29
+    '@vue/compiler-sfc': ^3.5.29
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.4.0
+    espree: ^11.1.1
     esprima-next: ^6.0.3
     flow-parser: ^0.302.0
-    graphql: ^16.12.0
+    graphql: ^16.13.0
     htmlparser2: ^10.1.0
     java-parser: ^3.0.1
     jinx-rust: ^0.1.6
     json-to-ast: ^2.1.0
-    jsonc-eslint-parser: ^2.4.2
+    jsonc-eslint-parser: ^3.1.0
     lightningcss-wasm: ^1.31.1
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.114.0
+    oxc-parser: ^0.115.0
     php-parser: ^3.4.0
     postcss: ^8.5.6
     protobufjs: ^8.0.0
@@ -77,9 +77,9 @@ catalogs:
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.38.2
-    svelte: ^5.53.2
+    svelte: ^5.53.5
     ultrahtml: ^1.6.0
-    web-tree-sitter: ^0.26.5
+    web-tree-sitter: ^0.26.6
     yaml: ^2.8.2
     yaml-eslint-parser: ^2.0.0
     yaml-unist-parser: ^3.1.0
