@@ -79,6 +79,7 @@ catalogs:
     sql-parser-cst: ^0.38.2
     svelte: ^5.53.6
     ultrahtml: ^1.6.0
+    unbash: ^2.1.0
     web-tree-sitter: ^0.26.6
     yaml: ^2.8.2
     yaml-eslint-parser: ^2.0.0

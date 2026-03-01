@@ -91,7 +91,7 @@
     "svelte": "catalog:parser",
     "typescript": "catalog:",
     "ultrahtml": "catalog:parser",
-    "unbash": "^2.1.0",
+    "unbash": "catalog:parser",
     "unenv": "catalog:",
     "unocss": "catalog:",
     "unplugin-replace": "catalog:",

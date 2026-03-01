@@ -226,6 +226,9 @@ catalogs:
     ultrahtml:
       specifier: ^1.6.0
       version: 1.6.0
+    unbash:
+      specifier: ^2.1.0
+      version: 2.1.0
     web-tree-sitter:
       specifier: ^0.26.6
       version: 0.26.6
@@ -455,7 +458,7 @@ importers:
         specifier: catalog:parser
         version: 1.6.0
       unbash:
-        specifier: ^2.1.0
+        specifier: catalog:parser
         version: 2.1.0
       unenv:
         specifier: 'catalog:'
