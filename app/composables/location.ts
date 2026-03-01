@@ -83,6 +83,11 @@ const nodeLocationFields = {
     start: ['startIndex'],
     end: ['endIndex'],
   },
+  unbash: {
+    type: ['type'],
+    start: ['pos'],
+    end: ['end'],
+  },
 } as const
 
 export const locationKeyList = [

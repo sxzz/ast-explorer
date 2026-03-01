@@ -41,6 +41,7 @@ export type MonacoLanguage =
   | 'python'
   | 'protobuf'
   | 'csharp'
+  | 'bash'
 
 export interface Parser<C = unknown, O = unknown> {
   id: string
@@ -111,6 +112,7 @@ export const LANGUAGES = {
   php,
   java,
   python,
+  shell,
   csharp,
   solidity,
   wxml,

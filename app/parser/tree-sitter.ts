@@ -88,6 +88,16 @@ export const treeSitterCSharp: Parser<TreeSitter.Parser> = {
   getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-c_sharp.wasm'),
 }
 
+export const treeSitterBash: Parser<TreeSitter.Parser> = {
+  ...shared,
+  id: 'tree-sitter-bash',
+  label: 'tree-sitter-bash',
+  link: 'https://github.com/tree-sitter/tree-sitter-bash',
+  editorLanguage: 'bash',
+  pkgName: 'tree-sitter-bash',
+  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-bash.wasm'),
+}
+
 export const treeSitterPython: Parser<TreeSitter.Parser> = {
   ...shared,
   id: 'tree-sitter-python',

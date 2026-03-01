@@ -454,6 +454,9 @@ importers:
       ultrahtml:
         specifier: catalog:parser
         version: 1.6.0
+      unbash:
+        specifier: ^2.1.0
+        version: 2.1.0
       unenv:
         specifier: 'catalog:'
         version: 2.0.0-rc.24
@@ -5760,6 +5763,10 @@ packages:
 
   ultrahtml@1.6.0:
     resolution: {integrity: sha512-R9fBn90VTJrqqLDwyMph+HGne8eqY1iPfYhPzZrvKpIfwkWZbcYlfpsb8B9dTvBfpy1/hqAD7Wi8EKfP9e8zdw==}
+
+  unbash@2.1.0:
+    resolution: {integrity: sha512-k8YrgRxCrhKMbnGaNeIzfcVmsAwhGmR1Bki1CWmoMz+0VQhOMbsfG2hOwle7yIPD0AfcPiLOlLZJ3TgRJ7uDRw==}
+    engines: {node: '>=14'}
 
   unconfig-core@7.5.0:
     resolution: {integrity: sha512-Su3FauozOGP44ZmKdHy2oE6LPjk51M/TRRjHv2HNCWiDvfvCoxC2lno6jevMA91MYAdCdwP05QnWdWpSbncX/w==}
@@ -12108,6 +12115,8 @@ snapshots:
   ufo@1.6.3: {}
 
   ultrahtml@1.6.0: {}
+
+  unbash@2.1.0: {}
 
   unconfig-core@7.5.0:
     dependencies:
