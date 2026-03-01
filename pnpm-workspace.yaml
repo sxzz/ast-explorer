@@ -2,13 +2,13 @@ overrides:
   vite: ^8.0.0-beta.15
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.3
+  '@astral-sh/ruff-wasm-web': ^0.15.4
   '@iconify-json/ri': ^1.2.10
   '@iconify-json/vscode-icons': ^1.2.44
   '@nuxt/kit': ^4.3.1
   '@nuxtjs/plausible': ^3.0.2
-  '@shikijs/monaco': ^3.23.0
-  '@sxzz/eslint-config': ^7.8.1
+  '@shikijs/monaco': ^4.0.0
+  '@sxzz/eslint-config': ^7.8.2
   '@sxzz/prettier-config': ^2.3.1
   '@unocss/eslint-plugin': ^66.6.2
   '@unocss/nuxt': ^66.6.2
@@ -28,7 +28,7 @@ catalog:
   prettier: ^3.8.1
   rolldown: ^1.0.0-rc.6
   serve: ^14.2.5
-  shiki: ^3.23.0
+  shiki: ^4.0.0
   simple-git: ^3.32.3
   typescript: ~5.9.3
   unenv: ^2.0.0-rc.24
@@ -47,7 +47,7 @@ catalogs:
     '@humanwhocodes/momoa': ^3.3.10
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
-    '@swc/wasm-web': ^1.15.13
+    '@swc/wasm-web': ^1.15.18
     '@types/css-tree': ^2.3.11
     '@types/json-to-ast': ^2.1.4
     '@typescript-eslint/parser': ^8.56.1
@@ -59,7 +59,7 @@ catalogs:
     angular-html-parser: ^10.4.0
     espree: ^11.1.1
     esprima-next: ^6.0.3
-    flow-parser: ^0.302.0
+    flow-parser: ^0.303.0
     graphql: ^16.13.0
     htmlparser2: ^10.1.0
     java-parser: ^3.0.1
@@ -77,7 +77,7 @@ catalogs:
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.38.2
-    svelte: ^5.53.5
+    svelte: ^5.53.6
     ultrahtml: ^1.6.0
     web-tree-sitter: ^0.26.6
     yaml: ^2.8.2
