@@ -103,6 +103,11 @@ export const locationKeyList = [
   'endIndex',
   'startPosition',
   'endPosition',
+  // python-specific keys
+  'lineno',
+  'col_offset',
+  'end_lineno',
+  'end_col_offset',
 ]
 
 export function genGetNodeLocation(
