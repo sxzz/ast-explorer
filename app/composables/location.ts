@@ -103,6 +103,7 @@ export const locationKeyList = [
   'endIndex',
   'startPosition',
   'endPosition',
+  // python-specific keys
   'lineno',
   'col_offset',
   'end_lineno',
