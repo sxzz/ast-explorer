@@ -2,23 +2,23 @@ overrides:
   vite: ^8.0.0-beta.15
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.4
+  '@astral-sh/ruff-wasm-web': ^0.15.5
   '@iconify-json/ri': ^1.2.10
   '@iconify-json/vscode-icons': ^1.2.44
   '@nuxt/kit': ^4.3.1
   '@nuxtjs/plausible': ^3.0.2
-  '@shikijs/monaco': ^4.0.0
-  '@sxzz/eslint-config': ^7.8.2
+  '@shikijs/monaco': ^4.0.1
+  '@sxzz/eslint-config': ^7.8.3
   '@sxzz/prettier-config': ^2.3.1
-  '@unocss/eslint-plugin': ^66.6.2
-  '@unocss/nuxt': ^66.6.2
+  '@unocss/eslint-plugin': ^66.6.6
+  '@unocss/nuxt': ^66.6.6
   '@vueuse/core': ^14.2.1
   '@vueuse/nuxt': ^14.2.1
   ansi-regex: ^6.2.2
   bumpp: ^10.4.1
   consola: ^3.4.2
   esbuild: ^0.27.3
-  eslint: ^10.0.2
+  eslint: ^10.0.3
   fflate: ^0.8.2
   floating-vue: ^5.2.2
   json5: ^2.2.3
@@ -26,24 +26,24 @@ catalog:
   nuxt: ^4.3.1
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.8.1
-  rolldown: ^1.0.0-rc.6
-  serve: ^14.2.5
-  shiki: ^4.0.0
+  rolldown: ^1.0.0-rc.7
+  serve: ^14.2.6
+  shiki: ^4.0.1
   simple-git: ^3.32.3
   typescript: ~5.9.3
   unenv: ^2.0.0-rc.24
-  unocss: ^66.6.2
-  unplugin-replace: ^0.6.3
+  unocss: ^66.6.6
+  unplugin-replace: ^0.7.0
   vite: ^8.0.0-beta.15
   vue: ^3.5.29
   vue-tsc: ^3.2.5
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.2.0
-    '@astrojs/compiler': ^2.13.1
+    '@angular/compiler': ^21.2.1
+    '@astrojs/compiler': ^3.0.0
     '@babel/parser': ^7.29.0
-    '@html-eslint/parser': ^0.57.1
+    '@html-eslint/parser': ^0.58.1
     '@humanwhocodes/momoa': ^3.3.10
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
@@ -57,10 +57,10 @@ catalogs:
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.4.0
-    espree: ^11.1.1
+    espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.303.0
-    graphql: ^16.13.0
+    flow-parser: ^0.304.0
+    graphql: ^16.13.1
     htmlparser2: ^10.1.0
     java-parser: ^3.0.1
     jinx-rust: ^0.1.6
@@ -69,17 +69,17 @@ catalogs:
     lightningcss-wasm: ^1.31.1
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.115.0
+    oxc-parser: ^0.116.0
     php-parser: ^3.4.0
-    postcss: ^8.5.6
+    postcss: ^8.5.8
     protobufjs: ^8.0.0
     pyodide: ^0.29.3
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.38.2
-    svelte: ^5.53.6
+    svelte: ^5.53.7
     ultrahtml: ^1.6.0
-    unbash: ^2.1.0
+    unbash: ^2.2.0
     web-tree-sitter: ^0.26.6
     yaml: ^2.8.2
     yaml-eslint-parser: ^2.0.0
