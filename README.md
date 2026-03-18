@@ -56,7 +56,7 @@ Feel free to add more languages and parsers via PR!
   - [angular-html-parser](https://github.com/prettier/angular-html-parser)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
-  - [moma](https://npmx.dev/package/@humanwhocodes/momoa)
+  - [momoa](https://npmx.dev/package/@humanwhocodes/momoa)
   - [jsonc-eslint-parser](https://npmx.dev/package/jsonc-eslint-parser)
   - [TypeScript](https://www.typescriptlang.org/)
 - Markdown
