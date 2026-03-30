@@ -1,7 +1,7 @@
 import { markdownTemplate } from '../template'
 import type { LanguageOption, Parser } from '../index'
-import type * as Remark from 'remark'
 import type * as Comark from 'comark'
+import type * as Remark from 'remark'
 
 export interface RemarkOptions {
   mdx?: boolean
@@ -76,8 +76,7 @@ const comark: Parser<typeof Comark, ComarkOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'comark',
-  async parse(code, options) {
-    console.log(this)
+  parse(code, options) {
     return this.parse(code, options)
   },
   gui: () => import('./ComarkGui.vue'),
