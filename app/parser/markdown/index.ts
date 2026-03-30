@@ -1,6 +1,7 @@
 import { markdownTemplate } from '../template'
 import type { LanguageOption, Parser } from '../index'
 import type * as Remark from 'remark'
+import type * as Comark from 'comark'
 
 export interface RemarkOptions {
   mdx?: boolean
@@ -8,6 +9,12 @@ export interface RemarkOptions {
   directive?: boolean
   gfm?: boolean
   raw?: boolean
+}
+
+export interface ComarkOptions {
+  html?: boolean
+  autoUnwrap?: boolean
+  autoClose?: boolean
 }
 
 // @unocss-include
@@ -53,9 +60,32 @@ const remark: Parser<typeof Remark, RemarkOptions> = {
   gui: () => import('./RemarkGui.vue'),
 }
 
+const comark: Parser<typeof Comark, ComarkOptions> = {
+  id: 'comark',
+  label: 'Comark',
+  icon: 'https://raw.githubusercontent.com/comarkdown/comark/refs/heads/main/docs/public/logo-light.svg',
+  link: 'https://comark.dev',
+  editorLanguage: 'markdown',
+  options: {
+    configurable: true,
+    defaultValue: {
+      html: true,
+      autoUnwrap: true,
+      autoClose: true,
+    },
+    editorLanguage: 'json',
+  },
+  pkgName: 'comark',
+  async parse(code, options) {
+    console.log(this)
+    return this.parse(code, options)
+  },
+  gui: () => import('./ComarkGui.vue'),
+}
+
 export const markdown: LanguageOption = {
   label: 'Markdown',
   icon: 'i-vscode-icons:file-type-markdown',
-  parsers: [remark],
+  parsers: [remark, comark],
   codeTemplate: markdownTemplate,
 }

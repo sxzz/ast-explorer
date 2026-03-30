@@ -61,6 +61,7 @@ Feel free to add more languages and parsers via PR!
   - [TypeScript](https://www.typescriptlang.org/)
 - Markdown
   - [remark](https://github.com/remarkjs/remark)
+  - [comark](https://github.com/comarkdown/comark)
 - YAML
   - [yaml](https://eemeli.org/yaml/)
   - [yaml-eslint-parser](https://npmx.dev/package/yaml-eslint-parser)
