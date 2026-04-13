@@ -69,7 +69,7 @@ catalogs:
     lightningcss-wasm: ^1.32.0
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.124.0
+    oxc-parser: ^0.125.0
     php-parser: ^3.5.1
     postcss: ^8.5.9
     protobufjs: ^8.0.1
