@@ -2,7 +2,7 @@ overrides:
   vite: ^8.0.8
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.9
+  '@astral-sh/ruff-wasm-web': ^0.15.10
   '@iconify-json/ri': ^1.2.10
   '@iconify-json/vscode-icons': ^1.2.45
   '@nuxt/kit': ^4.4.2
@@ -25,11 +25,11 @@ catalog:
   monaco-editor: ^0.55.1
   nuxt: ^4.4.2
   nuxt-monaco-editor: ^1.4.0
-  prettier: ^3.8.1
+  prettier: ^3.8.2
   rolldown: ^1.0.0-rc.15
   serve: ^14.2.6
   shiki: ^4.0.2
-  simple-git: ^3.35.2
+  simple-git: ^3.36.0
   typescript: ~6.0.2
   unenv: ^2.0.0-rc.24
   unocss: ^66.6.8
@@ -56,7 +56,7 @@ catalogs:
     '@vue/compiler-sfc': ^3.5.32
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
-    angular-html-parser: ^10.4.0
+    angular-html-parser: ^10.5.0
     espree: ^11.2.0
     esprima-next: ^6.0.3
     flow-parser: ^0.309.0
@@ -77,7 +77,7 @@ catalogs:
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.39.0
-    svelte: ^5.55.2
+    svelte: ^5.55.3
     ultrahtml: ^1.6.0
     unbash: ^2.2.0
     web-tree-sitter: ^0.26.8
