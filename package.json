@@ -58,6 +58,7 @@
     "acorn-loose": "catalog:parser",
     "angular-html-parser": "catalog:parser",
     "bumpp": "catalog:",
+    "comark": "catalog:parser",
     "consola": "catalog:",
     "esbuild": "catalog:",
     "eslint": "catalog:",

@@ -56,6 +56,7 @@ catalogs:
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.5.0
+    comark: ^0.2.1
     espree: ^11.2.0
     esprima-next: ^6.0.3
     flow-parser: ^0.309.0
