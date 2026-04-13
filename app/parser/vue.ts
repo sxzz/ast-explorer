@@ -6,7 +6,6 @@ import {
 } from '@vue/compiler-dom'
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
-import type * as VueVaporCompiler from '@vue-vapor/compiler-vapor'
 import type * as Vue3Dom from '@vue/compiler-dom'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
 // @unocss-include
@@ -112,39 +111,9 @@ const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.CompilerOptions> = {
   },
 }
 
-const vueVapor: Parser<
-  typeof VueVaporCompiler,
-  VueVaporCompiler.CompilerOptions
-> = {
-  id: 'vue-vapor',
-  label: '@vue-vapor/compiler-vapor',
-  icon: 'i-vscode-icons:file-type-vue',
-  link: 'https://github.com/vuejs/vue-vapor',
-  editorLanguage: 'html',
-  options: {
-    configurable: true,
-    defaultValue: 'return {}',
-    defaultValueType: 'javascript',
-    editorLanguage: 'javascript',
-  },
-  pkgName: '@vue-vapor/compiler-vapor',
-  getModuleUrl: (pkg, version) =>
-    `https://next.esm.sh/pr/vuejs/vue-vapor/@vue/compiler-vapor@${version || 'main'}`,
-  version: async (pkg, version) => {
-    if (version) return version
-    const { url } = await fetch(
-      'https://pkg.pr.new/vuejs/vue-vapor/@vue/compiler-vapor@main',
-    )
-    return url.split('@').pop()!
-  },
-  parse(code, options) {
-    return this.compile(code, { ...options }).ast
-  },
-}
-
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile, vueVapor],
+  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile],
   codeTemplate: vueTemplate,
 }

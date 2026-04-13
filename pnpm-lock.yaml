@@ -142,9 +142,6 @@ catalogs:
     '@typescript-eslint/parser':
       specifier: ^8.58.1
       version: 8.58.1
-    '@vue-vapor/compiler-vapor':
-      specifier: latest
-      version: 3.20240714.0-6608bb3
     '@vue/compiler-dom':
       specifier: ^3.5.32
       version: 3.5.32
@@ -337,9 +334,6 @@ importers:
       '@unocss/nuxt':
         specifier: 'catalog:'
         version: 66.6.8(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(magicast@0.5.2)(vite@8.0.8(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(terser@5.46.1)(yaml@2.8.3))(webpack@5.106.1(esbuild@0.28.0))
-      '@vue-vapor/compiler-vapor':
-        specifier: catalog:parser
-        version: 3.20240714.0-6608bb3
       '@vue/compiler-dom':
         specifier: catalog:parser
         version: 3.5.32
@@ -2810,18 +2804,6 @@ packages:
     peerDependenciesMeta:
       vue:
         optional: true
-
-  '@vue-vapor/compiler-core@3.20240714.0-6608bb3':
-    resolution: {integrity: sha512-Cslp8odqclDHAKe04nodrVLi8vzsnc7Vku9P3HzuK8rBTmMozvguWGUwFEzQ15Pr/Y3zqF6ld9g2Wwzkg2S7pA==}
-
-  '@vue-vapor/compiler-dom@3.20240714.0-6608bb3':
-    resolution: {integrity: sha512-7rbrVpW5bNqyyz2BCO3ewXF4wIZVlxdMVLRa7zVEiMNnfLdZma9Q8Ww4E3svZhWFbPxytrNX4f/Da8jmeYX9Hg==}
-
-  '@vue-vapor/compiler-vapor@3.20240714.0-6608bb3':
-    resolution: {integrity: sha512-/T1yIZhTE6nCeRQ0UAhvglV2drBDV/aLwgSF7npLmW9ljLh/TzDzlX66Pf2IevDsH3S+QgZx5ueAurIwZp2TIA==}
-
-  '@vue-vapor/shared@3.20240714.0-6608bb3':
-    resolution: {integrity: sha512-ZZDvRm/PEcS9lS07h23IcsvsV2E6tYO+K/MP7N84ZJ36ytyaWrYvmgVaW5J8kbdmrvKEGsp9xOw5aYk9aTCLng==}
 
   '@vue/babel-helper-vue-transform-on@2.0.1':
     resolution: {integrity: sha512-uZ66EaFbnnZSYqYEyplWvn46GhZ1KuYSThdT68p+am7MgBNbQ3hphTL9L+xSIsWkdktwhPYLwPgVWqo96jDdRA==}
@@ -8641,27 +8623,6 @@ snapshots:
       unplugin-utils: 0.3.1
     optionalDependencies:
       vue: 3.5.32(typescript@6.0.2)
-
-  '@vue-vapor/compiler-core@3.20240714.0-6608bb3':
-    dependencies:
-      '@babel/parser': 7.29.2
-      '@vue/shared': '@vue-vapor/shared@3.20240714.0-6608bb3'
-      entities: 4.5.0
-      estree-walker: 2.0.2
-      source-map-js: 1.2.1
-
-  '@vue-vapor/compiler-dom@3.20240714.0-6608bb3':
-    dependencies:
-      '@vue/compiler-core': '@vue-vapor/compiler-core@3.20240714.0-6608bb3'
-      '@vue/shared': '@vue-vapor/shared@3.20240714.0-6608bb3'
-
-  '@vue-vapor/compiler-vapor@3.20240714.0-6608bb3':
-    dependencies:
-      '@vue/compiler-dom': '@vue-vapor/compiler-dom@3.20240714.0-6608bb3'
-      '@vue/shared': '@vue-vapor/shared@3.20240714.0-6608bb3'
-      source-map-js: 1.2.1
-
-  '@vue-vapor/shared@3.20240714.0-6608bb3': {}
 
   '@vue/babel-helper-vue-transform-on@2.0.1': {}
 

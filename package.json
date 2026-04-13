@@ -51,7 +51,6 @@
     "@types/json-to-ast": "catalog:parser",
     "@unocss/eslint-plugin": "catalog:",
     "@unocss/nuxt": "catalog:",
-    "@vue-vapor/compiler-vapor": "catalog:parser",
     "@vue/compiler-dom": "catalog:parser",
     "@vue/compiler-sfc": "catalog:parser",
     "@vueuse/nuxt": "catalog:",
