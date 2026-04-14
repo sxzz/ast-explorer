@@ -75,6 +75,7 @@ catalogs:
     protobufjs: ^8.0.1
     pyodide: ^0.29.3
     rehype: ^13.0.2
+    marked: ^18.0.0
     remark: ^15.0.1
     sql-parser-cst: ^0.39.0
     svelte: ^5.55.3
