@@ -35,6 +35,8 @@
     "@angular/compiler": "catalog:parser",
     "@astral-sh/ruff-wasm-web": "catalog:",
     "@astrojs/compiler": "catalog:parser",
+    "@astrojs/compiler-binding": "catalog:parser",
+    "@astrojs/compiler-rs": "catalog:parser",
     "@babel/parser": "catalog:parser",
     "@html-eslint/parser": "catalog:parser",
     "@humanwhocodes/momoa": "catalog:parser",
