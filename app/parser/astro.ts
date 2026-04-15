@@ -1,6 +1,6 @@
 import { astroTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
-import type * as Binding from '@astrojs/compiler-binding'
+import type * as AstroRs from '@astrojs/compiler-binding'
 import type * as Astro from '@astrojs/compiler/types'
 
 // @unocss-include
@@ -29,7 +29,7 @@ const astroCompiler: Parser<typeof Astro, Astro.ParseOptions> = {
   getNodeLocation: genGetNodeLocation('positionOffset'),
 }
 
-const astroCompilerRs: Parser<typeof Binding> = {
+const astroCompilerRs: Parser<typeof AstroRs> = {
   id: 'astro-compiler-rs',
   label: '@astrojs/compiler-rs',
   icon: 'i-vscode-icons:file-type-light-astro',
