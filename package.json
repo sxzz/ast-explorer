@@ -72,6 +72,7 @@
     "jinx-rust": "catalog:parser",
     "jsonc-eslint-parser": "catalog:parser",
     "lightningcss-wasm": "catalog:parser",
+    "marked": "catalog:parser",
     "meriyah": "catalog:parser",
     "nuxt": "catalog:",
     "nuxt-monaco-editor": "catalog:",

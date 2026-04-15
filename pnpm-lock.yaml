@@ -190,6 +190,9 @@ catalogs:
     lightningcss-wasm:
       specifier: ^1.32.0
       version: 1.32.0
+    marked:
+      specifier: ^18.0.0
+      version: 18.0.0
     meriyah:
       specifier: ^7.1.0
       version: 7.1.0
@@ -400,6 +403,9 @@ importers:
       lightningcss-wasm:
         specifier: catalog:parser
         version: 1.32.0
+      marked:
+        specifier: catalog:parser
+        version: 18.0.0
       meriyah:
         specifier: catalog:parser
         version: 7.1.0
@@ -4747,6 +4753,11 @@ packages:
   marked@14.0.0:
     resolution: {integrity: sha512-uIj4+faQ+MgHgwUW1l2PsPglZLOLOT1uErt06dAPtx2kjteLAkbsd/0FiYg/MGS+i7ZKLb7w2WClxHkzOOuryQ==}
     engines: {node: '>= 18'}
+    hasBin: true
+
+  marked@18.0.0:
+    resolution: {integrity: sha512-2e7Qiv/HJSXj8rDEpgTvGKsP8yYtI9xXHKDnrftrmnrJPaFNM7VRb2YCzWaX4BP1iCJ/XPduzDJZMFoqTCcIMA==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   mdast-util-find-and-replace@3.0.2:
@@ -10697,6 +10708,8 @@ snapshots:
   markdown-table@3.0.4: {}
 
   marked@14.0.0: {}
+
+  marked@18.0.0: {}
 
   mdast-util-find-and-replace@3.0.2:
     dependencies:

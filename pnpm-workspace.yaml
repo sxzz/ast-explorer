@@ -67,6 +67,7 @@ catalogs:
     json-to-ast: ^2.1.0
     jsonc-eslint-parser: ^3.1.0
     lightningcss-wasm: ^1.32.0
+    marked: ^18.0.0
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
     oxc-parser: ^0.125.0

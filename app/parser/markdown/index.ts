@@ -1,6 +1,7 @@
 import { markdownTemplate } from '../template'
 import type { LanguageOption, Parser } from '../index'
 import type * as Comark from 'comark'
+import type * as Marked from 'marked'
 import type * as Remark from 'remark'
 
 export interface RemarkOptions {
@@ -15,6 +16,12 @@ export interface ComarkOptions {
   html?: boolean
   autoUnwrap?: boolean
   autoClose?: boolean
+}
+
+export interface MarkedOptions {
+  gfm?: boolean
+  pedantic?: boolean
+  breaks?: boolean
 }
 
 // @unocss-include
@@ -82,9 +89,30 @@ const comark: Parser<typeof Comark, ComarkOptions> = {
   gui: () => import('./ComarkGui.vue'),
 }
 
+const marked: Parser<typeof Marked, MarkedOptions> = {
+  id: 'marked',
+  label: 'marked',
+  icon: 'https://raw.githubusercontent.com/markedjs/marked/refs/heads/master/docs/img/logo-black.svg',
+  link: 'https://github.com/markedjs/marked',
+  editorLanguage: 'markdown',
+  options: {
+    configurable: true,
+    defaultValue: {
+      gfm: true,
+      pedantic: false,
+      breaks: false,
+    },
+    editorLanguage: 'json',
+  },
+  pkgName: 'marked',
+  parse(code, options) {
+    return this.marked.lexer(code, options)
+  },
+}
+
 export const markdown: LanguageOption = {
   label: 'Markdown',
   icon: 'i-vscode-icons:file-type-markdown',
-  parsers: [remark, comark],
+  parsers: [remark, comark, marked],
   codeTemplate: markdownTemplate,
 }
