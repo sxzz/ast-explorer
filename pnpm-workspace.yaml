@@ -42,6 +42,8 @@ catalogs:
   parser:
     '@angular/compiler': ^21.2.8
     '@astrojs/compiler': ^3.0.1
+    '@astrojs/compiler-binding': ^0.1.6
+    '@astrojs/compiler-rs': ^0.1.6
     '@babel/parser': ^7.29.2
     '@html-eslint/parser': ^0.59.0
     '@humanwhocodes/momoa': ^3.3.10
