@@ -1,10 +1,10 @@
 overrides:
-  vite: ^8.0.8
+  vite: ^8.0.10
 
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.11
+  '@astral-sh/ruff-wasm-web': ^0.15.12
   '@iconify-json/ri': ^1.2.10
-  '@iconify-json/vscode-icons': ^1.2.45
+  '@iconify-json/vscode-icons': ^1.2.46
   '@nuxt/kit': ^4.4.2
   '@nuxtjs/plausible': ^3.0.2
   '@shikijs/monaco': ^4.0.2
@@ -26,7 +26,7 @@ catalog:
   nuxt: ^4.4.2
   nuxt-monaco-editor: ^1.4.0
   prettier: ^3.8.3
-  rolldown: ^1.0.0-rc.16
+  rolldown: ^1.0.0-rc.17
   serve: ^14.2.6
   shiki: ^4.0.2
   simple-git: ^3.36.0
@@ -34,16 +34,16 @@ catalog:
   unenv: ^2.0.0-rc.24
   unocss: ^66.6.8
   unplugin-replace: ^0.8.0
-  vite: ^8.0.8
-  vue: ^3.5.32
+  vite: ^8.0.10
+  vue: ^3.5.33
   vue-tsc: ^3.2.7
 
 catalogs:
   parser:
-    '@angular/compiler': ^21.2.9
+    '@angular/compiler': ^21.2.10
     '@astrojs/compiler': ^3.0.1
-    '@astrojs/compiler-binding': ^0.1.7
-    '@astrojs/compiler-rs': ^0.1.7
+    '@astrojs/compiler-binding': ^0.1.10
+    '@astrojs/compiler-rs': ^0.1.10
     '@babel/parser': ^7.29.2
     '@html-eslint/parser': ^0.59.0
     '@humanwhocodes/momoa': ^3.3.10
@@ -52,16 +52,16 @@ catalogs:
     '@swc/wasm-web': ^1.15.30
     '@types/css-tree': ^2.3.11
     '@types/json-to-ast': ^2.1.4
-    '@typescript-eslint/parser': ^8.58.2
-    '@vue/compiler-dom': ^3.5.32
-    '@vue/compiler-sfc': ^3.5.32
+    '@typescript-eslint/parser': ^8.59.0
+    '@vue/compiler-dom': ^3.5.33
+    '@vue/compiler-sfc': ^3.5.33
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.5.0
-    comark: ^0.2.1
+    comark: ^0.3.1
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.309.0
+    flow-parser: ^0.311.0
     graphql: ^16.13.2
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
@@ -72,7 +72,7 @@ catalogs:
     marked: ^18.0.2
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.126.0
+    oxc-parser: ^0.127.0
     php-parser: ^3.5.1
     postcss: ^8.5.10
     protobufjs: ^8.0.1
@@ -80,9 +80,9 @@ catalogs:
     rehype: ^13.0.2
     remark: ^15.0.1
     sql-parser-cst: ^0.39.0
-    svelte: ^5.55.4
+    svelte: ^5.55.5
     ultrahtml: ^1.6.0
-    unbash: ^2.2.0
+    unbash: ^3.0.0
     web-tree-sitter: ^0.26.8
     yaml: ^2.8.3
     yaml-eslint-parser: ^2.0.0
@@ -94,6 +94,4 @@ allowBuilds:
   protobufjs: false
 
 trustPolicy: no-downgrade
-trustPolicyExclude:
-  - chokidar@4.0.3
-  - semver@6.3.1
+trustPolicyIgnoreAfter: 604800 # 7 days
