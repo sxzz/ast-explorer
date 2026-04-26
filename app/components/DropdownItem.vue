@@ -20,7 +20,6 @@ const el = ref<HTMLDivElement>()
     gap2
     px3
     py2
-    text-sm
     :aria-label="text"
   >
     <div flex="~ y-center" gap2>

@@ -13,7 +13,6 @@ function showDialog() {
       w-full
       overflow-auto
       pl4
-      text-sm
       leading-relaxed
       font-mono
       :style="astTreeStyles"

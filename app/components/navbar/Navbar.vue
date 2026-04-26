@@ -43,7 +43,6 @@ function editVersion() {
       <div flex="~ center" gap3>
         <span op70>{{ +parseCost.toFixed(1) }} ms</span>
         <a
-          text-sm
           font-mono
           op80
           hover:underline
