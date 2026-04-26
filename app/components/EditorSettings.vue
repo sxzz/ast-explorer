@@ -21,7 +21,7 @@ watchEffect(() => {
     h-100
     w-200
     title="Editor Settings"
-    docs="https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html"
+    docs="https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor_editor_api.editor.IStandaloneEditorConstructionOptions.html"
   >
     <CodeEditor v-model="raw" language="json" min-h-0 w-full flex-1 />
   </AppDialog>
