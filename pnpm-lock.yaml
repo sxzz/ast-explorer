@@ -227,8 +227,8 @@ catalogs:
       specifier: ^15.0.1
       version: 15.0.1
     sql-parser-cst:
-      specifier: ^0.39.0
-      version: 0.39.0
+      specifier: ^0.40.0
+      version: 0.40.0
     svelte:
       specifier: ^5.55.5
       version: 5.55.5
@@ -465,7 +465,7 @@ importers:
         version: 3.36.0
       sql-parser-cst:
         specifier: catalog:parser
-        version: 0.39.0
+        version: 0.40.0
       svelte:
         specifier: catalog:parser
         version: 5.55.5(@typescript-eslint/types@8.59.0)
@@ -5929,8 +5929,8 @@ packages:
   spdx-license-ids@3.0.23:
     resolution: {integrity: sha512-CWLcCCH7VLu13TgOH+r8p1O/Znwhqv/dbb6lqWy67G+pT1kHmeD/+V36AVb/vq8QMIQwVShJ6Ssl5FPh0fuSdw==}
 
-  sql-parser-cst@0.39.0:
-    resolution: {integrity: sha512-8+OIRwN0f3gRebTBerV4WyRXheQzcZFUP7YAny3T7sfJPt2ETlgge6WVYZgml7JuaebqQxS01ElkkVrq87S9UQ==}
+  sql-parser-cst@0.40.0:
+    resolution: {integrity: sha512-hPC71LUTyJjRbfwDBorqlNBTM2l1hurtIZhSB7/lNn7yXWT8HCjWIgKeqetq8FQ3jo33F7fuYyoRUJBShJdwzA==}
 
   srvx@0.11.15:
     resolution: {integrity: sha512-iXsux0UcOjdvs0LCMa2Ws3WwcDUozA3JN3BquNXkaFPP7TpRqgunKdEgoZ/uwb1J6xaYHfxtz9Twlh6yzwM6Tg==}
@@ -12552,7 +12552,7 @@ snapshots:
 
   spdx-license-ids@3.0.23: {}
 
-  sql-parser-cst@0.39.0: {}
+  sql-parser-cst@0.40.0: {}
 
   srvx@0.11.15: {}
 
