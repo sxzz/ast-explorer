@@ -12,13 +12,13 @@ export const emberEstree: Parser<typeof Espree, Espree.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'ember-estree',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}@latest?bundle&target=esnext`,
+  getModuleUrl: (pkg) => `https://esm.sh/${pkg}@0.6.3?bundle&target=esnext`,
   parse(code, options) {
     const result = this.parse(code, { ...options })
 
     console.log(result)
 
-    return result
+    return result.program
   },
   editorLanguage: 'glimmer-js',
   getNodeLocation,
