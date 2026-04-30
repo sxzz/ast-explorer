@@ -57,7 +57,7 @@ const babel = useOption('babel')
         type="checkbox"
         switch
       />
-      <span>enableExperimentalComponentSyntax</span>
+      <span text-11px>enableExperimentalComponentSyntax</span>
     </label>
 
     <label>
@@ -66,7 +66,7 @@ const babel = useOption('babel')
         type="checkbox"
         switch
       />
-      <span>enableExperimentalFlowMatchSyntax</span>
+      <span text-11px>enableExperimentalFlowMatchSyntax</span>
     </label>
 
     <label>

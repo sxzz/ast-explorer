@@ -79,4 +79,8 @@ import {
 .sidebar-gui summary {
   --at-apply: 'op85';
 }
+
+.sidebar-gui label {
+  flex-wrap: wrap;
+}
 </style>
