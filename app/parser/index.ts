@@ -2,6 +2,7 @@ import { angular } from './angular'
 import { astro } from './astro'
 import { csharp } from './csharp'
 import { css } from './css'
+import { ember } from './ember'
 import { general } from './general'
 import { graphql } from './graphql'
 import { html } from './html'
@@ -101,6 +102,7 @@ export const LANGUAGES = {
   javascript,
   vue,
   svelte,
+  ember,
   astro,
   angular,
   css,

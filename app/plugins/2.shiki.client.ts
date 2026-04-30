@@ -10,6 +10,8 @@ export default defineNuxtPlugin(async () => {
   const monaco: typeof Monaco = await useMonaco()
   monaco.languages.register({ id: 'vue' })
   monaco.languages.register({ id: 'svelte' })
+  monaco.languages.register({ id: 'glimmer-js' })
+  monaco.languages.register({ id: 'glimmer-ts' })
   monaco.languages.register({ id: 'astro' })
   monaco.languages.register({ id: 'solidity' })
   monaco.languages.register({ id: 'protobuf' })

@@ -4,6 +4,8 @@ import langAstro from 'shiki/langs/astro.mjs'
 import langBash from 'shiki/langs/bash.mjs'
 import langCsharp from 'shiki/langs/csharp.mjs'
 import langCss from 'shiki/langs/css.mjs'
+import langGlimmerJS from 'shiki/langs/glimmer-js.mjs'
+import langGlimmerTS from 'shiki/langs/glimmer-ts.mjs'
 import langGraphql from 'shiki/langs/graphql.mjs'
 import langHtml from 'shiki/langs/html.mjs'
 import langJava from 'shiki/langs/java.mjs'
@@ -29,6 +31,8 @@ export const shikiLangs = [
   langBash,
   langCsharp,
   langCss,
+  langGlimmerJS,
+  langGlimmerTS,
   langGraphql,
   langHtml,
   langJava,
