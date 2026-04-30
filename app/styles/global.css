@@ -158,6 +158,74 @@ input[type='checkbox'][switch]:checked::after {
   box-shadow: inset 0 0 0 1px var(--c-accent-tint);
 }
 
+/* Splitpanes — 1px seam at rest, 3px gray on hover, 3px accent while dragging.
+   The splitter has a 7px hit-area but only a thin bar in the center,
+   pulled into the adjacent panes with negative margin so layout doesn't shift. */
+/* Kill the 200ms width/height transition splitpanes ships — after a v-if
+   collapse the remaining pane would animate to its new size, which reads as
+   "still resizing" to the user. */
+.ast-splitpanes > .splitpanes__pane {
+  transition: none;
+}
+.ast-splitpanes.splitpanes--vertical > .splitpanes__splitter {
+  width: 7px;
+  margin: 0 -3px;
+  cursor: col-resize;
+  z-index: 1;
+}
+.ast-splitpanes.splitpanes--horizontal > .splitpanes__splitter {
+  height: 7px;
+  margin: -3px 0;
+  cursor: row-resize;
+  z-index: 1;
+}
+.ast-splitpanes > .splitpanes__splitter {
+  position: relative;
+  background: transparent;
+}
+.ast-splitpanes > .splitpanes__splitter::before {
+  content: '';
+  position: absolute;
+  background: var(--c-border);
+  transition:
+    background 150ms ease-out,
+    width 150ms ease-out,
+    height 150ms ease-out;
+  pointer-events: none;
+}
+.ast-splitpanes.splitpanes--vertical > .splitpanes__splitter::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+.ast-splitpanes.splitpanes--horizontal > .splitpanes__splitter::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+.ast-splitpanes.splitpanes--vertical > .splitpanes__splitter:hover::before {
+  width: 3px;
+  background: var(--c-border-strong);
+}
+.ast-splitpanes.splitpanes--horizontal > .splitpanes__splitter:hover::before {
+  height: 3px;
+  background: var(--c-border-strong);
+}
+.ast-splitpanes.splitpanes--vertical.splitpanes--dragging
+  > .splitpanes__splitter::before {
+  width: 3px;
+  background: var(--c-accent);
+}
+.ast-splitpanes.splitpanes--horizontal.splitpanes--dragging
+  > .splitpanes__splitter::before {
+  height: 3px;
+  background: var(--c-accent);
+}
+
 /* Color Mode transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {

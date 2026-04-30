@@ -13,6 +13,8 @@ export const toggleSidebar = useToggle(showSidebar)
 export const toggleInputEditor = useToggle(showInputEditor)
 export const toggleOutput = useToggle(showOutput)
 
+export const isMobile = useMediaQuery('(max-width: 1023px)')
+
 export const outputView = useLocalStorage<'tree' | 'json'>(
   `${STORAGE_PREFIX}output-view`,
   'tree',

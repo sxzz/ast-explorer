@@ -93,6 +93,9 @@ catalogs:
     simple-git:
       specifier: ^3.36.0
       version: 3.36.0
+    splitpanes:
+      specifier: ^4.0.4
+      version: 4.0.4
     typescript:
       specifier: ~6.0.3
       version: 6.0.3
@@ -288,6 +291,9 @@ importers:
       shiki:
         specifier: 'catalog:'
         version: 4.0.2
+      splitpanes:
+        specifier: 'catalog:'
+        version: 4.0.4(vue@3.5.33(typescript@6.0.3))
       vue:
         specifier: 'catalog:'
         version: 3.5.33(typescript@6.0.3)
@@ -5847,6 +5853,11 @@ packages:
 
   spdx-license-ids@3.0.23:
     resolution: {integrity: sha512-CWLcCCH7VLu13TgOH+r8p1O/Znwhqv/dbb6lqWy67G+pT1kHmeD/+V36AVb/vq8QMIQwVShJ6Ssl5FPh0fuSdw==}
+
+  splitpanes@4.0.4:
+    resolution: {integrity: sha512-RbysugZhjbCw5fgplvk3hOXr41stahQDtZhHVkhnnJI6H4wlGDhM2kIpbehy7v92duy9GnMa8zIhHigIV1TWtg==}
+    peerDependencies:
+      vue: ^3.2.0
 
   sql-parser-cst@0.41.2:
     resolution: {integrity: sha512-xMqwSkdGM9W2Vy7WpjFiDFza+Ud6y2YphqPIZvo9oy2glP4ND4ugmzj7MjyH4S/tUlPkeE3XVMXm1dE82tuT8Q==}
@@ -12521,6 +12532,10 @@ snapshots:
       spdx-license-ids: 3.0.23
 
   spdx-license-ids@3.0.23: {}
+
+  splitpanes@4.0.4(vue@3.5.33(typescript@6.0.3)):
+    dependencies:
+      vue: 3.5.33(typescript@6.0.3)
 
   sql-parser-cst@0.41.2: {}
 

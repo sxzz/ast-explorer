@@ -66,6 +66,7 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
+    'splitpanes/dist/splitpanes.css',
     '~/styles/vars.css',
     '~/styles/global.css',
     '~/styles/dropdown.css',
