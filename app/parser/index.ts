@@ -29,6 +29,8 @@ export type MonacoLanguage =
   | 'html'
   | 'vue'
   | 'svelte'
+  | 'glimmer-js'
+  | 'glimmer-ts'
   | 'css'
   | 'markdown'
   | 'yaml'
