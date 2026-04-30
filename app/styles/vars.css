@@ -1,12 +1,47 @@
 :root {
-  --c-border: #ddd;
-  --c-bg-base: #fff;
-  --c-text-base: #232323;
+  /* Surfaces */
+  --c-bg-base: #f7f4ec;
+  --c-bg-elev: #fbf9f3;
+  --c-bg-sunk: #efeadd;
+
+  /* Ink */
+  --c-text-base: #1a1a17;
+  --c-text-soft: #4a4a45;
+  --c-text-mute: #7a7972;
+
+  /* Lines */
+  --c-border: #e3dccb;
+  --c-border-strong: #cfc6b1;
+
+  /* Botanical accent (echoes the leaf logo) */
+  --c-accent: #2e7d5b;
+  --c-accent-soft: #4ea582;
+  --c-accent-tint: #2e7d5b1a;
+
+  /* Fonts */
+  --f-sans:
+    'Geist', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', sans-serif;
+  --f-mono:
+    'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+
   --un-default-border-color: var(--c-border);
 }
 
 .dark {
-  --c-border: #444;
-  --c-bg-base: #1e1e1e;
-  --c-text-base: #fff;
+  --c-bg-base: #0f1114;
+  --c-bg-elev: #15181c;
+  --c-bg-sunk: #0a0c0e;
+
+  --c-text-base: #ece8dd;
+  --c-text-soft: #b2ada0;
+  --c-text-mute: #75726a;
+
+  --c-border: #25292f;
+  --c-border-strong: #353a42;
+
+  --c-accent: #5fc99a;
+  --c-accent-soft: #4ea582;
+  --c-accent-tint: #5fc99a1f;
 }

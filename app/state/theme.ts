@@ -9,40 +9,33 @@ const isAppearanceTransition =
  * Credit to [@hooray](https://github.com/hooray)
  * @see https://github.com/vuejs/vitepress/pull/2347
  */
-export function toggleDark(event?: MouseEvent) {
+export async function toggleDark(event?: MouseEvent) {
   if (!isAppearanceTransition || !event) {
     isDark.value = !isDark.value
     return
   }
 
-  const x = event.clientX
-  const y = event.clientY
-  const endRadius = Math.hypot(
-    Math.max(x, innerWidth - x),
-    Math.max(y, innerHeight - y),
-  )
+  const { clientX: x, clientY: y } = event
+  const clipPath = [
+    `circle(0px at ${x}px ${y}px)`,
+    `circle(${Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
+  ]
 
-  const transition = document.startViewTransition(async () => {
+  await document.startViewTransition(async () => {
     isDark.value = !isDark.value
     await nextTick()
-  })
+  }).ready
 
-  transition.ready.then(() => {
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`,
-    ]
-    document.documentElement.animate(
-      {
-        clipPath: isDark.value ? clipPath.toReversed() : clipPath,
-      },
-      {
-        duration: 400,
-        easing: 'ease-in',
-        pseudoElement: isDark.value
-          ? '::view-transition-old(root)'
-          : '::view-transition-new(root)',
-      },
-    )
-  })
+  document.documentElement.animate(
+    { clipPath: isDark.value ? clipPath.toReversed() : clipPath },
+    {
+      duration: 300,
+      easing: 'ease-in',
+      fill: 'forwards',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
+  )
 }

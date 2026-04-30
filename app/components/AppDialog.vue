@@ -27,21 +27,29 @@ function closeDialog() {
 <template>
   <dialog
     ref="dialog"
-    flex-col
     gap="0.5"
+    flex-col
     border
     border-base
-    rounded-3xl
+    rounded-xl
+    bg-elev
     shadow-2xl
     open:flex
-    backdrop:bg-gray:40
+    backdrop:bg-black:50
     backdrop:backdrop-blur-md
-    dark-bg="#1E1E1E"
     @click="handleDialogClick"
     @close="closeDialog"
   >
-    <div flex="~ center" relative gap2 border-b py2 font-bold>
-      <span text-lg font-bold>{{ title }}</span>
+    <div flex="~ y-center" relative gap2 border-b border-base px5 py3>
+      <div flex="~ col" leading-none>
+        <span
+          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
+          >Settings</span
+        >
+        <span class="text-lg font-semibold leading-tight tracking-tight">{{
+          title
+        }}</span>
+      </div>
       <a
         v-if="docs"
         title="Reference Documentation"
@@ -51,7 +59,7 @@ function closeDialog() {
       >
         <div i-ri:book-2-line />
       </a>
-      <button absolute right-2 nav-button @click="closeDialog">
+      <button absolute right-3 top-3 nav-button @click="closeDialog">
         <div i-ri:close-line />
       </button>
     </div>

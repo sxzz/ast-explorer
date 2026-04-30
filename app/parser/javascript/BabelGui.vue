@@ -474,7 +474,7 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <!-- Stage 2 -->
     <label>
-      <input v-model="discardBinding" type="checkbox" />
+      <input v-model="discardBinding" type="checkbox" switch />
       <span>discardBinding</span>
     </label>
 

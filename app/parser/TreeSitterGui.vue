@@ -9,12 +9,11 @@ const wasmUrl = useOption('wasmUrl')
 </script>
 
 <template>
-  <div flex="~ col" gap2 text-sm font-mono>
+  <div flex="~ col" gap2 font-mono>
     <label flex flex-col gap1>
       <span>WASM:</span>
       <textarea
         v-model="wasmUrl"
-        text-md
         h-32
         border
         rounded-md

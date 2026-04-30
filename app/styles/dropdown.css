@@ -1,8 +1,11 @@
 .v-popper--theme-dropdown.v-popper__popper {
-  --at-apply: 'bg-transparent backdrop-blur-md rounded-3xl border border-base shadow-2xl';
+  --at-apply: 'rounded-xl border border-strong shadow-xl';
+  background-color: color-mix(in srgb, var(--c-bg-elev) 92%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
 }
 .v-popper--theme-dropdown .v-popper__inner {
-  --at-apply: 'bg-transparent text-base border-none shadow-none';
+  --at-apply: 'bg-transparent text-base border-none shadow-none rounded-xl overflow-hidden';
 }
 .v-popper--theme-dropdown .v-popper__arrow-container {
   display: none;

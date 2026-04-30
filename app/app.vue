@@ -28,6 +28,12 @@ useHeadSafe({
   },
   link: [
     { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg', sizes: 'any' },
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossorigin: 'anonymous',
+    },
   ],
 })
 </script>
@@ -36,22 +42,25 @@ useHeadSafe({
   <ClientOnly>
     <Suspense>
       <main flex="~ col" lg:h-screen>
-        <Navbar border-b />
+        <Navbar border-b border-base />
 
-        <div min-h-0 flex flex-1 flex-col gap2 lg:flex-row>
+        <div min-h-0 flex flex-1 flex-col gap0 lg:flex-row>
           <AppSideBar
             v-show="showSidebar && sideBarAvailable"
             overflow-auto
             border-r
-            lg:w-75
+            border-base
+            bg-elev
+            lg:w-78
             lg:flex-none
           />
 
-          <div min-w-0 flex flex-col gap2 lg:flex-1 lg:flex-row>
+          <div min-w-0 flex flex-col gap0 lg:flex-1 lg:flex-row>
             <InputContainer v-show="showInputEditor" min-w-0 flex-1 py1 />
             <div
               v-show="showInputEditor && showOutput"
               border-t
+              border-base
               lg:border-l
               lg:border-t-none
             />

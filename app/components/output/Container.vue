@@ -19,8 +19,8 @@ watchEffect(() => {
 })
 
 const tabClass =
-  'border rounded-full w-7 h-7 items-center flex justify-center hover:bg-gray hover:bg-opacity-20 hover:border-white/20'
-const tabSelectedClass = 'bg-$c-text-base! text-$c-bg-base'
+  'flex-center flex w-7.5 h-7 items-center justify-center rounded-md text-soft hover:text-base transition-colors'
+const tabSelectedClass = 'bg-$c-bg-base text-base shadow-sm'
 
 const errorString = computed(() => {
   if (!error.value) return ''
@@ -78,22 +78,25 @@ watch(outputView, (view) => {
 </script>
 
 <template>
-  <div flex="~ col" gap1>
-    <div flex="~ y-center wrap" class="output-form" gap2 text-sm>
-      <div flex gap1>
+  <div flex="~ col" gap2>
+    <div flex="~ y-center wrap" class="output-form" gap3 px2 text-sm>
+      <div flex gap0.5 border border-base rounded-lg bg-sunk p0.5>
         <button
           :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
+          title="Tree view"
           @click="toggleView('tree')"
         >
           <div i-ri:node-tree />
         </button>
         <button
           :class="[tabClass, outputView === 'json' && tabSelectedClass]"
+          title="JSON view"
           @click="toggleView('json')"
         >
           <div i-ri:braces-line />
         </button>
       </div>
+      <span class="h-4 w-px bg-$c-border" />
       <label>
         <input
           :checked="autoFocus"
@@ -101,10 +104,11 @@ watch(outputView, (view) => {
           switch
           @click="toggleAutoFocus"
         />
-        Auto focus
+        <span>Auto focus</span>
       </label>
       <label>
-        <input v-model="hideEmptyKeys" type="checkbox" switch /> Hide empty keys
+        <input v-model="hideEmptyKeys" type="checkbox" switch />
+        <span>Hide empty keys</span>
       </label>
       <label>
         <input
@@ -113,15 +117,29 @@ watch(outputView, (view) => {
           switch
           @click="toggleHideLocationData"
         />
-        Hide location data
+        <span>Hide location data</span>
       </label>
     </div>
     <div flex="~ 1" min-h-0 min-w-0>
       <Loading v-if="loading">
         {{ loading === 'module' ? 'Loading parser' : 'Parsing' }}
       </Loading>
-      <div v-else-if="error" overflow-scroll p1 text-sm text-red>
-        <pre v-text="errorString" />
+      <div
+        v-else-if="error"
+        flex
+        flex-col
+        gap2
+        overflow-scroll
+        p3
+        text-sm
+        text-red-600
+        dark:text-red-400
+      >
+        <span
+          class="text-[0.6875rem] font-medium tracking-[0.18em] uppercase !text-red-600 dark:!text-red-400"
+          >Parser error</span
+        >
+        <pre class="font-mono" v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
         <OutputJson
@@ -134,35 +152,34 @@ watch(outputView, (view) => {
         <OutputTree v-else />
       </div>
     </div>
-    <div flex justify-end gap2 px2 pb1 text-sm>
-      <button
-        flex="~ y-center"
-        gap1
-        border
-        rounded
-        px1
-        py0.5
-        hover="bg-gray bg-opacity-20 border-white/20"
-        @click="print"
-      >
-        <div i-ri:printer-line />
-        Print in Console
-      </button>
-
-      <label>
-        Hide keys:
+    <div flex flex-wrap items-center justify-end gap3 px2 pb1 text-sm text-soft>
+      <label flex="~ y-center" gap1.5>
+        <span
+          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
+          >Hide keys</span
+        >
         <input
           v-model="hideKeysValue"
           type="input"
-          placeholder="field1, field2, ..."
+          placeholder="field1, field2, …"
+          w-44
+          text-sm
+          class="font-mono"
         />
       </label>
+      <button pill-button @click="print">
+        <div i-ri:printer-line />
+        Print in console
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
 .output-form label {
-  --at-apply: 'flex flex-y-center gap1';
+  --at-apply: 'flex flex-y-center gap1.5 cursor-pointer text-soft';
+}
+.output-form label:has(input:checked) {
+  --at-apply: 'text-base';
 }
 </style>

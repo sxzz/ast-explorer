@@ -1,5 +1,3 @@
-import themeDark from 'shiki/themes/dark-plus.mjs'
-import themeLight from 'shiki/themes/light-plus.mjs'
 import type { Range } from '#imports'
 import type * as monaco from 'monaco-editor'
 

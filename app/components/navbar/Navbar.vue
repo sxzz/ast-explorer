@@ -25,27 +25,50 @@ function editVersion() {
 </script>
 
 <template>
-  <div flex="~ y-center wrap" justify-between gap2 p2>
-    <div flex="~ gap4 wrap center" max-sm="w-full flex-col flex-gap2">
-      <div mr8 flex gap1>
+  <header flex="~ y-center wrap" relative justify-between gap3 px4 py2.5>
+    <!-- Left cluster: brand + selectors -->
+    <div
+      flex="~ gap5 wrap y-center"
+      max-sm="w-full flex-col flex-gap3 items-start"
+    >
+      <div flex="~ y-center" gap2>
         <AppLogo />
-        <h1 text-lg font-bold>AST Explorer</h1>
-        <small>{{ branch === 'release' ? `v${version}` : 'dev' }}</small>
+        <h1 class="text-lg font-semibold leading-none tracking-tight">
+          AST Explorer
+        </h1>
+        <span
+          class="ml-1 border border-base rounded-full bg-elev px-2 py-0.5 text-[0.6875rem] text-mute font-mono"
+        >
+          {{ branch === 'release' ? `v${version}` : 'dev' }}
+        </span>
       </div>
-      <NavbarLanguageSelect />
-      <div flex gap2>
+
+      <div class="h-5 w-px bg-$c-border max-sm:hidden" />
+
+      <div flex="~ y-center wrap" gap3>
+        <NavbarLanguageSelect />
+        <span text-mute op50>/</span>
         <ParserSelect />
         <ParserOptions v-if="currentParser.options.configurable" nav-button />
       </div>
     </div>
 
-    <div flex gap3 max-sm="flex-col w-full">
-      <div flex="~ center" gap3>
-        <span op70>{{ +parseCost.toFixed(1) }} ms</span>
+    <!-- Right cluster: meta + actions -->
+    <div flex="~ y-center wrap" gap3 max-sm="flex-col w-full items-start">
+      <div flex="~ y-center" gap3 text-sm>
+        <span
+          class="inline-flex items-center gap-1 rounded-full bg-$c-accent-tint px-2 py-0.5 text-[0.8125rem] text-accent font-mono"
+        >
+          <span class="i-ri:flashlight-line text-[0.85em]" />
+          {{ +parseCost.toFixed(1) }} ms
+        </span>
         <a
+          flex="~ y-center"
+          gap0.5
+          text-soft
           font-mono
-          op80
-          hover:underline
+          transition-colors
+          hover:text-base
           :href="
             isUrlVersion
               ? overrideVersion
@@ -55,13 +78,11 @@ function editVersion() {
         >
           <span>{{ currentParser.pkgName }}</span>
           <template v-if="displayVersion">
-            <span>@</span>
+            <span op50>@</span>
             <span
               :class="[
-                isUrlVersion && 'text-blue',
-                overrideVersion &&
-                  !isUrlVersion &&
-                  'text-green-700 dark:text-green',
+                isUrlVersion && 'text-blue-500 dark:text-blue-400',
+                overrideVersion && !isUrlVersion && 'text-accent',
                 'max-w50 inline-block truncate align-middle',
               ]"
               >{{ displayVersion }}</span
@@ -76,7 +97,7 @@ function editVersion() {
         </a>
       </div>
 
-      <div flex="~ center" gap1>
+      <div flex="~ y-center" gap0.5>
         <button
           :disabled="disableOverrideVersion"
           :class="disableOverrideVersion && 'cursor-not-allowed op30'"
@@ -96,6 +117,9 @@ function editVersion() {
         >
           <div i-ri:book-2-line />
         </a>
+
+        <span class="mx-1 h-4 w-px bg-$c-border" />
+
         <button
           title="Toggle Side Bar"
           :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
@@ -121,6 +145,9 @@ function editVersion() {
         >
           <div i-ri:node-tree />
         </button>
+
+        <span class="mx-1 h-4 w-px bg-$c-border" />
+
         <button title="Toggle Dark Mode" nav-button @click="toggleDark">
           <div i-ri:sun-line dark:i-ri:moon-line />
         </button>
@@ -149,5 +176,5 @@ function editVersion() {
         </a>
       </div>
     </div>
-  </div>
+  </header>
 </template>

@@ -1,23 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=JetBrains+Mono:wght@400..600&display=swap');
+
 html {
-  font-size: 14px;
+  /* 1rem = 16px (browser default). Keep all sizing in rem from here. */
+  font-size: 100%;
+  font-family: var(--f-sans);
+  font-feature-settings:
+    'cv11' 1,
+    'ss03' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--c-bg-base);
+  color: var(--c-text-base);
 }
 
 html.dark {
   color-scheme: dark;
-  background-color: var(--c-bg-base);
 }
 
+/* Subtle paper grain for the whole app — purely decorative */
+body {
+  position: relative;
+  isolation: isolate;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/></svg>");
+}
+html.dark body::before {
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+/* Soft vignette behind everything */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(
+      80vw 60vh at 100% 0%,
+      var(--c-accent-tint),
+      transparent 60%
+    ),
+    radial-gradient(60vw 50vh at 0% 100%, var(--c-accent-tint), transparent 70%);
+  opacity: 0.6;
+}
+
+/* Form controls — refined, not pill-on-pill */
 select,
 input:not([type='checkbox']) {
-  --at-apply: 'border rounded-full px1 py0.5 accent-current';
+  --at-apply: 'border border-base rounded-md px2 py0.5 accent-current bg-transparent';
+  font-family: var(--f-sans);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
-
+select:focus,
+input:not([type='checkbox']):focus {
+  outline: none;
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px var(--c-accent-tint);
+}
 select {
-  --at-apply: 'bg-#0000000d dark:bg-#ffffff1a';
+  --at-apply: 'bg-#0000000a dark:bg-#ffffff0a';
+  background-image: linear-gradient(
+    45deg,
+    transparent 50%,
+    var(--c-text-mute) 50%
+  );
+  background-position: calc(100% - 10px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 22px;
+  appearance: none;
 }
-
 option {
   --at-apply: 'dark:bg-base';
+}
+
+/* Refined checkbox switch */
+input[type='checkbox'][switch] {
+  appearance: none;
+  width: 1.9em;
+  height: 1.05em;
+  background: var(--c-bg-sunk);
+  border: 1px solid var(--c-border-strong);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+  vertical-align: middle;
+}
+input[type='checkbox'][switch]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  width: 0.78em;
+  height: 0.78em;
+  border-radius: 50%;
+  background: var(--c-text-base);
+  transform: translateY(-50%);
+  transition: left 160ms ease;
+  opacity: 0.55;
+}
+input[type='checkbox'][switch]:checked {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+}
+input[type='checkbox'][switch]:checked::after {
+  left: calc(100% - 0.78em - 2px);
+  background: #ffffff;
+  opacity: 1;
+}
+
+/* Selection */
+::selection {
+  background: var(--c-accent);
+  color: #ffffff;
+}
+
+/* Scrollbars — slim, on-brand */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--c-border-strong);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--c-accent-soft);
 }
 
 .shiki {
@@ -26,7 +154,8 @@ option {
 }
 
 .ast-highlight {
-  --at-apply: 'bg-blue-400/30 dark:bg-blue-400/20';
+  --at-apply: 'bg-#2e7d5b/20 dark:bg-#5fc99a/20 rounded';
+  box-shadow: inset 0 0 0 1px var(--c-accent-tint);
 }
 
 /* Color Mode transition */
@@ -35,15 +164,13 @@ option {
   animation: none;
   mix-blend-mode: normal;
 }
-::view-transition-old(root) {
-  z-index: 1;
-}
-::view-transition-new(root) {
-  z-index: 2147483646;
-}
-.dark::view-transition-old(root) {
-  z-index: 2147483646;
-}
+
+::view-transition-old(root),
 .dark::view-transition-new(root) {
   z-index: 1;
+}
+
+::view-transition-new(root),
+.dark::view-transition-old(root) {
+  z-index: 2147483646;
 }
