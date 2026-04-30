@@ -5,8 +5,8 @@ const url = 'https://ast-explorer.dev/'
 
 const ogImage = {
   url: '/og.png',
-  width: 2560,
-  height: 1280,
+  width: 1920,
+  height: 960,
   type: 'image/png',
 } as const
 useSeoMeta({

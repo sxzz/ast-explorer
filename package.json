@@ -84,6 +84,7 @@
     "postcss": "catalog:parser",
     "prettier": "catalog:",
     "protobufjs": "catalog:parser",
+    "puppeteer-core": "catalog:",
     "pyodide": "catalog:parser",
     "rehype": "catalog:parser",
     "remark": "catalog:parser",
