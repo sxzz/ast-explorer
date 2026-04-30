@@ -6,7 +6,7 @@
   "packageManager": "pnpm@11.0.0",
   "license": "AGPL-3.0",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=22.18.0"
   },
   "scripts": {
     "build": "nuxt build",
