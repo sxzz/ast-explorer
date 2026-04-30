@@ -63,6 +63,7 @@
     "bumpp": "catalog:",
     "comark": "catalog:parser",
     "consola": "catalog:",
+    "ember-estree": "catalog:",
     "esbuild": "catalog:",
     "eslint": "catalog:",
     "espree": "catalog:parser",
