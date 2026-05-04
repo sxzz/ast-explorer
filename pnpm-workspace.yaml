@@ -81,7 +81,7 @@ catalogs:
     pyodide: ^0.29.3
     rehype: ^13.0.2
     remark: ^15.0.1
-    sql-parser-cst: ^0.41.2
+    sql-parser-cst: ^0.42.0
     svelte: ^5.55.5
     ultrahtml: ^1.6.0
     unbash: ^3.0.0
