@@ -18,14 +18,6 @@
   --c-accent-soft: #4ea582;
   --c-accent-tint: #2e7d5b1a;
 
-  /* Fonts */
-  --f-sans:
-    'Geist', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', sans-serif;
-  --f-mono:
-    'JetBrains Mono', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo,
-    Consolas, monospace;
-
   --un-default-border-color: var(--c-border);
 }
 

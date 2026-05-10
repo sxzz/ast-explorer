@@ -27,10 +27,6 @@ export default defineConfig({
       'inline-flex flex-center gap1 rounded-full border border-base bg-elev px2.5 py1 text-xs text-soft hover:text-base hover:border-strong transition duration-150',
   },
   theme: {
-    fontFamily: {
-      sans: 'var(--f-sans)',
-      mono: 'var(--f-mono)',
-    },
     colors: {
       accent: 'var(--c-accent)',
       'accent-soft': 'var(--c-accent-soft)',

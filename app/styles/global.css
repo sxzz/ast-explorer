@@ -1,15 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=JetBrains+Mono:wght@400..600&display=swap');
-
 html {
-  /* 1rem = 16px (browser default). Keep all sizing in rem from here. */
-  font-size: 100%;
-  font-family: var(--f-sans);
-  font-feature-settings:
-    'cv11' 1,
-    'ss03' 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
   background-color: var(--c-bg-base);
   color: var(--c-text-base);
 }
@@ -18,48 +7,10 @@ html.dark {
   color-scheme: dark;
 }
 
-/* Subtle paper grain for the whole app — purely decorative */
-body {
-  position: relative;
-  isolation: isolate;
-}
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/></svg>");
-}
-html.dark body::before {
-  opacity: 0.35;
-  mix-blend-mode: screen;
-}
-
-/* Soft vignette behind everything */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -2;
-  background:
-    radial-gradient(
-      80vw 60vh at 100% 0%,
-      var(--c-accent-tint),
-      transparent 60%
-    ),
-    radial-gradient(60vw 50vh at 0% 100%, var(--c-accent-tint), transparent 70%);
-  opacity: 0.6;
-}
-
 /* Form controls — refined, not pill-on-pill */
 select,
 input:not([type='checkbox']) {
   --at-apply: 'border border-base rounded-md px2 py0.5 accent-current bg-transparent';
-  font-family: var(--f-sans);
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease;

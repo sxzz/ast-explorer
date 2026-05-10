@@ -30,12 +30,6 @@ useHeadSafe({
   },
   link: [
     { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg', sizes: 'any' },
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossorigin: 'anonymous',
-    },
   ],
 })
 </script>
