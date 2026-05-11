@@ -35,7 +35,7 @@ catalog:
   typescript: ~6.0.3
   unenv: ^2.0.0-rc.24
   unocss: ^66.6.8
-  unplugin-replace: ^0.8.0
+  unplugin-replace: ^0.9.0
   vite: ^8.0.10
   vue: ^3.5.33
   vue-tsc: ^3.2.7
@@ -63,7 +63,7 @@ catalogs:
     comark: ^0.3.2
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.312.0
+    flow-parser: ^0.313.0
     graphql: ^16.13.2
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
@@ -74,7 +74,7 @@ catalogs:
     marked: ^18.0.2
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.128.0
+    oxc-parser: ^0.129.0
     php-parser: ^3.5.1
     postcss: ^8.5.12
     protobufjs: ^8.0.3
