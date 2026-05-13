@@ -7,12 +7,12 @@ export const parserOptions = computed({
   get() {
     try {
       return currentParser.value.options.defaultValueType === 'javascript'
-        ? // TODO: use a better way to eval
-          new Function(rawOptions.value)()
+        ? new Function('code', rawOptions.value)(code.value)
         : json5.parse(rawOptions.value)
-    } catch {
+    } catch (error) {
       console.error(
         `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
+        error,
       )
     }
   },

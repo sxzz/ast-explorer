@@ -19,10 +19,34 @@ const jsonAst: Parser = {
   },
 }
 
+const jsCode: Parser = {
+  id: 'js-code',
+  label: 'JavaScript Code',
+  // @unocss-include
+  icon: 'i-vscode-icons:file-type-js-official',
+  editorLanguage: 'javascript',
+  options: {
+    configurable: true,
+    defaultValue: `return (async () => {
+  return { code, tips: 'Write your code in parser options' }\n
+  // Example:
+  const mod = await import('MODULE_URL')
+  return mod.parse(code)
+})()`,
+    defaultValueType: 'javascript',
+    editorLanguage: 'javascript',
+  },
+  pkgName: '',
+  versionOverridable: false,
+  init: () => {},
+  parse: (code, options) => options,
+  getNodeLocation,
+}
+
 export const general: LanguageOption = {
   label: 'General',
   icon: 'i-ri:code-line',
-  parsers: [jsonAst, treeSitter],
+  parsers: [jsonAst, jsCode, treeSitter],
   codeTemplate: JSON.stringify(
     {
       type: 'Program',

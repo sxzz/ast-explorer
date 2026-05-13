@@ -63,6 +63,7 @@ function editVersion() {
           {{ +parseCost.toFixed(1) }} ms
         </span>
         <a
+          v-if="currentParser.pkgName !== ''"
           flex="~ y-center"
           gap0.5
           text-soft
@@ -99,6 +100,7 @@ function editVersion() {
 
       <div flex="~ y-center" gap0.5>
         <button
+          v-if="currentParser.pkgName !== ''"
           :disabled="disableOverrideVersion"
           :class="disableOverrideVersion && 'cursor-not-allowed op30'"
           title="Change Version"
