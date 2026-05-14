@@ -17,7 +17,7 @@ catalog:
   ansi-regex: ^6.2.2
   bumpp: ^11.0.1
   consola: ^3.4.2
-  ember-estree: ^0.6.4   
+  ember-estree: ^0.6.4
   esbuild: ^0.28.0
   eslint: ^10.2.1
   fflate: ^0.8.2
