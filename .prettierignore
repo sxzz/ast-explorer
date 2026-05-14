@@ -1,0 +1,11 @@
+# Such as the lockfile
+*.yaml
+*.yml
+
+# Output artifacts and dependencies
+dist/
+.nuxt/
+.git/
+.claude/
+node_modules/
+
