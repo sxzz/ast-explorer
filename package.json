@@ -15,6 +15,7 @@
     "preview": "nuxt preview",
     "typecheck": "nuxi typecheck",
     "lint": "eslint --cache",
+    "format": "prettier --write .",
     "build-parser": "node --experimental-vm-modules scripts/build-parser-test.ts",
     "release": "bumpp && node scripts/release.ts",
     "postinstall": "nuxt prepare"
