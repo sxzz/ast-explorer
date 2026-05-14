@@ -1,6 +1,7 @@
 export { default as vueTemplate } from './vue.vue?raw'
 export { default as javascriptTemplate } from './javascript.js?raw'
 export { default as svelteTemplate } from './svelte.svelte?raw'
+export { default as emberTemplate } from './ember.gjs?raw'
 export { default as astroTemplate } from './astro.astro?raw'
 export { default as cssTemplate } from './css.css?raw'
 export { default as jsonTemplate } from './json.json?raw'

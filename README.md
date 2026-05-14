@@ -42,6 +42,7 @@ Feel free to add more languages and parsers via PR!
   - [go-fAST](https://github.com/t14raptor/go-fast)
 - [Vue](https://vuejs.org/)
 - [Svelte](https://svelte.dev/)
+- [Ember](https://emberjs.com/)
 - [Astro](https://astro.build/)
 - [Angular](https://angular.dev/)
 - CSS
