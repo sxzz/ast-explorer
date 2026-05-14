@@ -2,22 +2,22 @@ overrides:
   vite: ^8.0.10
 
 catalog:
-  "@astral-sh/ruff-wasm-web": ^0.15.12
-  "@iconify-json/ri": ^1.2.10
-  "@iconify-json/vscode-icons": ^1.2.47
-  "@nuxt/kit": ^4.4.4
-  "@nuxtjs/plausible": ^3.0.2
-  "@shikijs/monaco": ^4.0.2
-  "@sxzz/eslint-config": ^8.0.0
-  "@sxzz/prettier-config": ^2.3.1
-  "@unocss/eslint-plugin": ^66.6.8
-  "@unocss/nuxt": ^66.6.8
-  "@vueuse/core": ^14.2.1
-  "@vueuse/nuxt": ^14.2.1
+  '@astral-sh/ruff-wasm-web': ^0.15.12
+  '@iconify-json/ri': ^1.2.10
+  '@iconify-json/vscode-icons': ^1.2.47
+  '@nuxt/kit': ^4.4.4
+  '@nuxtjs/plausible': ^3.0.2
+  '@shikijs/monaco': ^4.0.2
+  '@sxzz/eslint-config': ^8.0.0
+  '@sxzz/prettier-config': ^2.3.1
+  '@unocss/eslint-plugin': ^66.6.8
+  '@unocss/nuxt': ^66.6.8
+  '@vueuse/core': ^14.2.1
+  '@vueuse/nuxt': ^14.2.1
   ansi-regex: ^6.2.2
   bumpp: ^11.0.1
   consola: ^3.4.2
-  ember-estree: ^0.6.4
+  ember-estree: ^0.6.4   
   esbuild: ^0.28.0
   eslint: ^10.2.1
   fflate: ^0.8.2
@@ -43,21 +43,21 @@ catalog:
 
 catalogs:
   parser:
-    "@angular/compiler": ^21.2.11
-    "@astrojs/compiler": ^4.0.0
-    "@astrojs/compiler-binding": ^0.1.10
-    "@astrojs/compiler-rs": ^0.1.10
-    "@babel/parser": ^7.29.2
-    "@html-eslint/parser": ^0.60.0
-    "@humanwhocodes/momoa": ^3.3.10
-    "@joekav/go-fast": ^0.0.5
-    "@solidity-parser/parser": ^0.20.2
-    "@swc/wasm-web": ^1.15.32
-    "@types/css-tree": ^2.3.11
-    "@types/json-to-ast": ^2.1.4
-    "@typescript-eslint/parser": ^8.59.1
-    "@vue/compiler-dom": ^3.5.33
-    "@vue/compiler-sfc": ^3.5.33
+    '@angular/compiler': ^21.2.11
+    '@astrojs/compiler': ^4.0.0
+    '@astrojs/compiler-binding': ^0.1.10
+    '@astrojs/compiler-rs': ^0.1.10
+    '@babel/parser': ^7.29.2
+    '@html-eslint/parser': ^0.60.0
+    '@humanwhocodes/momoa': ^3.3.10
+    '@joekav/go-fast': ^0.0.5
+    '@solidity-parser/parser': ^0.20.2
+    '@swc/wasm-web': ^1.15.32
+    '@types/css-tree': ^2.3.11
+    '@types/json-to-ast': ^2.1.4
+    '@typescript-eslint/parser': ^8.59.1
+    '@vue/compiler-dom': ^3.5.33
+    '@vue/compiler-sfc': ^3.5.33
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.5.0
@@ -92,7 +92,7 @@ catalogs:
     yaml-unist-parser: ^3.1.0
 
 allowBuilds:
-  "@parcel/watcher": false
+  '@parcel/watcher': false
   esbuild: false
   protobufjs: false
 
