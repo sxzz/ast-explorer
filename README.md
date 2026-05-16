@@ -55,6 +55,7 @@ Feel free to add more languages and parsers via PR!
   - [@html-eslint/parser](https://github.com/yeonjuan/html-eslint)
   - [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
   - [angular-html-parser](https://github.com/prettier/angular-html-parser)
+  - [parse5](https://github.com/inikulin/parse5)
 - JSON
   - [json-to-ast](https://github.com/vtrushin/json-to-ast)
   - [momoa](https://npmx.dev/package/@humanwhocodes/momoa)

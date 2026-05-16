@@ -163,10 +163,10 @@ export const html: LanguageOption = {
   parsers: [
     htmlparser2,
     rehypeAst,
-    parse5Parser,
     htmlEslintParser,
     ultrahtmlParser,
     angularHtmlParser,
+    parse5Parser,
   ],
   codeTemplate: htmlTemplate,
 }
