@@ -83,6 +83,7 @@
     "nuxt-monaco-editor": "catalog:",
     "ohos-typescript": "catalog:parser",
     "oxc-parser": "catalog:parser",
+    "parse5": "catalog:parser",
     "php-parser": "catalog:parser",
     "postcss": "catalog:parser",
     "prettier": "catalog:",

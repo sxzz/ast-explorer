@@ -217,6 +217,9 @@ catalogs:
     oxc-parser:
       specifier: ^0.130.0
       version: 0.130.0
+    parse5:
+      specifier: ^8.0.1
+      version: 8.0.1
     php-parser:
       specifier: ^3.5.1
       version: 3.5.1
@@ -448,6 +451,9 @@ importers:
       oxc-parser:
         specifier: catalog:parser
         version: 0.130.0
+      parse5:
+        specifier: catalog:parser
+        version: 8.0.1
       php-parser:
         specifier: catalog:parser
         version: 3.5.1
@@ -5314,6 +5320,9 @@ packages:
 
   parse5@7.3.0:
     resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
+
+  parse5@8.0.1:
+    resolution: {integrity: sha512-z1e/HMG90obSGeidlli3hj7cbocou0/wa5HacvI3ASx34PecNjNQeaHNo5WIZpWofN9kgkqV1q5YvXe3F0FoPw==}
 
   parseurl@1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
@@ -12006,6 +12015,10 @@ snapshots:
   parse5@7.3.0:
     dependencies:
       entities: 6.0.1
+
+  parse5@8.0.1:
+    dependencies:
+      entities: 8.0.0
 
   parseurl@1.3.3: {}
 

@@ -3,6 +3,7 @@ import type { LanguageOption, Parser } from './index'
 import type * as HtmlEslintParser from '@html-eslint/parser'
 import type * as AngularHtmlParser from 'angular-html-parser'
 import type * as Htmlparser2 from 'htmlparser2'
+import type * as Parse5 from 'parse5'
 import type * as Rehype from 'rehype'
 import type * as Ultrahtml from 'ultrahtml'
 
@@ -44,6 +45,31 @@ const rehypeAst: Parser<typeof Rehype> = {
     return this.rehype().parse(code)
   },
   getNodeLocation: genGetNodeLocation('positionOffset'),
+}
+
+const parse5Parser: Parser<
+  typeof Parse5,
+  Parse5.ParserOptions<Parse5.DefaultTreeAdapterMap>
+> = {
+  id: 'parse5',
+  label: 'parse5',
+  icon: 'i-vscode-icons:file-type-html',
+  link: 'https://github.com/inikulin/parse5',
+  editorLanguage: 'html',
+  options: {
+    configurable: true,
+    defaultValue: {
+      sourceCodeLocationInfo: true,
+    },
+    editorLanguage: 'json',
+  },
+  pkgName: 'parse5',
+  parse(code, options) {
+    return this.parse(code, options)
+  },
+  nodeTitle: 'nodeName',
+  getNodeLocation: genGetNodeLocation('parse5'),
+  hideKeys: ['parentNode'],
 }
 
 const htmlEslintParser: Parser<
@@ -140,6 +166,7 @@ export const html: LanguageOption = {
     htmlEslintParser,
     ultrahtmlParser,
     angularHtmlParser,
+    parse5Parser,
   ],
   codeTemplate: htmlTemplate,
 }
