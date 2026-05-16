@@ -43,6 +43,11 @@ const nodeLocationFields = {
     start: ['position', 'start', 'offset'],
     end: ['position', 'end', 'offset'],
   },
+  parse5: {
+    type: ['nodeName'],
+    start: ['sourceCodeLocation', 'startOffset'],
+    end: ['sourceCodeLocation', 'endOffset'],
+  },
   postcss: {
     type: ['type'],
     start: ['source', 'start', 'offset'],
@@ -98,6 +103,7 @@ export const locationKeyList = [
   'span',
   'range',
   'position',
+  'sourceCodeLocation',
   'pos',
   'startIndex',
   'endIndex',
