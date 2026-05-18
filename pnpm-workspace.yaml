@@ -75,7 +75,7 @@ catalogs:
     marked: ^18.0.3
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.130.0
+    oxc-parser: ^0.131.0
     parse5: ^8.0.1
     php-parser: ^3.5.1
     postcss: ^8.5.14
