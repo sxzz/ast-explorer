@@ -1,4 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "typescript.experimental.useTsgo": false
+  "js/ts.experimental.useTsgo": false
 }

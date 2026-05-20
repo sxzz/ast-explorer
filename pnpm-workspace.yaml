@@ -43,6 +43,7 @@ catalog:
 
 catalogs:
   parser:
+    '@actions/workflow-parser': ^0.3.57
     '@angular/compiler': ^21.2.13
     '@astrojs/compiler': ^4.0.0
     '@astrojs/compiler-binding': ^0.2.0

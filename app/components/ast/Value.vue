@@ -18,8 +18,8 @@ const rawValue = computed(() => {
     ? onValue.call(parserModule.value, props.data)
     : props.data
 
-  if (typeof value === 'object' && value !== null && 'toJSON' in value) {
-    value = (value as any).toJSON()
+  if (value?.toJSON && typeof value.toJSON === 'function') {
+    value = value.toJSON()
   }
 
   return value

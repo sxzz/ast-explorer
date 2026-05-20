@@ -34,6 +34,7 @@
     "vue": "catalog:"
   },
   "devDependencies": {
+    "@actions/workflow-parser": "catalog:parser",
     "@angular/compiler": "catalog:parser",
     "@astral-sh/ruff-wasm-web": "catalog:",
     "@astrojs/compiler": "catalog:parser",

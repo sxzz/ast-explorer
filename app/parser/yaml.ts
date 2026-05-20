@@ -1,5 +1,6 @@
 import { yamlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
+import type * as ActionsWorkflowParser from '@actions/workflow-parser'
 import type * as Yaml from 'yaml'
 import type * as YamlEslintParser from 'yaml-eslint-parser'
 import type * as YamlUnistParser from 'yaml-unist-parser'
@@ -69,10 +70,39 @@ const yamlUnistParser: Parser<
   hideKeys: ['parent'],
 }
 
+const actionsWorkflow: Parser<typeof ActionsWorkflowParser> = {
+  id: 'actions-workflow',
+  label: 'GitHub Workflow',
+  icon: 'i-vscode-icons:folder-type-github',
+  link: 'https://github.com/actions/languageservices',
+  editorLanguage: 'yaml',
+  options: {
+    configurable: false,
+    defaultValue: {},
+    editorLanguage: 'json',
+  },
+  pkgName: '@actions/workflow-parser',
+  parse(code) {
+    return this.parseWorkflow(
+      {
+        name: 'workflow.yml',
+        content: code,
+      },
+      new this.NoOperationTraceWriter(),
+    )
+  },
+  onValue(value) {
+    if (value?.toJSON) value.toJSON = undefined
+    if (value?.typeName) value.type = value.typeName()
+
+    return value
+  },
+}
+
 export const yaml: LanguageOption = {
   label: 'YAML',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-yaml',
-  parsers: [yamlParser, yamlEslintParser, yamlUnistParser],
+  parsers: [yamlParser, yamlEslintParser, yamlUnistParser, actionsWorkflow],
   codeTemplate: yamlTemplate,
 }
