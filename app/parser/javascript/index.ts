@@ -11,6 +11,7 @@ import { ohosTypescript } from './ohos-typescript'
 import { oxc } from './oxc'
 import { swc } from './swc'
 import { typescript } from './typescript'
+import { yuku } from './yuku'
 import type { LanguageOption } from '..'
 
 export const javascript: LanguageOption = {
@@ -21,6 +22,7 @@ export const javascript: LanguageOption = {
     babel,
     oxc,
     swc,
+    yuku,
     acorn,
     acornLoose,
     typescript,

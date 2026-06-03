@@ -59,6 +59,7 @@
     "@vue/compiler-dom": "catalog:parser",
     "@vue/compiler-sfc": "catalog:parser",
     "@vueuse/nuxt": "catalog:",
+    "@yuku-parser/wasm": "catalog:parser",
     "acorn": "catalog:parser",
     "acorn-loose": "catalog:parser",
     "angular-html-parser": "catalog:parser",
