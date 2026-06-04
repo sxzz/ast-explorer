@@ -166,6 +166,9 @@ catalogs:
     '@vue/compiler-sfc':
       specifier: ^3.5.34
       version: 3.5.34
+    '@yuku-parser/wasm':
+      specifier: ^0.5.24
+      version: 0.5.24
     acorn:
       specifier: ^8.16.0
       version: 8.16.0
@@ -382,6 +385,9 @@ importers:
       '@vueuse/nuxt':
         specifier: 'catalog:'
         version: 14.3.0(magicast@0.5.3)(nuxt@4.4.6(@babel/plugin-syntax-jsx@7.28.6(@babel/core@7.29.0))(@babel/plugin-syntax-typescript@7.28.6(@babel/core@7.29.0))(@parcel/watcher@2.5.6)(@types/node@25.9.1)(@vue/compiler-sfc@3.5.34)(cac@6.7.14)(db0@0.3.4)(esbuild@0.28.0)(eslint@10.4.0(jiti@2.7.0))(ioredis@5.10.1)(magicast@0.5.3)(optionator@0.9.4)(rolldown@1.0.2)(rollup-plugin-visualizer@7.0.1(rolldown@1.0.2)(rollup@4.60.4))(rollup@4.60.4)(srvx@0.11.15)(terser@5.47.1)(typescript@6.0.3)(vite@8.0.13(@types/node@25.9.1)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.47.1)(yaml@2.9.0))(vue-tsc@3.3.1(typescript@6.0.3))(yaml@2.9.0))(vue@3.5.34(typescript@6.0.3))
+      '@yuku-parser/wasm':
+        specifier: catalog:parser
+        version: 0.5.24
       acorn:
         specifier: catalog:parser
         version: 8.16.0
@@ -3212,6 +3218,9 @@ packages:
 
   '@xtuc/long@4.2.2':
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
+
+  '@yuku-parser/wasm@0.5.24':
+    resolution: {integrity: sha512-YmXOpCooVITcnhBWdN4DFSTg8IxWpSN/kffyILzLnCnG912pZwAV25N6Euou86RhBAVK7WW3C5lsbWDnQ5a2PA==}
 
   '@zeit/schemas@2.36.0':
     resolution: {integrity: sha512-7kjMwcChYEzMKjeex9ZFXkt1AyNov9R5HZtjBKVsmVpw7pa7ZtlCGvCBC2vnnXctaYN+aRI61HjIqeetZW5ROg==}
@@ -9451,6 +9460,8 @@ snapshots:
   '@xtuc/ieee754@1.2.0': {}
 
   '@xtuc/long@4.2.2': {}
+
+  '@yuku-parser/wasm@0.5.24': {}
 
   '@zeit/schemas@2.36.0': {}
 
