@@ -63,10 +63,10 @@ catalogs:
     acorn: ^8.16.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.6.1
-    comark: ^0.3.2
+    comark: ^0.4.0
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.316.0
+    flow-parser: ^0.317.0
     graphql: ^16.14.1
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1

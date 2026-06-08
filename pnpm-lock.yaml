@@ -179,8 +179,8 @@ catalogs:
       specifier: ^10.6.1
       version: 10.7.0
     comark:
-      specifier: ^0.3.2
-      version: 0.3.2
+      specifier: ^0.4.0
+      version: 0.4.0
     espree:
       specifier: ^11.2.0
       version: 11.2.0
@@ -188,8 +188,8 @@ catalogs:
       specifier: ^6.0.3
       version: 6.0.3
     flow-parser:
-      specifier: ^0.316.0
-      version: 0.316.0
+      specifier: ^0.317.0
+      version: 0.317.0
     graphql:
       specifier: ^16.14.1
       version: 16.14.1
@@ -402,7 +402,7 @@ importers:
         version: 11.1.0
       comark:
         specifier: catalog:parser
-        version: 0.3.2(katex@0.16.47)(shiki@4.2.0)
+        version: 0.4.0(katex@0.16.47)(shiki@4.2.0)
       consola:
         specifier: 'catalog:'
         version: 3.4.2
@@ -426,7 +426,7 @@ importers:
         version: 5.2.2(@nuxt/kit@4.4.7(magicast@0.5.3))(vue@3.5.35(typescript@6.0.3))
       flow-parser:
         specifier: catalog:parser
-        version: 0.316.0
+        version: 0.317.0
       graphql:
         specifier: catalog:parser
         version: 16.14.1
@@ -3632,8 +3632,8 @@ packages:
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
-  comark@0.3.2:
-    resolution: {integrity: sha512-wZ16V3PPItX49EScg6yDswqQ24bsMAhujZUGIf1dBKMmZjqGBa4HmXDe+WZNeqNQSOd8v4AJJT1NKyrvgdf3dA==}
+  comark@0.4.0:
+    resolution: {integrity: sha512-s+wZc9FDgxJDxS3oLhDhthuc8EFggd7oEQaGKEFSw/UbECEwM3qMgW/T3dk6eoNTuy+PNSAyPQtjyKZJfudlbA==}
     peerDependencies:
       beautiful-mermaid: ^1.1.3
       katex: ^0.16.45
@@ -4408,8 +4408,8 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  flow-parser@0.316.0:
-    resolution: {integrity: sha512-LPYw2hWIj6BI/854eY47jBJVN4gmrIK0kL/EY2xgPmu83Ho37no0mkhDgG6GOX25YxtaXJw5sMkMed2bKntcog==}
+  flow-parser@0.317.0:
+    resolution: {integrity: sha512-pzwkCzruTUg6f5HH7N0OvVjX7dVc361tnsEkSCbMC9cJ5zxZY84de8l+DraCmnGsIbi+jQPPxtTKfBJFnYCJZQ==}
     engines: {node: '>=0.4.0'}
 
   foreground-child@3.3.1:
@@ -9812,7 +9812,7 @@ snapshots:
 
   colorette@2.0.20: {}
 
-  comark@0.3.2(katex@0.16.47)(shiki@4.2.0):
+  comark@0.4.0(katex@0.16.47)(shiki@4.2.0):
     dependencies:
       entities: 8.0.0
       htmlparser2: 12.0.0
@@ -10591,7 +10591,7 @@ snapshots:
     optionalDependencies:
       '@nuxt/kit': 4.4.7(magicast@0.5.3)
 
-  flow-parser@0.316.0: {}
+  flow-parser@0.317.0: {}
 
   foreground-child@3.3.1:
     dependencies:
