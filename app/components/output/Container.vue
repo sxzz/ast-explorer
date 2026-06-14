@@ -37,6 +37,10 @@ const errorString = computed(() => {
         })
         .join('\n')
   }
+
+  if (stack?.startsWith(str)) {
+    return stack
+  }
   return `${str}\n\n${stack && str !== stack ? `${stack}\n` : ''}`
 })
 

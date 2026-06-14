@@ -1,4 +1,4 @@
-import { parserOptions, rawOptions } from './options'
+import { parserOptions, parserOptionsError, rawOptions } from './options'
 import {
   currentParser,
   currentParserId,
@@ -51,6 +51,12 @@ export function initParserModule() {
         loading.value = 'module'
         const ctx = await parserModulePromise.value
         if (currentParser.value.id !== id) return
+        if (parserOptionsError.value) {
+          throw new Error(
+            `Failed to parse options\n${parserOptionsError.value}`,
+            { cause: parserOptionsError.value },
+          )
+        }
         loading.value = 'parse'
         const t = performance.now()
         ast.value = await currentParser.value.parse.call(

@@ -3,19 +3,22 @@ import { currentParser, currentParserId } from './parser'
 
 export const rawOptions = ref('')
 
-export const parserOptions = computed({
-  get() {
-    try {
-      return currentParser.value.options.defaultValueType === 'javascript'
+const parsedOptions = computed<{ value?: any; error?: unknown }>(() => {
+  try {
+    const value =
+      currentParser.value.options.defaultValueType === 'javascript'
         ? new Function('code', rawOptions.value)(code.value)
         : json5.parse(rawOptions.value)
-    } catch (error) {
-      console.error(
-        `Failed to parse options: ${JSON.stringify(rawOptions.value, null, 2)}`,
-        error,
-      )
-    }
-  },
+    return { value }
+  } catch (error) {
+    return { error }
+  }
+})
+
+export const parserOptionsError = computed(() => parsedOptions.value.error)
+
+export const parserOptions = computed({
+  get: () => parsedOptions.value.value,
   set(value) {
     rawOptions.value = JSON.stringify(value, undefined, 2)
   },
