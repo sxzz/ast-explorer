@@ -124,8 +124,8 @@ function editVersion() {
 
         <button
           title="Toggle Side Bar"
-          :class="(!showSidebar || !sideBarAvailable) && 'op-40'"
-          :disabled="!sideBarAvailable"
+          :class="(!showSidebar || !sidebarAvailable) && 'op-40'"
+          :disabled="!sidebarAvailable"
           nav-button
           @click="toggleSidebar()"
         >

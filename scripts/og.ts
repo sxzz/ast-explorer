@@ -193,13 +193,13 @@ execSync(
   `magick -size ${CARD_W}x${CARD_H} xc:none -fill white -draw "roundrectangle 0,0 ${CARD_W - 1},${CARD_H - 1} ${radius},${radius}" ${JSON.stringify(cardMaskPath)}`,
 )
 execSync(
-  String.raw`magick ${JSON.stringify(rawShot)} -resize ${CARD_W}x${CARD_H}^ -gravity northwest -extent ${CARD_W}x${CARD_H} ${JSON.stringify(cardMaskPath)} -alpha off -compose CopyOpacity -composite ${JSON.stringify(cardPath)}`,
+  `magick ${JSON.stringify(rawShot)} -resize ${CARD_W}x${CARD_H}^ -gravity northwest -extent ${CARD_W}x${CARD_H} ${JSON.stringify(cardMaskPath)} -alpha off -compose CopyOpacity -composite ${JSON.stringify(cardPath)}`,
 )
 execSync(
-  String.raw`magick -size ${CARD_W + shadowBleed * 2}x${CARD_H + shadowBleed * 2} xc:none -fill "#000000" -draw "roundrectangle ${shadowBleed},${shadowBleed} ${CARD_W + shadowBleed - 1},${CARD_H + shadowBleed - 1} ${radius},${radius}" -channel A -blur 0x${shadowBlur} -evaluate multiply 0.7 +channel ${JSON.stringify(cardShadowPath)}`,
+  `magick -size ${CARD_W + shadowBleed * 2}x${CARD_H + shadowBleed * 2} xc:none -fill "#000000" -draw "roundrectangle ${shadowBleed},${shadowBleed} ${CARD_W + shadowBleed - 1},${CARD_H + shadowBleed - 1} ${radius},${radius}" -channel A -blur 0x${shadowBlur} -evaluate multiply 0.7 +channel ${JSON.stringify(cardShadowPath)}`,
 )
 execSync(
-  String.raw`magick -size ${CARD_W}x${CARD_H} xc:none -stroke "${BORDER}" -strokewidth 1 -fill none -draw "roundrectangle 0,0 ${CARD_W - 1},${CARD_H - 1} ${radius},${radius}" ${JSON.stringify(cardBorderPath)}`,
+  `magick -size ${CARD_W}x${CARD_H} xc:none -stroke "${BORDER}" -strokewidth 1 -fill none -draw "roundrectangle 0,0 ${CARD_W - 1},${CARD_H - 1} ${radius},${radius}" ${JSON.stringify(cardBorderPath)}`,
 )
 
 // --- Final composite ---

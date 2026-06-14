@@ -20,6 +20,6 @@ export const outputView = useLocalStorage<'tree' | 'json'>(
   'tree',
 )
 
-export const sideBarAvailable = computed(
+export const sidebarAvailable = computed(
   () => currentParser.value.options.configurable && !!currentParserGui.value,
 )

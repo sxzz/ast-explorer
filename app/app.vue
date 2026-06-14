@@ -43,7 +43,7 @@ useHeadSafe({
         <div min-h-0 flex flex-1 flex-col gap0 lg:flex-row>
           <Splitpanes v-if="!isMobile" class="ast-splitpanes" h-full w-full>
             <Pane
-              v-if="showSidebar && sideBarAvailable"
+              v-if="showSidebar && sidebarAvailable"
               :size="24"
               :min-size="12"
               :max-size="40"
@@ -64,7 +64,7 @@ useHeadSafe({
 
           <template v-else>
             <AppSideBar
-              v-show="showSidebar && sideBarAvailable"
+              v-show="showSidebar && sidebarAvailable"
               overflow-auto
               border-b
               border-base
