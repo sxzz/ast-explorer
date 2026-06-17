@@ -1,14 +1,10 @@
 <script lang="ts">
 import { useOptions } from '~/state/parser/options'
-import type {
-  ParserOptions,
-  ParserPlugin,
-  ParserPluginWithOptions,
-} from '@babel/parser'
+import type { ParserOptions, ParserPlugin } from '@babel/parser'
 
 type PluginName = ParserPlugin & string
 type ExtractPluginOptions<T extends PluginName> = Extract<
-  ParserPluginWithOptions,
+  ParserPlugin,
   [T, any]
 >[1]
 
@@ -205,7 +201,6 @@ const [, optionalChainingAssign] = usePluginWithOptions(
 )
 
 const [, partialApplication] = usePluginWithOptions('partialApplication', {
-  // @ts-expect-error Babel 8 feature
   defaultOptions: {
     version: '2018-07',
   },
@@ -222,16 +217,12 @@ const [pipelineOperator, pipelineOperatorEnable, triggerPipelineOperator] =
 const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
   deps: [decorators],
 })
-const decimal = usePlugin('decimal')
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
 const destructuringPrivate = usePlugin('destructuringPrivate')
 const exportDefaultFrom = usePlugin('exportDefaultFrom')
 const functionBind = usePlugin('functionBind')
 const functionSent = usePlugin('functionSent')
-const deprecatedImportAssert = usePlugin('deprecatedImportAssert')
-const importReflection = usePlugin('importReflection')
 const moduleBlocks = usePlugin('moduleBlocks')
-const recordAndTuple = usePlugin('recordAndTuple')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
 const throwExpressions = usePlugin('throwExpressions')
 const [, discardBinding] = usePluginWithOptions('discardBinding', {
@@ -310,33 +301,6 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
         <label text-xs>
           <input v-model="createParenthesizedExpressions" type="checkbox" />
           <span>createParenthesizedExpressions</span>
-        </label>
-      </div>
-    </details>
-
-    <details>
-      <summary cursor-pointer>deprecated...</summary>
-      <div flex="~ col gap2 wrap" ml3 mt1 text-xs>
-        <label>
-          <input v-model="deprecatedImportAssert" type="checkbox" switch />
-          <span>deprecatedImportAssert</span>
-        </label>
-
-        <label>
-          <input v-model="importReflection" type="checkbox" switch />
-          <span>importReflection</span>
-        </label>
-
-        <label>
-          <!-- Stage 1 -->
-          <input v-model="decimal" type="checkbox" switch />
-          <span>decimal</span>
-        </label>
-
-        <label>
-          <!-- Withdrawn -->
-          <input v-model="recordAndTuple" type="checkbox" switch />
-          <span>recordAndTuple</span>
         </label>
       </div>
     </details>
