@@ -5,6 +5,7 @@ import type * as AngularHtmlParser from 'angular-html-parser'
 import type * as Htmlparser2 from 'htmlparser2'
 import type * as Parse5 from 'parse5'
 import type * as Rehype from 'rehype'
+import type { Options as RehypeParseOptions } from 'rehype-parse'
 import type * as Ultrahtml from 'ultrahtml'
 
 // @unocss-include
@@ -29,20 +30,24 @@ const htmlparser2: Parser<typeof Htmlparser2, Htmlparser2.Options> = {
   hideKeys: ['parent', 'prev', 'next'],
 }
 
-const rehypeAst: Parser<typeof Rehype> = {
+const rehypeAst: Parser<typeof Rehype, RehypeParseOptions> = {
   id: 'rehype',
   label: 'rehype',
   icon: 'https://avatars.githubusercontent.com/u/25711728',
   link: 'https://github.com/rehypejs/rehype',
   editorLanguage: 'html',
   options: {
-    configurable: false,
-    defaultValue: {},
-    editorLanguage: 'javascript',
+    configurable: true,
+    defaultValue: {
+      fragment: false,
+      space: 'html',
+      verbose: false,
+    },
+    editorLanguage: 'json',
   },
   pkgName: 'rehype',
-  parse(code) {
-    return this.rehype().parse(code)
+  parse(code, options) {
+    return this.rehype().data('settings', options).parse(code)
   },
   getNodeLocation: genGetNodeLocation('positionOffset'),
 }

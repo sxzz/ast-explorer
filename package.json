@@ -93,6 +93,7 @@
     "puppeteer-core": "catalog:",
     "pyodide": "catalog:parser",
     "rehype": "catalog:parser",
+    "rehype-parse": "catalog:parser",
     "remark": "catalog:parser",
     "rolldown": "catalog:",
     "serve": "catalog:",
