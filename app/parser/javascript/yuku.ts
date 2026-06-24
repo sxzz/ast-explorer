@@ -6,7 +6,7 @@ export type Options = Yuku.ParseOptions
 export const yuku: Parser<typeof Yuku, Options> = {
   id: 'yuku-parser',
   label: 'Yuku',
-  icon: 'https://raw.githubusercontent.com/yuku-toolchain/yuku/refs/heads/main/docs/public/favicon.svg',
+  icon: 'https://raw.githubusercontent.com/yuku-toolchain/yuku/refs/heads/main/docs/assets/favicon.svg',
   link: 'https://yuku.fyi',
   options: {
     configurable: true,
