@@ -241,6 +241,9 @@ catalogs:
     rehype:
       specifier: ^13.0.2
       version: 13.0.2
+    rehype-parse:
+      specifier: ^9.0.1
+      version: 9.0.1
     remark:
       specifier: ^15.0.1
       version: 15.0.1
@@ -487,6 +490,9 @@ importers:
       rehype:
         specifier: catalog:parser
         version: 13.0.2
+      rehype-parse:
+        specifier: catalog:parser
+        version: 9.0.1
       remark:
         specifier: catalog:parser
         version: 15.0.1
