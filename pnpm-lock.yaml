@@ -137,8 +137,8 @@ catalogs:
       specifier: ^8.0.0
       version: 8.0.0
     '@html-eslint/parser':
-      specifier: ^0.62.0
-      version: 0.62.0
+      specifier: ^0.63.0
+      version: 0.63.0
     '@humanwhocodes/momoa':
       specifier: ^3.3.10
       version: 3.3.10
@@ -188,8 +188,8 @@ catalogs:
       specifier: ^6.0.3
       version: 6.0.3
     flow-parser:
-      specifier: ^0.320.0
-      version: 0.320.0
+      specifier: ^0.321.0
+      version: 0.321.0
     graphql:
       specifier: ^17.0.0
       version: 17.0.1
@@ -336,7 +336,7 @@ importers:
         version: 8.0.0
       '@html-eslint/parser':
         specifier: catalog:parser
-        version: 0.62.0
+        version: 0.63.0
       '@humanwhocodes/momoa':
         specifier: catalog:parser
         version: 3.3.10
@@ -429,7 +429,7 @@ importers:
         version: 5.2.2(@nuxt/kit@4.4.8(magicast@0.5.3))(vue@3.5.38(typescript@6.0.3))
       flow-parser:
         specifier: catalog:parser
-        version: 0.320.0
+        version: 0.321.0
       graphql:
         specifier: catalog:parser
         version: 17.0.1
@@ -1117,14 +1117,14 @@ packages:
     resolution: {integrity: sha512-n/SZW+12rwikx/f8YcSv9JCi5p9vn1Bnts9ZtVvfErG4h0gbjHI1H1ZMhVUnaOC7yzFc6PtsCKIK8XeTnL90Gw==}
     engines: {node: ^18 || ^20 || ^22 || >=24}
 
-  '@html-eslint/parser@0.62.0':
-    resolution: {integrity: sha512-kb3uR4AX0hex211zAiiNeCZQVVKm0KbSTjWUKaLGPB9DtoL4y0A4ZJXa9DF2GOIFWDt42xJUUvffB2/MEj3ReA==}
+  '@html-eslint/parser@0.63.0':
+    resolution: {integrity: sha512-zEPbNVJf0C50l4X1C7FV5ig+c+8veD54HGicMdVc9PgB+cjMGcxgInv8yPbBWSSgSSFZZcFwo/Z4XqcPLPK99Q==}
 
-  '@html-eslint/template-syntax-parser@0.62.0':
-    resolution: {integrity: sha512-XPYul7JI6ld/a3vKOHmIWvCuNpOBc5YIiei5hHJQcCwLeIUyq3yGNUYyJSVF4k4QXe5ksyPfy0MRtOgA1tZ7Wg==}
+  '@html-eslint/template-syntax-parser@0.63.0':
+    resolution: {integrity: sha512-MOdc7WmFcMiVbhwPDquXPfR1xTuqhyjy+jh9GEyV4lXYVwX6ATqReLIowZ7z8qNxZ8f9jwQuhktVhHhC6rtiQA==}
 
-  '@html-eslint/types@0.62.0':
-    resolution: {integrity: sha512-lG/Pp0m7OTWmB3PBdAtZNwp35dwjhXVY0jwSqP/47sNPRzVmAOVgxWq2tBQYyH6wJYp3aFZiv1wivd9lUAQZvw==}
+  '@html-eslint/types@0.63.0':
+    resolution: {integrity: sha512-1YclN0Cg2QbUsit0I+SOM2o/66PRcAgw5pkxDjySCOUCbi85DrVZAAbV15ro+YVomYMPqosn3E2IdVCkchgrtQ==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -4464,12 +4464,12 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  flow-estree@0.320.0:
-    resolution: {integrity: sha512-pAqtAcD4UeoNBBpCrpK0oOXhO1oTGxSRsAEc8slnWVDoJJXaHUh/0FJROvlhYH+pyJLYE2YaxmGu6YfWDCkP8g==}
+  flow-estree@0.321.0:
+    resolution: {integrity: sha512-rQY7YKoo+PKpAHQjEP2cxyIefk04OCEKUlbtV4y6LAUG3Ly7guQX9YH8th6drSmYcNkMgpqWMaHRhhYaAF69CA==}
     engines: {node: '>=18'}
 
-  flow-parser@0.320.0:
-    resolution: {integrity: sha512-wVSB6Ii6Lk0865xyMvrOIOulvK4JDGdw5UGRyH1smzYJd8qFIGplZeLJpOsMn2fJIVX0BI6IRRJLBTumSNaQAQ==}
+  flow-parser@0.321.0:
+    resolution: {integrity: sha512-9LNK2rp/NWWbwdEK6mxC54XfQRyD2lVV0iPVBYf+5o5vvqJl7ietkR1hX3/dZ39j0GAbL4PIFoeekDViOW0x/Q==}
     engines: {node: '>=0.4.0'}
 
   foreground-child@3.3.1:
@@ -7519,18 +7519,18 @@ snapshots:
 
   '@handlebars/parser@2.2.2': {}
 
-  '@html-eslint/parser@0.62.0':
+  '@html-eslint/parser@0.63.0':
     dependencies:
-      '@html-eslint/template-syntax-parser': 0.62.0
-      '@html-eslint/types': 0.62.0
+      '@html-eslint/template-syntax-parser': 0.63.0
+      '@html-eslint/types': 0.63.0
       css-tree: 3.2.1
       es-html-parser: 0.3.1
 
-  '@html-eslint/template-syntax-parser@0.62.0':
+  '@html-eslint/template-syntax-parser@0.63.0':
     dependencies:
-      '@html-eslint/types': 0.62.0
+      '@html-eslint/types': 0.63.0
 
-  '@html-eslint/types@0.62.0':
+  '@html-eslint/types@0.63.0':
     dependencies:
       '@types/css-tree': 2.3.11
       '@types/estree': 1.0.9
@@ -10745,11 +10745,11 @@ snapshots:
     optionalDependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
 
-  flow-estree@0.320.0: {}
+  flow-estree@0.321.0: {}
 
-  flow-parser@0.320.0:
+  flow-parser@0.321.0:
     dependencies:
-      flow-estree: 0.320.0
+      flow-estree: 0.321.0
 
   foreground-child@3.3.1:
     dependencies:
