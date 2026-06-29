@@ -152,6 +152,12 @@ Also, thanks to the following projects for their contributions:
   </a>
 </p>
 
+<br />
+<br />
+<a href="https://vercel.com/open-source-program">
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" />
+</a>
+
 ## License
 
 [AGPL-3.0](./LICENSE) License © 2023-PRESENT [三咲智子](https://github.com/sxzz)
