@@ -49,10 +49,10 @@ export default defineNuxtConfig({
     },
     vercel: {
       config: {
+        version: 3,
         routes: [
           {
             src: '.*',
-            // @ts-expect-error - type dismatch in `nitropack`
             headers: crossOriginHeaders,
           },
         ],
