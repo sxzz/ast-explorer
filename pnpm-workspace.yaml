@@ -43,8 +43,8 @@ catalogs:
     '@actions/workflow-parser': ^0.3.58
     '@angular/compiler': ^22.0.4
     '@astrojs/compiler': ^4.0.0
-    '@astrojs/compiler-binding': ^0.2.3
-    '@astrojs/compiler-rs': ^0.2.3
+    '@astrojs/compiler-binding': ^0.3.0
+    '@astrojs/compiler-rs': ^0.3.0
     '@babel/parser': ^8.0.0
     '@html-eslint/parser': ^0.63.0
     '@humanwhocodes/momoa': ^3.3.10
@@ -60,7 +60,7 @@ catalogs:
     acorn: ^8.17.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.10.0
-    comark: ^0.4.0
+    comark: ^0.5.0
     espree: ^11.2.0
     esprima-next: ^6.0.3
     flow-parser: ^0.321.0
@@ -74,7 +74,7 @@ catalogs:
     marked: ^18.0.5
     meriyah: ^7.1.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.137.0
+    oxc-parser: ^0.138.0
     parse5: ^8.0.1
     php-parser: ^3.7.0
     postcss: ^8.5.16
