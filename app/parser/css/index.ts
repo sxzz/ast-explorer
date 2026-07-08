@@ -1,5 +1,6 @@
-import { cssTemplate } from './template'
-import type { LanguageOption, Parser } from './index'
+import { cssTemplate } from '../template'
+import { cssom } from './cssom'
+import type { LanguageOption, Parser } from '..'
 import type * as CssTree from 'css-tree'
 import type * as Lightningcss from 'lightningcss-wasm'
 import type * as Postcss from 'postcss'
@@ -93,6 +94,6 @@ const lightningcss: Parser<
 export const css: LanguageOption = {
   label: 'CSS',
   icon: 'i-vscode-icons:file-type-css',
-  parsers: [cssTree, postcss, lightningcss],
+  parsers: [cssTree, postcss, lightningcss, cssom],
   codeTemplate: cssTemplate,
 }
