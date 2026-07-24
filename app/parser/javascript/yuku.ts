@@ -14,17 +14,15 @@ export const yuku: Parser<typeof Yuku, Options> = {
       sourceType: 'module',
       lang: 'js',
       preserveParens: true,
-      allowReturnOutsideFunction: false,
       semanticErrors: false,
       attachComments: false,
     },
     editorLanguage: 'json',
   },
   pkgName: '@yuku-parser/wasm',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/index.js'),
+  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
   parse(code, options) {
-    const { program, comments, diagnostics } = this.parse(code, options)
-    return { program, comments, diagnostics }
+    return this.parse(code, options)
   },
   editorLanguage(options) {
     const lang = options?.lang
