@@ -2,10 +2,10 @@ catalog:
   '@astral-sh/ruff-wasm-web': ^0.16.0
   '@iconify-json/ri': ^1.2.10
   '@iconify-json/vscode-icons': ^1.2.67
-  '@nuxt/kit': ^4.5.0
+  '@nuxt/kit': ^4.5.1
   '@nuxtjs/plausible': ^3.0.2
   '@shikijs/monaco': ^4.3.1
-  '@sxzz/eslint-config': ^8.3.1
+  '@sxzz/eslint-config': ^8.3.2
   '@sxzz/prettier-config': ^2.3.2
   '@unocss/eslint-plugin': ^66.7.5
   '@unocss/nuxt': ^66.7.5
@@ -24,7 +24,7 @@ catalog:
   nuxt: npm:nuxt-nightly@5x
   nuxt-monaco-editor: ^1.4.1
   prettier: ^3.9.6
-  puppeteer-core: ^25.3.0
+  puppeteer-core: ^25.4.0
   rolldown: ^1.2.0
   serve: ^14.2.6
   shiki: ^4.3.1
@@ -86,7 +86,7 @@ catalogs:
     sql-parser-cst: ^0.42.1
     svelte: ^5.56.8
     ultrahtml: ^1.7.0
-    unbash: ^4.0.3
+    unbash: ^4.0.4
     web-tree-sitter: ^0.26.11
     yaml: ^2.9.0
     yaml-eslint-parser: ^2.1.0
@@ -100,4 +100,4 @@ allowBuilds:
 minimumReleaseAge: 0
 trustLockfile: true
 trustPolicy: no-downgrade
-trustPolicyIgnoreAfter: 604800 # 7 days
+trustPolicyIgnoreAfter: 10080 # 7 days
