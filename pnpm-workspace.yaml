@@ -30,7 +30,7 @@ catalog:
   shiki: ^4.3.1
   simple-git: ^3.36.0
   splitpanes: ^4.1.2
-  typescript: ~6.0.3
+  typescript: ~7.0.0
   unenv: ^2.0.0-rc.24
   unocss: ^66.7.5
   unplugin-replace: ^0.9.0
