@@ -63,7 +63,7 @@ function serialize(value: unknown): unknown {
   } else if (value instanceof StylePropertyMap) {
     result = newObject(value, {
       length: value.size,
-      properties: Array.from(value.entries()).map(([property, value]) => ({
+      properties: Array.from(value.entries(), ([property, value]) => ({
         property,
         value: Array.from(value).map(serialize),
       })),

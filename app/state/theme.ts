@@ -3,7 +3,7 @@ export const isDark = useDark()
 const isAppearanceTransition =
   typeof document !== 'undefined' &&
   !!document.startViewTransition &&
-  !globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches
+  !matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /**
  * Credit to [@hooray](https://github.com/hooray)

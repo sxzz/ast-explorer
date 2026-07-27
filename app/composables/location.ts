@@ -137,9 +137,7 @@ export const getNodeLocation = genGetNodeLocation('startEnd')
 
 export type Range = [start: number, end: number]
 export type JsonNode =
-  | jsonToAst.IdentifierNode
-  | jsonToAst.PropertyNode
-  | jsonToAst.ValueNode
+  jsonToAst.IdentifierNode | jsonToAst.PropertyNode | jsonToAst.ValueNode
 
 export function getLocationMapping(ast: any, parser: Parser) {
   const { getNodeLocation } = parser

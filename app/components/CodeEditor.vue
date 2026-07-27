@@ -54,8 +54,7 @@ if (props.input) {
   )
 
   let decorationsCollection:
-    | Monaco.editor.IEditorDecorationsCollection
-    | undefined
+    Monaco.editor.IEditorDecorationsCollection | undefined
 
   watchEffect(() => {
     const editor = container.value?.$editor

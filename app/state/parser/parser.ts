@@ -42,8 +42,8 @@ export function initParserState() {
     () => {
       if (
         !currentParserId.value ||
-        !currentLanguage.value.parsers.some(
-          (p) => p.id === currentParserId.value,
+        currentLanguage.value.parsers.every(
+          (p) => p.id !== currentParserId.value,
         )
       ) {
         setParserId(currentLanguage.value.parsers[0]!.id)

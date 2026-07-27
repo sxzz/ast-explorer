@@ -49,7 +49,6 @@ const serialized = computed(() => {
       },
       2,
     )
-    // eslint-disable-next-line unicorn/catch-error-name
   } catch (err) {
     console.error(err)
     error.value = err
@@ -72,8 +71,7 @@ const highlightRange = computed(() => {
 })
 
 let decorationsCollection:
-  | Monaco.editor.IEditorDecorationsCollection
-  | undefined
+  Monaco.editor.IEditorDecorationsCollection | undefined
 
 function highlight() {
   decorationsCollection?.clear()
