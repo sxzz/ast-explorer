@@ -1,95 +1,95 @@
 catalog:
-  '@astral-sh/ruff-wasm-web': ^0.15.20
+  '@astral-sh/ruff-wasm-web': ^0.16.0
   '@iconify-json/ri': ^1.2.10
-  '@iconify-json/vscode-icons': ^1.2.62
-  '@nuxt/kit': ^4.4.8
+  '@iconify-json/vscode-icons': ^1.2.67
+  '@nuxt/kit': ^4.5.0
   '@nuxtjs/plausible': ^3.0.2
-  '@shikijs/monaco': ^4.3.0
-  '@sxzz/eslint-config': ^8.2.1
-  '@sxzz/prettier-config': ^2.3.1
-  '@unocss/eslint-plugin': ^66.7.3
-  '@unocss/nuxt': ^66.7.3
+  '@shikijs/monaco': ^4.3.1
+  '@sxzz/eslint-config': ^8.3.1
+  '@sxzz/prettier-config': ^2.3.2
+  '@unocss/eslint-plugin': ^66.7.5
+  '@unocss/nuxt': ^66.7.5
   '@vueuse/core': ^14.3.0
   '@vueuse/nuxt': ^14.3.0
   ansi-regex: ^6.2.2
   bumpp: ^12.0.0
   consola: ^3.4.2
-  ember-estree: ^0.6.4
+  ember-estree: ^0.7.0
   esbuild: ^0.28.1
-  eslint: ^10.6.0
+  eslint: ^10.8.0
   fflate: ^0.8.3
   floating-vue: ^5.2.2
   json5: ^2.2.3
-  monaco-editor: ^0.55.1
+  monaco-editor: ^0.56.0
   nuxt: npm:nuxt-nightly@5x
-  nuxt-monaco-editor: ^1.4.0
-  prettier: ^3.9.1
-  puppeteer-core: ^25.2.1
-  rolldown: ^1.1.3
+  nuxt-monaco-editor: ^1.4.1
+  prettier: ^3.9.6
+  puppeteer-core: ^25.3.0
+  rolldown: ^1.2.0
   serve: ^14.2.6
-  shiki: ^4.3.0
+  shiki: ^4.3.1
   simple-git: ^3.36.0
   splitpanes: ^4.1.2
   typescript: ~6.0.3
   unenv: ^2.0.0-rc.24
-  unocss: ^66.7.3
+  unocss: ^66.7.5
   unplugin-replace: ^0.9.0
-  vite: ^8.1.0
-  vue: ^3.5.39
-  vue-tsc: ^3.3.5
+  vite: ^8.1.5
+  vue: ^3.5.40
+  vue-tsc: ^3.3.8
 
 catalogs:
   parser:
-    '@actions/workflow-parser': ^0.3.58
-    '@angular/compiler': ^22.0.4
+    '@actions/workflow-parser': ^0.3.60
+    '@angular/compiler': ^22.0.8
     '@astrojs/compiler': ^4.0.0
-    '@astrojs/compiler-binding': ^0.3.0
-    '@astrojs/compiler-rs': ^0.3.0
-    '@babel/parser': ^8.0.0
+    '@astrojs/compiler-binding': ^0.3.1
+    '@astrojs/compiler-rs': ^0.3.1
+    '@babel/parser': ^8.0.4
     '@html-eslint/parser': ^0.64.0
     '@humanwhocodes/momoa': ^3.3.10
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
-    '@swc/wasm-web': ^1.15.43
+    '@swc/wasm-web': ^1.15.46
     '@types/css-tree': ^2.3.11
     '@types/json-to-ast': ^2.1.4
-    '@typescript-eslint/parser': ^8.62.0
-    '@vue/compiler-dom': ^3.5.39
-    '@vue/compiler-sfc': ^3.5.39
-    '@yuku-parser/wasm': ^0.6.0
+    '@typescript-eslint/parser': ^8.65.0
+    '@vue/compiler-dom': ^3.5.40
+    '@vue/compiler-sfc': ^3.5.40
+    '@yuku-parser/wasm': ^0.8.0
     acorn: ^8.17.0
     acorn-loose: ^8.5.2
-    angular-html-parser: ^10.10.0
-    comark: ^0.5.0
+    angular-html-parser: ^10.11.0
+    comark: ^0.5.1
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.322.0
-    graphql: ^17.0.1
+    flow-parser: ^0.324.0
+    graphql: ^17.0.2
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
     jinx-rust: ^0.1.6
     json-to-ast: ^2.1.0
     jsonc-eslint-parser: ^3.1.0
-    lightningcss-wasm: ^1.32.0
-    marked: ^18.0.5
-    meriyah: ^7.1.0
+    lightningcss-wasm: ^1.33.0
+    marked: ^18.0.7
+    meriyah: ^7.2.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.139.0
+    oxc-parser: ^0.141.0
     parse5: ^8.0.1
     php-parser: ^3.7.0
-    postcss: ^8.5.16
-    protobufjs: ^8.6.5
-    pyodide: ^314.0.1
+    postcss: ^8.5.23
+    protobufjs: ^8.7.1
+    pyodide: ^314.0.3
     rehype: ^13.0.2
     rehype-parse: ^9.0.1
     remark: ^15.0.1
     sql-parser-cst: ^0.42.1
-    svelte: ^5.56.4
-    ultrahtml: ^1.6.0
-    unbash: ^4.0.2
-    web-tree-sitter: ^0.26.10
+    svelte: ^5.56.8
+    ultrahtml: ^1.7.0
+    unbash: ^4.0.3
+    web-tree-sitter: ^0.26.11
     yaml: ^2.9.0
-    yaml-eslint-parser: ^2.0.0
+    yaml-eslint-parser: ^2.1.0
     yaml-unist-parser: ^3.2.0
 
 allowBuilds:

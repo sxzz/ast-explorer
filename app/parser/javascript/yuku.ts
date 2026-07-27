@@ -14,7 +14,6 @@ export const yuku: Parser<typeof Yuku, Options> = {
       sourceType: 'module',
       lang: 'js',
       preserveParens: true,
-      allowReturnOutsideFunction: false,
       semanticErrors: false,
       attachComments: false,
     },

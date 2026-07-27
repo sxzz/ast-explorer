@@ -7,11 +7,6 @@ const useOption = makeUseOption<Options>()
 const lang = useOption('lang', 'js', true)
 const sourceType = useOption('sourceType', 'module', true)
 const preserveParens = useOption('preserveParens', true, true)
-const allowReturnOutsideFunction = useOption(
-  'allowReturnOutsideFunction',
-  false,
-  true,
-)
 const semanticErrors = useOption('semanticErrors', false, true)
 const attachComments = useOption('attachComments', false, true)
 </script>
@@ -40,11 +35,6 @@ const attachComments = useOption('attachComments', false, true)
     <label>
       <input v-model="preserveParens" type="checkbox" switch />
       <span>preserveParens</span>
-    </label>
-
-    <label>
-      <input v-model="allowReturnOutsideFunction" type="checkbox" switch />
-      <span>allowReturnOutsideFunction</span>
     </label>
 
     <label>
