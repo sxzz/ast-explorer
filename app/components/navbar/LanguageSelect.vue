@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { DropdownMenuItem } from 'reka-ui'
 import { currentLanguage, currentLanguageId } from '~/state/parser/parser'
 import type { Language } from '#imports'
 
@@ -8,27 +9,28 @@ function changeLanguage(language: Language) {
 </script>
 
 <template>
-  <VMenu
-    :class="{ dark: isDark }"
-    :triggers="['hover', 'click']"
-    placement="bottom-start"
-    :delay="0"
-  >
-    <button flex="~ center" gap1>
-      <div :class="currentLanguage.icon" />
-      {{ currentLanguage.label }}
-    </button>
-    <template #popper>
-      <div max-h-80vh flex flex-col overflow-y-auto>
+  <DropdownMenu>
+    <template #trigger="{ openFromPointer, schedulePointerClose }">
+      <button
+        flex="~ center"
+        gap1
+        @mouseenter="openFromPointer"
+        @mouseleave="schedulePointerClose"
+      >
+        <div :class="currentLanguage.icon" />
+        {{ currentLanguage.label }}
+      </button>
+    </template>
+
+    <div max-h-80vh flex flex-col overflow-y-auto>
+      <DropdownMenuItem v-for="(lang, id) in LANGUAGES" :key="id" as-child>
         <DropdownItem
-          v-for="(lang, id) in LANGUAGES"
-          :key="id"
           :icon="lang.icon"
           :text="lang.label"
           :checked="currentLanguageId === id"
           @click="changeLanguage(id)"
         />
-      </div>
-    </template>
-  </VMenu>
+      </DropdownMenuItem>
+    </div>
+  </DropdownMenu>
 </template>

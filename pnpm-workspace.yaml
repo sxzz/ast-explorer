@@ -18,13 +18,13 @@ catalog:
   esbuild: ^0.28.1
   eslint: ^10.8.0
   fflate: ^0.8.3
-  floating-vue: ^5.2.2
   json5: ^2.2.3
   monaco-editor: ^0.56.0
   nuxt: npm:nuxt-nightly@5x
   nuxt-monaco-editor: ^1.4.1
   prettier: ^3.9.6
   puppeteer-core: ^25.4.0
+  reka-ui: ^2.10.1
   rolldown: ^1.2.0
   serve: ^14.2.6
   shiki: ^4.3.1
@@ -56,8 +56,8 @@ catalogs:
     '@typescript-eslint/parser': ^8.65.0
     '@vue/compiler-dom': ^3.5.40
     '@vue/compiler-sfc': ^3.5.40
-    '@yuku-parser/wasm': ^0.8.0
-    acorn: ^8.17.0
+    '@yuku-parser/wasm': ^0.8.1
+    acorn: ^8.18.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.11.0
     comark: ^0.5.1
@@ -74,10 +74,10 @@ catalogs:
     marked: ^18.0.7
     meriyah: ^7.2.0
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.141.0
+    oxc-parser: ^0.142.0
     parse5: ^8.0.1
     php-parser: ^3.7.0
-    postcss: ^8.5.23
+    postcss: ^8.5.24
     protobufjs: ^8.7.1
     pyodide: ^314.0.3
     rehype: ^13.0.2
@@ -96,6 +96,7 @@ allowBuilds:
   '@parcel/watcher': false
   esbuild: false
   protobufjs: false
+  vue-demi: false
 
 minimumReleaseAge: 0
 trustLockfile: true

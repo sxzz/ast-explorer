@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { DropdownMenuItem } from 'reka-ui'
 import {
   currentLanguage,
   currentParser,
@@ -12,29 +13,33 @@ function changeParser(parser: string) {
 </script>
 
 <template>
-  <VMenu
-    :class="{ dark: isDark }"
-    :triggers="['hover', 'click']"
-    placement="bottom-start"
-    :delay="0"
-    flex
-  >
-    <button flex="~ center" gap1>
-      <IconPreview :value="currentParser.icon" />
-      <span font-mono>{{ currentParser.label }}</span>
-    </button>
-    <template #popper>
-      <div max-h-80vh flex flex-col overflow-y-auto>
+  <DropdownMenu>
+    <template #trigger="{ openFromPointer, schedulePointerClose }">
+      <button
+        flex="~ center"
+        gap1
+        @mouseenter="openFromPointer"
+        @mouseleave="schedulePointerClose"
+      >
+        <IconPreview :value="currentParser.icon" />
+        <span font-mono>{{ currentParser.label }}</span>
+      </button>
+    </template>
+
+    <div max-h-80vh flex flex-col overflow-y-auto>
+      <DropdownMenuItem
+        v-for="parser of currentLanguage.parsers"
+        :key="parser.id"
+        as-child
+      >
         <DropdownItem
-          v-for="parser of currentLanguage.parsers"
-          :key="parser.id"
           :icon="parser.icon"
           :text="parser.label"
           :checked="currentParserId === parser.id"
           font-mono
           @click="changeParser(parser.id)"
         />
-      </div>
-    </template>
-  </VMenu>
+      </DropdownMenuItem>
+    </div>
+  </DropdownMenu>
 </template>
