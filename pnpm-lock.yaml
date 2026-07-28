@@ -93,9 +93,9 @@ catalogs:
     shiki:
       specifier: ^4.3.1
       version: 4.3.1
-    simple-git:
-      specifier: ^3.36.0
-      version: 3.36.0
+    tinyexec:
+      specifier: ^1.2.4
+      version: 1.2.4
     typescript:
       specifier: ~6.0.3
       version: 6.0.3
@@ -496,15 +496,15 @@ importers:
       serve:
         specifier: 'catalog:'
         version: 14.2.6(supports-color@8.1.1)
-      simple-git:
-        specifier: 'catalog:'
-        version: 3.36.0(supports-color@8.1.1)
       sql-parser-cst:
         specifier: catalog:parser
         version: 0.42.1
       svelte:
         specifier: catalog:parser
         version: 5.56.8(@typescript-eslint/types@8.65.0)
+      tinyexec:
+        specifier: 'catalog:'
+        version: 1.2.4
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
@@ -1164,12 +1164,6 @@ packages:
     resolution: {integrity: sha512-vvcyZ+10EDZKbEyB1J2kXOGfDaiZR2LurZGSqi2r5STHyKr+Te85DWaBxTwRGgM7U1LtIvNx85BzzjElRKoAIg==}
     peerDependencies:
       zod: ^4.0.0
-
-  '@kwsites/file-exists@1.1.1':
-    resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
-
-  '@kwsites/promise-deferred@1.1.1':
-    resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
 
   '@napi-rs/wasm-runtime@1.2.0':
     resolution: {integrity: sha512-kDoONqMa+VnZ4vvvu/ZUurpJ4gkZU57e7g69qpNgWhYcZFPUHZM2CEMKm+cG6ufDVALbjMvfmMjFVqaK7uEMnA==}
@@ -2188,12 +2182,6 @@ packages:
 
   '@simple-dom/interface@1.4.0':
     resolution: {integrity: sha512-l5qumKFWU0S+4ZzMaLXFU8tQZsicHEMEyAxI5kDFGhJsRqDwe0a7/iPA/GdxlGyDKseQQAgIz5kzU7eXTrlSpA==}
-
-  '@simple-git/args-pathspec@1.0.3':
-    resolution: {integrity: sha512-ngJMaHlsWDTfjyq9F3VIQ8b7NXbBLq5j9i5bJ6XLYtD6qlDXT7fdKY2KscWWUF8t18xx052Y/PUO1K1TRc9yKA==}
-
-  '@simple-git/argv-parser@1.1.1':
-    resolution: {integrity: sha512-Q9lBcfQ+VQCpQqGJFHe5yooOS5hGdLFFbJ5R+R5aDsnkPCahtn1hSkMcORX65J2Z5lxSkD0lQorMsncuBQxYUw==}
 
   '@sindresorhus/base62@1.0.0':
     resolution: {integrity: sha512-TeheYy0ILzBEI/CO55CP6zJCSdSWeRtGnHy8U8dWSUH4I68iqTsy7HkMktR4xakThc9jotkPQUXT4ITdbV7cHA==}
@@ -4883,9 +4871,6 @@ packages:
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
 
-  simple-git@3.36.0:
-    resolution: {integrity: sha512-cGQjLjK8bxJw4QuYT7gxHw3/IouVESbhahSsHrX97MzCL1gu2u7oy38W6L2ZIGECEfIBG4BabsWDPjBxJENv9Q==}
-
   simple-html-tokenizer@0.5.11:
     resolution: {integrity: sha512-C2WEK/Z3HoSFbYq8tI7ni3eOo/NneSPRoPpcM7WdLjFOArFuyXEjAoCdOC3DgMfRyziZQ1hCNR4mrNdWEvD0og==}
 
@@ -6329,14 +6314,6 @@ snapshots:
     dependencies:
       zod: 4.4.3
 
-  '@kwsites/file-exists@1.1.1(supports-color@8.1.1)':
-    dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@kwsites/promise-deferred@1.1.1': {}
-
   '@napi-rs/wasm-runtime@1.2.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
       '@emnapi/core': 1.10.0
@@ -7226,12 +7203,6 @@ snapshots:
   '@shikijs/vscode-textmate@10.0.2': {}
 
   '@simple-dom/interface@1.4.0': {}
-
-  '@simple-git/args-pathspec@1.0.3': {}
-
-  '@simple-git/argv-parser@1.1.1':
-    dependencies:
-      '@simple-git/args-pathspec': 1.0.3
 
   '@sindresorhus/base62@1.0.0': {}
 
@@ -10649,16 +10620,6 @@ snapshots:
       '@types/hast': 3.0.5
 
   signal-exit@3.0.7: {}
-
-  simple-git@3.36.0(supports-color@8.1.1):
-    dependencies:
-      '@kwsites/file-exists': 1.1.1(supports-color@8.1.1)
-      '@kwsites/promise-deferred': 1.1.1
-      '@simple-git/args-pathspec': 1.0.3
-      '@simple-git/argv-parser': 1.1.1
-      debug: 4.4.3(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - supports-color
 
   simple-html-tokenizer@0.5.11: {}
 

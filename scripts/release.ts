@@ -1,17 +1,13 @@
-import Git from 'simple-git'
+import { x } from 'tinyexec'
 
-const git = Git()
-
-const hash = await git.revparse(['main'])
-
-console.log('Checkout release branch')
-await git.checkout('release')
-
-console.log(`Reset to main branch (${hash})`)
-await git.reset(['--hard', hash])
-
-console.log('Push to release branch')
-await git.push(['--force'])
-
-console.log('Checkout main branch')
-await git.checkout('main')
+console.log('Pushing to release branch')
+await x('git', ['update-ref', 'refs/heads/release', 'refs/heads/main'], {
+  nodeOptions: { stdio: 'inherit' },
+  throwOnError: true,
+  nodePath: false,
+})
+await x('git', ['push', 'origin', 'release'], {
+  nodeOptions: { stdio: 'inherit' },
+  throwOnError: true,
+  nodePath: false,
+})
