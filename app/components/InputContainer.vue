@@ -17,20 +17,21 @@ function showSettings() {
 
 <template>
   <div relative>
-    <div
-      p="0.8"
-      title="Editor Settings"
-      absolute
-      right-5
-      top-2
-      z-100
-      nav-button
-      cursor-pointer
-      text-sm
-      @click="showSettings"
-    >
-      <div i-ri:settings-line />
-    </div>
+    <AppTooltip text="Editor Settings">
+      <button
+        aria-label="Editor Settings"
+        p="0.8"
+        absolute
+        right-5
+        top-2
+        z-100
+        nav-button
+        text-sm
+        @click="showSettings"
+      >
+        <div i-ri:settings-line />
+      </button>
+    </AppTooltip>
     <CodeEditor v-model="code" :language input h-full w-full />
     <EditorSettings />
   </div>

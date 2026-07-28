@@ -25,6 +25,42 @@
   background-color: var(--c-accent-tint);
 }
 
+.dropdown-menu-scroll-area,
+.dropdown-menu-scroll-viewport {
+  max-height: min(
+    80vh,
+    var(--reka-dropdown-menu-content-available-height, 80vh)
+  );
+}
+
+.dropdown-menu-scroll-area {
+  min-width: 100%;
+  overflow: hidden;
+}
+
+.dropdown-menu-scroll-viewport {
+  width: 100%;
+}
+
+.dropdown-menu-scrollbar {
+  display: flex;
+  width: 8px;
+  padding: 2px;
+  touch-action: none;
+  user-select: none;
+}
+
+.dropdown-menu-scroll-thumb {
+  position: relative;
+  flex: 1;
+  background: color-mix(in srgb, var(--c-text-mute) 55%, transparent);
+  border-radius: 999px;
+}
+
+.dropdown-menu-scroll-thumb:hover {
+  background: var(--c-accent-soft);
+}
+
 .dropdown-menu-content[data-state='closed'] {
   animation: dropdown-menu-fade-out 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

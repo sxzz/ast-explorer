@@ -15,27 +15,27 @@ const raw = useOption('raw')
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
-      <input v-model="mdx" type="checkbox" switch />
+      <AppSwitch v-model="mdx" />
       <span>use remark-mdx</span>
     </label>
 
     <label>
-      <input v-model="frontmatter" type="checkbox" switch />
+      <AppSwitch v-model="frontmatter" />
       <span>use remark-frontmatter</span>
     </label>
 
     <label>
-      <input v-model="directive" type="checkbox" switch />
+      <AppSwitch v-model="directive" />
       <span>use remark-directive</span>
     </label>
 
     <label>
-      <input v-model="gfm" type="checkbox" switch />
+      <AppSwitch v-model="gfm" />
       <span>use remark-gfm</span>
     </label>
 
     <label>
-      <input v-model="raw" type="checkbox" switch />
+      <AppSwitch v-model="raw" />
       <span>use rehype-raw</span>
     </label>
   </div>

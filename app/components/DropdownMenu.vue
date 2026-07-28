@@ -4,6 +4,10 @@ import {
   DropdownMenuPortal,
   DropdownMenuRoot,
   DropdownMenuTrigger,
+  ScrollAreaRoot,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
 } from 'reka-ui'
 
 defineSlots<{
@@ -85,7 +89,21 @@ onBeforeUnmount(clearCloseTimer)
         @mouseenter="openFromPointer"
         @mouseleave="schedulePointerClose"
       >
-        <slot />
+        <ScrollAreaRoot
+          class="dropdown-menu-scroll-area"
+          :scroll-hide-delay="300"
+          type="hover"
+        >
+          <ScrollAreaViewport class="dropdown-menu-scroll-viewport">
+            <slot />
+          </ScrollAreaViewport>
+          <ScrollAreaScrollbar
+            class="dropdown-menu-scrollbar"
+            orientation="vertical"
+          >
+            <ScrollAreaThumb class="dropdown-menu-scroll-thumb" />
+          </ScrollAreaScrollbar>
+        </ScrollAreaRoot>
       </DropdownMenuContent>
     </DropdownMenuPortal>
   </DropdownMenuRoot>

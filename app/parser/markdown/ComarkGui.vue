@@ -13,17 +13,17 @@ const autoClose = useOption('autoClose')
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
-      <input v-model="html" type="checkbox" switch />
+      <AppSwitch v-model="html" />
       <span>html</span>
     </label>
 
     <label>
-      <input v-model="autoUnwrap" type="checkbox" switch />
+      <AppSwitch v-model="autoUnwrap" />
       <span>autoUnwrap</span>
     </label>
 
     <label>
-      <input v-model="autoClose" type="checkbox" switch />
+      <AppSwitch v-model="autoClose" />
       <span>autoClose</span>
     </label>
   </div>

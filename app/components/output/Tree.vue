@@ -20,17 +20,19 @@ function showDialog() {
     >
       <AstProperty :value="ast" open root />
     </div>
-    <button
-      absolute
-      right-2
-      top-2
-      p="0.8"
-      title="AST Tree Styles"
-      nav-button
-      @click="showDialog"
-    >
-      <div i-ri:magic-line />
-    </button>
+    <AppTooltip text="AST Tree Styles">
+      <button
+        aria-label="AST Tree Styles"
+        absolute
+        right-2
+        top-2
+        p="0.8"
+        nav-button
+        @click="showDialog"
+      >
+        <div i-ri:magic-line />
+      </button>
+    </AppTooltip>
     <OutputTreeStyles />
   </div>
 </template>

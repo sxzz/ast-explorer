@@ -34,7 +34,12 @@ import {
           Parser Options
         </h2>
       </div>
-      <ParserOptions v-if="currentParser.options.configurable" nav-button />
+      <ParserOptions
+        v-if="currentParser.options.configurable"
+        aria-label="Parser Options"
+        nav-button
+        tooltip="Parser Options"
+      />
     </div>
 
     <Suspense :timeout="0">

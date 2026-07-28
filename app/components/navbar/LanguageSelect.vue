@@ -22,7 +22,7 @@ function changeLanguage(language: Language) {
       </button>
     </template>
 
-    <div max-h-80vh flex flex-col overflow-y-auto>
+    <div flex flex-col>
       <DropdownMenuItem v-for="(lang, id) in LANGUAGES" :key="id" as-child>
         <DropdownItem
           :icon="lang.icon"

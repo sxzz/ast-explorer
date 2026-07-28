@@ -38,42 +38,42 @@ const impliedStrict = useOptions(['ecmaFeatures', 'impliedStrict'])
     </label>
 
     <label>
-      <input v-model="jsx" type="checkbox" switch />
+      <AppSwitch v-model="jsx" />
       <span>JSX</span>
     </label>
 
     <label v-if="!typescript">
-      <input v-model="range" type="checkbox" switch />
+      <AppSwitch v-model="range" />
       <span>range</span>
     </label>
 
     <label v-if="!typescript">
-      <input v-model="loc" type="checkbox" switch />
+      <AppSwitch v-model="loc" />
       <span>loc</span>
     </label>
 
     <label v-if="!typescript">
-      <input v-model="comment" type="checkbox" switch />
+      <AppSwitch v-model="comment" />
       <span>comment</span>
     </label>
 
     <label v-if="!typescript">
-      <input v-model="tokens" type="checkbox" switch />
+      <AppSwitch v-model="tokens" />
       <span>tokens</span>
     </label>
 
     <label v-if="!typescript">
-      <input v-model="allowReserved" type="checkbox" switch />
+      <AppSwitch v-model="allowReserved" />
       <span>allowReserved</span>
     </label>
 
     <label>
-      <input v-model="globalReturn" type="checkbox" switch />
+      <AppSwitch v-model="globalReturn" />
       <span>globalReturn</span>
     </label>
 
     <label>
-      <input v-model="impliedStrict" type="checkbox" switch />
+      <AppSwitch v-model="impliedStrict" />
       <span>impliedStrict</span>
     </label>
   </div>

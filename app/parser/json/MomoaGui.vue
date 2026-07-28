@@ -23,17 +23,17 @@ const allowTrailingCommas = useOption('allowTrailingCommas')
     </label>
 
     <label>
-      <input v-model="ranges" type="checkbox" switch />
+      <AppSwitch v-model="ranges" />
       <span>ranges</span>
     </label>
 
     <label>
-      <input v-model="tokens" type="checkbox" switch />
+      <AppSwitch v-model="tokens" />
       <span>tokens</span>
     </label>
 
     <label v-show="mode !== 'json5'">
-      <input v-model="allowTrailingCommas" type="checkbox" switch />
+      <AppSwitch v-model="allowTrailingCommas" />
       <span>allowTrailingCommas</span>
     </label>
   </div>

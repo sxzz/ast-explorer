@@ -6,9 +6,15 @@ import {
   TooltipTrigger,
 } from 'reka-ui'
 
-defineProps<{
-  text: string
-}>()
+withDefaults(
+  defineProps<{
+    text: string
+    portal?: boolean
+  }>(),
+  {
+    portal: true,
+  },
+)
 </script>
 
 <template>
@@ -17,7 +23,7 @@ defineProps<{
       <slot />
     </TooltipTrigger>
 
-    <TooltipPortal>
+    <TooltipPortal :disabled="!portal">
       <TooltipContent
         class="tooltip-content"
         :collision-padding="8"

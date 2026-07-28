@@ -26,7 +26,7 @@ function changeParser(parser: string) {
       </button>
     </template>
 
-    <div max-h-80vh flex flex-col overflow-y-auto>
+    <div flex flex-col>
       <DropdownMenuItem
         v-for="parser of currentLanguage.parsers"
         :key="parser.id"

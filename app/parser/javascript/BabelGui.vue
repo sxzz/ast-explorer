@@ -235,7 +235,7 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
-      <input v-model="estree" type="checkbox" switch />
+      <AppSwitch v-model="estree" />
       <span>ESTree</span>
     </label>
 
@@ -254,37 +254,37 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <summary cursor-pointer>allow syntaxes...</summary>
       <div flex="~ col gap2 wrap" ml3 mt1 text-xs>
         <label>
-          <input v-model="allowImportExportEverywhere" type="checkbox" />
+          <AppCheckbox v-model="allowImportExportEverywhere" />
           <span>allowImportExportEverywhere</span>
         </label>
 
         <label>
-          <input v-model="allowAwaitOutsideFunction" type="checkbox" />
+          <AppCheckbox v-model="allowAwaitOutsideFunction" />
           <span>allowAwaitOutsideFunction</span>
         </label>
 
         <label>
-          <input v-model="allowYieldOutsideFunction" type="checkbox" />
+          <AppCheckbox v-model="allowYieldOutsideFunction" />
           <span>allowYieldOutsideFunction</span>
         </label>
 
         <label text-xs>
-          <input v-model="allowNewTargetOutsideFunction" type="checkbox" />
+          <AppCheckbox v-model="allowNewTargetOutsideFunction" />
           <span>allowNewTargetOutsideFunction</span>
         </label>
 
         <label>
-          <input v-model="allowReturnOutsideFunction" type="checkbox" />
+          <AppCheckbox v-model="allowReturnOutsideFunction" />
           <span>allowReturnOutsideFunction</span>
         </label>
 
         <label>
-          <input v-model="allowSuperOutsideMethod" type="checkbox" />
+          <AppCheckbox v-model="allowSuperOutsideMethod" />
           <span>allowSuperOutsideMethod</span>
         </label>
 
         <label>
-          <input v-model="allowUndeclaredExports" type="checkbox" />
+          <AppCheckbox v-model="allowUndeclaredExports" />
           <span>allowUndeclaredExports</span>
         </label>
       </div>
@@ -294,66 +294,61 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <summary cursor-pointer>create expressions...</summary>
       <div flex="~ col gap2 wrap" ml3 mt1 text-xs>
         <label>
-          <input v-model="createImportExpressions" type="checkbox" />
+          <AppCheckbox v-model="createImportExpressions" />
           <span>createImportExpressions</span>
         </label>
 
         <label text-xs>
-          <input v-model="createParenthesizedExpressions" type="checkbox" />
+          <AppCheckbox v-model="createParenthesizedExpressions" />
           <span>createParenthesizedExpressions</span>
         </label>
       </div>
     </details>
 
     <label>
-      <input v-model="errorRecovery" type="checkbox" switch />
+      <AppSwitch v-model="errorRecovery" />
       <span>errorRecovery</span>
     </label>
 
     <label>
-      <input v-model="ranges" type="checkbox" switch />
+      <AppSwitch v-model="ranges" />
       <span>ranges</span>
     </label>
 
     <label>
-      <input v-model="tokens" type="checkbox" switch />
+      <AppSwitch v-model="tokens" />
       <span>tokens</span>
     </label>
 
     <label>
-      <input v-model="attachComment" type="checkbox" switch />
+      <AppSwitch v-model="attachComment" />
       <span>attachComment</span>
     </label>
 
     <h3 border-t pt1 text-center font-bold>Languages</h3>
 
     <label>
-      <input v-model="typescriptEnable" type="checkbox" switch />
+      <AppSwitch v-model="typescriptEnable" />
       <span>TypeScript</span>
     </label>
 
     <label v-if="typescript" ml6>
-      <input
-        v-model="typescript.dts"
-        type="checkbox"
-        switch
-        @change="triggerTypescript"
-      />
+      <AppSwitch v-model="typescript.dts" @change="triggerTypescript" />
       <span>dts</span>
     </label>
 
     <label>
-      <input v-model="jsx" type="checkbox" switch />
+      <AppSwitch v-model="jsx" />
       <span>JSX</span>
     </label>
 
     <label>
-      <input v-model="flow" type="checkbox" switch />
+      <AppSwitch v-model="flow" />
       <span>Flow</span>
     </label>
 
     <label>
-      <input v-model="v8intrinsic" type="checkbox" switch />
+      <AppSwitch v-model="v8intrinsic" />
       <span>V8 Intrinsic</span>
     </label>
 
@@ -361,25 +356,25 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label>
       <!-- Stage 3 -->
-      <input v-model="sourcePhaseImports" type="checkbox" switch />
+      <AppSwitch v-model="sourcePhaseImports" />
       <span>sourcePhaseImports</span>
     </label>
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="moduleBlocks" type="checkbox" switch />
+      <AppSwitch v-model="moduleBlocks" />
       <span>moduleBlocks</span>
     </label>
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="deferredImportEvaluation" type="checkbox" switch />
+      <AppSwitch v-model="deferredImportEvaluation" />
       <span>deferredImportEvaluation</span>
     </label>
 
     <label>
       <!-- Stage 1 -->
-      <input v-model="exportDefaultFrom" type="checkbox" switch />
+      <AppSwitch v-model="exportDefaultFrom" />
       <span>exportDefaultFrom</span>
     </label>
 
@@ -387,7 +382,7 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="pipelineOperatorEnable" type="checkbox" switch />
+      <AppSwitch v-model="pipelineOperatorEnable" />
       <span>pipelineOperator</span>
     </label>
 
@@ -418,19 +413,19 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="functionSent" type="checkbox" switch />
+      <AppSwitch v-model="functionSent" />
       <span>functionSent</span>
     </label>
 
     <label>
       <!-- Stage 0 -->
-      <input v-model="functionBind" type="checkbox" switch />
+      <AppSwitch v-model="functionBind" />
       <span>functionBind</span>
     </label>
 
     <label>
       <!-- Stage 1 -->
-      <input v-model="partialApplication" type="checkbox" switch />
+      <AppSwitch v-model="partialApplication" />
       <span>partialApplication</span>
     </label>
 
@@ -438,53 +433,53 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <!-- Stage 2 -->
     <label>
-      <input v-model="discardBinding" type="checkbox" switch />
+      <AppSwitch v-model="discardBinding" />
       <span>discardBinding</span>
     </label>
 
     <label>
       <!-- Stage 3 -->
-      <input v-model="decorators" type="checkbox" switch />
+      <AppSwitch v-model="decorators" />
       <span>decorators</span>
     </label>
 
     <label ml6>
-      <input v-model="decoratorsLegacy" type="checkbox" switch />
+      <AppSwitch v-model="decoratorsLegacy" />
       <span>legacy</span>
     </label>
 
     <label ml6>
-      <input v-model="decoratorAutoAccessors" type="checkbox" switch />
+      <AppSwitch v-model="decoratorAutoAccessors" />
       <span>autoAccessors</span>
     </label>
 
     <label>
       <!-- Stage 1 -->
-      <input v-model="doExpressions" type="checkbox" switch />
+      <AppSwitch v-model="doExpressions" />
       <span>doExpressions</span>
     </label>
 
     <label ml6>
       <!-- Stage 1 -->
-      <input v-model="asyncDoExpressions" type="checkbox" switch />
+      <AppSwitch v-model="asyncDoExpressions" />
       <span>async</span>
     </label>
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="throwExpressions" type="checkbox" switch />
+      <AppSwitch v-model="throwExpressions" />
       <span>throwExpressions</span>
     </label>
 
     <label>
       <!-- Stage 2 -->
-      <input v-model="destructuringPrivate" type="checkbox" switch />
+      <AppSwitch v-model="destructuringPrivate" />
       <span>destructuringPrivate</span>
     </label>
 
     <label>
       <!-- Stage 1 -->
-      <input v-model="optionalChainingAssign" type="checkbox" switch />
+      <AppSwitch v-model="optionalChainingAssign" />
       <span>optionalChainingAssign</span>
     </label>
   </div>

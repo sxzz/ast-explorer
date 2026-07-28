@@ -10,6 +10,7 @@ const open = defineModel<boolean>()
 watchEffect(() => {
   if (open.value) {
     dialog.value?.showModal()
+    dialog.value?.focus({ preventScroll: true })
   } else {
     dialog.value?.close()
   }
@@ -27,13 +28,16 @@ function closeDialog() {
 <template>
   <dialog
     ref="dialog"
+    :aria-label="title"
     gap="0.5"
+    tabindex="-1"
     flex-col
     border
     border-base
     rounded-xl
     bg-elev
     shadow-2xl
+    outline-none
     open:flex
     backdrop:bg-black:50
     backdrop:backdrop-blur-md
@@ -50,18 +54,28 @@ function closeDialog() {
           title
         }}</span>
       </div>
-      <a
-        v-if="docs"
-        title="Reference Documentation"
-        :href="docs"
-        target="_blank"
-        nav-button
-      >
-        <div i-ri:book-2-line />
-      </a>
-      <button absolute right-3 top-3 nav-button @click="closeDialog">
-        <div i-ri:close-line />
-      </button>
+      <AppTooltip v-if="docs" :portal="false" text="Reference Documentation">
+        <a
+          aria-label="Reference Documentation"
+          :href="docs"
+          target="_blank"
+          nav-button
+        >
+          <div i-ri:book-2-line />
+        </a>
+      </AppTooltip>
+      <AppTooltip :portal="false" text="Close">
+        <button
+          aria-label="Close"
+          absolute
+          right-3
+          top-3
+          nav-button
+          @click="closeDialog"
+        >
+          <div i-ri:close-line />
+        </button>
+      </AppTooltip>
     </div>
 
     <slot />

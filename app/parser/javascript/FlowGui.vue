@@ -24,52 +24,52 @@ const records = useOption('records')
   <div flex="~ col" gap2 text-sm font-mono>
     <h3 border-t pt1 text-center font-bold>Basic options</h3>
     <label>
-      <input v-model="types" type="checkbox" switch />
+      <AppSwitch v-model="types" />
       <span>types</span>
     </label>
     <label>
-      <input v-model="use_strict" type="checkbox" switch />
+      <AppSwitch v-model="use_strict" />
       <span>use_strict</span>
     </label>
     <label>
-      <input v-model="comments" type="checkbox" switch />
+      <AppSwitch v-model="comments" />
       <span>comments</span>
     </label>
     <label>
-      <input v-model="all_comments" type="checkbox" switch />
+      <AppSwitch v-model="all_comments" />
       <span>all_comments</span>
     </label>
     <label>
-      <input v-model="tokens" type="checkbox" switch />
+      <AppSwitch v-model="tokens" />
       <span>tokens</span>
     </label>
     <h3 border-t pt1 text-center font-bold>Language features</h3>
     <label>
-      <input v-model="enums" type="checkbox" switch />
+      <AppSwitch v-model="enums" />
       <span>enums</span>
     </label>
     <label>
-      <input v-model="match" type="checkbox" switch />
+      <AppSwitch v-model="match" />
       <span>match</span>
     </label>
     <label>
-      <input v-model="components" type="checkbox" switch />
+      <AppSwitch v-model="components" />
       <span>components</span>
     </label>
     <label>
-      <input v-model="assert_operator" type="checkbox" switch />
+      <AppSwitch v-model="assert_operator" />
       <span>assert_operator</span>
     </label>
     <label>
-      <input v-model="esproposal_decorators" type="checkbox" switch />
+      <AppSwitch v-model="esproposal_decorators" />
       <span>esproposal_decorators</span>
     </label>
     <label>
-      <input v-model="pattern_matching" type="checkbox" switch />
+      <AppSwitch v-model="pattern_matching" />
       <span>pattern_matching</span>
     </label>
     <label>
-      <input v-model="records" type="checkbox" switch />
+      <AppSwitch v-model="records" />
       <span>records</span>
     </label>
   </div>

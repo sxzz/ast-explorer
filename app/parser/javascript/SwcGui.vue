@@ -41,46 +41,41 @@ watch(language, (language) => {
     </label>
 
     <label>
-      <input
-        v-if="language === 'ecmascript'"
-        v-model="jsx"
-        type="checkbox"
-        switch
-      />
-      <input v-else v-model="tsx" type="checkbox" switch />
+      <AppSwitch v-if="language === 'ecmascript'" v-model="jsx" />
+      <AppSwitch v-else v-model="tsx" />
       <span>{{ language === 'ecmascript' ? 'JSX' : 'TSX' }}</span>
     </label>
 
     <label>
-      <input v-model="decorators" type="checkbox" switch />
+      <AppSwitch v-model="decorators" />
       <span>decorators</span>
     </label>
 
     <template v-if="language === 'ecmascript'">
       <label ml6>
-        <input v-model="decoratorsBeforeExport" type="checkbox" switch />
+        <AppSwitch v-model="decoratorsBeforeExport" />
         <span>beforeExport</span>
       </label>
 
       <label>
-        <input v-model="functionBind" type="checkbox" switch />
+        <AppSwitch v-model="functionBind" />
         <span>functionBind</span>
       </label>
 
       <label>
-        <input v-model="importAssertions" type="checkbox" switch />
+        <AppSwitch v-model="importAssertions" />
         <span>importAssertions</span>
       </label>
 
       <label>
-        <input v-model="exportDefaultFrom" type="checkbox" switch />
+        <AppSwitch v-model="exportDefaultFrom" />
         <span>exportDefaultFrom</span>
       </label>
     </template>
 
     <template v-else>
       <label>
-        <input v-model="dynamicImport" type="checkbox" switch />
+        <AppSwitch v-model="dynamicImport" />
         <span>dynamicImport</span>
       </label>
     </template>

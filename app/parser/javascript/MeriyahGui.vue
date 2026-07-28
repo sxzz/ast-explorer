@@ -31,51 +31,51 @@ const validateRegex = useOption('validateRegex', true)
       </select>
     </label>
     <label>
-      <input v-model="next" type="checkbox" switch />
+      <AppSwitch v-model="next" />
       <span>next</span>
     </label>
     <label>
-      <input v-model="webcompat" type="checkbox" switch />
+      <AppSwitch v-model="webcompat" />
       <span>webcompat</span>
     </label>
     <label>
-      <input v-model="loc" type="checkbox" switch />
+      <AppSwitch v-model="loc" />
       <span>loc</span>
     </label>
     <label>
-      <input v-model="ranges" type="checkbox" switch />
+      <AppSwitch v-model="ranges" />
       <span>ranges</span>
     </label>
     <label>
-      <input v-model="raw" type="checkbox" switch />
+      <AppSwitch v-model="raw" />
       <span>raw</span>
     </label>
     <label>
-      <input v-model="impliedStrict" type="checkbox" switch />
+      <AppSwitch v-model="impliedStrict" />
       <span>impliedStrict</span>
     </label>
     <label>
-      <input v-model="comment" type="checkbox" switch />
+      <AppSwitch v-model="comment" />
       <span>comment (onComment)</span>
     </label>
     <label>
-      <input v-model="token" type="checkbox" switch />
+      <AppSwitch v-model="token" />
       <span>token (onToken)</span>
     </label>
     <label>
-      <input v-model="preserveParens" type="checkbox" switch />
+      <AppSwitch v-model="preserveParens" />
       <span>preserveParens</span>
     </label>
     <label>
-      <input v-model="jsx" type="checkbox" switch />
+      <AppSwitch v-model="jsx" />
       <span>JSX</span>
     </label>
     <label>
-      <input v-model="lexical" type="checkbox" switch />
+      <AppSwitch v-model="lexical" />
       <span>lexical</span>
     </label>
     <label>
-      <input v-model="validateRegex" type="checkbox" switch />
+      <AppSwitch v-model="validateRegex" />
       <span>validateRegex</span>
     </label>
   </div>

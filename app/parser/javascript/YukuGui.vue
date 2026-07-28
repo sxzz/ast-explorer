@@ -33,17 +33,17 @@ const attachComments = useOption('attachComments', false, true)
     </label>
 
     <label>
-      <input v-model="preserveParens" type="checkbox" switch />
+      <AppSwitch v-model="preserveParens" />
       <span>preserveParens</span>
     </label>
 
     <label>
-      <input v-model="semanticErrors" type="checkbox" switch />
+      <AppSwitch v-model="semanticErrors" />
       <span>semanticErrors</span>
     </label>
 
     <label>
-      <input v-model="attachComments" type="checkbox" switch />
+      <AppSwitch v-model="attachComments" />
       <span>attachComments</span>
     </label>
   </div>

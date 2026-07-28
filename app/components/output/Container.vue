@@ -85,41 +85,40 @@ watch(outputView, (view) => {
   <div flex="~ col" gap2>
     <div flex="~ y-center wrap" class="output-form" gap3 px2 text-sm>
       <div flex gap0.5 border border-base rounded-lg bg-sunk p0.5>
-        <button
-          :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
-          title="Tree view"
-          @click="toggleView('tree')"
-        >
-          <div i-ri:node-tree />
-        </button>
-        <button
-          :class="[tabClass, outputView === 'json' && tabSelectedClass]"
-          title="JSON view"
-          @click="toggleView('json')"
-        >
-          <div i-ri:braces-line />
-        </button>
+        <AppTooltip text="Tree view">
+          <button
+            aria-label="Tree view"
+            :aria-pressed="outputView === 'tree'"
+            :class="[tabClass, outputView === 'tree' && tabSelectedClass]"
+            @click="toggleView('tree')"
+          >
+            <div i-ri:node-tree />
+          </button>
+        </AppTooltip>
+        <AppTooltip text="JSON view">
+          <button
+            aria-label="JSON view"
+            :aria-pressed="outputView === 'json'"
+            :class="[tabClass, outputView === 'json' && tabSelectedClass]"
+            @click="toggleView('json')"
+          >
+            <div i-ri:braces-line />
+          </button>
+        </AppTooltip>
       </div>
       <span class="h-4 w-px bg-$c-border" />
       <label>
-        <input
-          :checked="autoFocus"
-          type="checkbox"
-          switch
-          @click="toggleAutoFocus"
-        />
+        <AppSwitch :model-value="autoFocus" @change="toggleAutoFocus" />
         <span>Auto focus</span>
       </label>
       <label>
-        <input v-model="hideEmptyKeys" type="checkbox" switch />
+        <AppSwitch v-model="hideEmptyKeys" />
         <span>Hide empty keys</span>
       </label>
       <label>
-        <input
-          :checked="hideLocationData"
-          type="checkbox"
-          switch
-          @click="toggleHideLocationData"
+        <AppSwitch
+          :model-value="hideLocationData"
+          @change="toggleHideLocationData"
         />
         <span>Hide location data</span>
       </label>
@@ -183,7 +182,7 @@ watch(outputView, (view) => {
 .output-form label {
   --at-apply: 'flex flex-y-center gap1.5 cursor-pointer text-soft';
 }
-.output-form label:has(input:checked) {
+.output-form label:has([data-state='checked']) {
   --at-apply: 'text-base';
 }
 </style>

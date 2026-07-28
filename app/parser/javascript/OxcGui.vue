@@ -27,17 +27,17 @@ const showSemanticErrors = useOption('showSemanticErrors', false, true)
     </label>
 
     <label>
-      <input v-model="preserveParens" type="checkbox" switch />
+      <AppSwitch v-model="preserveParens" />
       <span>preserveParens</span>
     </label>
 
     <label>
-      <input v-model="range" type="checkbox" switch />
+      <AppSwitch v-model="range" />
       <span>range</span>
     </label>
 
     <label>
-      <input v-model="showSemanticErrors" type="checkbox" switch />
+      <AppSwitch v-model="showSemanticErrors" />
       <span>showSemanticErrors</span>
     </label>
   </div>

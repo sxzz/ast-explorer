@@ -39,62 +39,62 @@ const token = useOption('token', false)
     </label>
 
     <label>
-      <input v-model="allowReserved" type="checkbox" switch />
+      <AppSwitch v-model="allowReserved" />
       <span>allowReserved</span>
     </label>
 
     <label>
-      <input v-model="allowReturnOutsideFunction" type="checkbox" switch />
+      <AppSwitch v-model="allowReturnOutsideFunction" />
       <span>allowReturnOutsideFunction</span>
     </label>
 
     <label>
-      <input v-model="allowImportExportEverywhere" type="checkbox" switch />
+      <AppSwitch v-model="allowImportExportEverywhere" />
       <span>allowImportExportEverywhere</span>
     </label>
 
     <label>
-      <input v-model="allowAwaitOutsideFunction" type="checkbox" switch />
+      <AppSwitch v-model="allowAwaitOutsideFunction" />
       <span>allowAwaitOutsideFunction</span>
     </label>
 
     <label>
-      <input v-model="allowSuperOutsideMethod" type="checkbox" switch />
+      <AppSwitch v-model="allowSuperOutsideMethod" />
       <span>allowSuperOutsideMethod</span>
     </label>
 
     <label>
-      <input v-model="allowHashBang" type="checkbox" switch />
+      <AppSwitch v-model="allowHashBang" />
       <span>allowHashBang</span>
     </label>
 
     <label>
-      <input v-model="checkPrivateFields" type="checkbox" switch />
+      <AppSwitch v-model="checkPrivateFields" />
       <span>checkPrivateFields</span>
     </label>
 
     <label>
-      <input v-model="locations" type="checkbox" switch />
+      <AppSwitch v-model="locations" />
       <span>locations</span>
     </label>
 
     <label>
-      <input v-model="ranges" type="checkbox" switch />
+      <AppSwitch v-model="ranges" />
       <span>ranges</span>
     </label>
 
     <label>
-      <input v-model="preserveParens" type="checkbox" switch />
+      <AppSwitch v-model="preserveParens" />
       <span>preserveParens</span>
     </label>
 
     <label>
-      <input v-model="comment" type="checkbox" switch />
+      <AppSwitch v-model="comment" />
       <span>comment (onComment)</span>
     </label>
 
     <label>
-      <input v-model="token" type="checkbox" switch />
+      <AppSwitch v-model="token" />
       <span>token (onToken)</span>
     </label>
   </div>

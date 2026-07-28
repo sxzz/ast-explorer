@@ -10,7 +10,7 @@ const resolve = useOption('resolve', false, true)
 <template>
   <div flex="~ col" gap2 text-sm font-mono>
     <label>
-      <input v-model="resolve" type="checkbox" switch />
+      <AppSwitch v-model="resolve" />
       <span>Resolve scopes</span>
     </label>
   </div>

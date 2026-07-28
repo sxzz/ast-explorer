@@ -30,7 +30,6 @@
     "json5": "catalog:",
     "monaco-editor": "catalog:",
     "shiki": "catalog:",
-    "splitpanes": "catalog:",
     "vue": "catalog:"
   },
   "devDependencies": {

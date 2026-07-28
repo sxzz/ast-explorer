@@ -47,35 +47,27 @@ const babel = useOption('babel')
     </label>
 
     <label>
-      <input v-model="allowReturnOutsideFunction" type="checkbox" switch />
+      <AppSwitch v-model="allowReturnOutsideFunction" />
       <span>allowReturnOutsideFunction</span>
     </label>
 
     <label>
-      <input
-        v-model="enableExperimentalComponentSyntax"
-        type="checkbox"
-        switch
-      />
+      <AppSwitch v-model="enableExperimentalComponentSyntax" />
       <span text-11px>enableExperimentalComponentSyntax</span>
     </label>
 
     <label>
-      <input
-        v-model="enableExperimentalFlowMatchSyntax"
-        type="checkbox"
-        switch
-      />
+      <AppSwitch v-model="enableExperimentalFlowMatchSyntax" />
       <span text-11px>enableExperimentalFlowMatchSyntax</span>
     </label>
 
     <label>
-      <input v-model="tokens" type="checkbox" switch />
+      <AppSwitch v-model="tokens" />
       <span>tokens</span>
     </label>
 
     <label>
-      <input v-model="babel" type="checkbox" switch />
+      <AppSwitch v-model="babel" />
       <span>babel</span>
     </label>
   </div>
