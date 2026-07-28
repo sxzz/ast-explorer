@@ -4,11 +4,20 @@ import { currentParser } from '~/state/parser/parser'
 
 defineOptions({ inheritAttrs: false })
 
+defineProps<{
+  tooltip?: string
+}>()
+
 const open = ref(false)
 </script>
 
 <template>
-  <button v-bind="$attrs" @click="open = true">
+  <AppTooltip v-if="tooltip" :text="tooltip">
+    <button v-bind="$attrs" @click="open = true">
+      <div i-ri:settings-line />
+    </button>
+  </AppTooltip>
+  <button v-else v-bind="$attrs" @click="open = true">
     <div i-ri:settings-line />
   </button>
 

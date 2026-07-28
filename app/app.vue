@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { TooltipProvider } from 'reka-ui'
 import { Pane, Splitpanes } from 'splitpanes'
 
 const title = 'AST Explorer'
@@ -38,7 +39,13 @@ useHeadSafe({
   <ClientOnly>
     <Suspense>
       <main flex="~ col" lg:h-screen>
-        <Navbar border-b border-base />
+        <TooltipProvider
+          :delay-duration="500"
+          :skip-delay-duration="150"
+          disable-hoverable-content
+        >
+          <Navbar border-b border-base />
+        </TooltipProvider>
 
         <div min-h-0 flex flex-1 flex-col gap0 lg:flex-row>
           <Splitpanes v-if="!isMobile" class="ast-splitpanes" h-full w-full>

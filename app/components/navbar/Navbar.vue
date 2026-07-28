@@ -49,7 +49,12 @@ function editVersion() {
         <NavbarLanguageSelect />
         <span text-mute op50>/</span>
         <ParserSelect />
-        <ParserOptions v-if="currentParser.options.configurable" nav-button />
+        <ParserOptions
+          v-if="currentParser.options.configurable"
+          aria-label="Parser Options"
+          nav-button
+          tooltip="Parser Options"
+        />
       </div>
     </div>
 
@@ -99,83 +104,97 @@ function editVersion() {
       </div>
 
       <div flex="~ y-center" gap0.5>
-        <button
-          v-if="currentParser.pkgName !== ''"
-          :disabled="disableOverrideVersion"
-          :class="disableOverrideVersion && 'cursor-not-allowed op30'"
-          title="Change Version"
-          nav-button
-          @click="editVersion"
-        >
-          <div i-ri:edit-line />
-        </button>
-        <a
-          v-if="currentParser.link"
-          title="Open Documentation"
-          :href="currentParser.link"
-          target="_blank"
-          flex="~ center"
-          nav-button
-        >
-          <div i-ri:book-2-line />
-        </a>
+        <AppTooltip v-if="currentParser.pkgName !== ''" text="Change Version">
+          <button
+            aria-label="Change Version"
+            :disabled="disableOverrideVersion"
+            :class="disableOverrideVersion && 'cursor-not-allowed op30'"
+            nav-button
+            @click="editVersion"
+          >
+            <div i-ri:edit-line />
+          </button>
+        </AppTooltip>
+        <AppTooltip v-if="currentParser.link" text="Open Documentation">
+          <a
+            aria-label="Open Documentation"
+            :href="currentParser.link"
+            target="_blank"
+            flex="~ center"
+            nav-button
+          >
+            <div i-ri:book-2-line />
+          </a>
+        </AppTooltip>
 
         <span class="mx-1 h-4 w-px bg-$c-border" />
 
-        <button
-          title="Toggle Side Bar"
-          :class="(!showSidebar || !sidebarAvailable) && 'op-40'"
-          :disabled="!sidebarAvailable"
-          nav-button
-          @click="toggleSidebar()"
-        >
-          <div i-ri:list-settings-line />
-        </button>
-        <button
-          title="Toggle Input Editor"
-          :class="!showInputEditor && 'op-40'"
-          nav-button
-          @click="toggleInputEditor()"
-        >
-          <div i-ri:code-block />
-        </button>
-        <button
-          title="Toggle Output Result"
-          :class="!showOutput && 'op-40'"
-          nav-button
-          @click="toggleOutput()"
-        >
-          <div i-ri:node-tree />
-        </button>
+        <AppTooltip text="Toggle Side Bar">
+          <button
+            aria-label="Toggle Side Bar"
+            :class="(!showSidebar || !sidebarAvailable) && 'op-40'"
+            :disabled="!sidebarAvailable"
+            nav-button
+            @click="toggleSidebar()"
+          >
+            <div i-ri:list-settings-line />
+          </button>
+        </AppTooltip>
+        <AppTooltip text="Toggle Input Editor">
+          <button
+            aria-label="Toggle Input Editor"
+            :class="!showInputEditor && 'op-40'"
+            nav-button
+            @click="toggleInputEditor()"
+          >
+            <div i-ri:code-block />
+          </button>
+        </AppTooltip>
+        <AppTooltip text="Toggle Output Result">
+          <button
+            aria-label="Toggle Output Result"
+            :class="!showOutput && 'op-40'"
+            nav-button
+            @click="toggleOutput()"
+          >
+            <div i-ri:node-tree />
+          </button>
+        </AppTooltip>
 
         <span class="mx-1 h-4 w-px bg-$c-border" />
 
-        <button title="Toggle Dark Mode" nav-button @click="toggleDark">
-          <div i-ri:sun-line dark:i-ri:moon-line />
-        </button>
-        <a
-          href="https://github.com/sxzz/ast-explorer"
-          target="_blank"
-          title="GitHub"
-          nav-button
-        >
-          <div i-ri:github-line />
-        </a>
-        <a
-          href="https://github.com/sponsors/sxzz"
-          target="_blank"
-          flex="~ center"
-          title="Sponsor"
-          group
-          nav-button
-        >
-          <div
-            i-ri:heart-3-line
-            group-hover:i-ri:heart-3-fill
-            text-pink-400
-            group-hover:text-pink-400
-          />
-        </a>
+        <AppTooltip text="Toggle Dark Mode">
+          <button aria-label="Toggle Dark Mode" nav-button @click="toggleDark">
+            <div i-ri:sun-line dark:i-ri:moon-line />
+          </button>
+        </AppTooltip>
+        <AppTooltip text="GitHub">
+          <a
+            href="https://github.com/sxzz/ast-explorer"
+            target="_blank"
+            aria-label="GitHub"
+            nav-button
+          >
+            <div i-ri:github-line />
+          </a>
+        </AppTooltip>
+        <AppTooltip text="Sponsor">
+          <a
+            href="https://github.com/sponsors/sxzz"
+            target="_blank"
+            flex="~ center"
+            aria-label="Sponsor"
+            group
+            nav-button
+          >
+            <div
+              i-ri:heart-3-line
+              group-hover:i-ri:heart-3-fill
+              text-pink-400
+              group-hover:text-pink-400
+            />
+          </a>
+        </AppTooltip>
       </div>
     </div>
   </header>

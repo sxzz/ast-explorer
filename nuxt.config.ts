@@ -69,6 +69,7 @@ export default defineNuxtConfig({
     '~/styles/vars.css',
     '~/styles/global.css',
     '~/styles/dropdown.css',
+    '~/styles/tooltip.css',
   ],
   imports: {
     dirs: ['./composables', './parser', './state', './utils'],
