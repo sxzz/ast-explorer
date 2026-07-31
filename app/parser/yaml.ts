@@ -23,6 +23,11 @@ const yamlParser: Parser<
   parse(code, options) {
     return this.parseAllDocuments(code, { ...options })
   },
+  onValue(value) {
+    // Remove `toJSON` to display the AST.
+    if (value?.toJSON) value.toJSON = undefined
+    return value
+  },
   getNodeLocation: genGetNodeLocation('range'),
 }
 
