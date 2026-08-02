@@ -246,6 +246,7 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <select v-model="sourceType">
         <option value="script">script</option>
         <option value="module">module</option>
+        <option value="commonjs">commonjs</option>
         <option value="unambiguous">unambiguous</option>
       </select>
     </label>
