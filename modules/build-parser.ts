@@ -1,5 +1,5 @@
 import { addTemplate, defineNuxtModule, useLogger } from '@nuxt/kit'
-import { buildTsEslintParser } from '../scripts/build-parser'
+import { buildTsEslintParser } from '../scripts/build-parser.ts'
 
 export default defineNuxtModule({
   meta: {
