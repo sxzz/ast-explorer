@@ -56,6 +56,7 @@ export default defineNuxtConfig({
         routes: [
           {
             src: '.*',
+            // @ts-expect-error type mismatch with nitro vercel config
             headers: crossOriginHeaders,
           },
         ],
