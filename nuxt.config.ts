@@ -18,6 +18,9 @@ export default defineNuxtConfig({
     domain: 'ast-explorer.dev',
     apiHost: 'https://evt.sxzz.dev',
   },
+  vue: {
+    optionsApi: false,
+  },
   vite: {
     resolve: {
       alias: {

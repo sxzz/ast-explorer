@@ -1,9 +1,3 @@
-import {
-  ConstantTypes,
-  ElementTypes,
-  Namespaces,
-  NodeTypes,
-} from '@vue/compiler-dom'
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Vue3Dom from '@vue/compiler-dom'
@@ -81,19 +75,19 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   },
   nodeTitle(node) {
     const type = node?.type
-    if (typeof type === 'number') return NodeTypes[type]
+    if (typeof type === 'number') return this.NodeTypes[type]
   },
   valueHint(key, value) {
     if (typeof value !== 'number') return
     switch (key) {
       case 'ns':
-        return `Namespaces.${Namespaces[value]}`
+        return `Namespaces.${this.Namespaces[value]}`
       case 'type':
-        return `NodeTypes.${NodeTypes[value]}`
+        return `NodeTypes.${this.NodeTypes[value]}`
       case 'constType':
-        return `ConstantTypes.${ConstantTypes[value]}`
+        return `ConstantTypes.${this.ConstantTypes[value]}`
       case 'tagType':
-        return `ElementTypes.${ElementTypes[value]}`
+        return `ElementTypes.${this.ElementTypes[value]}`
     }
   },
   getNodeLocation: genGetNodeLocation('locOffset'),

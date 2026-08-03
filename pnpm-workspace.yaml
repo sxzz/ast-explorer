@@ -20,7 +20,7 @@ catalog:
   fflate: ^0.8.3
   json5: ^2.2.3
   monaco-editor: ^0.56.0
-  nuxt: npm:nuxt-nightly@5x
+  nuxt: ^4.5.1
   nuxt-monaco-editor: ^1.4.1
   prettier: ^3.9.6
   puppeteer-core: ^25.4.0
