@@ -26,7 +26,7 @@ export const acorn: Parser<typeof Acorn, Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'acorn',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/acorn.mjs`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/acorn.mjs`),
   async version() {
     return (await this).version
   },
@@ -57,6 +57,6 @@ export const acornLoose: Parser<typeof AcornLoose, Options> = {
   id: 'acorn-loose',
   label: 'acorn-loose',
   pkgName: 'acorn-loose',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/+esm`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/+esm`),
   version: undefined,
 }

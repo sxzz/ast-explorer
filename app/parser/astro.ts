@@ -41,7 +41,7 @@ const astroCompilerRs: Parser<typeof AstroRs> = {
     editorLanguage: 'json',
   },
   pkgName: '@astrojs/compiler-rs',
-  getModuleUrl: (_pkg, version) =>
+  getModuleUrl: (_pkgId, version) =>
     `https://esm.sh/@astrojs/compiler-binding-wasm32-wasi${
       version ? `@${version}` : ''
     }/astro.wasi-browser.js`,

@@ -53,6 +53,7 @@ export interface Parser<C = unknown, O = unknown> {
   icon: string
   link?: string
   pkgName: string
+  defaultVersion?: string
   version?:
     | string
     | ((
@@ -61,7 +62,7 @@ export interface Parser<C = unknown, O = unknown> {
         version?: string,
       ) => string | Promise<string>)
   versionOverridable?: boolean
-  getModuleUrl?: (pkgName: string, version?: string) => string
+  getModuleUrl?: (pkgId: string, version?: string) => string
   init?: (moduleUrl: string, pkgId: string) => C | Promise<C>
   interopDefault?: boolean
   parse: (this: C, code: string, options: O) => unknown

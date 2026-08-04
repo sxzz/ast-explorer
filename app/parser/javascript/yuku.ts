@@ -20,7 +20,7 @@ export const yuku: Parser<typeof Yuku, Options> = {
     editorLanguage: 'json',
   },
   pkgName: '@yuku-parser/wasm',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/index.js'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/index.js'),
   parse(code, options) {
     const { program, comments, diagnostics } = this.parse(code, options)
     return { program, comments, diagnostics }

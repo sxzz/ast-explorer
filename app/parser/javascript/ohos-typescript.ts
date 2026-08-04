@@ -19,7 +19,7 @@ export const ohosTypescript: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'ohos-typescript-browserify',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/dist/index.min.js'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/dist/index.min.js'),
   interopDefault: true,
   async version() {
     return (await this).version

@@ -16,7 +16,7 @@ const syn: Parser<any, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'astexplorer-syn',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/astexplorer_syn.min.js`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/astexplorer_syn.min.js`),
   init: async (url) => {
     const mod = await importUrl(url)
     await mod.default()
@@ -65,7 +65,7 @@ const jinxRust: Parser<typeof JinxRust, JinxRust.rs.ParserOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'jinx-rust',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/index.min.js`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/index.min.js`),
   parse(code, options) {
     return this.rs.parseFile(code, { ...options }).toJSON()
   },

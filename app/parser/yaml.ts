@@ -43,7 +43,6 @@ const yamlEslintParser: Parser<typeof YamlEslintParser, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'yaml-eslint-parser',
-  // getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
   parse(code, options) {
     return this.parseYAML(code, options)
   },

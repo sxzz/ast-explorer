@@ -110,7 +110,7 @@ const ultrahtmlParser: Parser<typeof Ultrahtml> = {
     editorLanguage: 'javascript',
   },
   pkgName: 'ultrahtml',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/index.js`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/index.js`),
   parse(code) {
     return this.parse(code)
   },

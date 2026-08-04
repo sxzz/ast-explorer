@@ -15,7 +15,7 @@ export const jsoncEslintParser: Parser<typeof JsoncEslintParser, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'jsonc-eslint-parser',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
   parse(code, options) {
     return this.parseJSON(code, { ...options })
   },

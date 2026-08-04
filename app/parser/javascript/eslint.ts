@@ -18,7 +18,7 @@ export const espree: Parser<typeof Espree, Espree.Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'espree',
-  getModuleUrl: (pkg) => `https://cdn.skypack.dev/${pkg}?min`,
+  getModuleUrl: (pkgId) => `https://cdn.skypack.dev/${pkgId}?min`,
   async version() {
     return (await this).version
   },

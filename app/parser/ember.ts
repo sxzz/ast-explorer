@@ -16,8 +16,8 @@ export const emberEstreeGJS: Parser<typeof EmberESTree, ParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'ember-estree',
-  getModuleUrl: (pkg) =>
-    `https://esm.sh/${pkg}?bundle&target=esnext&exports=parse`,
+  getModuleUrl: (pkgId) =>
+    `https://esm.sh/${pkgId}?bundle&target=esnext&exports=parse`,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,
@@ -42,8 +42,8 @@ export const emberEstreeGTS: Parser<typeof EmberESTree, ParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'ember-estree',
-  getModuleUrl: (pkg) =>
-    `https://esm.sh/${pkg}?bundle&target=esnext&exports=parse`,
+  getModuleUrl: (pkgId) =>
+    `https://esm.sh/${pkgId}?bundle&target=esnext&exports=parse`,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,

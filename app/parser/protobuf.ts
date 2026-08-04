@@ -17,7 +17,7 @@ const protobufjs: Parser<typeof Protobuf, Protobuf.IParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'protobufjs',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
   parse(code, options) {
     return this.parse(code, options)
   },

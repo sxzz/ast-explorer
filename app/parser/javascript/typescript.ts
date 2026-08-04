@@ -19,10 +19,16 @@ export const typescript: Parser<
     editorLanguage: 'json',
   },
   pkgName: 'typescript',
+  defaultVersion: '^6',
   async version() {
     return (await this).version
   },
   parse(code, { scriptKind, ...options }) {
+    if ((this.versionMajorMinor as string) === '7.0') {
+      throw new Error(
+        'TypeScript 7.0 is not supported yet. Please use TypeScript 6.x or below.',
+      )
+    }
     return this.createSourceFile('foo.ts', code, options, true, scriptKind)
   },
   editorLanguage: 'typescript',

@@ -16,8 +16,8 @@ const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@vue/compiler-sfc',
-  getModuleUrl: (pkg) =>
-    getJsdelivrUrl(pkg, `/dist/compiler-sfc.esm-browser.js`),
+  getModuleUrl: (pkgId) =>
+    getJsdelivrUrl(pkgId, `/dist/compiler-sfc.esm-browser.js`),
   async version() {
     return (await this).version
   },
@@ -67,8 +67,8 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
     editorLanguage: 'javascript',
   },
   pkgName: '@vue/compiler-dom',
-  getModuleUrl: (pkg) =>
-    getJsdelivrUrl(pkg, `/dist/compiler-dom.esm-browser.js`),
+  getModuleUrl: (pkgId) =>
+    getJsdelivrUrl(pkgId, `/dist/compiler-dom.esm-browser.js`),
   version: (pkg) => fetchVersion(pkg),
   parse(code, options) {
     return this.parse(code, { ...options })

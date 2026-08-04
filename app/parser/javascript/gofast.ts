@@ -16,7 +16,7 @@ export const gofast: Parser<typeof GoFast, GoFast.ParseOptions> = {
     editorLanguage: 'json',
   },
   pkgName: '@joekav/go-fast',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/dist/go-fast.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/dist/go-fast.wasm'),
   async init(url) {
     // @ts-expect-error browser init() requires wasmURL option
     await GoFast.init({ wasmURL: url })

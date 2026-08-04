@@ -57,7 +57,8 @@ export const treeSitterJavascript: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-javascript',
   editorLanguage: 'javascript',
   pkgName: 'tree-sitter-javascript',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-javascript.wasm'),
+  getModuleUrl: (pkgId) =>
+    getJsdelivrUrl(pkgId, '/tree-sitter-javascript.wasm'),
 }
 
 export const treeSitterTypescript: Parser<TreeSitter.Parser> = {
@@ -67,7 +68,8 @@ export const treeSitterTypescript: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-typescript',
   editorLanguage: 'typescript',
   pkgName: 'tree-sitter-typescript',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-typescript.wasm'),
+  getModuleUrl: (pkgId) =>
+    getJsdelivrUrl(pkgId, '/tree-sitter-typescript.wasm'),
 }
 
 export const treeSitterTsx: Parser<TreeSitter.Parser> = {
@@ -75,7 +77,7 @@ export const treeSitterTsx: Parser<TreeSitter.Parser> = {
   id: 'tree-sitter-tsx',
   label: 'tree-sitter-tsx',
   // @unocss-include
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-tsx.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/tree-sitter-tsx.wasm'),
 }
 
 export const treeSitterCSharp: Parser<TreeSitter.Parser> = {
@@ -85,7 +87,7 @@ export const treeSitterCSharp: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-c-sharp',
   editorLanguage: 'csharp',
   pkgName: 'tree-sitter-c-sharp',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-c_sharp.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/tree-sitter-c_sharp.wasm'),
 }
 
 export const treeSitterBash: Parser<TreeSitter.Parser> = {
@@ -95,7 +97,7 @@ export const treeSitterBash: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-bash',
   editorLanguage: 'bash',
   pkgName: 'tree-sitter-bash',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-bash.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/tree-sitter-bash.wasm'),
 }
 
 export const treeSitterPython: Parser<TreeSitter.Parser> = {
@@ -105,7 +107,7 @@ export const treeSitterPython: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-python',
   editorLanguage: 'python',
   pkgName: 'tree-sitter-python',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-python.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/tree-sitter-python.wasm'),
 }
 
 export const treeSitterRust: Parser<TreeSitter.Parser> = {
@@ -115,7 +117,7 @@ export const treeSitterRust: Parser<TreeSitter.Parser> = {
   link: 'https://github.com/tree-sitter/tree-sitter-rust',
   editorLanguage: 'rust',
   pkgName: 'tree-sitter-rust',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/tree-sitter-rust.wasm'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/tree-sitter-rust.wasm'),
 }
 
 function convertNode(node: TreeSitter.Node): any {

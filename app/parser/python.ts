@@ -25,7 +25,7 @@ const pyodide: Parser<Pyodide.PyodideAPI, Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'pyodide',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, '/pyodide.mjs'),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/pyodide.mjs'),
   async version() {
     return (await this).version
   },

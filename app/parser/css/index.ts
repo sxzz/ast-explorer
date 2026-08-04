@@ -22,7 +22,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
     defaultValueType: 'json5',
   },
   pkgName: 'css-tree',
-  getModuleUrl: (pkg) => getJsdelivrUrl(pkg, `/dist/csstree.esm.js`),
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/csstree.esm.js`),
   async version() {
     // @ts-expect-error missing property
     return (await this).version
@@ -46,7 +46,7 @@ const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
     defaultValueType: 'json5',
   },
   pkgName: 'postcss',
-  getModuleUrl: (pkgName) => `https://esm.sh/${pkgName}`,
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -72,7 +72,7 @@ const lightningcss: Parser<
     defaultValueType: 'json5',
   },
   pkgName: 'lightningcss-wasm',
-  getModuleUrl: (pkgName) => `https://esm.sh/${pkgName}`,
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
   async parse(code, options) {
     await this.default()
 

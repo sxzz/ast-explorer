@@ -9,6 +9,11 @@ const useOption = makeUseOption<
 
 <script setup lang="ts">
 const ts = await parserModulePromise.value
+if (ts.versionMajorMinor === '7.0') {
+  throw new Error(
+    'TypeScript 7.0 is not supported yet. Please use TypeScript 6.x or below.',
+  )
+}
 const scriptKind = useOption('scriptKind', ts.ScriptKind.TS, true)
 const languageVersion = useOption(
   'languageVersion',
@@ -22,7 +27,13 @@ const versions = Object.entries(ts.ScriptTarget).filter(
 </script>
 
 <template>
-  <div flex="~ col" gap2 text-sm font-mono>
+  <div
+    v-if="ts && ts.versionMajorMinor !== '7.0'"
+    flex="~ col"
+    gap2
+    text-sm
+    font-mono
+  >
     <label flex="~ col" gap1>
       <span>sourceType</span>
       <select v-model="scriptKind">

@@ -42,7 +42,7 @@ export const flow: Parser<any, Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'flow-parser',
-  getModuleUrl: (pkg) => `https://esm.sh/${pkg}`,
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
   init: (url) => importUrl(url, true),
   parse(code, options) {
     return this.parse(code, { ...options })

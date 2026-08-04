@@ -3,6 +3,19 @@ import {
   currentParser,
   currentParserGui as ParserGui,
 } from '~/state/parser/parser'
+
+const error = ref<Error>()
+
+watch(
+  () => currentParser.value,
+  () => (error.value = undefined),
+)
+
+onErrorCaptured((err) => {
+  console.error(err)
+  error.value = err
+  return false
+})
 </script>
 
 <template>
@@ -42,7 +55,10 @@ import {
       />
     </div>
 
-    <Suspense :timeout="0">
+    <span v-if="error">
+      {{ error }}
+    </span>
+    <Suspense v-else :timeout="0">
       <ParserGui v-if="ParserGui" w-full class="sidebar-gui" />
       <template #fallback><Loading /></template>
     </Suspense>
