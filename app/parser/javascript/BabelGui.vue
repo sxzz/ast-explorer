@@ -130,6 +130,7 @@ const createParenthesizedExpressions = useOption(
 const sourceType = useOption('sourceType', 'script', true)
 const errorRecovery = useOption('errorRecovery')
 const ranges = useOption('ranges')
+const locations = useOption('locations', true)
 const tokens = useOption('tokens')
 
 // not popular
@@ -314,6 +315,11 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
     <label>
       <AppSwitch v-model="ranges" />
       <span>ranges</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="locations" />
+      <span>locations</span>
     </label>
 
     <label>
