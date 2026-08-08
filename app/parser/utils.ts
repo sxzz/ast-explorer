@@ -18,16 +18,37 @@ export function importJsdelivr<T = any>(
   return importUrl(getJsdelivrUrl(pkg, path))
 }
 
-export function importUrl<T = any>(url: string, sandbox?: boolean): Promise<T> {
+export function importUrl<T = any>(
+  url: string,
+  sandbox?: boolean,
+  importMap?: ImportMap,
+): Promise<T> {
   if (sandbox) {
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
     iframe.src = 'about:blank'
     iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin')
     document.body.parentElement!.append(iframe)
-    return (iframe.contentWindow as any).eval(`import(${JSON.stringify(url)})`)
+    const window = iframe.contentWindow
+    if (!window) throw new Error('Failed to create sandboxed iframe')
+    if (importMap) appendImportMap(window.document, importMap)
+    const mod: Promise<any> = (window as any).eval(
+      `import(${JSON.stringify(url)})`,
+    )
+    return mod.finally(() => iframe.remove())
+  }
+
+  if (importMap) {
+    appendImportMap(document, importMap)
   }
   return import(/* @vite-ignore */ url)
+}
+
+function appendImportMap(document: Document, importMap: ImportMap) {
+  const script = document.createElement('script')
+  script.type = 'importmap'
+  script.textContent = JSON.stringify(importMap)
+  document.head.append(script)
 }
 
 export function del<T extends Array<any>>(arr: T, values: T[number][]): T {

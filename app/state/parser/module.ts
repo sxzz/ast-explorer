@@ -15,11 +15,13 @@ export const parseCost = ref(0)
 const parserModuleCache: Record<string, unknown> = Object.create(null)
 async function initParser() {
   const defaultModuleUrl = (pkgId: string) => getJsdelivrUrl(pkgId)
-  const defaultInit = (url: string) => importUrl(url)
+  const defaultInit = (url: string, pkgId: string, importMap?: ImportMap) =>
+    importUrl(url, !!importMap, importMap)
   const {
     pkgName,
     getModuleUrl = defaultModuleUrl,
     defaultVersion,
+    importMap,
     init = defaultInit,
     interopDefault,
   } = currentParser.value
@@ -33,7 +35,7 @@ async function initParser() {
     ? pkgId
     : getModuleUrl(pkgId, overrideVersion.value)
 
-  let module = await init(moduleUrl, pkgId)
+  let module = await init(moduleUrl, pkgId, importMap)
   if (interopDefault && module && 'default' in module) {
     module = (module as any).default
   }

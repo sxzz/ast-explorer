@@ -15,7 +15,16 @@ export const jsoncEslintParser: Parser<typeof JsoncEslintParser, any> = {
     editorLanguage: 'json',
   },
   pkgName: 'jsonc-eslint-parser',
-  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
+  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/lib/index.mjs'),
+  importMap: {
+    imports: {
+      'eslint-visitor-keys': getJsdelivrUrl('eslint-visitor-keys'),
+      'eslint-visitor-keys/': getJsdelivrUrl('eslint-visitor-keys', '/'),
+      verkit: getJsdelivrUrl('verkit'),
+      acorn: getJsdelivrUrl('acorn'),
+      'acorn/': getJsdelivrUrl('acorn', '/'),
+    },
+  },
   parse(code, options) {
     return this.parseJSON(code, { ...options })
   },

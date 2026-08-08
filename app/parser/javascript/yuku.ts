@@ -21,6 +21,11 @@ export const yuku: Parser<typeof Yuku, Options> = {
   },
   pkgName: '@yuku-parser/wasm',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/index.js'),
+  importMap: {
+    imports: {
+      'yuku-ast': getJsdelivrUrl('yuku-ast'),
+    },
+  },
   parse(code, options) {
     const { program, comments, diagnostics } = this.parse(code, options)
     return { program, comments, diagnostics }

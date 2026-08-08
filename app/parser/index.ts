@@ -47,6 +47,12 @@ export type MonacoLanguage =
   | 'csharp'
   | 'bash'
 
+export interface ImportMap {
+  imports: Record<string, string>
+  scopes?: Record<string, Record<string, string>>
+  integrity?: Record<string, string>
+}
+
 export interface Parser<C = unknown, O = unknown> {
   id: string
   label: string
@@ -63,7 +69,12 @@ export interface Parser<C = unknown, O = unknown> {
       ) => string | Promise<string>)
   versionOverridable?: boolean
   getModuleUrl?: (pkgId: string, version?: string) => string
-  init?: (moduleUrl: string, pkgId: string) => C | Promise<C>
+  importMap?: ImportMap
+  init?: (
+    moduleUrl: string,
+    pkgId: string,
+    importMap?: ImportMap,
+  ) => C | Promise<C>
   interopDefault?: boolean
   parse: (this: C, code: string, options: O) => unknown
   options: {
