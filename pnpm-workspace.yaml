@@ -50,7 +50,7 @@ catalogs:
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
     '@swc/wasm-web': ^1.15.47
-    '@types/css-tree': ^2.3.11
+    '@types/css-tree': ^3.0.0
     '@types/json-to-ast': ^2.1.4
     '@typescript-eslint/parser': ^8.65.0
     '@vue/compiler-dom': ^3.5.40
