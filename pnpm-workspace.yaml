@@ -3,7 +3,7 @@ catalog:
   '@iconify-json/ri': ^1.2.10
   '@iconify-json/vscode-icons': ^1.2.68
   '@nuxt/kit': ^4.5.1
-  '@nuxtjs/plausible': ^3.0.2
+  '@nuxtjs/plausible': ^4.0.0
   '@shikijs/monaco': ^4.4.1
   '@sxzz/eslint-config': ^8.4.0
   '@sxzz/prettier-config': ^2.3.2
