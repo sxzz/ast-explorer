@@ -30,6 +30,7 @@ const token = useOption('token', false)
       <select v-model="sourceType" w-full>
         <option value="script">script</option>
         <option value="module">module</option>
+        <option value="commonjs">commonjs</option>
       </select>
     </label>
 
