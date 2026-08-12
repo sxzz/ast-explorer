@@ -69,7 +69,6 @@ export function initParserModule() {
         )
         parseCost.value = performance.now() - t
         error.value = null
-        // eslint-disable-next-line unicorn/catch-error-name
       } catch (err: any) {
         console.error(err)
         if (currentParser.value.id === id) {
