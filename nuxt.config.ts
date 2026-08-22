@@ -12,12 +12,8 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@vueuse/nuxt',
     'nuxt-monaco-editor',
-    '@nuxtjs/plausible',
+    '@vercel/analytics',
   ],
-  plausible: {
-    domain: 'ast-explorer.dev',
-    apiHost: 'https://evt.sxzz.dev',
-  },
   vue: {
     optionsApi: false,
   },
