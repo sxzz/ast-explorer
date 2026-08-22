@@ -100,6 +100,6 @@ allowBuilds:
 minimumReleaseAge: 0
 trustLockfile: true
 trustPolicy: no-downgrade
-trustPolicyIgnoreAfter: 10080 # 7 days
 trustPolicyExclude:
-  - "@humanwhocodes/momoa@3.3.12"
+  - '@humanwhocodes/momoa@3.3.12'
+trustPolicyIgnoreAfter: 10080 # 7 days
