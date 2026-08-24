@@ -188,8 +188,8 @@ catalogs:
       specifier: ^6.0.3
       version: 6.0.3
     flow-parser:
-      specifier: ^0.328.0
-      version: 0.328.0
+      specifier: ^0.329.0
+      version: 0.329.0
     graphql:
       specifier: ^17.0.2
       version: 17.0.2
@@ -404,7 +404,7 @@ importers:
         version: 0.8.3
       flow-parser:
         specifier: catalog:parser
-        version: 0.328.0
+        version: 0.329.0
       graphql:
         specifier: catalog:parser
         version: 17.0.2
@@ -3913,12 +3913,12 @@ packages:
   flatted@3.4.4:
     resolution: {integrity: sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==}
 
-  flow-estree@0.328.0:
-    resolution: {integrity: sha512-uMB3dC4nfZYn+dd7/PYkyAK1mqBR4TJ4TWRdOjubpb/ObrLvPFdFSmMTq55fqttCCTygQ4NtD1Zdd+wcjC5t0g==}
+  flow-estree@0.329.0:
+    resolution: {integrity: sha512-Stv2+LumW7n6DUrV+KlqB4HikeyQtLFUpd9iVexISblopKiYFjNYMmTGUcN5at8NKEmkhjAV5UGps3Z8QqK1lw==}
     engines: {node: '>=18'}
 
-  flow-parser@0.328.0:
-    resolution: {integrity: sha512-F+Ik2Of7ndl2FyPmZ77NrhbZp9lYjIsreDXeq4fo0sjxa3SIFv48QAszBqvPeMMzmw7JzqySJUxGR8CSD7EdXw==}
+  flow-parser@0.329.0:
+    resolution: {integrity: sha512-skMH3HUOF3+JSlIKt4F/LITfzMGEPpJ0S+Gu7HcmxOjWeYEO5PUZJi5WpLw+L4MZaNcMEkzUtoN+M2fAbiutWA==}
     engines: {node: '>=0.4.0'}
 
   fnv1a-64@0.1.2:
@@ -10027,11 +10027,11 @@ snapshots:
 
   flatted@3.4.4: {}
 
-  flow-estree@0.328.0: {}
+  flow-estree@0.329.0: {}
 
-  flow-parser@0.328.0:
+  flow-parser@0.329.0:
     dependencies:
-      flow-estree: 0.328.0
+      flow-estree: 0.329.0
 
   fnv1a-64@0.1.2: {}
 
