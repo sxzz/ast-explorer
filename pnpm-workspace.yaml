@@ -14,7 +14,7 @@ catalog:
   ansi-regex: ^6.3.0
   bumpp: ^12.2.1
   consola: ^3.4.2
-  ember-estree: ^0.7.0
+  ember-estree: ^0.8.0
   esbuild: ^0.28.2
   eslint: ^10.9.0
   fflate: ^0.8.3
@@ -73,7 +73,7 @@ catalogs:
     marked: ^18.0.10
     meriyah: ^7.3.2
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.146.0
+    oxc-parser: ^0.147.0
     parse5: ^8.0.1
     php-parser: ^3.7.0
     postcss: ^8.5.26
@@ -86,7 +86,7 @@ catalogs:
     svelte: ^5.56.10
     ultrahtml: ^1.7.0
     unbash: ^4.0.10
-    web-tree-sitter: ^0.26.12
+    web-tree-sitter: ^0.27.0
     yaml: ^2.9.0
     yaml-eslint-parser: ^2.1.0
     yaml-unist-parser: ^3.2.0
