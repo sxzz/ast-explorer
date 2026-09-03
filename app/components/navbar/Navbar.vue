@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { parseCost } from '~/state/parser/module'
+import { resetParserOptions } from '~/state/parser/options'
 import {
   currentParser,
   displayVersion,
@@ -55,6 +56,18 @@ function editVersion() {
           nav-button
           tooltip="Parser Options"
         />
+        <AppTooltip
+          v-if="currentParser.options.configurable"
+          text="Reset Parser Options"
+        >
+          <button
+            aria-label="Reset Parser Options"
+            nav-button
+            @click="resetParserOptions"
+          >
+            <div i-ri:reset-left-line />
+          </button>
+        </AppTooltip>
       </div>
     </div>
 
