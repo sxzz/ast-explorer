@@ -62,7 +62,7 @@ catalogs:
     comark: ^0.6.2
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.329.0
+    flow-parser: ^0.331.0
     graphql: ^17.0.2
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
@@ -73,7 +73,7 @@ catalogs:
     marked: ^18.0.10
     meriyah: ^7.3.2
     ohos-typescript: 4.9.5-r10
-    oxc-parser: ^0.147.0
+    oxc-parser: ^0.148.0
     parse5: ^8.0.1
     php-parser: ^3.7.0
     postcss: ^8.5.26
