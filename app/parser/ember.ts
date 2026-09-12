@@ -17,7 +17,7 @@ export const emberEstreeGJS: Parser<typeof EmberESTree, ParseOptions> = {
   },
   pkgName: 'ember-estree',
   getModuleUrl: (pkgId) =>
-    `https://esm.sh/${pkgId}?bundle&target=esnext&exports=parse`,
+    `https://esm.sh/${pkgId}?target=esnext&exports=parse`,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,
@@ -43,7 +43,7 @@ export const emberEstreeGTS: Parser<typeof EmberESTree, ParseOptions> = {
   },
   pkgName: 'ember-estree',
   getModuleUrl: (pkgId) =>
-    `https://esm.sh/${pkgId}?bundle&target=esnext&exports=parse`,
+    `https://esm.sh/${pkgId}?target=esnext&exports=parse`,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,
