@@ -1,7 +1,7 @@
 {
   "name": "ast-explorer",
   "type": "module",
-  "version": "0.48.5",
+  "version": "0.48.6",
   "private": true,
   "license": "AGPL-3.0",
   "engines": {
