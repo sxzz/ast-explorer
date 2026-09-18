@@ -3,16 +3,16 @@
   "type": "module",
   "version": "0.48.5",
   "private": true,
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": "^24.15.0 || >=26.0.0"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
       "version": "12.5.0",
       "onFail": "download"
     }
-  },
-  "license": "AGPL-3.0",
-  "engines": {
-    "node": "^24.15.0 || >=26.0.0"
   },
   "scripts": {
     "build": "nuxt build",
