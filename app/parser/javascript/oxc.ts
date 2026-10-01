@@ -19,7 +19,7 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
     },
     editorLanguage: 'json',
   },
-  pkgName: '@oxc-parser/binding-wasm32-wasi',
+  pkgName: '@oxc-parser/binding-wasm32-wasip1',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/browser-bundle.js'),
   parse(code, options) {
     const { program, comments, errors } = this.parseSync(
