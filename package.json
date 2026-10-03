@@ -55,7 +55,7 @@
     "@vue/compiler-sfc": "catalog:parser",
     "@vueuse/core": "catalog:",
     "@vueuse/nuxt": "catalog:",
-    "@yuku-parser/wasm": "catalog:parser",
+    "@yuku-core/wasm": "catalog:parser",
     "acorn": "catalog:parser",
     "acorn-loose": "catalog:parser",
     "angular-html-parser": "catalog:parser",
@@ -114,7 +114,8 @@
     "web-tree-sitter": "catalog:parser",
     "yaml": "catalog:parser",
     "yaml-eslint-parser": "catalog:parser",
-    "yaml-unist-parser": "catalog:parser"
+    "yaml-unist-parser": "catalog:parser",
+    "yuku-parser": "catalog:parser"
   },
   "prettier": "@sxzz/prettier-config"
 }
