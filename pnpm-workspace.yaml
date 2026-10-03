@@ -55,7 +55,7 @@ catalogs:
     '@typescript-eslint/parser': ^8.70.0
     '@vue/compiler-dom': ^3.5.43
     '@vue/compiler-sfc': ^3.5.43
-    '@yuku-parser/wasm': ^0.12.0
+    '@yuku-core/wasm': ^0.17.0
     acorn: ^8.18.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.12.0
@@ -90,6 +90,7 @@ catalogs:
     yaml: ^2.9.1
     yaml-eslint-parser: ^2.1.0
     yaml-unist-parser: ^3.2.1
+    yuku-parser: ^0.17.0
 
 allowBuilds:
   '@parcel/watcher': false
