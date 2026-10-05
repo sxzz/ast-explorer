@@ -415,8 +415,8 @@ catalogs:
       specifier: ^1.7.0
       version: 1.7.0
     unbash:
-      specifier: ^4.0.11
-      version: 4.0.11
+      specifier: ^5.0.0
+      version: 5.0.0
     web-tree-sitter:
       specifier: ^0.27.0
       version: 0.27.0
@@ -667,7 +667,7 @@ importers:
         version: 1.7.0
       unbash:
         specifier: catalog:parser
-        version: 4.0.11
+        version: 5.0.0
       unenv:
         specifier: 'catalog:'
         version: 2.0.0-rc.24
@@ -6148,8 +6148,8 @@ packages:
   ultrahtml@1.7.0:
     resolution: {integrity: sha512-2xRd0VHoAQE4M+vF/DvFFB7pUV0ZxTW1TLi7lHQWnF/Sb5TPeEUV/l+hxcNnGO00ZXGnR0voCMmYRKQf+rvJ2g==}
 
-  unbash@4.0.11:
-    resolution: {integrity: sha512-FoSOKV7NEofQSkAefMVHam4ZPKYMxjAydxiV72UFEDNV/YofxjGfiZ2A9pZjdL/lRJzTjcu4PABo1JYJX8N5iQ==}
+  unbash@5.0.0:
+    resolution: {integrity: sha512-RYNm/ISFtflWpIcXTPHHLJZ0mqzInav+L9ke9PcL+hHsSf9+Fd/syPb614Mlqs/O3AYgjnvxDOFl0a+zVqi1/w==}
     engines: {node: '>=14'}
 
   unconfig-core@7.5.0:
@@ -12840,7 +12840,7 @@ snapshots:
 
   ultrahtml@1.7.0: {}
 
-  unbash@4.0.11: {}
+  unbash@5.0.0: {}
 
   unconfig-core@7.5.0:
     dependencies:
