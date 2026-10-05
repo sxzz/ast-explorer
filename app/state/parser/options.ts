@@ -3,7 +3,10 @@ import { currentParser, currentParserId } from './parser'
 
 export const rawOptions = ref('')
 
-const rawOptionsByParser = new Map<string, string>()
+const rawOptionsByParser = useLocalStorage<Record<string, string>>(
+  `${STORAGE_PREFIX}parser-options`,
+  {},
+)
 
 const parsedOptions = computed<{ value?: any; error?: unknown }>(() => {
   try {
@@ -26,11 +29,19 @@ export const parserOptions = computed({
   },
 })
 
+function getDefaultOptions() {
+  return currentParser.value.options.defaultValueType === 'javascript'
+    ? currentParser.value.options.defaultValue
+    : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
+}
+
 export function setDefaultOptions() {
-  rawOptions.value =
-    currentParser.value.options.defaultValueType === 'javascript'
-      ? currentParser.value.options.defaultValue
-      : JSON.stringify(currentParser.value.options.defaultValue, null, 2)
+  rawOptions.value = getDefaultOptions()
+}
+
+export function resetParserOptions() {
+  delete rawOptionsByParser.value[currentParser.value.id]
+  setDefaultOptions()
 }
 
 export function useOptions<O extends object, T>(
@@ -51,17 +62,26 @@ export function useOptions<O extends object, T>(
 export function initParserOptionsState() {
   watch(
     currentParserId,
-    (parserId, previousParserId) => {
-      if (previousParserId) {
-        rawOptionsByParser.set(previousParserId, rawOptions.value)
-      }
-
+    (parserId) => {
       const savedOptions = parserId
-        ? rawOptionsByParser.get(parserId)
+        ? rawOptionsByParser.value[parserId]
         : undefined
       if (savedOptions === undefined) setDefaultOptions()
       else rawOptions.value = savedOptions
     },
     { flush: 'sync' },
+  )
+
+  watch(
+    rawOptions,
+    (options) => {
+      const parserId = currentParser.value.id
+      if (options === getDefaultOptions()) {
+        delete rawOptionsByParser.value[parserId]
+      } else {
+        rawOptionsByParser.value[parserId] = options
+      }
+    },
+    { flush: 'sync', immediate: true },
   )
 }
