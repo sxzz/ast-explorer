@@ -3,6 +3,8 @@ import { currentParser, currentParserId } from './parser'
 
 export const rawOptions = ref('')
 
+const rawOptionsByParser = new Map<string, string>()
+
 const parsedOptions = computed<{ value?: any; error?: unknown }>(() => {
   try {
     const value =
@@ -47,6 +49,19 @@ export function useOptions<O extends object, T>(
 }
 
 export function initParserOptionsState() {
-  // set default options
-  watch(currentParserId, setDefaultOptions, { flush: 'sync' })
+  watch(
+    currentParserId,
+    (parserId, previousParserId) => {
+      if (previousParserId) {
+        rawOptionsByParser.set(previousParserId, rawOptions.value)
+      }
+
+      const savedOptions = parserId
+        ? rawOptionsByParser.get(parserId)
+        : undefined
+      if (savedOptions === undefined) setDefaultOptions()
+      else rawOptions.value = savedOptions
+    },
+    { flush: 'sync' },
+  )
 }
