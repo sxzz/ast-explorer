@@ -44,7 +44,7 @@ function closeDialog() {
     @click="handleDialogClick"
     @close="closeDialog"
   >
-    <div flex="~ y-center" relative gap2 border-b border-base px5 py3>
+    <div flex="~ y-center" gap2 border-b border-base px5 py3>
       <div flex="~ col" leading-none>
         <span
           class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
@@ -64,18 +64,14 @@ function closeDialog() {
           <div i-ri:book-2-line />
         </a>
       </AppTooltip>
-      <AppTooltip :portal="false" text="Close">
-        <button
-          aria-label="Close"
-          absolute
-          right-3
-          top-3
-          nav-button
-          @click="closeDialog"
-        >
-          <div i-ri:close-line />
-        </button>
-      </AppTooltip>
+      <div flex="~ y-center" ml-auto gap0.5>
+        <slot name="actions" />
+        <AppTooltip :portal="false" text="Close">
+          <button aria-label="Close" nav-button @click="closeDialog">
+            <div i-ri:close-line />
+          </button>
+        </AppTooltip>
+      </div>
     </div>
 
     <slot />

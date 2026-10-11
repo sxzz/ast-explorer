@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { rawOptions } from '~/state/parser/options'
+import { rawOptions, resetParserOptions } from '~/state/parser/options'
 import { currentParser } from '~/state/parser/parser'
 
 defineOptions({ inheritAttrs: false })
@@ -22,6 +22,18 @@ const open = ref(false)
   </button>
 
   <AppDialog v-model="open" h-80vh title="Parser Options">
+    <template #actions>
+      <AppTooltip :portal="false" text="Reset Parser Options">
+        <button
+          aria-label="Reset Parser Options"
+          nav-button
+          @click="resetParserOptions"
+        >
+          <div i-ri:reset-left-line />
+        </button>
+      </AppTooltip>
+    </template>
+
     <CodeEditor
       v-model="rawOptions"
       min-h-0
