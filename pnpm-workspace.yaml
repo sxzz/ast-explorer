@@ -90,7 +90,7 @@ catalogs:
     yaml: ^2.9.1
     yaml-eslint-parser: ^2.1.0
     yaml-unist-parser: ^3.2.1
-    yuku-parser: ^0.17.0
+    yuku-parser: ^0.19.0
 
 allowBuilds:
   '@parcel/watcher': false

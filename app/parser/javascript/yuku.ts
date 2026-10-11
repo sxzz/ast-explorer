@@ -15,7 +15,7 @@ function tokensToArray(tokens: Yuku.TokenList, TokenKind: Yuku.TokenKindMap) {
   }))
 }
 
-export const yuku: Parser<typeof Yuku & { core: Yuku.Core }, Options> = {
+export const yuku: Parser<[parser: typeof Yuku, core: Yuku.Core], Options> = {
   id: 'yuku-parser',
   label: 'Yuku',
   icon: 'https://raw.githubusercontent.com/yuku-toolchain/yuku/refs/heads/main/docs/assets/favicon.svg',
@@ -35,24 +35,26 @@ export const yuku: Parser<typeof Yuku & { core: Yuku.Core }, Options> = {
   pkgName: 'yuku-parser',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId),
   async init(moduleUrl, pkgId) {
-    const [mod, { load }] = await Promise.all([
+    const [parser, { load }] = await Promise.all([
       importModule<typeof Yuku>(moduleUrl),
       // load wasm same version as yuku-parser
       importJsdelivr<typeof YukuCore>(
         pkgId.replace('yuku-parser', '@yuku-core/wasm'),
       ),
     ])
-    return { ...mod, core: await load() }
+    const core = await load()
+    return [parser, core]
   },
   parse(code, options) {
-    const { program, comments, tokens, diagnostics } = this.parse(code, {
+    const [parser, core] = this
+    const { program, comments, tokens, diagnostics } = parser.parse(code, {
       ...options,
-      core: this.core,
+      core,
     })
     return {
       program,
       ...(!options.attachComments && { comments }),
-      ...(tokens && { tokens: tokensToArray(tokens, this.TokenKind) }),
+      ...(tokens && { tokens: tokensToArray(tokens, parser.TokenKind) }),
       diagnostics,
     }
   },
