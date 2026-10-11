@@ -5,12 +5,12 @@ import { fileURLToPath } from 'node:url'
 import pkg from '@typescript-eslint/parser/package.json' with { type: 'json' }
 import { build } from 'rolldown'
 import Replace from 'unplugin-replace/rolldown'
-import type { ConsolaInstance } from 'consola'
+import type { NuxtLogger } from '@nuxt/kit'
 
 const root = path.resolve(import.meta.dirname, '..')
 
 export async function buildTsEslintParser(
-  logger: ConsolaInstance,
+  logger: NuxtLogger,
   noCache = false,
 ): Promise<{ path: string; code: string }> {
   const cacheDir = path.resolve(root, `.nuxt/cache`)

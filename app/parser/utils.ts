@@ -60,42 +60,42 @@ function hackWorker() {
   const workerPatchKey = Symbol.for('ast-explorer.worker-patch')
 
   // @ts-expect-error - missing type for globalThis
-  if (!globalThis[workerPatchKey]) {
-    // eslint-disable-next-line unicorn/no-unnecessary-global-this
-    const NativeWorker = globalThis.Worker
+  if (globalThis[workerPatchKey]) return
 
-    // eslint-disable-next-line unicorn/no-global-object-property-assignment
-    globalThis.Worker = new Proxy(NativeWorker, {
-      construct(Target, [input, options]): Worker {
-        const url = new URL(String(input), location.href)
-        const link = JSON.stringify(url.href)
+  // eslint-disable-next-line unicorn/no-unnecessary-global-this
+  const NativeWorker = globalThis.Worker
 
-        const bootstrap = `${options.type === 'module' ? 'import' : 'importScripts'}(${link})`
-        const blobURL = URL.createObjectURL(
-          new Blob([bootstrap], { type: 'text/javascript' }),
-        )
+  // eslint-disable-next-line unicorn/no-global-object-property-assignment
+  globalThis.Worker = new Proxy(NativeWorker, {
+    construct(Target, [input, options]): Worker {
+      const url = new URL(String(input), location.href)
+      const link = JSON.stringify(url.href)
 
-        try {
-          const worker: Worker = Reflect.construct(Target, [blobURL, options])
-          const nativeTerminate = worker.terminate.bind(worker)
+      const bootstrap = `${options.type === 'module' ? 'import' : 'importScripts'}(${link})`
+      const blobURL = URL.createObjectURL(
+        new Blob([bootstrap], { type: 'text/javascript' }),
+      )
 
-          worker.terminate = () => {
-            nativeTerminate()
-            URL.revokeObjectURL(blobURL)
-          }
+      try {
+        const worker: Worker = Reflect.construct(Target, [blobURL, options])
+        const nativeTerminate = worker.terminate.bind(worker)
 
-          return worker
-        } catch (error) {
+        worker.terminate = () => {
+          nativeTerminate()
           URL.revokeObjectURL(blobURL)
-          throw error
         }
-      },
-    })
 
-    // @ts-expect-error - missing type for globalThis
-    // eslint-disable-next-line unicorn/no-global-object-property-assignment
-    globalThis[workerPatchKey] = NativeWorker
-  }
+        return worker
+      } catch (error) {
+        URL.revokeObjectURL(blobURL)
+        throw error
+      }
+    },
+  })
+
+  // @ts-expect-error - missing type for globalThis
+  // eslint-disable-next-line unicorn/no-global-object-property-assignment
+  globalThis[workerPatchKey] = NativeWorker
 }
 
 function appendImportMap(document: Document, importMap: ImportMap) {
