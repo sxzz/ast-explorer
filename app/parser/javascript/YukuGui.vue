@@ -9,6 +9,7 @@ const sourceType = useOption('sourceType', 'module', true)
 const preserveParens = useOption('preserveParens', true, true)
 const semanticErrors = useOption('semanticErrors', false, true)
 const attachComments = useOption('attachComments', false, true)
+const tokens = useOption('tokens', false, true)
 </script>
 
 <template>
@@ -29,6 +30,7 @@ const attachComments = useOption('attachComments', false, true)
       <select v-model="sourceType" w-full>
         <option value="module">module</option>
         <option value="script">script</option>
+        <option value="commonjs">commonjs</option>
       </select>
     </label>
 
@@ -45,6 +47,11 @@ const attachComments = useOption('attachComments', false, true)
     <label>
       <AppSwitch v-model="attachComments" />
       <span>attachComments</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="tokens" />
+      <span>tokens</span>
     </label>
   </div>
 </template>
