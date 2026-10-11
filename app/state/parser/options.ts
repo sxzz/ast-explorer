@@ -66,8 +66,11 @@ export function initParserOptionsState() {
       const savedOptions = parserId
         ? rawOptionsByParser.value[parserId]
         : undefined
-      if (savedOptions === undefined) setDefaultOptions()
-      else rawOptions.value = savedOptions
+      if (savedOptions == null) {
+        setDefaultOptions()
+      } else {
+        rawOptions.value = savedOptions
+      }
     },
     { flush: 'sync' },
   )
