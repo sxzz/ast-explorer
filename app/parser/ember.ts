@@ -1,9 +1,20 @@
 import { emberTemplate } from './template'
-import type { LanguageOption, Parser } from './index'
+import type { ImportMap, LanguageOption, Parser } from './index'
 import type { ParseOptions } from 'ember-estree'
 import type * as EmberESTree from 'ember-estree'
 
 // @unocss-include
+
+// esm.sh can't build oxc-parser's wasm binding for the browser, so load the
+// prebuilt browser bundle from jsdelivr instead (same as the Oxc parser).
+const importMap: ImportMap = {
+  imports: {
+    'oxc-parser': getJsdelivrUrl(
+      '@oxc-parser/binding-wasm32-wasi@0.130',
+      '/browser-bundle.js',
+    ),
+  },
+}
 
 export const emberEstreeGJS: Parser<typeof EmberESTree, ParseOptions> = {
   id: 'ember-estree-gjs',
@@ -17,7 +28,8 @@ export const emberEstreeGJS: Parser<typeof EmberESTree, ParseOptions> = {
   },
   pkgName: 'ember-estree',
   getModuleUrl: (pkgId) =>
-    `https://esm.sh/${pkgId}?target=esnext&exports=parse`,
+    `https://esm.sh/${pkgId}?target=esnext&exports=parse&external=oxc-parser`,
+  importMap,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,
@@ -43,7 +55,8 @@ export const emberEstreeGTS: Parser<typeof EmberESTree, ParseOptions> = {
   },
   pkgName: 'ember-estree',
   getModuleUrl: (pkgId) =>
-    `https://esm.sh/${pkgId}?target=esnext&exports=parse`,
+    `https://esm.sh/${pkgId}?target=esnext&exports=parse&external=oxc-parser`,
+  importMap,
   parse(code, options) {
     const result = this.parse(code, {
       ...options,
