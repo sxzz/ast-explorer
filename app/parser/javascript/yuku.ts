@@ -33,7 +33,6 @@ export const yuku: Parser<[parser: typeof Yuku, core: Yuku.Core], Options> = {
     editorLanguage: 'json',
   },
   pkgName: 'yuku-parser',
-  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId),
   async init(moduleUrl, pkgId) {
     const [parser, { load }] = await Promise.all([
       importModule<typeof Yuku>(moduleUrl),
