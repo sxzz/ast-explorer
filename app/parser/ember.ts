@@ -10,7 +10,7 @@ import type * as EmberESTree from 'ember-estree'
 const importMap: ImportMap = {
   imports: {
     'oxc-parser': getJsdelivrUrl(
-      '@oxc-parser/binding-wasm32-wasi@0.130',
+      '@oxc-parser/binding-wasm32-wasip1',
       '/browser-bundle.js',
     ),
   },
