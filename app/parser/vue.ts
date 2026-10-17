@@ -2,6 +2,7 @@ import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Vue3Dom from '@vue/compiler-dom'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
+import type * as VueEslintParser from 'vue-eslint-parser'
 // @unocss-include
 
 const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
@@ -105,9 +106,39 @@ const vue3DomCompile: Parser<typeof Vue3Dom, Vue3Dom.CompilerOptions> = {
   },
 }
 
+const vueEslintParser: Parser<
+  typeof VueEslintParser,
+  Record<string, unknown>
+> = {
+  id: 'vue-eslint-parser',
+  label: 'vue-eslint-parser',
+  icon: 'i-vscode-icons:file-type-vue',
+  link: 'https://github.com/vuejs/vue-eslint-parser',
+  editorLanguage: 'vue',
+  options: {
+    configurable: true,
+    defaultValue: { ecmaVersion: 'latest', sourceType: 'module' },
+    editorLanguage: 'json',
+  },
+  pkgName: 'vue-eslint-parser',
+  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}?bundle`,
+  version: (pkg) => fetchVersion(pkg),
+  parse(code, options) {
+    return this.parse(code, { ...options, filePath: 'example.vue' })
+  },
+  getNodeLocation: genGetNodeLocation('range'),
+  hideKeys: ['parent'],
+}
+
 export const vue: LanguageOption = {
   label: 'Vue',
   icon: 'i-vscode-icons:file-type-vue',
-  parsers: [vue3Sfc, vue3SfcCompiled, vue3DomParse, vue3DomCompile],
+  parsers: [
+    vue3Sfc,
+    vue3SfcCompiled,
+    vue3DomParse,
+    vue3DomCompile,
+    vueEslintParser,
+  ],
   codeTemplate: vueTemplate,
 }

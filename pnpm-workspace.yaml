@@ -86,6 +86,7 @@ catalogs:
     svelte: ^5.57.2
     ultrahtml: ^1.7.0
     unbash: ^5.0.0
+    vue-eslint-parser: ^10.4.1
     web-tree-sitter: ^0.27.1
     yaml: ^2.9.1
     yaml-eslint-parser: ^2.1.0

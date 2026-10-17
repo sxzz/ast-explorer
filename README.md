@@ -41,6 +41,7 @@ Feel free to add more languages and parsers via PR!
   - [ohos-typescript](https://gitcode.com/openharmony/third_party_typescript)
   - [go-fAST](https://github.com/t14raptor/go-fast)
 - [Vue](https://vuejs.org/)
+  - [vue-eslint-parser](https://github.com/vuejs/vue-eslint-parser)
 - [Svelte](https://svelte.dev/)
 - [Ember](https://emberjs.com/)
 - [Astro](https://astro.build/)

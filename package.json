@@ -110,6 +110,7 @@
     "unplugin-replace": "catalog:",
     "vite": "catalog:",
     "vue": "catalog:",
+    "vue-eslint-parser": "catalog:parser",
     "vue-tsc": "catalog:",
     "web-tree-sitter": "catalog:parser",
     "yaml": "catalog:parser",
