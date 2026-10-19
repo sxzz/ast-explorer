@@ -415,8 +415,8 @@ catalogs:
       specifier: ^1.7.0
       version: 1.7.0
     unbash:
-      specifier: ^5.0.0
-      version: 5.0.0
+      specifier: ^6.0.0
+      version: 6.0.0
     vue-eslint-parser:
       specifier: ^10.4.1
       version: 10.4.1
@@ -673,7 +673,7 @@ importers:
         version: 1.7.0
       unbash:
         specifier: catalog:parser
-        version: 5.0.0
+        version: 6.0.0
       unenv:
         specifier: 'catalog:'
         version: 2.0.0-rc.24
@@ -6267,8 +6267,8 @@ packages:
   ultrahtml@1.7.0:
     resolution: {integrity: sha512-2xRd0VHoAQE4M+vF/DvFFB7pUV0ZxTW1TLi7lHQWnF/Sb5TPeEUV/l+hxcNnGO00ZXGnR0voCMmYRKQf+rvJ2g==}
 
-  unbash@5.0.0:
-    resolution: {integrity: sha512-RYNm/ISFtflWpIcXTPHHLJZ0mqzInav+L9ke9PcL+hHsSf9+Fd/syPb614Mlqs/O3AYgjnvxDOFl0a+zVqi1/w==}
+  unbash@6.0.0:
+    resolution: {integrity: sha512-vD5CvvFLVQDhXdNyNEPPa/tHPCK3HLySddOine+OZLDYIH1cMImGNgnw9+NkizToaPsFsQlwiyPGMiK+uwtYVw==}
     engines: {node: '>=14'}
 
   unconfig-core@7.5.0:
@@ -13097,7 +13097,7 @@ snapshots:
 
   ultrahtml@1.7.0: {}
 
-  unbash@5.0.0: {}
+  unbash@6.0.0: {}
 
   unconfig-core@7.5.0:
     dependencies:
