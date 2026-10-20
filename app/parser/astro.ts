@@ -42,9 +42,10 @@ const astroCompilerRs: Parser<typeof AstroRs> = {
   },
   pkgName: '@astrojs/compiler-rs',
   getModuleUrl: (_pkgId, version) =>
-    `https://esm.sh/@astrojs/compiler-binding-wasm32-wasi${
-      version ? `@${version}` : ''
-    }/astro.wasi-browser.js`,
+    getJsdelivrUrl(
+      `@astrojs/compiler-binding-wasm32-wasi${version ? `@${version}` : ''}`,
+      '/astro.wasi-browser.js/+esm',
+    ),
   parse(code) {
     const result = this.parseAstroSync(code)
     return { ast: JSON.parse(result.ast), diagnostics: result.diagnostics }
