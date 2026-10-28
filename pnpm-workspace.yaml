@@ -49,6 +49,7 @@ catalogs:
     '@humanwhocodes/momoa': ^3.3.13
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
+    '@swc-next/core-browser': ^0.4.0
     '@swc/wasm-web': ^1.16.18
     '@types/css-tree': ^3.2.0
     '@types/json-to-ast': ^2.1.4

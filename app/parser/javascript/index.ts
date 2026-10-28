@@ -10,6 +10,7 @@ import { meriyah } from './meriyah'
 import { ohosTypescript } from './ohos-typescript'
 import { oxc } from './oxc'
 import { swc } from './swc'
+import { swcNext } from './swc-next'
 import { typescript } from './typescript'
 import { yuku } from './yuku'
 import type { LanguageOption } from '..'
@@ -22,6 +23,7 @@ export const javascript: LanguageOption = {
     babel,
     oxc,
     swc,
+    swcNext,
     yuku,
     acorn,
     acornLoose,

@@ -42,6 +42,7 @@
     "@nuxt/kit": "catalog:",
     "@shikijs/monaco": "catalog:",
     "@solidity-parser/parser": "catalog:parser",
+    "@swc-next/core-browser": "catalog:parser",
     "@swc/wasm-web": "catalog:parser",
     "@sxzz/eslint-config": "catalog:",
     "@sxzz/prettier-config": "catalog:",

@@ -306,6 +306,9 @@ catalogs:
     '@solidity-parser/parser':
       specifier: ^0.20.2
       version: 0.20.2
+    '@swc-next/core-browser':
+      specifier: ^0.4.0
+      version: 0.4.0
     '@swc/wasm-web':
       specifier: ^1.16.18
       version: 1.16.18
@@ -485,6 +488,9 @@ importers:
       '@solidity-parser/parser':
         specifier: catalog:parser
         version: 0.20.2
+      '@swc-next/core-browser':
+        specifier: catalog:parser
+        version: 0.4.0
       '@swc/wasm-web':
         specifier: catalog:parser
         version: 1.16.18
@@ -2482,6 +2488,18 @@ packages:
     resolution: {integrity: sha512-wgKggnhZVL9Bfx1OaKKTrYY9BFRk6C8UAkQNUcIv1+llzYrIqy+RZm5HPKzn0NpEBvTVhTqB4kQyllZywsRBRQ==}
     peerDependencies:
       acorn: ^8.9.0
+
+  '@swc-next/core-browser@0.4.0':
+    resolution: {integrity: sha512-A/NORTatMJQIs5r0hpBUQl9doRnprJb7shOfsuxtzq7mesi9QHYo2ujv1sZzT8Q2DnT+L7wqOwjxqfqc1hjQkg==}
+
+  '@swc-next/decoder@0.4.0':
+    resolution: {integrity: sha512-mHDD0o9RywhkA+STIgFBxWbEh9AVBh2YBxdAnj/FAPvuY+Mm0Ky+8SwIlxDuR7TRZoo+pGrMkf2stS1T+3SRXQ==}
+
+  '@swc-next/encoder@0.4.0':
+    resolution: {integrity: sha512-bOkODW6mPxF9uPoLmpkvlBtYxZQ/IYjkgVZMOJhPWEdalIK7opq+o+t8g6YC1y7lISvxxbSwfb7CU/ITkG7rsA==}
+
+  '@swc-next/types@0.4.0':
+    resolution: {integrity: sha512-XwnQgNbjl5XCwW7j52qzMR1N1J2srNaC0lgwhzmXVnGPdmPgnCzE2GiabrWAyeTOA3QlhDjkZuxpcXdNH3asVA==}
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
@@ -8365,6 +8383,22 @@ snapshots:
   '@sveltejs/acorn-typescript@1.0.13(acorn@8.19.0)':
     dependencies:
       acorn: 8.19.0
+
+  '@swc-next/core-browser@0.4.0':
+    dependencies:
+      '@swc-next/decoder': 0.4.0
+      '@swc-next/encoder': 0.4.0
+      '@swc-next/types': 0.4.0
+
+  '@swc-next/decoder@0.4.0':
+    dependencies:
+      '@swc-next/types': 0.4.0
+
+  '@swc-next/encoder@0.4.0':
+    dependencies:
+      '@swc-next/types': 0.4.0
+
+  '@swc-next/types@0.4.0': {}
 
   '@swc/helpers@0.5.23':
     dependencies:
