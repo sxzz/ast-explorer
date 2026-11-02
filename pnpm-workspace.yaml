@@ -63,7 +63,7 @@ catalogs:
     comark: ^0.8.1
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.337.0
+    flow-parser: ^0.338.0
     graphql: ^17.0.2
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
@@ -83,7 +83,7 @@ catalogs:
     rehype: ^13.0.2
     rehype-parse: ^9.0.1
     remark: ^15.0.1
-    sql-parser-cst: ^0.42.3
+    sql-parser-cst: ^0.43.0
     svelte: ^5.57.3
     ultrahtml: ^1.7.0
     unbash: ^6.0.1
