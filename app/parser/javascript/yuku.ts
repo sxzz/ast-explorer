@@ -14,7 +14,7 @@ function tokensToArray(tokens: Yuku.TokenList, TokenKind: Yuku.TokenKindMap) {
   }))
 }
 
-export const yuku: Parser<[parser: typeof Yuku, core: Yuku.Core], Options> = {
+export const yuku: Parser<typeof Yuku, Options> = {
   id: 'yuku-parser',
   label: 'Yuku',
   icon: 'https://raw.githubusercontent.com/yuku-toolchain/yuku/refs/heads/main/docs/assets/favicon.svg',
