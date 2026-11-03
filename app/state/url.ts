@@ -43,6 +43,7 @@ export function initUrlState() {
   })
 }
 
+const URL_RE = /https?:\/\//
 export function isUrl(text: string) {
-  return /https?:\/\//.test(text)
+  return URL_RE.test(text)
 }
