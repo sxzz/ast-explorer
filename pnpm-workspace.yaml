@@ -17,7 +17,7 @@ allowBuilds:
 catalog:
   '@astral-sh/ruff-wasm-web': ^0.17.3
   '@iconify-json/ri': ^1.2.10
-  '@iconify-json/vscode-icons': ^1.2.95
+  '@iconify-json/vscode-icons': ^1.2.96
   '@nuxt/kit': ^4.6.4
   '@shikijs/monaco': ^4.6.0
   '@sxzz/eslint-config': ^8.9.2
@@ -49,8 +49,8 @@ catalog:
   unenv: ^2.0.0-rc.24
   unocss: ^66.12.0
   unplugin-replace: ^0.9.1
-  vite: ^8.3.5
-  vue: ^3.5.44
+  vite: ^8.3.6
+  vue: ^3.5.45
   vue-tsc: ^3.3.14
 
 catalogs:
@@ -66,12 +66,12 @@ catalogs:
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
     '@swc-next/core-browser': ^0.5.0
-    '@swc/wasm-web': ^1.16.21
+    '@swc/wasm-web': ^1.16.22
     '@types/css-tree': ^3.2.0
     '@types/json-to-ast': ^2.1.4
     '@typescript-eslint/parser': ^8.72.1
-    '@vue/compiler-dom': ^3.5.44
-    '@vue/compiler-sfc': ^3.5.44
+    '@vue/compiler-dom': ^3.5.45
+    '@vue/compiler-sfc': ^3.5.45
     acorn: ^8.19.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.13.0
@@ -79,7 +79,7 @@ catalogs:
     espree: ^11.2.0
     esprima-next: ^6.0.3
     flow-parser: ^0.338.0
-    graphql: ^17.0.2
+    graphql: ^17.1.0
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
     jinx-rust: ^0.1.6
@@ -98,7 +98,7 @@ catalogs:
     rehype: ^13.0.2
     rehype-parse: ^9.0.1
     remark: ^15.0.1
-    sql-parser-cst: ^0.44.0
+    sql-parser-cst: ^0.44.1
     svelte: ^5.57.3
     ultrahtml: ^1.7.0
     unbash: ^6.0.3
