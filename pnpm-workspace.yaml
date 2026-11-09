@@ -61,7 +61,7 @@ catalogs:
     '@astrojs/compiler-binding': ^0.5.2
     '@astrojs/compiler-rs': ^0.5.2
     '@babel/parser': ^8.1.0
-    '@html-eslint/parser': ^0.67.0
+    '@html-eslint/parser': ^0.68.0
     '@humanwhocodes/momoa': ^3.3.13
     '@joekav/go-fast': ^0.0.5
     '@solidity-parser/parser': ^0.20.2
@@ -75,10 +75,10 @@ catalogs:
     acorn: ^8.19.0
     acorn-loose: ^8.5.2
     angular-html-parser: ^10.13.0
-    comark: ^0.8.1
+    comark: ^0.9.0
     espree: ^11.2.0
     esprima-next: ^6.0.3
-    flow-parser: ^0.338.0
+    flow-parser: ^0.339.0
     graphql: ^17.1.0
     htmlparser2: ^12.0.0
     java-parser: ^3.0.1
