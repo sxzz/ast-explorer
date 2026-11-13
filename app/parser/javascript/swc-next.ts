@@ -21,8 +21,15 @@ export const swcNext: Parser<typeof Swc, Swc.ParserOptions> = {
     return mod
   },
   parse(code, options) {
-    const result = this.parseSync(code, { ...options })
-    return result
+    try {
+      const result = this.parseSync(code, { ...options })
+      return result
+    } catch (error) {
+      if (typeof error === 'object' && error !== null && 'message' in error) {
+        throw new Error(error.message as string, { cause: error })
+      }
+      throw error
+    }
   },
   editorLanguage(options) {
     return options?.lang === 'ts' ||

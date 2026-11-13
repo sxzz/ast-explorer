@@ -33,12 +33,16 @@ export const yuku: Parser<typeof Yuku, Options> = {
   },
   pkgName: 'yuku',
   parse(code, options) {
-    const { program, comments, tokens, diagnostics } = this.parse(code, options)
+    const file = this.parse(code, options)
+
     return {
-      program,
-      ...(!options.attachComments && { comments }),
-      ...(tokens && { tokens: tokensToArray(tokens, this.TokenKind) }),
-      diagnostics,
+      program: file.program,
+      diagnostics: file.diagnostics,
+      sourceType: file.sourceType,
+      ...(!options.attachComments && { comments: file.comments }),
+      ...(options.tokens && {
+        tokens: tokensToArray(file.tokens, this.TokenKind),
+      }),
     }
   },
   editorLanguage(options) {
