@@ -4,7 +4,7 @@ export async function fetchVersion(pkg: string) {
   const raw = await fetch(`${JSDELIVR_PREFIX}${pkg}/package.json`).then((r) =>
     r.json(),
   )
-  return raw.version
+  return raw.version as string
 }
 
 export function getJsdelivrUrl(pkg: string, path: string = '/+esm'): string {

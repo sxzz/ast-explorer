@@ -12,6 +12,7 @@ import { oxc } from './oxc'
 import { swc } from './swc'
 import { swcNext } from './swc-next'
 import { typescript } from './typescript'
+import { typescriptWasm } from './typescript-wasm'
 import { yuku } from './yuku'
 import type { LanguageOption } from '..'
 
@@ -28,6 +29,7 @@ export const javascript: LanguageOption = {
     acorn,
     acornLoose,
     typescript,
+    typescriptWasm,
     espree,
     tsEslint,
     treeSitterJavascript,

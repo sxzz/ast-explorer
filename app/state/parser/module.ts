@@ -106,7 +106,8 @@ export function initParserModule() {
         const res = await Promise.resolve(
           (parser.version || (fetchVersion as never)).call(
             parserModulePromise.value,
-            parser.pkgName,
+            parser.pkgName +
+              (parser.defaultVersion ? `@${parser.defaultVersion}` : ''),
             overrideVersion.value,
           ),
         )

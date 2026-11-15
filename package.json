@@ -103,6 +103,7 @@
     "svelte": "catalog:parser",
     "tinyexec": "catalog:",
     "typescript": "catalog:",
+    "typescript-next": "catalog:",
     "ultrahtml": "catalog:parser",
     "unbash": "catalog:parser",
     "unenv": "catalog:",

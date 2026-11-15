@@ -6,7 +6,7 @@ export const typescript: Parser<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
 > = {
   id: 'typescript',
-  label: 'typescript',
+  label: 'TypeScript (legacy)',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-typescript-official',
   link: 'https://www.typescriptlang.org/',
