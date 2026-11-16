@@ -19,34 +19,10 @@ onErrorCaptured((err) => {
 </script>
 
 <template>
-  <aside flex="~ col" gap4 px5 py5>
-    <div flex="~ col center" gap2.5>
-      <div class="parser-orb">
-        <IconPreview :value="currentParser.icon" size="3.5em" />
-      </div>
-      <div flex="~ col center" gap0.5>
-        <span
-          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
-          >Active Parser</span
-        >
-        <span class="text-base leading-tight font-mono">
-          {{ currentParser.label }}
-        </span>
-      </div>
-    </div>
-
-    <div class="h-px w-full bg-$c-border" />
-
-    <div flex="~ y-center" justify-between>
-      <div flex="~ col">
-        <span
-          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
-          >Configure</span
-        >
-        <h2 class="mt-0.5 text-base font-semibold leading-tight">
-          Parser Options
-        </h2>
-      </div>
+  <aside flex="~ col" gap3 px4 py3>
+    <div flex="~ y-center" gap2 border-b border-base pb3>
+      <IconPreview :value="currentParser.icon" />
+      <h2 min-w-0 flex-1 truncate font-mono>{{ currentParser.label }}</h2>
       <ParserOptions
         v-if="currentParser.options.configurable"
         aria-label="Parser Options"
@@ -66,33 +42,6 @@ onErrorCaptured((err) => {
 </template>
 
 <style>
-.parser-orb {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5.5rem;
-  height: 5.5rem;
-  border-radius: 9999px;
-  border: 1px solid var(--c-border);
-  background: var(--c-bg-base);
-}
-.parser-orb::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 9999px;
-  border: 1px solid var(--c-accent-tint);
-}
-.parser-orb::after {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border-radius: 9999px;
-  border: 1px dashed var(--c-border);
-  opacity: 0.5;
-}
-
 .sidebar-gui {
   --at-apply: 'text-sm';
 }

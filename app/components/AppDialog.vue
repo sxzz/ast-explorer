@@ -45,15 +45,7 @@ function closeDialog() {
     @close="closeDialog"
   >
     <div flex="~ y-center" gap2 border-b border-base px5 py3>
-      <div flex="~ col" leading-none>
-        <span
-          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
-          >Settings</span
-        >
-        <span class="text-lg font-semibold leading-tight tracking-tight">{{
-          title
-        }}</span>
-      </div>
+      <h2 class="text-base font-semibold">{{ title }}</h2>
       <AppTooltip v-if="docs" :portal="false" text="Reference Documentation">
         <a
           aria-label="Reference Documentation"

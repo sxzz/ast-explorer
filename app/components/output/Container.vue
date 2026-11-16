@@ -128,10 +128,7 @@ watch(outputView, (view) => {
         text-red-600
         dark:text-red-400
       >
-        <span
-          class="text-[0.6875rem] font-medium tracking-[0.18em] uppercase !text-red-600 dark:!text-red-400"
-          >Parser error</span
-        >
+        <span font-semibold>Parser error</span>
         <pre class="font-mono" v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
