@@ -17,15 +17,7 @@ const serialized = computed(() => {
     return JSON.stringify(
       ast.value,
       (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return
-        if (
-          [
-            ...(hideLocationData.value ? locationKeyList : []),
-            ...hideKeys.value.filter((v) => !!v),
-            ...(currentParser.value?.hideKeys || []),
-          ].includes(key)
-        )
-          return
+        if (shouldHideKey(key, true, value)) return
         if (typeof value === 'function') return `function ${value.name}(...)`
         if (typeof value === 'bigint') return `(BigInt) ${value}n`
         if (isRegExp(value)) return `(RegExp) ${value}`

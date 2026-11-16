@@ -14,6 +14,10 @@ export const hideKeys = useLocalStorage<string[]>(
   `${STORAGE_PREFIX}hide-keys`,
   [],
 )
+// the old free-text field stored blanks, e.g. `['']` when left empty
+if (hideKeys.value.some((key) => !key)) {
+  hideKeys.value = hideKeys.value.filter(Boolean)
+}
 
 export const autoFocus = useLocalStorage<boolean>(
   `${STORAGE_PREFIX}auto-focus`,

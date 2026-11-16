@@ -8,16 +8,6 @@ import {
   outputView,
 } from '#imports'
 
-const hideKeysValue = ref(hideKeys.value.join(', '))
-watchEffect(() => {
-  try {
-    hideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
-  } catch (error) {
-    console.error(error)
-    hideKeys.value = []
-  }
-})
-
 const tabClass =
   'flex-center flex w-7.5 h-7 items-center justify-center rounded-md text-soft hover:text-base transition-colors'
 const tabSelectedClass = 'bg-$c-bg-base text-base shadow-sm'
@@ -155,22 +145,9 @@ watch(outputView, (view) => {
         <OutputTree v-else />
       </div>
     </div>
-    <div flex flex-wrap items-center justify-end gap3 px2 pb1 text-sm text-soft>
-      <label flex="~ y-center" gap1.5>
-        <span
-          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
-          >Hide keys</span
-        >
-        <input
-          v-model="hideKeysValue"
-          type="input"
-          placeholder="field1, field2, …"
-          w-44
-          text-sm
-          class="font-mono"
-        />
-      </label>
-      <button pill-button @click="print">
+    <div flex="~ y-center" gap3 px2 pb1>
+      <OutputHideKeys min-w-0 flex-1 />
+      <button pill-button shrink-0 @click="print">
         <div i-ri:printer-line />
         Print in console
       </button>
