@@ -26,9 +26,7 @@ const pyodide: Parser<Pyodide.PyodideAPI, Options> = {
   },
   pkgName: 'pyodide',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/pyodide.mjs'),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   async init(moduleUrl) {
     const mod = await importModule<typeof Pyodide>(moduleUrl)
 

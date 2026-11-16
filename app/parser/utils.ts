@@ -7,6 +7,13 @@ export async function fetchVersion(pkg: string) {
   return raw.version as string
 }
 
+/** `Parser.version` resolver that reads `version` from the loaded module. */
+export async function getModuleVersion(
+  this: { version: string } | Promise<{ version: string }>,
+): Promise<string> {
+  return (await this).version
+}
+
 export function getJsdelivrUrl(pkg: string, path: string = '/+esm'): string {
   return `${JSDELIVR_PREFIX}${pkg}${path || ''}`
 }

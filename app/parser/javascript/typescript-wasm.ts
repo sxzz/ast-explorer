@@ -28,9 +28,7 @@ export const typescriptWasm: Parser<
   },
   pkgName: 'typescript',
   defaultVersion: 'next',
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   async init(_url, pkgId) {
     if (isUrl(pkgId)) {
       throw new Error(

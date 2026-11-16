@@ -17,9 +17,7 @@ export const esprimaNext: Parser<typeof EsprimaNext, EsprimaNext.Config> = {
   },
   pkgName: 'esprima-next',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/esprima.min.js`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

@@ -1,48 +1,30 @@
 import { parserOptions, parserOptionsError, rawOptions } from './options'
-import {
-  currentParser,
-  currentParserId,
-  displayVersion,
-  isUrlVersion,
-  overrideVersion,
-} from './parser'
+import { currentParser } from './parser'
+import { initParserVersionState, parserModuleUrl, parserPkgId } from './version'
 
 export const loading = ref<'module' | 'parse' | false>(false)
 export const ast = shallowRef<unknown>({})
 export const error = shallowRef<unknown>()
 export const parseCost = ref(0)
 
-const parserModuleCache: Record<string, unknown> = Object.create(null)
+const parserModuleCache = new Map<string, unknown>()
 async function initParser() {
-  const defaultModuleUrl = (pkgId: string) => getJsdelivrUrl(pkgId)
-  const defaultInit = (url: string, pkgId: string, importMap?: ImportMap) =>
-    importModule(url, {
-      sandbox: !!importMap,
-      importMap,
-    })
-  const {
-    pkgName,
-    getModuleUrl = defaultModuleUrl,
-    defaultVersion,
-    importMap,
-    init = defaultInit,
-    interopDefault,
-  } = currentParser.value
+  const { id, importMap, init, interopDefault } = currentParser.value
+  const pkgId = parserPkgId.value
+  const moduleUrl = parserModuleUrl.value
+  // Parsers may share a package but differ in entry file or `init`
+  // (e.g. tree-sitter-typescript vs. tree-sitter-tsx), so key by parser too.
+  const cacheKey = `${id} ${moduleUrl}`
+  if (parserModuleCache.has(cacheKey)) return parserModuleCache.get(cacheKey)
 
-  const pkgId = isUrlVersion.value
-    ? overrideVersion.value!
-    : `${pkgName}${overrideVersion.value ? `@${overrideVersion.value}` : defaultVersion ? `@${defaultVersion}` : ''}`
-  if (parserModuleCache[pkgId]) return parserModuleCache[pkgId]
-
-  const moduleUrl = isUrlVersion.value
-    ? pkgId
-    : getModuleUrl(pkgId, overrideVersion.value)
-
-  let module = await init(moduleUrl, pkgId, importMap)
+  let module = init
+    ? await init(moduleUrl, pkgId, importMap)
+    : await importModule(moduleUrl, { sandbox: !!importMap, importMap })
   if (interopDefault && module && 'default' in module) {
     module = (module as any).default
   }
-  return (parserModuleCache[pkgId] = module)
+  parserModuleCache.set(cacheKey, module)
+  return module
 }
 
 export const parserModulePromise = computed(() => initParser())
@@ -84,38 +66,5 @@ export function initParserModule() {
     { immediate: true },
   )
 
-  // fetch display version
-  watch(
-    [currentParserId, overrideVersion],
-    async () => {
-      if (overrideVersion.value) {
-        displayVersion.value = overrideVersion.value
-        if (!isUrl(overrideVersion.value)) {
-          displayVersion.value = await fetchVersion(
-            `${currentParser.value.pkgName}@${displayVersion.value}`,
-          )
-        }
-        return
-      }
-
-      const parser = currentParser.value
-      if (typeof parser.version === 'string') {
-        displayVersion.value = parser.version
-      } else {
-        displayVersion.value = ''
-        const res = await Promise.resolve(
-          (parser.version || (fetchVersion as never)).call(
-            parserModulePromise.value,
-            parser.pkgName +
-              (parser.defaultVersion ? `@${parser.defaultVersion}` : ''),
-            overrideVersion.value,
-          ),
-        )
-        if (currentParser.value.id === parser.id) {
-          displayVersion.value = res
-        }
-      }
-    },
-    { immediate: true },
-  )
+  initParserVersionState(parserModulePromise)
 }

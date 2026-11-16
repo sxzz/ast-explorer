@@ -25,10 +25,8 @@ export function setParserId(id: string) {
   currentParserId.value = id
 }
 
-// parser version
+/** Semver range, dist-tag or module URL that replaces the default version. */
 export const overrideVersion = ref<string>()
-export const displayVersion = ref<string>()
-export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
 export function initParserState() {
   // set code template when language changes

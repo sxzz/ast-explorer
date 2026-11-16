@@ -23,9 +23,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   },
   pkgName: 'css-tree',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/csstree.esm.js`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

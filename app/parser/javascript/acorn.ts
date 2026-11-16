@@ -27,9 +27,7 @@ export const acorn: Parser<typeof Acorn, Options> = {
   },
   pkgName: 'acorn',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/acorn.mjs`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     const comments = options.comment ? [] : undefined
     const tokens = options.token ? [] : undefined

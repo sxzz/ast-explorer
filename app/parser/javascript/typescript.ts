@@ -20,9 +20,7 @@ export const typescript: Parser<
   },
   pkgName: 'typescript',
   defaultVersion: '^6',
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, { scriptKind, ...options }) {
     if ((this.versionMajorMinor as string) === '7.0') {
       throw new Error(

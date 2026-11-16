@@ -19,9 +19,7 @@ const vue3Sfc: Parser<typeof Vue3Sfc, Vue3Sfc.SFCParseOptions> = {
   pkgName: '@vue/compiler-sfc',
   getModuleUrl: (pkgId) =>
     getJsdelivrUrl(pkgId, `/dist/compiler-sfc.esm-browser.js`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -70,7 +68,6 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   pkgName: '@vue/compiler-dom',
   getModuleUrl: (pkgId) =>
     getJsdelivrUrl(pkgId, `/dist/compiler-dom.esm-browser.js`),
-  version: (pkg) => fetchVersion(pkg),
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -122,7 +119,6 @@ const vueEslintParser: Parser<
   },
   pkgName: 'vue-eslint-parser',
   getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}?bundle`,
-  version: (pkg) => fetchVersion(pkg),
   parse(code, options) {
     return this.parse(code, { ...options, filePath: 'example.vue' })
   },

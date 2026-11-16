@@ -28,9 +28,7 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
   },
   pkgName: 'meriyah',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/meriyah.min.mjs`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     const comments = options.comment ? [] : undefined
     const tokens = options.token ? [] : undefined

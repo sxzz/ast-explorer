@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { parseCost } from '~/state/parser/module'
+import { currentParser, overrideVersion } from '~/state/parser/parser'
 import {
-  currentParser,
   displayVersion,
   isUrlVersion,
-  overrideVersion,
-} from '~/state/parser/parser'
+  packageUrl,
+  versionOverridable,
+} from '~/state/parser/version'
 import { version } from '../../../package.json'
 
 const { branch } = useAppConfig()
-
-const disableOverrideVersion = computed(
-  () => currentParser.value.versionOverridable === false,
-)
 
 function editVersion() {
   // eslint-disable-next-line no-alert
@@ -75,11 +72,7 @@ function editVersion() {
           font-mono
           transition-colors
           hover:text-base
-          :href="
-            isUrlVersion
-              ? overrideVersion
-              : `https://npmx.dev/package/${currentParser.pkgName}`
-          "
+          :href="packageUrl"
           target="_blank"
         >
           <span>{{ currentParser.pkgName }}</span>
@@ -107,8 +100,8 @@ function editVersion() {
         <AppTooltip v-if="currentParser.pkgName !== ''" text="Change Version">
           <button
             aria-label="Change Version"
-            :disabled="disableOverrideVersion"
-            :class="disableOverrideVersion && 'cursor-not-allowed op30'"
+            :disabled="!versionOverridable"
+            :class="!versionOverridable && 'cursor-not-allowed op30'"
             nav-button
             @click="editVersion"
           >
