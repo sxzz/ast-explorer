@@ -1,7 +1,8 @@
+import { detectMonacoLanguage } from '../utils.ts'
 import type { Parser } from '..'
 import type * as Oxc from 'oxc-parser'
 
-export type ParserOptions = Oxc.ParserOptions & { sourceFilename: string }
+export type ParserOptions = Oxc.ParserOptions & { filename: string }
 
 export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   id: 'oxc',
@@ -11,8 +12,9 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   options: {
     configurable: true,
     defaultValue: {
+      filename: 'foo.ts',
+
       sourceType: 'module',
-      sourceFilename: 'foo.ts',
       preserveParens: true,
       range: false,
       showSemanticErrors: false,
@@ -23,7 +25,7 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/browser-bundle.js'),
   parse(code, options) {
     const { program, comments, errors } = this.parseSync(
-      options.sourceFilename ?? 'test.js',
+      options.filename ?? 'test.js',
       code,
       {
         sourceType: options.sourceType,
@@ -34,9 +36,7 @@ export const oxc: Parser<typeof Oxc, Partial<ParserOptions>> = {
     )
     return { program, comments, errors }
   },
-  editorLanguage(options) {
-    return options.sourceFilename?.endsWith('.ts') ? 'typescript' : 'javascript'
-  },
+  editorLanguage: (options) => detectMonacoLanguage(options.filename),
   getNodeLocation,
   gui: () => import('./OxcGui.vue'),
 }

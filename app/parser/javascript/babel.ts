@@ -21,7 +21,7 @@ export const babel: Parser<typeof Babel, Babel.ParserOptions> = {
   },
   editorLanguage(options) {
     try {
-      const plugins = Array.isArray(options?.plugins) ? options!.plugins : []
+      const plugins = Array.isArray(options?.plugins) ? options.plugins : []
       const normalizedPlugins = plugins.map((item) =>
         Array.isArray(item) ? item[0] : item,
       )

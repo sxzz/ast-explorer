@@ -31,13 +31,7 @@ export const swcNext: Parser<typeof Swc, Swc.ParserOptions> = {
       throw error
     }
   },
-  editorLanguage(options) {
-    return options?.lang === 'ts' ||
-      options?.lang === 'tsx' ||
-      options?.lang === 'dts'
-      ? 'typescript'
-      : 'javascript'
-  },
+  editorLanguage: (options) => detectMonacoLanguage(options.lang),
   getNodeLocation,
   gui: () => import('./SwcNextGui.vue'),
 }

@@ -54,9 +54,7 @@ export const swc: Parser<typeof Swc, Swc.ParseOptions> = {
     adjustSwcOffsetOfAst(result, result.span.start)
     return result
   },
-  editorLanguage(options) {
-    return options?.syntax === 'typescript' ? 'typescript' : 'javascript'
-  },
+  editorLanguage: (options) => detectMonacoLanguage(options?.syntax),
   getNodeLocation: genGetNodeLocation('swc'),
   gui: () => import('./SwcGui.vue'),
 }

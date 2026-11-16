@@ -112,3 +112,21 @@ export function del<T extends Array<any>>(arr: T, values: T[number][]): T {
 export async function resolveDefault(p: Promise<any>) {
   return (await p).default
 }
+
+export function detectMonacoLanguage(filename?: string): MonacoLanguage {
+  const extname = filename?.split('.').pop()
+  // "typescript" | "ecmascript" | "flow"
+  switch (extname) {
+    case 'ts':
+    case 'tsx':
+    case 'dts':
+    case 'typescript':
+      return 'typescript'
+    case 'js':
+    case 'jsx':
+    case 'ecmascript':
+      return 'javascript'
+    default:
+      return 'text'
+  }
+}

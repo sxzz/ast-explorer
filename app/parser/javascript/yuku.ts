@@ -45,12 +45,7 @@ export const yuku: Parser<typeof Yuku, Options> = {
       }),
     }
   },
-  editorLanguage(options) {
-    const lang = options?.lang
-    return lang === 'ts' || lang === 'tsx' || lang === 'dts'
-      ? 'typescript'
-      : 'javascript'
-  },
+  editorLanguage: (options) => detectMonacoLanguage(options?.lang),
   getNodeLocation: genGetNodeLocation('startEnd'),
   gui: () => import('./YukuGui.vue'),
 }
