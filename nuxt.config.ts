@@ -10,12 +10,11 @@ const WORKER_CHUNK_RE = /\.worker-[\w-]+\.js$/
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@unocss/nuxt',
-    '@vueuse/nuxt',
-    'nuxt-monaco-editor',
-    '@vercel/analytics',
-  ],
+  modules: ['@unocss/nuxt', '@vueuse/nuxt', 'nuxt-monaco-editor'],
+  $production: {
+    // its debug script only adds noise during development
+    modules: ['@vercel/analytics'],
+  },
   vue: {
     optionsApi: false,
   },
