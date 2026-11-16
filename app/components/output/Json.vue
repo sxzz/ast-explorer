@@ -5,7 +5,7 @@ import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
-const monaco = await useMonaco()
+loadMonaco()
 const options = computed(() => ({
   ...getSharedMonacoOptions(),
   readOnly: true,
@@ -89,7 +89,7 @@ function highlight() {
 
   decorationsCollection = editor.createDecorationsCollection([
     {
-      range: monaco.Range.fromPositions(start, end),
+      range: loadedMonaco.value!.Range.fromPositions(start, end),
       options: { className: 'ast-highlight' },
     },
   ])
@@ -105,9 +105,13 @@ watch([highlightRange, () => container.value?.$editor], () => highlight(), {
 
 <template>
   <MonacoEditor
+    v-if="loadedMonaco"
     ref="container"
     lang="json"
     :model-value="serialized"
     :options
-  />
+  >
+    <Loading />
+  </MonacoEditor>
+  <Loading v-else />
 </template>

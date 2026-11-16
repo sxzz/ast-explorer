@@ -29,7 +29,7 @@ export const astTreeStyles = useLocalStorage<Record<string, any>>(
 export function getSharedMonacoOptions(): EditorSettings {
   return {
     automaticLayout: true,
-    theme: isDark.value ? themeDark.name! : themeLight.name!,
+    theme: shikiTheme.value,
     ...editorSettings.value,
   }
 }

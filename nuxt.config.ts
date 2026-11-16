@@ -6,6 +6,8 @@ const crossOriginHeaders = {
   'Cross-Origin-Opener-Policy': 'same-origin',
 }
 
+const WORKER_CHUNK_RE = /\.worker-[\w-]+\.js$/
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -57,6 +59,23 @@ export default defineNuxtConfig({
           },
         ],
       },
+    },
+  },
+  hooks: {
+    'build:manifest': (manifest) => {
+      for (const [id, chunk] of Object.entries(manifest)) {
+        // Monaco workers are spawned on demand. Preloading them as modules
+        // only wastes bandwidth (ts.worker alone is ~7 MB), and `new Worker()`
+        // can't reuse a modulepreload, so they would be downloaded twice.
+        // The bundled typescript-eslint parser (~4 MB) is rarely used either.
+        if (
+          WORKER_CHUNK_RE.test(chunk.file) ||
+          id.includes('ts-eslint-parser')
+        ) {
+          chunk.preload = false
+          chunk.prefetch = false
+        }
+      }
     },
   },
   experimental: {

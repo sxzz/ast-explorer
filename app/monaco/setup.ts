@@ -1,5 +1,26 @@
-export default defineNuxtPlugin(async () => {
-  const monaco = await useMonaco()
+import { shikiToMonaco } from '@shikijs/monaco'
+import { registerPrettier } from './prettier'
+import type * as Monaco from 'monaco-editor'
+import type { HighlighterCore } from 'shiki/core'
+
+// Languages Monaco doesn't know about; Shiki provides their tokenizers.
+const extraLanguages: MonacoLanguage[] = [
+  'vue',
+  'svelte',
+  'glimmer-js',
+  'glimmer-ts',
+  'astro',
+  'solidity',
+  'protobuf',
+  'bash',
+]
+
+export function setupMonaco(
+  monaco: typeof Monaco,
+  highlighter: HighlighterCore,
+): void {
+  for (const id of extraLanguages) monaco.languages.register({ id })
+  shikiToMonaco(highlighter, monaco)
 
   monaco.json.jsonDefaults.setDiagnosticsOptions({
     allowComments: true,
@@ -23,4 +44,6 @@ export default defineNuxtPlugin(async () => {
     noSyntaxValidation: true,
     noSuggestionDiagnostics: true,
   })
-})
+
+  registerPrettier(monaco)
+}

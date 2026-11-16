@@ -2,9 +2,7 @@ import { currentParser } from '~/state/parser/parser'
 import type * as Monaco from 'monaco-editor'
 import type { BuiltInParserName, Plugin } from 'prettier'
 
-export default defineNuxtPlugin(async () => {
-  const monaco: typeof Monaco = await useMonaco()
-
+export function registerPrettier(monaco: typeof Monaco): void {
   monaco.languages.registerDocumentFormattingEditProvider(
     (
       [
@@ -99,7 +97,7 @@ export default defineNuxtPlugin(async () => {
       },
     },
   )
-})
+}
 
 function loadPrettierPlugins(plugins: string[]): Promise<Plugin[]> {
   return Promise.all(
