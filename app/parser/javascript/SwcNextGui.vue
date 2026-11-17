@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
-import type { ParserOptions } from '@swc-next/core-browser'
+import type { ParseApiOptions } from '@swc-next/core-browser'
 
-const useOption = makeUseOption<ParserOptions>()
+const useOption = makeUseOption<ParseApiOptions>()
 
 const lang = useOption('lang', 'ts', true)
 const sourceType = useOption('sourceType', 'module')
-const comments = useOption('comments', 'flat')
+const comments = useOption('comments', 'all')
 const preserveParens = useOption('preserveParens', true)
 const semanticErrors = useOption('semanticErrors', false)
+const errorRecovery = useOption('errorRecovery', false)
 </script>
 
 <template>
@@ -38,7 +39,7 @@ const semanticErrors = useOption('semanticErrors', false)
     <label>
       <span>comments</span>
       <select v-model="comments" w-full>
-        <option value="flat">flat</option>
+        <option value="all">all</option>
         <option value="none">none</option>
       </select>
     </label>
@@ -51,6 +52,11 @@ const semanticErrors = useOption('semanticErrors', false)
     <label>
       <AppSwitch v-model="semanticErrors" />
       <span>semanticErrors</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="errorRecovery" />
+      <span>errorRecovery</span>
     </label>
   </div>
 </template>

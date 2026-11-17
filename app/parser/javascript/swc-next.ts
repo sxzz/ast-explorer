@@ -3,7 +3,7 @@ import { detectMonacoLanguage, importModule } from '~/parser/utils'
 import type { Parser } from '../index.ts'
 import type * as Swc from '@swc-next/core-browser'
 
-export const swcNext: Parser<typeof Swc, Swc.ParserOptions> = {
+export const swcNext: Parser<typeof Swc, Swc.ParseApiOptions> = {
   id: 'swc-next',
   label: 'SWC Next',
   // @unocss-include

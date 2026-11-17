@@ -59,6 +59,11 @@ export async function buildTsEslintParser(
             find: 'process.versions.node',
             replacement: JSON.stringify(process.versions.node),
           },
+          {
+            // read unguarded on every parse since 8.73
+            find: 'process.env.TYPESCRIPT_ESLINT_EXPERIMENTAL_BACKEND',
+            replacement: 'undefined',
+          },
         ],
       }),
     ],
