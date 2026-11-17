@@ -23,11 +23,7 @@ export const typescript: Parser<
   defaultVersion: '^6',
   version: getModuleVersion,
   parse(code, { scriptKind, ...options }) {
-    if ((this.versionMajorMinor as string) === '7.0') {
-      throw new Error(
-        'TypeScript 7.0 is not supported yet. Please use TypeScript 6.x or below.',
-      )
-    }
+    assertLegacyTypescript(this)
     return this.createSourceFile('foo.ts', code, options, true, scriptKind)
   },
   editorLanguage: 'typescript',
@@ -62,6 +58,18 @@ export const typescript: Parser<
   },
   hideKeys: ['parent'],
   gui: () => import('./TypescriptGui.vue'),
+}
+
+// TypeScript 7 is a native port; its package only exports the version.
+export function isLegacyTypescript(ts: typeof Typescript): boolean {
+  return Number.parseInt(ts.versionMajorMinor) < 7
+}
+
+export function assertLegacyTypescript(ts: typeof Typescript): void {
+  if (isLegacyTypescript(ts)) return
+  throw new Error(
+    `TypeScript (legacy) supports TypeScript 6 and below, but got ${ts.version}. Use the TypeScript (WASM) parser for TypeScript 7 and later.`,
+  )
 }
 
 const cache = new WeakMap<

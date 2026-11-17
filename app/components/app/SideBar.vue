@@ -7,13 +7,11 @@ import {
   currentParser,
   currentParserGui as ParserGui,
 } from '~/state/parser/parser'
+import { parserPkgId } from '~/state/parser/version'
 
 const error = ref<Error>()
 
-watch(
-  () => currentParser.value,
-  () => (error.value = undefined),
-)
+watch([currentParser, parserPkgId], () => (error.value = undefined))
 
 onErrorCaptured((err) => {
   console.error(err)
@@ -39,7 +37,12 @@ onErrorCaptured((err) => {
       {{ error }}
     </span>
     <Suspense v-else :timeout="0">
-      <ParserGui v-if="ParserGui" w-full class="sidebar-gui" />
+      <ParserGui
+        v-if="ParserGui"
+        :key="parserPkgId"
+        w-full
+        class="sidebar-gui"
+      />
       <template #fallback><Loading /></template>
     </Suspense>
   </aside>

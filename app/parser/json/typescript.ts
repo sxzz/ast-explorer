@@ -1,4 +1,7 @@
-import { typescript as base } from '../javascript/typescript'
+import {
+  assertLegacyTypescript,
+  typescript as base,
+} from '../javascript/typescript'
 import type { Parser } from '../index'
 import type Typescript from 'typescript'
 
@@ -14,6 +17,7 @@ export const typescript: Parser<typeof Typescript, Record<string, never>> = {
     editorLanguage: 'json',
   },
   parse(code) {
+    assertLegacyTypescript(this)
     return this.parseJsonText('file.json', code)
   },
   getNodeLocation(node) {
