@@ -15,9 +15,6 @@ export default defineNuxtConfig({
     // its debug script only adds noise during development
     modules: ['@vercel/analytics'],
   },
-  vue: {
-    optionsApi: false,
-  },
   vite: {
     resolve: {
       alias: {
@@ -93,6 +90,9 @@ export default defineNuxtConfig({
   },
   appConfig: {
     branch: process.env.VERCEL_GIT_COMMIT_REF,
+  },
+  future: {
+    compatibilityVersion: 5,
   },
   compatibilityDate: 'latest',
 })
