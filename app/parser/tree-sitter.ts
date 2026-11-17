@@ -44,7 +44,7 @@ export const treeSitter: Parser<void, TreeSitterOptions> = {
       throw new Error('WASM URL is required in options')
     }
 
-    const parser = await initTreeSitterParser(options.wasmUrl)
+    const parser = await getCustomParser(options.wasmUrl)
     const parsed = parser.parse(code)
     return parsed && convertNode(parsed.rootNode)
   },
@@ -147,30 +147,56 @@ function convertNode(node: TreeSitter.Node): any {
 }
 
 const pkg = 'web-tree-sitter'
-async function loadTreeSitter() {
-  const treeSitter = await importModule<typeof TreeSitter>(
-    getJsdelivrUrl(pkg, '/tree-sitter.js'),
-  )
-  await treeSitter.Parser.init({
-    locateFile: (scriptName: string) => getJsdelivrUrl(pkg, `/${scriptName}`),
-  })
-  return treeSitter
+
+let treeSitterPromise: Promise<typeof TreeSitter> | undefined
+function loadTreeSitter(): Promise<typeof TreeSitter> {
+  return (treeSitterPromise ||= (async () => {
+    const treeSitter = await importModule<typeof TreeSitter>(
+      getJsdelivrUrl(pkg, '/web-tree-sitter.js'),
+    )
+    await treeSitter.Parser.init({
+      locateFile: (scriptName: string) => getJsdelivrUrl(pkg, `/${scriptName}`),
+    })
+    return treeSitter
+  })().catch((error) => {
+    treeSitterPromise = undefined
+    throw error
+  }))
 }
 
-async function initTreeSitterParser(url: string) {
-  const [{ Parser, Language }, response] = await Promise.all([
-    loadTreeSitter(),
-    fetch(url).then((res) => {
-      if (!res.ok) {
-        throw new Error(`Failed to load WASM: ${res.status} ${res.statusText}`)
-      }
-      return res.arrayBuffer()
+async function compileWasm(url: string): Promise<WebAssembly.Module> {
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(
+      `Failed to load WASM: ${response.status} ${response.statusText}`,
+    )
+  }
+  // custom URLs (e.g. raw.githubusercontent.com) may not be served as
+  // `application/wasm`, which `compileStreaming` requires
+  return WebAssembly.compileStreaming(
+    new Response(response.body, {
+      headers: { 'Content-Type': 'application/wasm' },
     }),
+  )
+}
+
+async function initTreeSitterParser(url: string): Promise<TreeSitter.Parser> {
+  const [{ Parser, Language }, wasmModule] = await Promise.all([
+    loadTreeSitter(),
+    compileWasm(url),
   ])
-  const language = await Language.load(new Uint8Array(response))
-
   const parser = new Parser()
-  parser.setLanguage(language)
+  parser.setLanguage(Language.loadSync(wasmModule))
+  return parser
+}
 
+const customParsers = new Map<string, Promise<TreeSitter.Parser>>()
+function getCustomParser(url: string): Promise<TreeSitter.Parser> {
+  let parser = customParsers.get(url)
+  if (!parser) {
+    parser = initTreeSitterParser(url)
+    parser.catch(() => customParsers.delete(url))
+    customParsers.set(url, parser)
+  }
   return parser
 }
