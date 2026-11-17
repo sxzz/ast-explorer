@@ -1,11 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { Options } from './flow'
 
 const useOption = makeUseOption<Options>()
-</script>
 
-<script setup lang="ts">
 const types = useOption('types')
 const use_strict = useOption('use_strict')
 const comments = useOption('comments')

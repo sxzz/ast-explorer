@@ -1,11 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { Options } from './acorn'
 
 const useOption = makeUseOption<Options>()
-</script>
 
-<script setup lang="ts">
 const sourceType = useOption('sourceType', 'script', true)
 const ecmaVersion = useOption('ecmaVersion')
 

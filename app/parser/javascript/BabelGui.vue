@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, type Ref, type WritableComputedRef } from 'vue'
+import AppCheckbox from '~/components/AppCheckbox.vue'
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import { del } from '~/parser/utils'
 import { useOptions } from '~/state/parser/options'

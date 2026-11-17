@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTemplateRef, watchEffect } from 'vue'
+import AppTooltip from '~/components/AppTooltip.vue'
 
 const dialog = useTemplateRef('dialog')
 

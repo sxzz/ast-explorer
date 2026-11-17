@@ -16,9 +16,7 @@ export default defineNuxtConfig({
     'nuxt-monaco-editor',
     'nuxt-explicit-imports',
   ],
-  explicitImports: {
-    mode: { imports: 'strict', components: 'warn', server: 'warn' },
-  },
+  explicitImports: { mode: 'strict' },
   $production: {
     // its debug script only adds noise during development
     modules: ['@vercel/analytics'],

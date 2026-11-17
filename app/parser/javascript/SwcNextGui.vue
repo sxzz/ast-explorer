@@ -1,10 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { ParserOptions } from '@swc-next/core-browser'
 const useOption = makeUseOption<ParserOptions>()
-</script>
 
-<script setup lang="ts">
 const lang = useOption('lang', 'ts', true)
 const sourceType = useOption('sourceType', 'module')
 const comments = useOption('comments', 'flat')

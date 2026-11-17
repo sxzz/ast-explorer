@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
+import AppTooltip from '~/components/AppTooltip.vue'
 import { hideKeys } from '~/state/output'
 
 const draft = ref('')

@@ -1,11 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { Options } from './meriyah'
 
 const useOption = makeUseOption<Options>()
-</script>
 
-<script setup lang="ts">
 const sourceType = useOption('sourceType', 'module', true)
 const next = useOption('next', true)
 const webcompat = useOption('webcompat')

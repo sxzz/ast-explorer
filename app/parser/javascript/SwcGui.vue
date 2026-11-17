@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue'
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { ParserConfig } from '@swc/wasm-web'
 const useOption = makeUseOption<ParserConfig>()

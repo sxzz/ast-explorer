@@ -1,11 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type * as Momoa from '@humanwhocodes/momoa'
 
 const useOption = makeUseOption<Momoa.ParseOptions>()
-</script>
 
-<script setup lang="ts">
 const mode = useOption('mode', 'json', true)
 const ranges = useOption('ranges')
 const tokens = useOption('tokens')

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, shallowRef, toRaw, watch } from 'vue'
+import Loading from '~/components/Loading.vue'
 import { getLocationMapping, isRegExp } from '~/composables/location'
 import { loadedMonaco, useMonacoLanguage } from '~/composables/monaco'
 import { editorCursor, getSharedMonacoOptions } from '~/state/editor'

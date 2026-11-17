@@ -1,10 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { ParserOptions } from './oxc'
 const useOption = makeUseOption<ParserOptions>()
-</script>
 
-<script setup lang="ts">
 const sourceType = useOption('sourceType', 'script', true)
 const filename = useOption('filename', 'foo.ts', true)
 const preserveParens = useOption('preserveParens', true, true)

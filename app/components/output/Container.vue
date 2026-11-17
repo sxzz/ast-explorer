@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import ansiRegex from 'ansi-regex'
 import { computed, watch } from 'vue'
+import AppSwitch from '~/components/AppSwitch.vue'
+import AppTooltip from '~/components/AppTooltip.vue'
+import Loading from '~/components/Loading.vue'
+import OutputHideKeys from '~/components/output/HideKeys.vue'
+import OutputJson from '~/components/output/Json.vue'
+import OutputTree from '~/components/output/Tree.vue'
 import { isSafari } from '~/composables/constants'
 import { ast, error, loading } from '~/state/parser/module'
 import {

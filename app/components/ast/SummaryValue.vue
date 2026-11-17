@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import AstBrackets from '~/components/ast/Brackets.vue'
 import { shouldHideKey } from '~/state/output'
 
 const props = defineProps<{ data: any }>()

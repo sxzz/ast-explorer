@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import AppTooltip from '~/components/AppTooltip.vue'
+import AstProperty from '~/components/ast/Property.vue'
+import OutputTreeStyles from '~/components/output/TreeStyles.vue'
 import { astTreeStyles, showAstTreeStyles } from '~/state/editor'
 import { ast } from '~/state/parser/module'
 

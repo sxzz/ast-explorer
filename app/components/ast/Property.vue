@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import AstSummaryValue from '~/components/ast/SummaryValue.vue'
+import AstValue from '~/components/ast/Value.vue'
 import { getRange, type Range } from '~/composables/location'
 import { useHighlightColor } from '~/composables/shiki'
 import { editorCursor, outputHoverRange } from '~/state/editor'

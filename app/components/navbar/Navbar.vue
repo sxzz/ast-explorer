@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import AppLogo from '~/components/app/Logo.vue'
+import AppTooltip from '~/components/AppTooltip.vue'
+import NavbarLanguageSelect from '~/components/navbar/LanguageSelect.vue'
+import ParserOptions from '~/components/parser/Options.vue'
+import ParserSelect from '~/components/parser/Select.vue'
 import { parseCost } from '~/state/parser/module'
 import { currentParser, overrideVersion } from '~/state/parser/parser'
 import {

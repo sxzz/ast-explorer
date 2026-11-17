@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import { makeUseOption } from '~/composables/options'
 import { parserModulePromise } from '~/state/parser/module'
 import type Typescript from 'typescript'
@@ -6,9 +6,7 @@ import type Typescript from 'typescript'
 const useOption = makeUseOption<
   Typescript.CreateSourceFileOptions & { scriptKind: Typescript.ScriptKind }
 >()
-</script>
 
-<script setup lang="ts">
 const ts = await parserModulePromise.value
 if (ts.versionMajorMinor === '7.0') {
   throw new Error(
@@ -23,7 +21,7 @@ const languageVersion = useOption(
 )
 
 const versions = Object.entries(ts.ScriptTarget).filter(
-  ([_, value]) => typeof value === 'number',
+  (entry) => typeof entry[1] === 'number',
 )
 </script>
 
@@ -40,7 +38,7 @@ const versions = Object.entries(ts.ScriptTarget).filter(
       <select v-model="scriptKind">
         <option
           v-for="kind in Object.entries(ts.ScriptKind).filter(
-            ([_, value]) => typeof value === 'number',
+            (entry) => typeof entry[1] === 'number',
           )"
           :key="kind[0]"
           :value="kind[1]"

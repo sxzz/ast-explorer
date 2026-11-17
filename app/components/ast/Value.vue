@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useClipboard, useTemplateRefsList } from '@vueuse/core'
 import { computed, watchEffect } from 'vue'
+import AstBrackets from '~/components/ast/Brackets.vue'
 import { isRegExp } from '~/composables/location'
 import { useHighlightColor } from '~/composables/shiki'
 import { shouldHideKey } from '~/state/output'

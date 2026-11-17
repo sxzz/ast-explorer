@@ -1,10 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { ParseOptions } from '@joekav/go-fast'
 const useOption = makeUseOption<ParseOptions>()
-</script>
 
-<script setup lang="ts">
 const resolve = useOption('resolve', false, true)
 </script>
 

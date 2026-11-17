@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { onErrorCaptured, ref, watch } from 'vue'
+import IconPreview from '~/components/IconPreview.vue'
+import Loading from '~/components/Loading.vue'
+import ParserOptions from '~/components/parser/Options.vue'
 import {
   currentParser,
   currentParserGui as ParserGui,
