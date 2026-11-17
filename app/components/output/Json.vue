@@ -5,7 +5,7 @@ import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
-loadMonaco()
+const editorLanguage = useMonacoLanguage('json')
 const options = computed(() => ({
   ...getSharedMonacoOptions(),
   readOnly: true,
@@ -97,9 +97,9 @@ watch([highlightRange, () => container.value?.$editor], () => highlight(), {
 
 <template>
   <MonacoEditor
-    v-if="loadedMonaco"
+    v-if="editorLanguage"
     ref="container"
-    lang="json"
+    :lang="editorLanguage"
     :model-value="serialized"
     :options
   >

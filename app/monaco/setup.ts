@@ -1,4 +1,5 @@
 import { shikiToMonaco } from '@shikijs/monaco'
+import { grammars, loadedGrammars } from './highlighter'
 import { registerPrettier } from './prettier'
 import type * as Monaco from 'monaco-editor'
 import type { HighlighterCore } from 'shiki/core'
@@ -15,12 +16,35 @@ const extraLanguages: MonacoLanguage[] = [
   'bash',
 ]
 
+const plainGrammar = {
+  tokenizeLine2: (_line: string, ruleStack: unknown) => ({
+    tokens: new Uint32Array(2),
+    ruleStack,
+    stoppedEarly: false,
+  }),
+} as unknown as ReturnType<HighlighterCore['getLanguage']>
+
 export function setupMonaco(
   monaco: typeof Monaco,
   highlighter: HighlighterCore,
 ): void {
   for (const id of extraLanguages) monaco.languages.register({ id })
-  shikiToMonaco(highlighter, monaco)
+
+  // `shikiToMonaco` only registers tokenizers for grammars that are already
+  // loaded and can't add more later. Register all of them up front instead;
+  // editors wait for `loadMonacoLanguage()` before using a language, and
+  // anything else (e.g. code in hovers) stays plain until it's loaded.
+  shikiToMonaco(
+    {
+      ...highlighter,
+      getLoadedLanguages: () => Object.keys(grammars),
+      getLanguage: (lang) =>
+        loadedGrammars.has(lang as MonacoLanguage)
+          ? highlighter.getLanguage(lang)
+          : plainGrammar,
+    },
+    monaco,
+  )
 
   monaco.json.jsonDefaults.setDiagnosticsOptions({
     allowComments: true,

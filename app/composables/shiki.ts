@@ -4,15 +4,29 @@ export const shikiTheme = computed(() =>
   isDark.value ? 'vitesse-dark' : 'vitesse-light',
 )
 
-/** Available once the grammars chunk has loaded; see {@link loadHighlighter}. */
+/** Available once its chunk has loaded; see {@link loadHighlighter}. */
 export const highlighter = shallowRef<HighlighterCore>()
+
+let highlighterModule:
+  Promise<typeof import('~/monaco/highlighter')> | undefined
+function importHighlighter() {
+  return (highlighterModule ||= import('~/monaco/highlighter'))
+}
 
 let highlighterPromise: Promise<HighlighterCore> | undefined
 export function loadHighlighter(): Promise<HighlighterCore> {
-  // The grammars are >1 MB, so keep them out of the entry chunk.
-  return (highlighterPromise ||= import('~/monaco/highlighter').then(
+  return (highlighterPromise ||= importHighlighter().then(
     ({ createHighlighter }) => (highlighter.value = createHighlighter()),
   ))
+}
+
+/** Grammars are split per language and loaded on first use. */
+export async function loadGrammar(language: MonacoLanguage): Promise<void> {
+  const [{ loadGrammar }, highlighter] = await Promise.all([
+    importHighlighter(),
+    loadHighlighter(),
+  ])
+  await loadGrammar(highlighter, language)
 }
 
 const highlight = useMemoize((code: string, theme: string) => {

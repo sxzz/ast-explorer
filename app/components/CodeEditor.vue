@@ -13,8 +13,7 @@ const container = shallowRef<{
 }>()
 
 const options = computed(() => getSharedMonacoOptions())
-
-loadMonaco()
+const editorLanguage = useMonacoLanguage(() => props.language)
 
 watch(
   () => container.value?.$editor,
@@ -69,10 +68,10 @@ if (props.input) {
 
 <template>
   <MonacoEditor
-    v-if="loadedMonaco"
+    v-if="editorLanguage"
     ref="container"
     v-model="code"
-    :lang="language"
+    :lang="editorLanguage"
     :options="options"
   >
     <Loading />
