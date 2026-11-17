@@ -2,6 +2,7 @@
 import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { ParseOptions } from '@joekav/go-fast'
+
 const useOption = makeUseOption<ParseOptions>()
 
 const resolve = useOption('resolve', false, true)

@@ -2,6 +2,7 @@
 import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { Options } from './yuku'
+
 const useOption = makeUseOption<Options>()
 
 const lang = useOption('lang', 'js', true)

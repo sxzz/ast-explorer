@@ -2,6 +2,7 @@
 import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
 import type { Options } from 'espree'
+
 const useOptions = makeUseOption<Options>()
 
 defineProps<{
