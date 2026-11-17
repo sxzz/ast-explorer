@@ -14,7 +14,7 @@ async function initParser() {
   const moduleUrl = parserModuleUrl.value
   // Parsers may share a package but differ in entry file or `init`
   // (e.g. tree-sitter-typescript vs. tree-sitter-tsx), so key by parser too.
-  const cacheKey = `${id} ${moduleUrl}`
+  const cacheKey = `${id}@${pkgId}`
   if (parserModuleCache.has(cacheKey)) return parserModuleCache.get(cacheKey)
 
   let module = init
