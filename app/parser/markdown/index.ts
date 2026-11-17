@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { importModule } from '~/parser/utils'
 import { markdownTemplate } from '../template'
 import type { LanguageOption, Parser } from '../index'
 import type * as Comark from 'comark'

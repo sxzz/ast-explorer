@@ -1,6 +1,8 @@
+import { computed, ref, watch, type Ref } from 'vue'
+import { fetchVersion, getJsdelivrUrl } from '~/parser/utils'
+import { isUrl } from '~/state/url'
 import { currentParser, overrideVersion } from './parser'
 import type { Parser } from '#imports'
-import type { Ref } from 'vue'
 
 /** The version was overridden with a module URL instead of a semver range/tag. */
 export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))

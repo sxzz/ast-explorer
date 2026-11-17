@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref, useTemplateRef } from 'vue'
+import { hideKeys } from '~/state/output'
+
 const draft = ref('')
 const input = useTemplateRef<HTMLInputElement>('input')
 

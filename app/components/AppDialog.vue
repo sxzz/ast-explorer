@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useTemplateRef, watchEffect } from 'vue'
+
 const dialog = useTemplateRef('dialog')
 
 defineProps<{

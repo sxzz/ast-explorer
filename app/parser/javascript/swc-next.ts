@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { detectMonacoLanguage, importModule } from '~/parser/utils'
 import type { Parser } from '../index.ts'
 import type * as Swc from '@swc-next/core-browser'
 

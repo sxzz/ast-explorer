@@ -1,3 +1,7 @@
+import { watchEffect } from 'vue'
+import { STORAGE_PREFIX } from '~/state/constants'
+import { code } from '~/state/editor'
+import { atou, utoa } from '~/utils/url'
 import { rawOptions, setDefaultOptions } from './parser/options'
 import {
   currentLanguage,

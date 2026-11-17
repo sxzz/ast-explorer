@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { yamlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as ActionsWorkflowParser from '@actions/workflow-parser'

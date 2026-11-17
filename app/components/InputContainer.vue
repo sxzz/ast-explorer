@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { showEditorSettings } from '~/state/editor'
 import { parserOptions } from '~/state/parser/options'
 import { currentParser } from '~/state/parser/parser'
 import { code } from '#imports'

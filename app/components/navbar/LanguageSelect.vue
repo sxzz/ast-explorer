@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { DropdownMenuItem } from 'reka-ui'
+import { LANGUAGES } from '~/parser'
 import { currentLanguage, currentLanguageId } from '~/state/parser/parser'
 import type { Language } from '#imports'
 

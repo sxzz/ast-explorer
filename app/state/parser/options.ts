@@ -1,4 +1,8 @@
+import { useLocalStorage } from '@vueuse/core'
 import json5 from 'json5'
+import { computed, ref, watch } from 'vue'
+import { STORAGE_PREFIX } from '~/state/constants'
+import { code } from '~/state/editor'
 import { currentParser, currentParserId } from './parser'
 
 export const rawOptions = ref('')

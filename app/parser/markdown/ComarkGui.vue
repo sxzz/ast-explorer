@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { ComarkOptions } from './index'
 
 const useOption = makeUseOption<ComarkOptions>()

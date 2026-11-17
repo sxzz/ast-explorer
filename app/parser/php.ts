@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { phpTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as PhpParser from 'php-parser'

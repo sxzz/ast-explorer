@@ -3,6 +3,7 @@ import { grammars, loadedGrammars } from './highlighter'
 import { registerPrettier } from './prettier'
 import type * as Monaco from 'monaco-editor'
 import type { HighlighterCore } from 'shiki/core'
+import type { MonacoLanguage } from '~/parser'
 
 // Languages Monaco doesn't know about; Shiki provides their tokenizers.
 const extraLanguages: MonacoLanguage[] = [

@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { computed, shallowRef, watch, watchEffect } from 'vue'
+import { loadedMonaco, useMonacoLanguage } from '~/composables/monaco'
+import {
+  editorCursor,
+  getSharedMonacoOptions,
+  outputHoverRange,
+  showEditorSettings,
+} from '~/state/editor'
 import type { MonacoLanguage } from '#imports'
 import type * as Monaco from 'monaco-editor'
 

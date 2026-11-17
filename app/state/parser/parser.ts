@@ -1,3 +1,7 @@
+import { computed, defineAsyncComponent, ref, watch } from 'vue'
+import { LANGUAGES, type Language } from '~/parser'
+import { code } from '~/state/editor'
+
 // language
 export const currentLanguageId = ref<Language>('javascript')
 export const currentLanguage = computed(

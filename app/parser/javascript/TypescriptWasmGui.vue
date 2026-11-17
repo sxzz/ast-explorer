@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import { parserModulePromise } from '~/state/parser/module'
 import type {
   TypescriptWasmContext,

@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as Meriyah from 'meriyah'
 

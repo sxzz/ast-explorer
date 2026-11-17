@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { computed, ref, watch } from 'vue'
+import { getRange, type Range } from '~/composables/location'
+import { useHighlightColor } from '~/composables/shiki'
+import { editorCursor, outputHoverRange } from '~/state/editor'
+import { autoFocus, shouldHideKey } from '~/state/output'
 import { parserModule } from '~/state/parser/module'
 import { currentParser } from '~/state/parser/parser'
-import type { Range } from '~/composables/location'
 
 const props = defineProps<{
   id?: string | number
@@ -17,7 +21,7 @@ const title = computed(() => {
   if (typeof nodeTitle === 'function')
     return nodeTitle.call(parserModule.value, props.value)
   const title = props.value?.[nodeTitle]
-  if (typeof title === 'string') return title
+  return typeof title === 'string' ? title : undefined
 })
 const titleColor = useHighlightColor(() => `${title.value}()`)
 

@@ -1,3 +1,6 @@
+import { useLocalStorage, useMediaQuery, useToggle } from '@vueuse/core'
+import { computed } from 'vue'
+import { STORAGE_PREFIX } from '~/state/constants'
 import { currentParser, currentParserGui } from './parser/parser'
 
 export const showSidebar = useLocalStorage(

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type * as Momoa from '@humanwhocodes/momoa'
 
 const useOption = makeUseOption<Momoa.ParseOptions>()

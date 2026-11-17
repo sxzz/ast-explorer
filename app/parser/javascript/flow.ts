@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { importModule } from '~/parser/utils'
 import type { Parser } from '..'
 
 // https://github.com/facebook/flow/tree/main/packages/flow-parser#options

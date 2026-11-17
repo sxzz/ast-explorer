@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ansiRegex from 'ansi-regex'
+import { computed, watch } from 'vue'
+import { isSafari } from '~/composables/constants'
 import { ast, error, loading } from '~/state/parser/module'
 import {
   autoFocus,

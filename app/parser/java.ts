@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { javaTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as JavaParser from 'java-parser'

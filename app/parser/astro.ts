@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, importModule } from '~/parser/utils'
 import { astroTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as AstroRs from '@astrojs/compiler-binding'

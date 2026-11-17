@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import json5 from 'json5'
+import { ref, watchEffect } from 'vue'
+import { editorSettings, type EditorSettings } from '~/state/editor'
 import { showEditorSettings } from '#imports'
 
 const raw = ref(JSON.stringify(editorSettings.value, null, 2))

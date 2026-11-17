@@ -1,6 +1,8 @@
+import { importJsdelivr, resolveDefault } from '~/parser/utils'
 import { currentParser } from '~/state/parser/parser'
 import type * as Monaco from 'monaco-editor'
 import type { BuiltInParserName, Plugin } from 'prettier'
+import type { MonacoLanguage } from '~/parser'
 
 export function registerPrettier(monaco: typeof Monaco): void {
   monaco.languages.registerDocumentFormattingEditProvider(

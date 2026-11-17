@@ -6,6 +6,7 @@ import {
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 import langTypescript from 'shiki/langs/typescript.mjs'
 import { themeDark, themeLight } from './theme'
+import type { MonacoLanguage } from '~/parser'
 
 /// keep-sorted
 export const grammars: Partial<Record<MonacoLanguage, LanguageInput>> = {

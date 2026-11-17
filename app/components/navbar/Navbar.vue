@@ -7,7 +7,18 @@ import {
   packageUrl,
   versionOverridable,
 } from '~/state/parser/version'
+import { toggleDark } from '~/state/theme'
+import {
+  showInputEditor,
+  showOutput,
+  showSidebar,
+  sidebarAvailable,
+  toggleInputEditor,
+  toggleOutput,
+  toggleSidebar,
+} from '~/state/ui'
 import { version } from '../../../package.json'
+import { useAppConfig } from '#app'
 
 const { branch } = useAppConfig()
 

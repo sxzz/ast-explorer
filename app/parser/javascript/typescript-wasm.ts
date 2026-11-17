@@ -1,3 +1,11 @@
+import { getJsonValue } from '~/composables/location'
+import {
+  fetchVersion,
+  getJsdelivrUrl,
+  getModuleVersion,
+  importModule,
+} from '~/parser/utils'
+import { isUrl } from '~/state/url'
 import type { Parser } from '..'
 import type * as TypescriptAst from 'typescript-next/ast'
 import type * as TypescriptAsync from 'typescript-next/async'

@@ -1,3 +1,4 @@
+import { treeSitterCSharp } from '~/parser/tree-sitter'
 import { csharpTemplate } from './template'
 import type { LanguageOption } from './index'
 

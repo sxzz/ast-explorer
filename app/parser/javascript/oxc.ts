@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import { detectMonacoLanguage } from '../utils.ts'
 import type { Parser } from '..'
 import type * as Oxc from 'oxc-parser'

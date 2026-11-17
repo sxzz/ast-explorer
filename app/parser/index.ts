@@ -1,3 +1,5 @@
+import { python } from '~/parser/python'
+import { yaml } from '~/parser/yaml'
 import { angular } from './angular'
 import { astro } from './astro'
 import { csharp } from './csharp'

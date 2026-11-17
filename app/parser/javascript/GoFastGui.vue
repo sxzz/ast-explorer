@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { ParseOptions } from '@joekav/go-fast'
 const useOption = makeUseOption<ParseOptions>()
 </script>

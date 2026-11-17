@@ -1,4 +1,6 @@
 import * as GoFast from '@joekav/go-fast'
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import type { Parser } from '..'
 
 export const gofast: Parser<typeof GoFast, GoFast.ParseOptions> = {

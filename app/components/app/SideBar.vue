@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onErrorCaptured, ref, watch } from 'vue'
 import {
   currentParser,
   currentParserGui as ParserGui,

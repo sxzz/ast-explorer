@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, importModule } from '~/parser/utils'
 import type { Parser } from './index'
 import type * as TreeSitter from 'web-tree-sitter'
 

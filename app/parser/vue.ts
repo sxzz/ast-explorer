@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import { vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Vue3Dom from '@vue/compiler-dom'

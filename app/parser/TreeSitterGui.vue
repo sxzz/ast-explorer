@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { TreeSitterOptions } from './tree-sitter'
 
 const useOption = makeUseOption<TreeSitterOptions>()

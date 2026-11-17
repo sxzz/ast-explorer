@@ -82,6 +82,7 @@
     "meriyah": "catalog:parser",
     "monaco-editor": "catalog:",
     "nuxt": "catalog:",
+    "nuxt-explicit-imports": "catalog:",
     "nuxt-monaco-editor": "catalog:",
     "ohos-typescript": "catalog:parser",
     "oxc-parser": "catalog:parser",

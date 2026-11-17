@@ -1,5 +1,14 @@
+import {
+  shallowRef,
+  toValue,
+  watch,
+  type MaybeRefOrGetter,
+  type ShallowRef,
+} from 'vue'
+import { loadGrammar, loadHighlighter } from '~/composables/shiki'
+import { useMonaco } from '#imports'
 import type * as Monaco from 'monaco-editor'
-import type { ShallowRef } from 'vue'
+import type { MonacoLanguage } from '~/parser'
 
 /**
  * Set once Monaco and everything registered on top of it (Shiki tokenizers,

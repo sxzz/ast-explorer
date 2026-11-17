@@ -1,3 +1,5 @@
+import type { ImportMap, MonacoLanguage } from '~/parser'
+
 const JSDELIVR_PREFIX = 'https://cdn.jsdelivr.net/npm/'
 
 export async function fetchVersion(pkg: string) {

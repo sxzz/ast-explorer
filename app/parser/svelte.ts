@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import { svelteTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Svelte from 'svelte/compiler'

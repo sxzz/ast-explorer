@@ -37,6 +37,7 @@ catalog:
   json5: ^2.2.3
   monaco-editor: ^0.57.0
   nuxt: ^4.6.4
+  nuxt-explicit-imports: ^0.1.0
   nuxt-monaco-editor: ^1.5.0
   prettier: ^3.10.1
   puppeteer-core: ^25.17.0

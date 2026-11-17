@@ -1,3 +1,7 @@
+import { computedAsync } from '@vueuse/core'
+import { computed, ref, shallowRef, watch } from 'vue'
+import { importModule } from '~/parser/utils'
+import { code } from '~/state/editor'
 import { parserOptions, parserOptionsError, rawOptions } from './options'
 import { currentParser } from './parser'
 import { initParserVersionState, parserModuleUrl, parserPkgId } from './version'

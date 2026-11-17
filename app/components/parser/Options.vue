@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { rawOptions, resetParserOptions } from '~/state/parser/options'
 import { currentParser } from '~/state/parser/parser'
 

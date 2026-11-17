@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import type { Parser } from '../index'
 import type * as Momoa from '@humanwhocodes/momoa'
 

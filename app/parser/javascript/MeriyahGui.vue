@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { Options } from './meriyah'
 
 const useOption = makeUseOption<Options>()

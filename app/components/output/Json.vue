@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { computed, onMounted, shallowRef, toRaw, watch } from 'vue'
+import { getLocationMapping, isRegExp } from '~/composables/location'
+import { loadedMonaco, useMonacoLanguage } from '~/composables/monaco'
+import { editorCursor, getSharedMonacoOptions } from '~/state/editor'
+import { autoFocus, shouldHideKey } from '~/state/output'
 import { ast, error } from '~/state/parser/module'
 import { currentParser } from '~/state/parser/parser'
 import type { MonacoEditor } from '#build/components'
@@ -44,6 +49,7 @@ const serialized = computed(() => {
   } catch (err) {
     console.error(err)
     error.value = err
+    return undefined
   }
 })
 

@@ -1,4 +1,8 @@
+import { useMemoize } from '@vueuse/core'
+import { computed, shallowRef, toValue, type MaybeRefOrGetter } from 'vue'
+import { isDark } from '~/state/theme'
 import type { HighlighterCore } from 'shiki/core'
+import type { MonacoLanguage } from '~/parser'
 
 export const shikiTheme = computed(() =>
   isDark.value ? 'vitesse-dark' : 'vitesse-light',

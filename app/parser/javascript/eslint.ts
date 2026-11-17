@@ -1,3 +1,6 @@
+import { h } from 'vue'
+import { genGetNodeLocation, getNodeLocation } from '~/composables/location'
+import { getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Espree from 'espree'

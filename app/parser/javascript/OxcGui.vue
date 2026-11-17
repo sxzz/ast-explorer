@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { ParserOptions } from './oxc'
 const useOption = makeUseOption<ParserOptions>()
 </script>

@@ -1,3 +1,4 @@
+import { getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type Typescript from 'typescript'
 

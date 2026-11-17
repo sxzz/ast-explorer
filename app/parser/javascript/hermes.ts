@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { importModule } from '~/parser/utils'
 import type { Parser } from '..'
 
 // https://npmx.dev/package/hermes-parser#user-content-api

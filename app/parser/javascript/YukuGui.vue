@@ -1,4 +1,5 @@
 <script lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { Options } from './yuku'
 const useOption = makeUseOption<Options>()
 </script>

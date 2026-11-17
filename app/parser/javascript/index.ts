@@ -1,3 +1,8 @@
+import {
+  treeSitterJavascript,
+  treeSitterTsx,
+  treeSitterTypescript,
+} from '~/parser/tree-sitter'
 import { javascriptTemplate } from '../template'
 import { acorn, acornLoose } from './acorn'
 import { babel } from './babel'

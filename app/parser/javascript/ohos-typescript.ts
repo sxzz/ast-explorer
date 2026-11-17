@@ -1,3 +1,4 @@
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type Typescript from 'ohos-typescript'
 

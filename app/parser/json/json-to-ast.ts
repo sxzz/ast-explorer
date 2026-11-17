@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import type { Parser } from '../index'
 import type parse from 'json-to-ast'
 

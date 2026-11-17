@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import { emberTemplate } from './template'
 import type { ImportMap, LanguageOption, Parser } from './index'
 import type { ParseOptions } from 'ember-estree'

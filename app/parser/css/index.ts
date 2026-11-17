@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import { cssTemplate } from '../template'
 import { cssom } from './cssom'
 import type { LanguageOption, Parser } from '..'

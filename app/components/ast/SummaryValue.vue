@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { shouldHideKey } from '~/state/output'
+
 const props = defineProps<{ data: any }>()
 const emit = defineEmits<{
   toggle: []

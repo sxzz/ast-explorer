@@ -1,3 +1,7 @@
+import { getJsonValue, getOffset, getValue } from '~/composables/location'
+import { treeSitterPython } from '~/parser/tree-sitter'
+import { getJsdelivrUrl, getModuleVersion, importModule } from '~/parser/utils'
+import { code } from '~/state/editor'
 import { pythonTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Pyodide from 'pyodide'

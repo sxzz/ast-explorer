@@ -1,6 +1,9 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { treeSitterBash } from '~/parser/tree-sitter'
 import { shellTemplate } from './template'
 import type { LanguageOption } from './index'
 import type * as Unbash from 'unbash'
+import type { Parser } from '~/parser'
 
 const unbash: Parser<typeof Unbash> = {
   id: 'unbash',
