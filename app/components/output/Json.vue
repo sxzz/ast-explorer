@@ -5,8 +5,7 @@ import { getLocationMapping, isRegExp } from '~/composables/location'
 import { loadedMonaco, useMonacoLanguage } from '~/composables/monaco'
 import { editorCursor, getSharedMonacoOptions } from '~/state/editor'
 import { autoFocus, shouldHideKey } from '~/state/output'
-import { ast, error } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { ast, astParser, error } from '~/state/parser/module'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
@@ -56,8 +55,8 @@ const serialized = computed(() => {
 
 /** AST range -> code range */
 const positionMap = computed(() =>
-  serialized.value
-    ? getLocationMapping(serialized.value, currentParser.value)
+  serialized.value && astParser.value
+    ? getLocationMapping(serialized.value, astParser.value)
     : undefined,
 )
 

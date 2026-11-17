@@ -1,7 +1,7 @@
 import { useLocalStorage } from '@vueuse/core'
 import { locationKeyList } from '~/composables/location'
 import { STORAGE_PREFIX } from '~/state/constants'
-import { currentParser } from './parser/parser'
+import { astParser } from './parser/module'
 
 export const hideEmptyKeys = useLocalStorage(
   `${STORAGE_PREFIX}hide-empty-keys`,
@@ -31,5 +31,5 @@ export function shouldHideKey(key: any, checkValue = false, value?: any) {
   if (checkValue && hideEmptyKeys.value && value == null) return true
   if (hideLocationData.value && locationKeyList.includes(key)) return true
   if (hideKeys.value.includes(key)) return true
-  return currentParser.value.hideKeys?.includes(key)
+  return astParser.value?.hideKeys?.includes(key)
 }

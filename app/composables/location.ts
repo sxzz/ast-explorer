@@ -1,5 +1,5 @@
 import jsonToAst from 'json-to-ast'
-import { currentParser } from '~/state/parser/parser'
+import { astParser } from '~/state/parser/module'
 import type { Parser } from '#imports'
 
 const nodeLocationFields = {
@@ -205,7 +205,7 @@ export function getJsonValue(
 }
 
 export function getRange(ast: any) {
-  return currentParser.value.getNodeLocation?.(ast)
+  return astParser.value?.getNodeLocation?.(ast)
 }
 
 export function isRegExp(value: any): boolean {
