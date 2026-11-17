@@ -5,7 +5,6 @@ import type * as Monaco from 'monaco-editor'
 import type { HighlighterCore } from 'shiki/core'
 import type { MonacoLanguage } from '~/parser'
 
-// Languages Monaco doesn't know about; Shiki provides their tokenizers.
 const extraLanguages: MonacoLanguage[] = [
   'vue',
   'svelte',
@@ -31,10 +30,8 @@ export function setupMonaco(
 ): void {
   for (const id of extraLanguages) monaco.languages.register({ id })
 
-  // `shikiToMonaco` only registers tokenizers for grammars that are already
-  // loaded and can't add more later. Register all of them up front instead;
-  // editors wait for `loadMonacoLanguage()` before using a language, and
-  // anything else (e.g. code in hovers) stays plain until it's loaded.
+  // `shikiToMonaco` can't add languages later, so register all of them now
+  // and fall back to plain text until a grammar is loaded.
   shikiToMonaco(
     {
       ...highlighter,

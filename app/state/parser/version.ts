@@ -4,14 +4,12 @@ import { isUrl } from '~/state/url'
 import { currentParser, overrideVersion } from './parser'
 import type { Parser } from '#imports'
 
-/** The version was overridden with a module URL instead of a semver range/tag. */
 export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
 export const versionOverridable = computed(
   () => currentParser.value.versionOverridable !== false,
 )
 
-/** `pkg@range` to load and cache by, or the module URL itself. */
 export const parserPkgId = computed(() => {
   if (isUrlVersion.value) return overrideVersion.value!
   const { pkgName, defaultVersion } = currentParser.value
@@ -33,7 +31,6 @@ export const packageUrl = computed(() =>
     : `https://npmx.dev/package/${currentParser.value.pkgName}`,
 )
 
-/** Resolved version shown in the navbar, e.g. `^6` -> `6.0.3`. */
 export const displayVersion = ref<string>()
 
 function resolveVersion(
@@ -42,7 +39,6 @@ function resolveVersion(
   pkgId: string,
   parserModule: Promise<unknown>,
 ): string | Promise<string> {
-  // not backed by a package (e.g. `General` parsers); nothing to show
   if (!parser.pkgName) return ''
   if (override) return isUrl(override) ? override : fetchVersion(pkgId)
   const { version } = parser
@@ -56,7 +52,6 @@ export function initParserVersionState(
   watch(
     [currentParser, overrideVersion],
     async ([parser, override]) => {
-      // show the raw override while its exact version is being resolved
       displayVersion.value =
         override || (typeof parser.version === 'string' ? parser.version : '')
 

@@ -30,9 +30,7 @@ export function initUrlState() {
   }
   code.value = state?.c || currentLanguage.value.codeTemplate
 
-  // serialize state to url
   watchEffect(() => {
-    // code
     const c =
       code.value === currentLanguage.value.codeTemplate ? '' : code.value
     const serialized = JSON.stringify({

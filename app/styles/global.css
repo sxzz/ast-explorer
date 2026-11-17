@@ -7,7 +7,7 @@ html.dark {
   color-scheme: dark;
 }
 
-/* Form controls — refined, not pill-on-pill */
+/* Form controls */
 select,
 input:not([type='checkbox']) {
   --at-apply: 'border border-base rounded-md px2 py0.5 accent-current bg-transparent';
@@ -44,7 +44,7 @@ option {
   color: #ffffff;
 }
 
-/* Scrollbars — slim, on-brand */
+/* Scrollbars */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--c-border-strong) transparent;
@@ -71,7 +71,7 @@ option {
   box-shadow: inset 0 0 0 1px var(--c-accent-tint);
 }
 
-/* Splitter — a 1px seam backed by Reka's larger pointer hit area. */
+/* Splitter */
 .ast-splitter {
   width: 100%;
   height: 100%;

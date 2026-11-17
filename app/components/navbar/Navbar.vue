@@ -39,7 +39,6 @@ function editVersion() {
 
 <template>
   <header flex="~ y-center wrap" relative justify-between gap3 px4 py2.5>
-    <!-- Left cluster: brand + selectors -->
     <div
       flex="~ gap5 wrap y-center"
       max-sm="w-full flex-col flex-gap3 items-start"
@@ -71,7 +70,6 @@ function editVersion() {
       </div>
     </div>
 
-    <!-- Right cluster: meta + actions -->
     <div flex="~ y-center wrap" gap3 max-sm="flex-col w-full items-start">
       <div flex="~ y-center" gap3 text-sm>
         <span

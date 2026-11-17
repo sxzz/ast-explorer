@@ -38,7 +38,7 @@ const grammarPromises = new Map<MonacoLanguage, Promise<void>>()
 export const loadedGrammars = new Set<MonacoLanguage>(['typescript'])
 
 export function createHighlighter(): HighlighterCore {
-  // The AST tree colors its values as TypeScript, so that one is always loaded.
+  // the AST tree colors values as TypeScript
   return createHighlighterCoreSync({
     themes: [themeLight, themeDark],
     langs: [langTypescript],

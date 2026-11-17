@@ -8,7 +8,6 @@ export const shikiTheme = computed(() =>
   isDark.value ? 'vitesse-dark' : 'vitesse-light',
 )
 
-/** Available once its chunk has loaded; see {@link loadHighlighter}. */
 export const highlighter = shallowRef<HighlighterCore>()
 
 let highlighterModule:
@@ -24,7 +23,6 @@ export function loadHighlighter(): Promise<HighlighterCore> {
   ))
 }
 
-/** Grammars are split per language and loaded on first use. */
 export async function loadGrammar(language: MonacoLanguage): Promise<void> {
   const [{ loadGrammar }, highlighter] = await Promise.all([
     importHighlighter(),

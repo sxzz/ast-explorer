@@ -10,11 +10,6 @@ import { useMonaco } from '#imports'
 import type * as Monaco from 'monaco-editor'
 import type { MonacoLanguage } from '~/parser'
 
-/**
- * Set once Monaco and everything registered on top of it (Shiki tokenizers,
- * formatters, language defaults) is ready. Editors render only after that, so
- * loading Monaco never blocks the rest of the app.
- */
 export const loadedMonaco = shallowRef<typeof Monaco>()
 
 let monacoPromise: Promise<typeof Monaco> | undefined
@@ -34,17 +29,10 @@ export async function loadMonacoLanguage(
 ): Promise<void> {
   await Promise.all([
     loadMonaco(),
-    loadGrammar(language).catch((error) => {
-      // fall back to plain text rather than never showing the editor
-      console.error(error)
-    }),
+    loadGrammar(language).catch((error) => console.error(error)),
   ])
 }
 
-/**
- * The language an editor can switch to: `language` once its grammar has
- * loaded, so the editor never shows code without highlighting.
- */
 export function useMonacoLanguage(
   language: MaybeRefOrGetter<MonacoLanguage>,
 ): Readonly<ShallowRef<MonacoLanguage | undefined>> {

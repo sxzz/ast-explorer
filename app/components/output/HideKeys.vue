@@ -24,7 +24,6 @@ function removeKey(key: string) {
 }
 
 function onInput() {
-  // typing or pasting `a, b, c` turns each finished key into a chip
   const lastComma = draft.value.lastIndexOf(',')
   if (lastComma === -1) return
   addKeys(draft.value.slice(0, lastComma))
