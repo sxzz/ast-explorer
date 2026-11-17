@@ -26,72 +26,214 @@ Feel free to add more languages and parsers via PR!
 
 ## Languages and Parsers
 
-- JavaScript / TypeScript
-  - [Babel](https://babel.dev/)
-  - [TypeScript](https://www.typescriptlang.org/)
-  - [Oxc](https://oxc.rs/docs/guide/usage/parser.html)
-  - [SWC](https://swc.rs/docs/usage/core#parse)
-  - [Acron](https://github.com/acornjs/acorn)
-  - [Espree](https://github.com/eslint/espree)
-  - [TypeScript ESLint](https://typescript-eslint.io/packages/parser/)
-  - [Esprima Next](https://github.com/node-projects/esprima-next)
-  - [Flow](https://github.com/facebook/flow/tree/main/packages/flow-parser)
-  - [Hermes](https://github.com/facebook/hermes)
-  - [meriyah](https://github.com/meriyah/meriyah)
-  - [ohos-typescript](https://gitcode.com/openharmony/third_party_typescript)
-  - [go-fAST](https://github.com/t14raptor/go-fast)
-- [Vue](https://vuejs.org/)
-  - [vue-eslint-parser](https://github.com/vuejs/vue-eslint-parser)
-- [Svelte](https://svelte.dev/)
-- [Ember](https://emberjs.com/)
-- [Astro](https://astro.build/)
-- [Angular](https://angular.dev/)
-- CSS
-  - [csstree](https://github.com/csstree/csstree)
-  - [PostCSS](https://postcss.org/)
-  - [Lightning CSS](https://lightningcss.dev/)
-- HTML
-  - [htmlparser2](https://feedic.com/htmlparser2/)
-  - [rehype](https://github.com/rehypejs/rehype)
-  - [@html-eslint/parser](https://github.com/yeonjuan/html-eslint)
-  - [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
-  - [angular-html-parser](https://github.com/prettier/angular-html-parser)
-  - [parse5](https://github.com/inikulin/parse5)
-- JSON
-  - [json-to-ast](https://github.com/vtrushin/json-to-ast)
-  - [momoa](https://npmx.dev/package/@humanwhocodes/momoa)
-  - [jsonc-eslint-parser](https://npmx.dev/package/jsonc-eslint-parser)
-  - [TypeScript](https://www.typescriptlang.org/)
-- Markdown
-  - [remark](https://github.com/remarkjs/remark)
-  - [comark](https://github.com/comarkdown/comark)
-- YAML
-  - [yaml](https://eemeli.org/yaml/)
-  - [yaml-eslint-parser](https://npmx.dev/package/yaml-eslint-parser)
-  - [yaml-unist-parser](https://github.com/prettier/yaml-unist-parser)
-- Rust
-  - [astexplorer-syn](https://npmx.dev/package/astexplorer-syn)
-  - [jinx-rust](https://npmx.dev/package/jinx-rust)
-  - [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
-- SQL
-  - [sql-parser-cst](https://github.com/nene/sql-parser-cst)
-- PHP
-  - [php-parser](https://npmx.dev/package/php-parser)
-- Java
-  - [java-parser](https://github.com/jhipster/prettier-java/tree/main/packages/java-parser)
-- Python
-  - [pyodide](https://pyodide.org/)
-- C#
-  - [tree-sitter-c-sharp](https://github.com/tree-sitter/tree-sitter-c-sharp)
-- [Solidity](https://soliditylang.org/)
-  - [@solidity-parser/parser](https://github.com/solidity-parser/parser)
-- [WXML](https://github.com/wxmlfile/wxml-parser)
-- [GraphQL](https://graphql.org/)
-  - [graphql](https://www.graphql-js.org/docs/)
-- [Protocol Buffers](https://protobuf.dev/)
-  - [protobufjs](https://github.com/protobufjs/protobuf.js)
+<details open>
+<summary><b>JavaScript / TypeScript</b> (20)</summary>
 
-More parsers via [web-tree-sitter](https://github.com/tree-sitter/tree-sitter), see [tree-sitter parsers](https://github.com/tree-sitter/tree-sitter/wiki/List-of-parsers).
+- [@babel/parser](https://babeljs.io/docs/babel-parser)
+- [Oxc](https://oxc.rs/docs/guide/usage/parser.html)
+- [SWC](https://swc.rs/docs/usage/core#parse)
+- [SWC Next](https://swc.rs/docs/usage/core#parse)
+- [Yuku](https://yuku.fyi)
+- [acorn](https://github.com/acornjs/acorn)
+- [acorn-loose](https://github.com/acornjs/acorn)
+- [TypeScript (legacy)](https://www.typescriptlang.org/)
+- [TypeScript (WASM)](https://www.typescriptlang.org/)
+- [espree](https://github.com/eslint/espree)
+- [@typescript-eslint/parser](https://typescript-eslint.io/packages/parser/)
+- [tree-sitter-javascript](https://github.com/tree-sitter/tree-sitter-javascript)
+- [tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript)
+- [tree-sitter-tsx](https://github.com/tree-sitter/tree-sitter-typescript)
+- [esprima-next](https://github.com/node-projects/esprima-next)
+- [Flow](https://github.com/facebook/flow/tree/main/packages/flow-parser)
+- [Hermes](https://github.com/facebook/hermes)
+- [meriyah](https://github.com/meriyah/meriyah)
+- [ohos-typescript](https://gitcode.com/openharmony/third_party_typescript)
+- [go-fAST](https://github.com/t14raptor/go-fast)
+
+</details>
+
+<details>
+<summary><b>Vue</b> (5)</summary>
+
+- [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc#api)
+- [@vue/compiler-sfc (script setup)](https://github.com/vuejs/core/tree/main/packages/compiler-sfc#api)
+- [@vue/compiler-dom (parse)](https://github.com/vuejs/core/tree/main/packages/compiler-dom)
+- [@vue/compiler-dom (compile)](https://github.com/vuejs/core/tree/main/packages/compiler-dom)
+- [vue-eslint-parser](https://github.com/vuejs/vue-eslint-parser)
+
+</details>
+
+<details>
+<summary><b>Svelte</b> (1)</summary>
+
+- [svelte/compiler](https://svelte.dev/docs/svelte-compiler#parse)
+
+</details>
+
+<details>
+<summary><b>Astro</b> (2)</summary>
+
+- [@astrojs/compiler](https://github.com/withastro/compiler)
+- [@astrojs/compiler-rs](https://github.com/withastro/compiler-rs)
+
+</details>
+
+<details>
+<summary><b>Angular</b> (2)</summary>
+
+- [@angular/compiler](https://angular.dev)
+- [angular-html-parser (Angular)](https://github.com/prettier/angular-html-parser)
+
+</details>
+
+<details>
+<summary><b>Ember</b> (2)</summary>
+
+- [ember-estree (GJS)](https://github.com/emberjs/ember.js)
+- [ember-estree (GTS)](https://github.com/emberjs/ember.js)
+
+</details>
+
+<details>
+<summary><b>CSS</b> (4)</summary>
+
+- [csstree](https://github.com/csstree/csstree)
+- [postcss](https://postcss.org/)
+- [Lightning CSS](https://lightningcss.dev/)
+- [CSSOM](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
+
+</details>
+
+<details>
+<summary><b>HTML</b> (6)</summary>
+
+- [htmlparser2](https://feedic.com/htmlparser2/)
+- [rehype](https://github.com/rehypejs/rehype)
+- [@html-eslint/parser](https://github.com/yeonjuan/html-eslint)
+- [ultrahtml](https://github.com/natemoo-re/ultrahtml/)
+- [angular-html-parser (HTML)](https://github.com/prettier/angular-html-parser)
+- [parse5](https://github.com/inikulin/parse5)
+
+</details>
+
+<details>
+<summary><b>JSON</b> (4)</summary>
+
+- [json-to-ast](https://github.com/vtrushin/json-to-ast)
+- [momoa](https://github.com/humanwhocodes/momoa)
+- [jsonc-eslint-parser](https://github.com/ota-meshi/jsonc-eslint-parser)
+- [TypeScript (legacy)](https://www.typescriptlang.org/)
+
+</details>
+
+<details>
+<summary><b>Markdown</b> (3)</summary>
+
+- [remark](https://github.com/remarkjs/remark)
+- [Comark](https://comark.dev)
+- [marked](https://github.com/markedjs/marked)
+
+</details>
+
+<details>
+<summary><b>YAML</b> (4)</summary>
+
+- [yaml](https://eemeli.org/yaml/)
+- [yaml-eslint-parser](https://github.com/ota-meshi/yaml-eslint-parser)
+- [yaml-unist-parser](https://github.com/prettier/yaml-unist-parser)
+- [GitHub Workflow](https://github.com/actions/languageservices)
+
+</details>
+
+<details>
+<summary><b>Rust</b> (3)</summary>
+
+- [syn](https://docs.rs/syn)
+- [jinx-rust](https://github.com/jinxdash/jinx-rust)
+- [tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)
+
+</details>
+
+<details>
+<summary><b>SQL</b> (1)</summary>
+
+- [sql-parser-cst](https://github.com/nene/sql-parser-cst)
+
+</details>
+
+<details>
+<summary><b>PHP</b> (1)</summary>
+
+- [php-parser](https://github.com/glayzzle/php-parser)
+
+</details>
+
+<details>
+<summary><b>Java</b> (1)</summary>
+
+- [java-parser](https://github.com/jhipster/prettier-java/tree/main/packages/java-parser)
+
+</details>
+
+<details>
+<summary><b>Python</b> (2)</summary>
+
+- [pyodide](https://pyodide.org/)
+- [tree-sitter-python](https://github.com/tree-sitter/tree-sitter-python)
+
+</details>
+
+<details>
+<summary><b>Shell</b> (2)</summary>
+
+- [unbash](https://github.com/webpro-nl/unbash)
+- [tree-sitter-bash](https://github.com/tree-sitter/tree-sitter-bash)
+
+</details>
+
+<details>
+<summary><b>C#</b> (1)</summary>
+
+- [tree-sitter](https://github.com/tree-sitter/tree-sitter-c-sharp)
+
+</details>
+
+<details>
+<summary><b>Solidity</b> (1)</summary>
+
+- [solidity-parser](https://github.com/solidity-parser/parser)
+
+</details>
+
+<details>
+<summary><b>WXML</b> (1)</summary>
+
+- [@wxml/parser](https://github.com/wxmlfile/wxml-parser)
+
+</details>
+
+<details>
+<summary><b>GraphQL</b> (1)</summary>
+
+- [graphql](https://www.graphql-js.org/docs/)
+
+</details>
+
+<details>
+<summary><b>Protocol Buffers</b> (1)</summary>
+
+- [protobufjs](https://github.com/protobufjs/protobuf.js)
+
+</details>
+
+<details>
+<summary><b>General</b> (3)</summary>
+
+- JSON AST: paste any AST as JSON to browse it
+- JavaScript Code: run your own code, e.g. import any parser from a CDN
+- Tree Sitter: load any [tree-sitter parser](https://github.com/tree-sitter/tree-sitter/wiki/List-of-parsers) from a WASM URL
+
+</details>
 
 ## URL Encode Algorithm
 

@@ -1,3 +1,7 @@
+import { useLocalStorage } from '@vueuse/core'
+import { ref } from 'vue'
+import { shikiTheme } from '~/composables/shiki'
+import { STORAGE_PREFIX } from '~/state/constants'
 import type { Range } from '#imports'
 import type * as monaco from 'monaco-editor'
 
@@ -29,7 +33,7 @@ export const astTreeStyles = useLocalStorage<Record<string, any>>(
 export function getSharedMonacoOptions(): EditorSettings {
   return {
     automaticLayout: true,
-    theme: isDark.value ? themeDark.name! : themeLight.name!,
+    theme: shikiTheme.value,
     ...editorSettings.value,
   }
 }

@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as EsprimaNext from 'esprima-next'
 
@@ -17,9 +19,7 @@ export const esprimaNext: Parser<typeof EsprimaNext, EsprimaNext.Config> = {
   },
   pkgName: 'esprima-next',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/esprima.min.js`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

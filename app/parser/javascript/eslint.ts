@@ -1,3 +1,6 @@
+import { h } from 'vue'
+import { genGetNodeLocation, getNodeLocation } from '~/composables/location'
+import { getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Espree from 'espree'
@@ -19,9 +22,7 @@ export const espree: Parser<typeof Espree, Espree.Options> = {
   },
   pkgName: 'espree',
   getModuleUrl: (pkgId) => `https://cdn.skypack.dev/${pkgId}?min`,
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },
@@ -47,9 +48,7 @@ export const tsEslint: Parser<
   },
   pkgName: '@typescript-eslint/parser',
   init: () => import('#build/ts-eslint-parser'),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   versionOverridable: false,
   parse(code, options) {
     // Support hashbang parsing

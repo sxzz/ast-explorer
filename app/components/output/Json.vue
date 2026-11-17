@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { ast, error } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { computed, onMounted, shallowRef, toRaw, watch } from 'vue'
+import Loading from '~/components/Loading.vue'
+import { getLocationMapping, isRegExp } from '~/composables/location'
+import { loadedMonaco, useMonacoLanguage } from '~/composables/monaco'
+import { editorCursor, getSharedMonacoOptions } from '~/state/editor'
+import { autoFocus, shouldHideKey } from '~/state/output'
+import { ast, astParser, error } from '~/state/parser/module'
 import type { MonacoEditor } from '#build/components'
 import type * as Monaco from 'monaco-editor'
 
 const container = shallowRef<InstanceType<typeof MonacoEditor>>()
-const monaco = await useMonaco()
+const editorLanguage = useMonacoLanguage('json')
 const options = computed(() => ({
   ...getSharedMonacoOptions(),
   readOnly: true,
@@ -17,15 +22,7 @@ const serialized = computed(() => {
     return JSON.stringify(
       ast.value,
       (key: string, value: unknown) => {
-        if (hideEmptyKeys.value && value == null) return
-        if (
-          [
-            ...(hideLocationData.value ? locationKeyList : []),
-            ...hideKeys.value.filter((v) => !!v),
-            ...(currentParser.value?.hideKeys || []),
-          ].includes(key)
-        )
-          return
+        if (shouldHideKey(key, true, value)) return
         if (typeof value === 'function') return `function ${value.name}(...)`
         if (typeof value === 'bigint') return `(BigInt) ${value}n`
         if (isRegExp(value)) return `(RegExp) ${value}`
@@ -52,13 +49,14 @@ const serialized = computed(() => {
   } catch (err) {
     console.error(err)
     error.value = err
+    return undefined
   }
 })
 
 /** AST range -> code range */
 const positionMap = computed(() =>
-  serialized.value
-    ? getLocationMapping(serialized.value, currentParser.value)
+  serialized.value && astParser.value
+    ? getLocationMapping(serialized.value, astParser.value)
     : undefined,
 )
 
@@ -89,7 +87,7 @@ function highlight() {
 
   decorationsCollection = editor.createDecorationsCollection([
     {
-      range: monaco.Range.fromPositions(start, end),
+      range: loadedMonaco.value!.Range.fromPositions(start, end),
       options: { className: 'ast-highlight' },
     },
   ])
@@ -105,9 +103,13 @@ watch([highlightRange, () => container.value?.$editor], () => highlight(), {
 
 <template>
   <MonacoEditor
+    v-if="editorLanguage"
     ref="container"
-    lang="json"
+    :lang="editorLanguage"
     :model-value="serialized"
     :options
-  />
+  >
+    <Loading />
+  </MonacoEditor>
+  <Loading v-else />
 </template>

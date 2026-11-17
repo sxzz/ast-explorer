@@ -1,3 +1,5 @@
+import { python } from '~/parser/python'
+import { yaml } from '~/parser/yaml'
 import { angular } from './angular'
 import { astro } from './astro'
 import { csharp } from './csharp'
@@ -60,13 +62,12 @@ export interface Parser<C = unknown, O = unknown> {
   link?: string
   pkgName: string
   defaultVersion?: string
+  /**
+   * Static version label, or a resolver for it. Defaults to the version in
+   * `package.json` of the resolved package. See also `getModuleVersion`.
+   */
   version?:
-    | string
-    | ((
-        this: C | Promise<C>,
-        pkgName: string,
-        version?: string,
-      ) => string | Promise<string>)
+    string | ((this: C | Promise<C>, pkgId: string) => string | Promise<string>)
   versionOverridable?: boolean
   getModuleUrl?: (pkgId: string, version?: string) => string
   importMap?: ImportMap

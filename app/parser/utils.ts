@@ -1,3 +1,5 @@
+import type { ImportMap, MonacoLanguage } from '~/parser'
+
 const JSDELIVR_PREFIX = 'https://cdn.jsdelivr.net/npm/'
 
 export async function fetchVersion(pkg: string) {
@@ -5,6 +7,12 @@ export async function fetchVersion(pkg: string) {
     r.json(),
   )
   return raw.version as string
+}
+
+export async function getModuleVersion(
+  this: { version: string } | Promise<{ version: string }>,
+): Promise<string> {
+  return (await this).version
 }
 
 export function getJsdelivrUrl(pkg: string, path: string = '/+esm'): string {

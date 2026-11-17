@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import AppDialog from '~/components/AppDialog.vue'
+import AppTooltip from '~/components/AppTooltip.vue'
+import CodeEditor from '~/components/CodeEditor.vue'
 import { rawOptions, resetParserOptions } from '~/state/parser/options'
 import { currentParser } from '~/state/parser/parser'
 

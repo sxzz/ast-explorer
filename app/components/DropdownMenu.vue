@@ -9,6 +9,8 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from 'reka-ui'
+import { onBeforeUnmount, shallowRef } from 'vue'
+import { isDark } from '~/state/theme'
 
 defineSlots<{
   default: () => unknown

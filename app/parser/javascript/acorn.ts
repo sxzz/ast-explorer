@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as Acorn from 'acorn'
 import type * as AcornLoose from 'acorn-loose'
@@ -27,9 +29,7 @@ export const acorn: Parser<typeof Acorn, Options> = {
   },
   pkgName: 'acorn',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/acorn.mjs`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     const comments = options.comment ? [] : undefined
     const tokens = options.token ? [] : undefined

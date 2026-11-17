@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { detectMonacoLanguage } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as Yuku from 'yuku'
 

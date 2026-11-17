@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { DropdownMenuItem } from 'reka-ui'
+import DropdownItem from '~/components/DropdownItem.vue'
+import DropdownMenu from '~/components/DropdownMenu.vue'
+import IconPreview from '~/components/IconPreview.vue'
 import {
   currentLanguage,
   currentParser,

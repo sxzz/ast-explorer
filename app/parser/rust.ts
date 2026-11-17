@@ -1,3 +1,12 @@
+import {
+  genGetNodeLocation,
+  getJsonValue,
+  getOffset,
+  getValue,
+} from '~/composables/location'
+import { treeSitterRust } from '~/parser/tree-sitter'
+import { getJsdelivrUrl, importModule } from '~/parser/utils'
+import { code } from '~/state/editor'
 import { rustTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as JinxRust from 'jinx-rust'

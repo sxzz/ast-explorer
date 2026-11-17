@@ -1,3 +1,5 @@
+import { getNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type * as Meriyah from 'meriyah'
 
@@ -28,9 +30,7 @@ export const meriyah: Parser<typeof Meriyah, Options> = {
   },
   pkgName: 'meriyah',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/meriyah.min.mjs`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     const comments = options.comment ? [] : undefined
     const tokens = options.token ? [] : undefined

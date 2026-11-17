@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { graphqlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as GraphQL from 'graphql'

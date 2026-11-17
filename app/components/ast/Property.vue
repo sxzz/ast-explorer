@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
-import type { Range } from '~/composables/location'
+import { computed, ref, watch } from 'vue'
+import AstSummaryValue from '~/components/ast/SummaryValue.vue'
+import AstValue from '~/components/ast/Value.vue'
+import { getRange, type Range } from '~/composables/location'
+import { useHighlightColor } from '~/composables/shiki'
+import { editorCursor, outputHoverRange } from '~/state/editor'
+import { autoFocus, shouldHideKey } from '~/state/output'
+import { astModule, astParser } from '~/state/parser/module'
 
 const props = defineProps<{
   id?: string | number
@@ -13,11 +18,11 @@ const props = defineProps<{
 const show = computed(() => !shouldHideKey(props.id, true, props.value))
 
 const title = computed(() => {
-  const { nodeTitle = 'type' } = currentParser.value
+  const { nodeTitle = 'type' } = astParser.value || {}
   if (typeof nodeTitle === 'function')
-    return nodeTitle.call(parserModule.value, props.value)
+    return nodeTitle.call(astModule.value, props.value)
   const title = props.value?.[nodeTitle]
-  if (typeof title === 'string') return title
+  return typeof title === 'string' ? title : undefined
 })
 const titleColor = useHighlightColor(() => `${title.value}()`)
 

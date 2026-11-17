@@ -1,10 +1,12 @@
-// language
+import { computed, defineAsyncComponent, ref, watch } from 'vue'
+import { LANGUAGES, type Language } from '~/parser'
+import { code } from '~/state/editor'
+
 export const currentLanguageId = ref<Language>('javascript')
 export const currentLanguage = computed(
   () => LANGUAGES[currentLanguageId.value] || LANGUAGES.javascript,
 )
 
-// parser
 export const currentParserId = ref<string | undefined>()
 export const currentParser = computed(() => {
   const { parsers } = currentLanguage.value
@@ -25,18 +27,13 @@ export function setParserId(id: string) {
   currentParserId.value = id
 }
 
-// parser version
 export const overrideVersion = ref<string>()
-export const displayVersion = ref<string>()
-export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
 export function initParserState() {
-  // set code template when language changes
   watch(currentLanguage, (language) => {
     code.value = language.codeTemplate
   })
 
-  // ensure currentParserId is valid
   watch(
     [currentLanguage, currentParserId],
     () => {

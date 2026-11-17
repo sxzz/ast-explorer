@@ -1,4 +1,6 @@
 import json5 from 'json5'
+import { getNodeLocation } from '~/composables/location'
+import { treeSitter } from '~/parser/tree-sitter'
 import type { LanguageOption, Parser } from './index'
 
 const jsonAst: Parser = {

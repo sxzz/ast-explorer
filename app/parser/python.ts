@@ -1,3 +1,7 @@
+import { getJsonValue, getOffset, getValue } from '~/composables/location'
+import { treeSitterPython } from '~/parser/tree-sitter'
+import { getJsdelivrUrl, getModuleVersion, importModule } from '~/parser/utils'
+import { code } from '~/state/editor'
 import { pythonTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Pyodide from 'pyodide'
@@ -26,9 +30,7 @@ const pyodide: Parser<Pyodide.PyodideAPI, Options> = {
   },
   pkgName: 'pyodide',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/pyodide.mjs'),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   async init(moduleUrl) {
     const mod = await importModule<typeof Pyodide>(moduleUrl)
 

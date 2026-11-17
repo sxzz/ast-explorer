@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import ansiRegex from 'ansi-regex'
+import { computed, watch } from 'vue'
+import AppSwitch from '~/components/AppSwitch.vue'
+import AppTooltip from '~/components/AppTooltip.vue'
+import Loading from '~/components/Loading.vue'
+import OutputHideKeys from '~/components/output/HideKeys.vue'
+import OutputJson from '~/components/output/Json.vue'
+import OutputTree from '~/components/output/Tree.vue'
+import { isSafari } from '~/composables/constants'
 import { ast, error, loading } from '~/state/parser/module'
 import {
   autoFocus,
@@ -7,16 +15,6 @@ import {
   hideLocationData,
   outputView,
 } from '#imports'
-
-const hideKeysValue = ref(hideKeys.value.join(', '))
-watchEffect(() => {
-  try {
-    hideKeys.value = hideKeysValue.value.split(',').map((v) => v.trim())
-  } catch (error) {
-    console.error(error)
-    hideKeys.value = []
-  }
-})
 
 const tabClass =
   'flex-center flex w-7.5 h-7 items-center justify-center rounded-md text-soft hover:text-base transition-colors'
@@ -138,10 +136,7 @@ watch(outputView, (view) => {
         text-red-600
         dark:text-red-400
       >
-        <span
-          class="text-[0.6875rem] font-medium tracking-[0.18em] uppercase !text-red-600 dark:!text-red-400"
-          >Parser error</span
-        >
+        <span font-semibold>Parser error</span>
         <pre class="font-mono" v-text="errorString" />
       </div>
       <div v-show="!loading && !error" h-full min-w-0 w-full flex>
@@ -155,22 +150,9 @@ watch(outputView, (view) => {
         <OutputTree v-else />
       </div>
     </div>
-    <div flex flex-wrap items-center justify-end gap3 px2 pb1 text-sm text-soft>
-      <label flex="~ y-center" gap1.5>
-        <span
-          class="text-[0.6875rem] text-mute font-medium tracking-[0.18em] uppercase"
-          >Hide keys</span
-        >
-        <input
-          v-model="hideKeysValue"
-          type="input"
-          placeholder="field1, field2, …"
-          w-44
-          text-sm
-          class="font-mono"
-        />
-      </label>
-      <button pill-button @click="print">
+    <div flex="~ y-center" gap3 px2 pb1>
+      <OutputHideKeys min-w-0 flex-1 />
+      <button pill-button shrink-0 @click="print">
         <div i-ri:printer-line />
         Print in console
       </button>

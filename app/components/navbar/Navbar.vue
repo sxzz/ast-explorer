@@ -1,18 +1,31 @@
 <script setup lang="ts">
+import AppLogo from '~/components/app/Logo.vue'
+import AppTooltip from '~/components/AppTooltip.vue'
+import NavbarLanguageSelect from '~/components/navbar/LanguageSelect.vue'
+import ParserOptions from '~/components/parser/Options.vue'
+import ParserSelect from '~/components/parser/Select.vue'
 import { parseCost } from '~/state/parser/module'
+import { currentParser, overrideVersion } from '~/state/parser/parser'
 import {
-  currentParser,
   displayVersion,
   isUrlVersion,
-  overrideVersion,
-} from '~/state/parser/parser'
+  packageUrl,
+  versionOverridable,
+} from '~/state/parser/version'
+import { toggleDark } from '~/state/theme'
+import {
+  showInputEditor,
+  showOutput,
+  showSidebar,
+  sidebarAvailable,
+  toggleInputEditor,
+  toggleOutput,
+  toggleSidebar,
+} from '~/state/ui'
 import { version } from '../../../package.json'
+import { useAppConfig } from '#app'
 
 const { branch } = useAppConfig()
-
-const disableOverrideVersion = computed(
-  () => currentParser.value.versionOverridable === false,
-)
 
 function editVersion() {
   // eslint-disable-next-line no-alert
@@ -26,7 +39,6 @@ function editVersion() {
 
 <template>
   <header flex="~ y-center wrap" relative justify-between gap3 px4 py2.5>
-    <!-- Left cluster: brand + selectors -->
     <div
       flex="~ gap5 wrap y-center"
       max-sm="w-full flex-col flex-gap3 items-start"
@@ -58,7 +70,6 @@ function editVersion() {
       </div>
     </div>
 
-    <!-- Right cluster: meta + actions -->
     <div flex="~ y-center wrap" gap3 max-sm="flex-col w-full items-start">
       <div flex="~ y-center" gap3 text-sm>
         <span
@@ -75,11 +86,7 @@ function editVersion() {
           font-mono
           transition-colors
           hover:text-base
-          :href="
-            isUrlVersion
-              ? overrideVersion
-              : `https://npmx.dev/package/${currentParser.pkgName}`
-          "
+          :href="packageUrl"
           target="_blank"
         >
           <span>{{ currentParser.pkgName }}</span>
@@ -107,8 +114,8 @@ function editVersion() {
         <AppTooltip v-if="currentParser.pkgName !== ''" text="Change Version">
           <button
             aria-label="Change Version"
-            :disabled="disableOverrideVersion"
-            :class="disableOverrideVersion && 'cursor-not-allowed op30'"
+            :disabled="!versionOverridable"
+            :class="!versionOverridable && 'cursor-not-allowed op30'"
             nav-button
             @click="editVersion"
           >

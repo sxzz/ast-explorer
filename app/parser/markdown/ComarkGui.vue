@@ -1,10 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
+import AppSwitch from '~/components/AppSwitch.vue'
+import { makeUseOption } from '~/composables/options'
 import type { ComarkOptions } from './index'
 
 const useOption = makeUseOption<ComarkOptions>()
-</script>
 
-<script setup lang="ts">
 const html = useOption('html')
 const autoUnwrap = useOption('autoUnwrap')
 const autoClose = useOption('autoClose')

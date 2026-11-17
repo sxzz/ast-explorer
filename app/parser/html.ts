@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl } from '~/parser/utils'
 import { htmlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as HtmlEslintParser from '@html-eslint/parser'

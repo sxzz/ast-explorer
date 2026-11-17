@@ -1,4 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
+import { computed, ref, watch, type Ref, type WritableComputedRef } from 'vue'
+import AppCheckbox from '~/components/AppCheckbox.vue'
+import AppSwitch from '~/components/AppSwitch.vue'
+import { makeUseOption } from '~/composables/options'
+import { del } from '~/parser/utils'
 import { useOptions } from '~/state/parser/options'
 import type { ParserOptions, ParserPlugin } from '@babel/parser'
 
@@ -111,9 +116,7 @@ function usePluginWithOptions<T extends PluginName>(
   const trigger = () => (plugin.value = { ...plugin.value })
   return [plugin, enable, trigger]
 }
-</script>
 
-<script setup lang="ts">
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
 const allowAwaitOutsideFunction = useOption('allowAwaitOutsideFunction')

@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { solidityTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as SolidityParser from '@solidity-parser/parser'

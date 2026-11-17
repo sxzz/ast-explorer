@@ -6,16 +6,18 @@ const crossOriginHeaders = {
   'Cross-Origin-Opener-Policy': 'same-origin',
 }
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
+const WORKER_CHUNK_RE = /\.worker-[\w-]+\.js$/
+
 export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
     '@vueuse/nuxt',
     'nuxt-monaco-editor',
-    '@vercel/analytics',
+    'nuxt-explicit-imports',
   ],
-  vue: {
-    optionsApi: false,
+  explicitImports: { mode: 'strict' },
+  $production: {
+    modules: ['@vercel/analytics'],
   },
   vite: {
     resolve: {
@@ -25,19 +27,6 @@ export default defineNuxtConfig({
     },
     server: {
       headers: crossOriginHeaders,
-    },
-    build: {
-      // rolldownOptions: {
-      //   output: {
-      //     advancedChunks: {
-      //       groups: [
-      //         { name: 'monaco-editor', test: /monaco-editor/ },
-      //         { name: 'shiki', test: /shiki/ },
-      //         { name: 'vendor', test: /node_modules/ },
-      //       ],
-      //     },
-      //   },
-      // },
     },
   },
   nitro: {
@@ -59,6 +48,21 @@ export default defineNuxtConfig({
       },
     },
   },
+  hooks: {
+    'build:manifest': (manifest) => {
+      for (const [id, chunk] of Object.entries(manifest)) {
+        // `new Worker()` can't reuse a modulepreload, so workers would be
+        // downloaded twice; typescript-eslint (~4 MB) is rarely needed.
+        if (
+          WORKER_CHUNK_RE.test(chunk.file) ||
+          id.includes('ts-eslint-parser')
+        ) {
+          chunk.preload = false
+          chunk.prefetch = false
+        }
+      }
+    },
+  },
   experimental: {
     typescriptPlugin: true,
   },
@@ -75,6 +79,9 @@ export default defineNuxtConfig({
   },
   appConfig: {
     branch: process.env.VERCEL_GIT_COMMIT_REF,
+  },
+  future: {
+    compatibilityVersion: 5,
   },
   compatibilityDate: 'latest',
 })

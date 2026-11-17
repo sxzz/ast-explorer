@@ -1,9 +1,11 @@
-<script lang="ts">
-import type { ParserConfig } from '@swc/wasm-web'
-const useOption = makeUseOption<ParserConfig>()
-</script>
-
 <script setup lang="ts">
+import { watch } from 'vue'
+import AppSwitch from '~/components/AppSwitch.vue'
+import { makeUseOption } from '~/composables/options'
+import type { ParserConfig } from '@swc/wasm-web'
+
+const useOption = makeUseOption<ParserConfig>()
+
 const language = useOption('syntax', 'ecmascript', true)
 const jsx = useOption('jsx')
 const tsx = useOption('tsx')

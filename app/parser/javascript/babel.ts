@@ -1,3 +1,4 @@
+import { getNodeLocation } from '~/composables/location'
 import type { Parser } from '..'
 import type * as Babel from '@babel/parser'
 

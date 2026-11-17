@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import IconPreview from '~/components/IconPreview.vue'
+
 defineProps<{
   text?: string
   description?: string

@@ -1,3 +1,11 @@
+import { getJsonValue } from '~/composables/location'
+import {
+  fetchVersion,
+  getJsdelivrUrl,
+  getModuleVersion,
+  importModule,
+} from '~/parser/utils'
+import { isUrl } from '~/state/url'
 import type { Parser } from '..'
 import type * as TypescriptAst from 'typescript-next/ast'
 import type * as TypescriptAsync from 'typescript-next/async'
@@ -28,9 +36,7 @@ export const typescriptWasm: Parser<
   },
   pkgName: 'typescript',
   defaultVersion: 'next',
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   async init(_url, pkgId) {
     if (isUrl(pkgId)) {
       throw new Error(
@@ -86,20 +92,16 @@ export const typescriptWasm: Parser<
       return
     }
 
-    // Only nodes converted by this parser. The AST of the previous parser stays
-    // on screen while this one loads, and following the cyclic `parent` of
-    // legacy TypeScript nodes would never end.
     const start = nodeStarts.get(node)
     if (start !== undefined) return [start, node.end]
   },
-  // `this` is not the module of this parser while switching from another one
   nodeTitle(value) {
     const kind: TypescriptAst.SyntaxKind | undefined = value?.kind
-    if (typeof kind !== 'number' || !this?.ast) return
+    if (typeof kind !== 'number') return
     return this.ast.formatSyntaxKind(kind)
   },
   valueHint(key, value) {
-    if (typeof value !== 'number' || !this?.ast) return
+    if (typeof value !== 'number') return
     const { ast } = this
 
     switch (key) {

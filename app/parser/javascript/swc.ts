@@ -1,3 +1,9 @@
+import { genGetNodeLocation } from '~/composables/location'
+import {
+  detectMonacoLanguage,
+  getJsdelivrUrl,
+  importModule,
+} from '~/parser/utils'
 import type { Parser } from '..'
 import type * as Swc from '@swc/wasm-web'
 

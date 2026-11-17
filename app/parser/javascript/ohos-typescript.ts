@@ -1,3 +1,4 @@
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import type { Parser } from '..'
 import type Typescript from 'ohos-typescript'
 
@@ -21,9 +22,7 @@ export const ohosTypescript: Parser<
   pkgName: 'ohos-typescript-browserify',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/dist/index.min.js'),
   interopDefault: true,
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, { scriptKind, ...options }) {
     return this.createSourceFile('foo.ts', code, options, true, scriptKind, {
       etsAnnotationsEnable: true,

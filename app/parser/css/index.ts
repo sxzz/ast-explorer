@@ -1,3 +1,5 @@
+import { genGetNodeLocation } from '~/composables/location'
+import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import { cssTemplate } from '../template'
 import { cssom } from './cssom'
 import type { LanguageOption, Parser } from '..'
@@ -23,9 +25,7 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
   },
   pkgName: 'css-tree',
   getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, `/dist/csstree.esm.js`),
-  async version() {
-    return (await this).version
-  },
+  version: getModuleVersion,
   parse(code, options) {
     return this.parse(code, { ...options })
   },

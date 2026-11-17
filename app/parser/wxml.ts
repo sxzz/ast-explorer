@@ -1,5 +1,7 @@
+import { getNodeLocation } from '~/composables/location'
 import { wxmlTemplate } from './template'
 import type { Parser } from '.'
+import type { LanguageOption } from '~/parser'
 
 export const wxmlParser: Parser<any, any> = {
   id: 'wxml-parser',

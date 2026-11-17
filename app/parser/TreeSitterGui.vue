@@ -1,10 +1,9 @@
-<script lang="ts">
+<script setup lang="ts">
+import { makeUseOption } from '~/composables/options'
 import type { TreeSitterOptions } from './tree-sitter'
 
 const useOption = makeUseOption<TreeSitterOptions>()
-</script>
 
-<script setup lang="ts">
 const wasmUrl = useOption('wasmUrl')
 </script>
 

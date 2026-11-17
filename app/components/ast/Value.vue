@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { useClipboard, useTemplateRefsList } from '@vueuse/core'
+import { computed, watchEffect } from 'vue'
+import AstBrackets from '~/components/ast/Brackets.vue'
+import { isRegExp } from '~/composables/location'
+import { useHighlightColor } from '~/composables/shiki'
 import { shouldHideKey } from '~/state/output'
-import { parserModule } from '~/state/parser/module'
-import { currentParser } from '~/state/parser/parser'
+import { astModule, astParser } from '~/state/parser/module'
 import type { AstProperty } from '#components'
 
 const props = defineProps<{
@@ -13,10 +17,8 @@ const emit = defineEmits<{
 }>()
 
 const rawValue = computed(() => {
-  const { onValue } = currentParser.value
-  let value = onValue
-    ? onValue.call(parserModule.value, props.data)
-    : props.data
+  const onValue = astParser.value?.onValue
+  let value = onValue ? onValue.call(astModule.value, props.data) : props.data
 
   if (value?.toJSON && typeof value.toJSON === 'function') {
     value = value.toJSON()
@@ -53,9 +55,9 @@ const value = computed<string | undefined>(() => {
 const valueColor = useHighlightColor(value)
 
 const valueHint = computed(() => {
-  const { valueHint } = currentParser.value
+  const valueHint = astParser.value?.valueHint
   if (!valueHint) return
-  return valueHint.call(parserModule.value, props.id, rawValue.value)
+  return valueHint.call(astModule.value, props.id, rawValue.value)
 })
 
 // Use `Object.keys()` for array, so that extra properties on array can display

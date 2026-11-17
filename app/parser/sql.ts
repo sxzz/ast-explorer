@@ -1,3 +1,4 @@
+import { genGetNodeLocation } from '~/composables/location'
 import { sqlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as SqlParser from 'sql-parser-cst'
