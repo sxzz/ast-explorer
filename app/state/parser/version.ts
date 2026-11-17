@@ -42,6 +42,8 @@ function resolveVersion(
   pkgId: string,
   parserModule: Promise<unknown>,
 ): string | Promise<string> {
+  // not backed by a package (e.g. `General` parsers); nothing to show
+  if (!parser.pkgName) return ''
   if (override) return isUrl(override) ? override : fetchVersion(pkgId)
   const { version } = parser
   if (typeof version === 'string') return version
