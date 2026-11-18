@@ -2,9 +2,8 @@
 import { DropdownMenuItem } from 'reka-ui'
 import DropdownItem from '~/components/DropdownItem.vue'
 import DropdownMenu from '~/components/DropdownMenu.vue'
-import { LANGUAGES } from '~/parser'
+import { LANGUAGES, type Language } from '~/parser'
 import { currentLanguage, currentLanguageId } from '~/state/parser/parser'
-import type { Language } from '#imports'
 
 function changeLanguage(language: Language) {
   currentLanguageId.value = language

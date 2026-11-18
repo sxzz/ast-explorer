@@ -9,8 +9,8 @@ import {
   showEditorSettings,
 } from '~/state/editor'
 import { MonacoEditor } from '#components'
-import type { MonacoLanguage } from '#imports'
 import type * as Monaco from 'monaco-editor'
+import type { MonacoLanguage } from '~/parser'
 
 const props = defineProps<{
   language: MonacoLanguage

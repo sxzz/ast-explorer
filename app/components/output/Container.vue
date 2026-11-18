@@ -8,13 +8,9 @@ import OutputHideKeys from '~/components/output/HideKeys.vue'
 import OutputJson from '~/components/output/Json.vue'
 import OutputTree from '~/components/output/Tree.vue'
 import { isSafari } from '~/composables/constants'
+import { autoFocus, hideEmptyKeys, hideLocationData } from '~/state/output'
 import { ast, error, loading } from '~/state/parser/module'
-import {
-  autoFocus,
-  hideEmptyKeys,
-  hideLocationData,
-  outputView,
-} from '#imports'
+import { outputView } from '~/state/ui'
 
 const tabClass =
   'flex-center flex w-7.5 h-7 items-center justify-center rounded-md text-soft hover:text-base transition-colors'

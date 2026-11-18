@@ -3,10 +3,9 @@ import { computed } from 'vue'
 import AppTooltip from '~/components/AppTooltip.vue'
 import CodeEditor from '~/components/CodeEditor.vue'
 import EditorSettings from '~/components/EditorSettings.vue'
-import { showEditorSettings } from '~/state/editor'
+import { code, showEditorSettings } from '~/state/editor'
 import { parserOptions } from '~/state/parser/options'
 import { currentParser } from '~/state/parser/parser'
-import { code } from '#imports'
 
 const language = computed(() => {
   if (typeof currentParser.value.editorLanguage === 'string') {
