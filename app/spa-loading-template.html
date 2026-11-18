@@ -1,0 +1,48 @@
+<!-- Mirrors components/Loading.vue, which takes over once the app mounts -->
+<div class="spa-loading">
+  <div class="spa-loading-spinner">
+    <div class="spa-loading-ring"></div>
+    <div class="spa-loading-arc"></div>
+  </div>
+  <span>Loading…</span>
+</div>
+
+<style>
+  .spa-loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--c-text-soft);
+  }
+  .spa-loading-spinner {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+  }
+  .spa-loading-ring,
+  .spa-loading-arc {
+    position: absolute;
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    animation: spa-loading-spin 0.9s linear infinite;
+  }
+  .spa-loading-ring {
+    inset: 0;
+    border-color: var(--c-border);
+    border-style: dashed;
+    animation-duration: 4s;
+  }
+  .spa-loading-arc {
+    inset: 0.5rem;
+    border-top-color: var(--c-accent);
+  }
+  @keyframes spa-loading-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
