@@ -1,6 +1,6 @@
 # AGENTS.md
 
-AST Explorer is a client-only Nuxt app (`<ClientOnly>` in `app/app.vue`) that loads parsers from CDNs at runtime and shows the AST they produce. It is deployed on Vercel: `main` goes to the dev channel, the `release` branch to [ast-explorer.dev](https://ast-explorer.dev/).
+AST Explorer is a client-only Nuxt app (`ssr: false`, deployed with `nuxt generate`) that loads parsers from CDNs at runtime and shows the AST they produce. It is deployed on Vercel: `main` goes to the dev channel, the `release` branch to [ast-explorer.dev](https://ast-explorer.dev/).
 
 ## Commands
 
