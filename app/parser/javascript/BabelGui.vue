@@ -1,121 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, watch, type Ref, type WritableComputedRef } from 'vue'
 import AppCheckbox from '~/components/AppCheckbox.vue'
 import AppSwitch from '~/components/AppSwitch.vue'
 import { makeUseOption } from '~/composables/options'
-import { del } from '~/parser/utils'
-import { useOptions } from '~/state/parser/options'
-import type { ParserOptions, ParserPlugin } from '@babel/parser'
-
-type PluginName = ParserPlugin & string
-type ExtractPluginOptions<T extends PluginName> = Extract<
-  ParserPlugin,
-  [T, any]
->[1]
-
-function isPluginOf(plugin: ParserPlugin, name: PluginName) {
-  return plugin === name || (Array.isArray(plugin) && plugin[0] === name)
-}
-
-function getPluginOptions<T extends PluginName>(
-  plugins: ParserPlugin[] | undefined,
-  name: T,
-): boolean | ExtractPluginOptions<T> {
-  const plugin = plugins?.find((p) => isPluginOf(p, name))
-  if (!plugin) return false
-  return Array.isArray(plugin) ? plugin[1] : true
-}
+import { useDecorators, usePlugin, usePluginWithOptions } from './babel-plugins'
+import type { ParserOptions } from '@babel/parser'
 
 const useOption = makeUseOption<ParserOptions>()
-
-function usePlugin<T extends PluginName>(
-  name: T,
-  options: {
-    defaultOptions: ExtractPluginOptions<T>
-    deps?: Ref<boolean | undefined>[]
-  },
-): WritableComputedRef<
-  ExtractPluginOptions<T>,
-  ExtractPluginOptions<T> | boolean
->
-function usePlugin<T extends PluginName>(
-  name: T,
-  options?: { deps?: Ref<boolean | undefined>[] },
-): WritableComputedRef<boolean>
-function usePlugin<T extends PluginName>(
-  name: T,
-  {
-    defaultOptions,
-    deps = [],
-  }: {
-    defaultOptions?: ExtractPluginOptions<T>
-    deps?: Ref<boolean | undefined>[]
-  } = {},
-): WritableComputedRef<boolean | ExtractPluginOptions<T>> {
-  const options = ref<any>({ ...defaultOptions })
-
-  const value = useOptions(
-    (opt?: ParserOptions) => {
-      const pluginOptions = getPluginOptions(opt?.plugins, name)
-      if (pluginOptions && defaultOptions) {
-        options.value =
-          pluginOptions === true ? { ...defaultOptions } : pluginOptions
-        return options.value
-      } else {
-        return pluginOptions
-      }
-    },
-    (value, opt) => {
-      if (Array.isArray(opt.plugins)) {
-        opt.plugins = opt.plugins.filter((p) => !isPluginOf(p, name))
-      } else {
-        opt.plugins = []
-      }
-
-      if (value !== false && value != null) {
-        deps.forEach((dep) => !dep.value && (dep.value = true))
-        if (value === true && defaultOptions) {
-          value = defaultOptions
-        }
-        opt.plugins.push(value === true ? name : ([name, value] as any))
-      }
-    },
-  )
-
-  watch(
-    () => deps.map((dep) => dep.value),
-    (deps) => {
-      if (value.value && deps.some((dep) => !dep)) {
-        value.value = false
-      }
-    },
-  )
-
-  return value
-}
-
-function usePluginWithOptions<T extends PluginName>(
-  name: T,
-  options: {
-    defaultOptions: ExtractPluginOptions<T>
-    deps?: Ref<boolean | undefined>[]
-  },
-): [
-  ref: WritableComputedRef<
-    ExtractPluginOptions<T>,
-    boolean | ExtractPluginOptions<T>
-  >,
-  enabled: WritableComputedRef<boolean>,
-  trigger: () => void,
-] {
-  const plugin = usePlugin(name, options)
-  const enable = computed({
-    get: () => !!plugin.value,
-    set: (value) => (plugin.value = value),
-  })
-  const trigger = () => (plugin.value = { ...plugin.value })
-  return [plugin, enable, trigger]
-}
 
 // options
 const allowImportExportEverywhere = useOption('allowImportExportEverywhere')
@@ -147,14 +37,7 @@ const tokens = useOption('tokens')
 const estree = usePlugin('estree')
 
 // languages
-const [typescript, typescriptEnable, triggerTypescript] = usePluginWithOptions(
-  'typescript',
-  {
-    defaultOptions: {
-      dts: false,
-    },
-  },
-)
+const typescript = usePluginWithOptions('typescript', { dts: false })
 
 const jsx = usePlugin('jsx')
 const flow = usePlugin('flow')
@@ -166,57 +49,18 @@ const asyncDoExpressions = usePlugin('asyncDoExpressions', {
   deps: [doExpressions],
 })
 
-const decorators = useOptions(
-  (opt?: ParserOptions) =>
-    opt?.plugins?.some(
-      (p) => isPluginOf(p, 'decorators') || isPluginOf(p, 'decorators-legacy'),
-    ),
-  (value, opt) => {
-    if (!Array.isArray(opt.plugins)) opt.plugins = []
-    if (value) {
-      opt.plugins.push('decorators')
-    } else {
-      opt.plugins = del(opt.plugins, ['decorators', 'decorators-legacy'])
-    }
-  },
-)
-const decoratorsLegacy = useOptions(
-  (opt?: ParserOptions) =>
-    opt?.plugins?.some((p) => isPluginOf(p, 'decorators-legacy')),
-  (value, opt) => {
-    if (!Array.isArray(opt.plugins)) opt.plugins = []
-    if (value) {
-      opt.plugins.push('decorators-legacy')
-      opt.plugins = del(opt.plugins, ['decorators'])
-    } else {
-      opt.plugins.push('decorators')
-      opt.plugins = del(opt.plugins, ['decorators-legacy'])
-    }
-  },
-)
+const { decorators, legacy: decoratorsLegacy } = useDecorators()
 
-const [, optionalChainingAssign] = usePluginWithOptions(
-  'optionalChainingAssign',
-  {
-    defaultOptions: {
-      version: '2023-07',
-    },
-  },
-)
-
-const [, partialApplication] = usePluginWithOptions('partialApplication', {
-  defaultOptions: {
-    version: '2018-07',
-  },
+const optionalChainingAssign = usePlugin('optionalChainingAssign', {
+  options: { version: '2023-07' },
 })
-
-const [pipelineOperator, pipelineOperatorEnable, triggerPipelineOperator] =
-  usePluginWithOptions('pipelineOperator', {
-    defaultOptions: {
-      proposal: 'hack',
-      topicToken: '%',
-    },
-  })
+const partialApplication = usePlugin('partialApplication', {
+  options: { version: '2018-07' },
+})
+const pipelineOperator = usePluginWithOptions('pipelineOperator', {
+  proposal: 'hack',
+  topicToken: '%',
+})
 
 const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
   deps: [decorators],
@@ -235,10 +79,8 @@ const namespaceImportFilter = usePlugin('namespaceImportFilter')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
 const structs = usePlugin('structs')
 const throwExpressions = usePlugin('throwExpressions')
-const [, discardBinding] = usePluginWithOptions('discardBinding', {
-  defaultOptions: {
-    syntaxType: 'void',
-  },
+const discardBinding = usePlugin('discardBinding', {
+  options: { syntaxType: 'void' },
 })
 </script>
 
@@ -344,12 +186,12 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
     <h3 border-t pt1 text-center font-bold>Languages</h3>
 
     <label>
-      <AppSwitch v-model="typescriptEnable" />
+      <AppSwitch v-model="typescript.enabled" />
       <span>TypeScript</span>
     </label>
 
-    <label v-if="typescript" ml6>
-      <AppSwitch v-model="typescript.dts" @change="triggerTypescript" />
+    <label v-if="typescript.enabled" ml6>
+      <AppSwitch v-model="typescript.options.dts" />
       <span>dts</span>
     </label>
 
@@ -413,27 +255,26 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label>
       <!-- Stage 2 -->
-      <AppSwitch v-model="pipelineOperatorEnable" />
+      <AppSwitch v-model="pipelineOperator.enabled" />
       <span>pipelineOperator</span>
     </label>
 
-    <label v-if="pipelineOperator" ml6>
+    <label v-if="pipelineOperator.enabled" ml6>
       <span>proposal</span>
-      <select
-        v-model="pipelineOperator.proposal"
-        @change="triggerPipelineOperator"
-      >
+      <select v-model="pipelineOperator.options.proposal">
         <option value="hack">hack</option>
         <option value="fsharp">fsharp</option>
       </select>
     </label>
 
-    <label v-if="pipelineOperator && pipelineOperator.proposal === 'hack'" ml6>
+    <label
+      v-if="
+        pipelineOperator.enabled && pipelineOperator.options.proposal === 'hack'
+      "
+      ml6
+    >
       <span>topicToken</span>
-      <select
-        v-model="pipelineOperator.topicToken"
-        @change="triggerPipelineOperator"
-      >
+      <select v-model="pipelineOperator.options.topicToken">
         <option value="%">%</option>
         <option value="#">#</option>
         <option value="^">^</option>
