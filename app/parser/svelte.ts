@@ -1,5 +1,4 @@
 import { getNodeLocation } from '~/composables/location'
-import { getJsdelivrUrl } from '~/parser/utils'
 import { svelteTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Svelte from 'svelte/compiler'
@@ -18,7 +17,7 @@ const svelteCompiler: Parser<typeof Svelte, Svelte.CompileOptions> = {
     editorLanguage: 'json',
   },
   pkgName: 'svelte',
-  getModuleUrl: (pkgId) => getJsdelivrUrl(pkgId, '/compiler/index.js/+esm'),
+  getModuleUrl: (pkg) => `https://esm.sh/${pkg}/src/compiler/index.js`,
   parse(code, options) {
     return this.compile(code, options)?.ast
   },
