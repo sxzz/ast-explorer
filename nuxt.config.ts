@@ -15,6 +15,14 @@ const ogImage = [
   { property: 'og:image:type', content: 'image/png' },
 ]
 
+// Apply dark mode before the first paint; `useDark()` only runs once the app
+// has loaded. Keep the storage key in sync with its default.
+const darkModeScript = `{
+  const scheme = localStorage.getItem('vueuse-color-scheme') || 'auto'
+  if (scheme === 'dark' || (scheme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches))
+    document.documentElement.classList.add('dark')
+}`
+
 const WORKER_CHUNK_RE = /\.worker-[\w-]+\.js$/
 
 export default defineNuxtConfig({
@@ -95,6 +103,7 @@ export default defineNuxtConfig({
         { name: 'twitter:description', content: description },
         { name: 'twitter:image', content: '/og.png' },
       ],
+      script: [{ innerHTML: darkModeScript }],
     },
   },
   css: [
