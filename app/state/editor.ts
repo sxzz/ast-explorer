@@ -2,8 +2,8 @@ import { useLocalStorage } from '@vueuse/core'
 import { ref } from 'vue'
 import { shikiTheme } from '~/composables/shiki'
 import { STORAGE_PREFIX } from '~/state/constants'
-import type { Range } from '#imports'
 import type * as monaco from 'monaco-editor'
+import type { Range } from '~/composables/location'
 
 export const code = ref('')
 export const editorCursor = ref<number>(0)

@@ -21,8 +21,8 @@ import { sql } from './sql'
 import { svelte } from './svelte'
 import { vue } from './vue'
 import { wxml } from './wxml'
-import type { JsonNode, Range } from '#imports'
 import type { AsyncComponentLoader } from 'vue'
+import type { JsonNode, Range } from '~/composables/location'
 
 export type MonacoLanguage =
   | 'javascript'

@@ -74,9 +74,6 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
     '~/styles/tooltip.css',
   ],
-  imports: {
-    dirs: ['./composables', './parser', './state', './utils'],
-  },
   appConfig: {
     branch: process.env.VERCEL_GIT_COMMIT_REF,
   },

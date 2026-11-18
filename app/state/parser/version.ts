@@ -2,7 +2,7 @@ import { computed, ref, watch, type Ref } from 'vue'
 import { fetchVersion, getJsdelivrUrl } from '~/parser/utils'
 import { isUrl } from '~/state/url'
 import { currentParser, overrideVersion } from './parser'
-import type { Parser } from '#imports'
+import type { Parser } from '~/parser'
 
 export const isUrlVersion = computed(() => isUrl(overrideVersion.value || ''))
 
