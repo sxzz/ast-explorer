@@ -222,12 +222,18 @@ const decoratorAutoAccessors = usePlugin('decoratorAutoAccessors', {
   deps: [decorators],
 })
 const deferredImportEvaluation = usePlugin('deferredImportEvaluation')
+const deferredReexports = usePlugin('deferredReexports', {
+  deps: [deferredImportEvaluation],
+})
 const destructuringPrivate = usePlugin('destructuringPrivate')
 const exportDefaultFrom = usePlugin('exportDefaultFrom')
 const functionBind = usePlugin('functionBind')
 const functionSent = usePlugin('functionSent')
+const importSync = usePlugin('importSync')
 const moduleBlocks = usePlugin('moduleBlocks')
+const namespaceImportFilter = usePlugin('namespaceImportFilter')
 const sourcePhaseImports = usePlugin('sourcePhaseImports')
+const structs = usePlugin('structs')
 const throwExpressions = usePlugin('throwExpressions')
 const [, discardBinding] = usePluginWithOptions('discardBinding', {
   defaultOptions: {
@@ -382,6 +388,21 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <span>deferredImportEvaluation</span>
     </label>
 
+    <label ml6>
+      <AppSwitch v-model="deferredReexports" />
+      <span>deferredReexports</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="importSync" />
+      <span>importSync</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="namespaceImportFilter" />
+      <span>namespaceImportFilter</span>
+    </label>
+
     <label>
       <!-- Stage 1 -->
       <AppSwitch v-model="exportDefaultFrom" />
@@ -485,6 +506,11 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
       <!-- Stage 2 -->
       <AppSwitch v-model="destructuringPrivate" />
       <span>destructuringPrivate</span>
+    </label>
+
+    <label>
+      <AppSwitch v-model="structs" />
+      <span>structs</span>
     </label>
 
     <label>
