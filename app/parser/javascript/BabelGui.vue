@@ -390,7 +390,7 @@ const [, discardBinding] = usePluginWithOptions('discardBinding', {
 
     <label ml6>
       <AppSwitch v-model="deferredReexports" />
-      <span>reexports</span>
+      <span>deferredReexports</span>
     </label>
 
     <label>
