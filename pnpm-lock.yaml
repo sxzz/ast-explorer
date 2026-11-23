@@ -322,8 +322,8 @@ catalogs:
       specifier: ^0.20.2
       version: 0.20.2
     '@swc-next/core-browser':
-      specifier: ^0.7.0
-      version: 0.7.0
+      specifier: ^0.8.0
+      version: 0.8.0
     '@swc/wasm-web':
       specifier: ^1.16.22
       version: 1.16.22
@@ -361,8 +361,8 @@ catalogs:
       specifier: ^6.0.3
       version: 6.0.3
     flow-parser:
-      specifier: ^0.340.0
-      version: 0.340.0
+      specifier: ^0.342.0
+      version: 0.342.0
     graphql:
       specifier: ^17.1.0
       version: 17.1.0
@@ -502,7 +502,7 @@ importers:
         version: 0.20.2
       '@swc-next/core-browser':
         specifier: catalog:parser
-        version: 0.7.0
+        version: 0.8.0
       '@swc/wasm-web':
         specifier: catalog:parser
         version: 1.16.22
@@ -583,7 +583,7 @@ importers:
         version: 0.8.3
       flow-parser:
         specifier: catalog:parser
-        version: 0.340.0
+        version: 0.342.0
       graphql:
         specifier: catalog:parser
         version: 17.1.0
@@ -2600,11 +2600,11 @@ packages:
     peerDependencies:
       acorn: ^8.9.0
 
-  '@swc-next/core-browser@0.7.0':
-    resolution: {integrity: sha512-VbALbtszOZ0NkGPGaT8AJHgPjteF/kR6aNwjVdvEczwwukL4fcy4AOS0oQGcL4r/1GaLVAXhDyw+AJ0VE2in4w==}
+  '@swc-next/core-browser@0.8.0':
+    resolution: {integrity: sha512-tDY05EJmAr2g16FlQjWyzgeguLWu5RTLCIK266/L4OJngbuo4oDsSttKvIzTzLbekXHu9jxN9oYFoSkCytCC2w==}
 
-  '@swc-next/types@0.7.0':
-    resolution: {integrity: sha512-1PJpYfi0ST0b0+iZu/+YGbQu+aPNi2LHIdFSDtMn8Oh7gJV1dN2eRFHDYbSMKKKyb4k3a6EbYu5XuQefRBGL6g==}
+  '@swc-next/types@0.8.0':
+    resolution: {integrity: sha512-jOJPYignF5ArrD7OFZb3E4JKEP+0XVVhVWECutnu1yv3++J5D6c1KdDZtDOaQ6bWubGyOR8LBRMGniCb+ZqiDA==}
 
   '@swc/helpers@0.5.24':
     resolution: {integrity: sha512-6tcXo4kA8HgGO7AVmawB57RYi/piBPYVHVcO6dXjX+SZw8GoHmi262sp4v2Ha2kNP9Cx84qei27yT+fjS1lxgg==}
@@ -4384,12 +4384,12 @@ packages:
   flatted@3.4.4:
     resolution: {integrity: sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==}
 
-  flow-estree@0.340.0:
-    resolution: {integrity: sha512-LpYdzPWHsfDAc5nNmVrUPLo8UedFkJqogIxNyVO19tG7qBhvNwjs+Oo4TfWB+2Qa4arFevu3vdbxR5tfWps53g==}
+  flow-estree@0.342.0:
+    resolution: {integrity: sha512-2rg7I00BciYpwlOik/Am7JQcvCi+uB7A9dMlLkh+cru+0I8Ky3jFuS6bgucI9j0FmxbkDr4fRYRMYy5C9G8+HQ==}
     engines: {node: '>=18'}
 
-  flow-parser@0.340.0:
-    resolution: {integrity: sha512-zB1DgZcBVes/hHj/upWKLhukHAIkj+6g2o0yVnxCxS1Wyi/YLX513w8XpFLJ7/LUrbSE7CIHJAEZ94smHujt9Q==}
+  flow-parser@0.342.0:
+    resolution: {integrity: sha512-ut+LDX8oFMtXhI9ENjHrZ7V/V5m6aek+1zXg6H3IYKNWPEy0EAS3MjlcPyjX5YbgEcVeW9Ttm+pVIUQFoLnB1g==}
     engines: {node: '>=0.4.0'}
 
   flru@1.0.2:
@@ -8544,11 +8544,11 @@ snapshots:
     dependencies:
       acorn: 8.19.0
 
-  '@swc-next/core-browser@0.7.0':
+  '@swc-next/core-browser@0.8.0':
     dependencies:
-      '@swc-next/types': 0.7.0
+      '@swc-next/types': 0.8.0
 
-  '@swc-next/types@0.7.0': {}
+  '@swc-next/types@0.8.0': {}
 
   '@swc/helpers@0.5.24': {}
 
@@ -10538,11 +10538,11 @@ snapshots:
 
   flatted@3.4.4: {}
 
-  flow-estree@0.340.0: {}
+  flow-estree@0.342.0: {}
 
-  flow-parser@0.340.0:
+  flow-parser@0.342.0:
     dependencies:
-      flow-estree: 0.340.0
+      flow-estree: 0.342.0
 
   flru@1.0.2: {}
 
