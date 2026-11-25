@@ -1,0 +1,20 @@
+@use "sass:list";
+@use "sass:color";
+
+$font-stack: Helvetica, Arial;
+$primary-color: #333;
+
+body {
+  $font-stack: list.append($font-stack, sans-serif);
+  font: $font-stack;
+}
+
+a {
+  color: $primary-color;
+
+  &:hover{
+    color: color.scale($primary-color, $lightness: 20%);
+  }
+}
+
+@debug $font-stack;

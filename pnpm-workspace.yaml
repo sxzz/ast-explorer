@@ -95,6 +95,8 @@ catalogs:
     parse5: ^8.1.1
     php-parser: ^3.7.0
     postcss: ^8.5.33
+    postcss-less: ^8.0.0
+    postcss-scss: ^4.0.9
     protobufjs: ^8.8.1
     pyodide: ^314.0.8
     rehype: ^13.0.2
