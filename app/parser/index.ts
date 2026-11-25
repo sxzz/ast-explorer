@@ -34,6 +34,8 @@ export type MonacoLanguage =
   | 'glimmer-js'
   | 'glimmer-ts'
   | 'css'
+  | 'scss'
+  | 'less'
   | 'markdown'
   | 'yaml'
   | 'text'
