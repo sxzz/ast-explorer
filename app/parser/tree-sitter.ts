@@ -1,5 +1,6 @@
 import { genGetNodeLocation } from '~/composables/location'
 import { getJsdelivrUrl, importModule } from '~/parser/utils'
+import { typescriptTemplate } from './template'
 import type { Parser } from './index'
 import type * as TreeSitter from 'web-tree-sitter'
 
@@ -69,6 +70,7 @@ export const treeSitterTypescript: Parser<TreeSitter.Parser> = {
   label: 'tree-sitter-typescript',
   link: 'https://github.com/tree-sitter/tree-sitter-typescript',
   editorLanguage: 'typescript',
+  codeTemplate: typescriptTemplate,
   pkgName: 'tree-sitter-typescript',
   getModuleUrl: (pkgId) =>
     getJsdelivrUrl(pkgId, '/tree-sitter-typescript.wasm'),

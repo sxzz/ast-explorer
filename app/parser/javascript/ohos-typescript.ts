@@ -1,4 +1,5 @@
 import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
+import { typescriptTemplate } from '../template'
 import type { Parser } from '..'
 import type Typescript from 'ohos-typescript'
 
@@ -29,6 +30,7 @@ export const ohosTypescript: Parser<
     })
   },
   editorLanguage: 'typescript',
+  codeTemplate: typescriptTemplate,
   getNodeLocation(node) {
     if (!node || typeof node !== 'object') return
     if (

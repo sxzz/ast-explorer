@@ -4,7 +4,7 @@ import { code } from '~/state/editor'
 import { atou, utoa } from '~/utils/url'
 import { rawOptions, setDefaultOptions } from './parser/options'
 import {
-  currentLanguage,
+  currentCodeTemplate,
   currentLanguageId,
   currentParser,
   currentParserId,
@@ -28,11 +28,10 @@ export function initUrlState() {
   } else {
     setDefaultOptions()
   }
-  code.value = state?.c || currentLanguage.value.codeTemplate
+  code.value = state?.c || currentCodeTemplate.value
 
   watchEffect(() => {
-    const c =
-      code.value === currentLanguage.value.codeTemplate ? '' : code.value
+    const c = code.value === currentCodeTemplate.value ? '' : code.value
     const serialized = JSON.stringify({
       l: currentLanguageId.value,
       p: currentParser.value.id,

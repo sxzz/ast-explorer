@@ -6,6 +6,7 @@ import {
   importModule,
 } from '~/parser/utils'
 import { isUrl } from '~/state/url'
+import { typescriptTemplate } from '../template'
 import type { Parser } from '..'
 import type * as TypescriptAst from 'typescript-next/ast'
 import type * as TypescriptAsync from 'typescript-next/async'
@@ -83,6 +84,7 @@ export const typescriptWasm: Parser<
     }
   },
   editorLanguage: 'typescript',
+  codeTemplate: typescriptTemplate,
   getNodeLocation(node: any, ast?: boolean) {
     if (ast) {
       if (node.type !== 'Object') return
