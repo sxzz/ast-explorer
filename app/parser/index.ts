@@ -107,6 +107,12 @@ export interface Parser<C = unknown, O = unknown> {
   ) => string | undefined
   hideKeys?: (string | number)[]
   gui?: AsyncComponentLoader
+  /**
+   * Sample code for parsers whose source dialect differs from the language's
+   * default (e.g. TypeScript under JavaScript). Defaults to
+   * `LanguageOption.codeTemplate`.
+   */
+  codeTemplate?: string
 }
 export interface LanguageOption {
   label: string

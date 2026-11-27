@@ -1,4 +1,5 @@
 import { getModuleVersion } from '~/parser/utils'
+import { typescriptTemplate } from '../template'
 import type { Parser } from '..'
 import type Typescript from 'typescript'
 
@@ -27,6 +28,7 @@ export const typescript: Parser<
     return this.createSourceFile('foo.ts', code, options, true, scriptKind)
   },
   editorLanguage: 'typescript',
+  codeTemplate: typescriptTemplate,
   getNodeLocation(node) {
     if (!node || typeof node !== 'object') return
     if (

@@ -1,6 +1,7 @@
 import { h } from 'vue'
 import { genGetNodeLocation, getNodeLocation } from '~/composables/location'
 import { getModuleVersion } from '~/parser/utils'
+import { typescriptTemplate } from '../template'
 import type { Parser } from '..'
 import type * as TsEslint from '@typescript-eslint/parser'
 import type * as Espree from 'espree'
@@ -72,6 +73,7 @@ export const tsEslint: Parser<
     return ast
   },
   editorLanguage: 'typescript',
+  codeTemplate: typescriptTemplate,
   getNodeLocation: genGetNodeLocation('range'),
   gui: () =>
     import('./EslintEspreeGui.vue').then(

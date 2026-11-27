@@ -1,5 +1,5 @@
 import { genGetNodeLocation } from '~/composables/location'
-import { yamlTemplate } from './template'
+import { githubWorkflowTemplate, yamlTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as ActionsWorkflowParser from '@actions/workflow-parser'
 import type * as Yaml from 'yaml'
@@ -87,6 +87,7 @@ const actionsWorkflow: Parser<typeof ActionsWorkflowParser> = {
     editorLanguage: 'json',
   },
   pkgName: '@actions/workflow-parser',
+  codeTemplate: githubWorkflowTemplate,
   parse(code) {
     return this.parseWorkflow(
       {
