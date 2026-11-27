@@ -89,6 +89,8 @@
     "parse5": "catalog:parser",
     "php-parser": "catalog:parser",
     "postcss": "catalog:parser",
+    "postcss-less": "catalog:parser",
+    "postcss-scss": "catalog:parser",
     "prettier": "catalog:",
     "protobufjs": "catalog:parser",
     "puppeteer-core": "catalog:",

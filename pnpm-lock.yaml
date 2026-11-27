@@ -405,6 +405,12 @@ catalogs:
     postcss:
       specifier: ^8.5.33
       version: 8.5.33
+    postcss-less:
+      specifier: ^8.0.0
+      version: 8.0.0
+    postcss-scss:
+      specifier: ^4.0.9
+      version: 4.0.9
     protobufjs:
       specifier: ^8.8.1
       version: 8.8.1
@@ -641,6 +647,12 @@ importers:
       postcss:
         specifier: catalog:parser
         version: 8.5.33
+      postcss-less:
+        specifier: catalog:parser
+        version: 8.0.0(postcss@8.5.33)
+      postcss-scss:
+        specifier: catalog:parser
+        version: 4.0.9(postcss@8.5.33)
       prettier:
         specifier: 'catalog:'
         version: 3.10.1
@@ -5563,6 +5575,18 @@ packages:
     engines: {node: ^22.22.3 || ^24.15 || >=26.0}
     peerDependencies:
       postcss: ^8.5.30
+
+  postcss-less@8.0.0:
+    resolution: {integrity: sha512-KYkLTNpCleqUxFzSn6sBT4KrlMLCdKVlMCVbmQNXfOEDoTz3jBvHjBXsOq8ckfU27R7xsNqVGNq7fbjn6lNI3A==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      postcss: ^8.5.33
+
+  postcss-scss@4.0.9:
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.4.29
 
   postcss-selector-parser@7.2.1:
     resolution: {integrity: sha512-GwxlMgTTXwIom+ebC7an3k6RaJDwklRQQnfiXsLPGicu8FYV/k/+1/9YY2OU2+r938H2t4X0TDxoif+HP2rjzQ==}
@@ -12164,6 +12188,14 @@ snapshots:
   postcss-calc@11.3.0(postcss@8.5.33):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
+      postcss: 8.5.33
+
+  postcss-less@8.0.0(postcss@8.5.33):
+    dependencies:
+      postcss: 8.5.33
+
+  postcss-scss@4.0.9(postcss@8.5.33):
+    dependencies:
       postcss: 8.5.33
 
   postcss-selector-parser@7.2.1:

@@ -2,10 +2,10 @@ import { genGetNodeLocation } from '~/composables/location'
 import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
 import { cssTemplate } from '../template'
 import { cssom } from './cssom'
+import { postcss, postcssLess, postcssScss } from './postcss'
 import type { LanguageOption, Parser } from '..'
 import type * as CssTree from 'css-tree'
 import type * as Lightningcss from 'lightningcss-wasm'
-import type * as Postcss from 'postcss'
 
 // @unocss-include
 
@@ -30,27 +30,6 @@ const cssTree: Parser<typeof CssTree, CssTree.ParseOptions> = {
     return this.parse(code, { ...options })
   },
   getNodeLocation: genGetNodeLocation('locOffset'),
-}
-
-const postcss: Parser<typeof Postcss, Postcss.ProcessOptions> = {
-  id: 'postcss',
-  label: 'postcss',
-  icon: 'i-vscode-icons:file-type-postcss',
-  link: 'https://postcss.org/',
-  editorLanguage: 'css',
-  options: {
-    configurable: true,
-    defaultValue: {},
-    editorLanguage: 'json',
-    defaultValueType: 'json5',
-  },
-  pkgName: 'postcss',
-  getModuleUrl: (pkgId) => `https://esm.sh/${pkgId}`,
-  parse(code, options) {
-    return this.parse(code, { ...options })
-  },
-  getNodeLocation: genGetNodeLocation('postcss'),
-  hideKeys: ['parent'],
 }
 
 const lightningcss: Parser<
@@ -93,6 +72,6 @@ const lightningcss: Parser<
 export const css: LanguageOption = {
   label: 'CSS',
   icon: 'i-vscode-icons:file-type-css',
-  parsers: [cssTree, postcss, lightningcss, cssom],
+  parsers: [cssTree, postcss, postcssScss, postcssLess, lightningcss, cssom],
   codeTemplate: cssTemplate,
 }
