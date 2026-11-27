@@ -8,7 +8,7 @@ import type * as Postcss from 'postcss'
 // postcss-scss and postcss-less only export `parse` and `stringify`
 type PostcssSyntax = Pick<typeof Postcss, 'parse'>
 
-const postcss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
+export const postcss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   id: 'postcss',
   label: 'postcss',
   icon: 'i-vscode-icons:file-type-postcss',
@@ -29,7 +29,7 @@ const postcss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   hideKeys: ['parent'],
 }
 
-const postcssScss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
+export const postcssScss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   ...postcss,
   id: 'postcss-scss',
   label: 'postcss-scss',
@@ -40,7 +40,7 @@ const postcssScss: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   codeTemplate: scssTemplate,
 }
 
-const postcssLess: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
+export const postcssLess: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   ...postcss,
   id: 'postcss-less',
   label: 'postcss-less',
@@ -50,5 +50,3 @@ const postcssLess: Parser<PostcssSyntax, Postcss.ProcessOptions> = {
   pkgName: 'postcss-less',
   codeTemplate: lessTemplate,
 }
-
-export { postcss, postcssLess, postcssScss }
