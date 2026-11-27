@@ -1,6 +1,6 @@
 import { genGetNodeLocation } from '~/composables/location'
 import { getJsdelivrUrl, getModuleVersion } from '~/parser/utils'
-import { vueTemplate } from './template'
+import { vueDomTemplate, vueTemplate } from './template'
 import type { LanguageOption, Parser } from './index'
 import type * as Vue3Dom from '@vue/compiler-dom'
 import type * as Vue3Sfc from '@vue/compiler-sfc'
@@ -61,6 +61,7 @@ const vue3DomParse: Parser<typeof Vue3Dom, Vue3Dom.ParserOptions> = {
   icon: 'i-vscode-icons:file-type-vue',
   link: 'https://github.com/vuejs/core/tree/main/packages/compiler-dom',
   editorLanguage: 'html',
+  codeTemplate: vueDomTemplate,
   options: {
     configurable: true,
     defaultValue: 'return {}',

@@ -1,5 +1,6 @@
 import { genGetNodeLocation } from '~/composables/location'
 import { getJsdelivrUrl } from '~/parser/utils'
+import { jsoncTemplate } from '../template'
 import type { Parser } from '../index'
 import type * as JsoncEslintParser from 'jsonc-eslint-parser'
 
@@ -11,6 +12,7 @@ export const jsoncEslintParser: Parser<typeof JsoncEslintParser, any> = {
   icon: 'i-vscode-icons:file-type-json',
   link: 'https://github.com/ota-meshi/jsonc-eslint-parser',
   editorLanguage: 'json',
+  codeTemplate: jsoncTemplate,
   options: {
     configurable: true,
     defaultValue: {},

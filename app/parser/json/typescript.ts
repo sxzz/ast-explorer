@@ -2,6 +2,7 @@ import {
   assertLegacyTypescript,
   typescript as base,
 } from '../javascript/typescript'
+import { jsoncTemplate } from '../template'
 import type { Parser } from '../index'
 import type Typescript from 'typescript'
 
@@ -11,6 +12,7 @@ export const typescript: Parser<typeof Typescript, Record<string, never>> = {
   ...base,
   id: 'typescript-json',
   editorLanguage: 'json',
+  codeTemplate: jsoncTemplate,
   options: {
     configurable: false,
     defaultValue: {},
