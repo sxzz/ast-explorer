@@ -95,10 +95,12 @@ Feel free to add more languages and parsers via PR!
 </details>
 
 <details>
-<summary><b>CSS</b> (4)</summary>
+<summary><b>CSS</b> (6)</summary>
 
 - [csstree](https://github.com/csstree/csstree)
 - [postcss](https://postcss.org/)
+- [postcss-scss](https://github.com/postcss/postcss-scss)
+- [postcss-less](https://github.com/prettier/postcss-less)
 - [Lightning CSS](https://lightningcss.dev/)
 - [CSSOM](https://developer.mozilla.org/docs/Web/API/CSSStyleSheet)
 

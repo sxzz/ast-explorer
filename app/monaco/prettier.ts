@@ -13,6 +13,8 @@ export function registerPrettier(monaco: typeof Monaco): void {
         'json',
         'html',
         'css',
+        'scss',
+        'less',
         'vue',
         'markdown',
         'yaml',
@@ -50,6 +52,8 @@ export function registerPrettier(monaco: typeof Monaco): void {
             pluginIds = [(parser = language), 'estree']
             break
           case 'css':
+          case 'scss':
+          case 'less':
             parser = language
             pluginIds = ['postcss']
             break
