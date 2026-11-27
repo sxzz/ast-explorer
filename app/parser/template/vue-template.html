@@ -1,0 +1,8 @@
+<div :class="{ active: count > 0 }">
+  {{ count }}
+  <button @click="count++">Count</button>
+  <p v-if="count > 10">Too many!</p>
+  <ul>
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+  </ul>
+</div>

@@ -26,7 +26,8 @@ const jsCode: Parser = {
   label: 'JavaScript Code',
   // @unocss-include
   icon: 'i-vscode-icons:file-type-js-official',
-  editorLanguage: 'javascript',
+  // the input is arbitrary text, handled by the code in the options
+  editorLanguage: 'text',
   options: {
     configurable: true,
     defaultValue: `return (async () => {

@@ -1,0 +1,10 @@
+{
+  // TypeScript compiler options
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    /* Enable all strict type-checking options */
+    "strict": true
+  },
+  "include": ["src"] // only type-check sources
+}
